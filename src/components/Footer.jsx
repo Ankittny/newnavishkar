@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Image from 'next/image';
 import second_logo from "../../assets/logo_second.png";
-import  "../styles/_footer.scss";
+
 
 const Footer = () => {
   return (
@@ -90,7 +90,7 @@ const Footer = () => {
   {/* Footer Bottom Section */}
       <section>
         <div className={`down_footer text-center py-3 bg-light `}>
-          <h5>Copyrights © 2024. All rights reserved by <span>Tinkering Intelli Labs Pvt. Ltd.</span></h5>
+          <h5 className=''>Copyrights © 2024. All rights reserved by <span>Tinkering Intelli Labs Pvt. Ltd.</span></h5>
         </div>
       </section>
     </>

@@ -1,0 +1,98 @@
+.productBanner{
+    background-image: url('../../assets//product/productbanner.png');
+    width: 100%;
+    height: 464px;
+    background-repeat:no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.navi-title{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 42%;
+    left: 80%;
+}
+.navi-title h1{
+    font-size: 21px;
+    font-weight: 600;
+    color: #333333;
+    font-family: "Libre Franklin";
+}
+.navi-title button{
+    background: #203d6a;
+    border-radius: 30px;
+    padding: 5px 15px;
+    border: none;
+}
+.navi-title button a{
+   color: #ffff;
+   text-decoration: none;
+    
+}
+
+.navi-title p{
+    font-size: 12px;
+    font-weight: 400;
+    color: #333333;
+    font-family: "Libre Franklin";
+}
+
+.shop-by-title h5{
+    color: #353535;
+    font-size: 30px;
+    font-weight: 700;
+}
+.shop-by-title h5 span{
+    color: #006ED3;
+    font-size: 30px;
+    font-weight: 700;
+}
+.shop-by-title{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.shop-by-title p{
+    font-size: 16px;
+    font-weight: 500;
+    font-family:"Nunito" ;
+    color: #353535;
+    ;
+}
+
+
+.shopByAge {
+    padding: 10px;
+    width: 820px;
+    margin: auto;
+  }
+
+  .group {
+    display: flex;
+    flex-direction: column;
+    background-color: #005A94; /* Custom background color */
+    border-start-end-radius: 50px;
+    border-start-start-radius: 50px;
+    padding: 20px;
+    width: 280px;
+    height: 115px;
+    position: relative;
+  }
+  
+  .imageWrapper {
+    width: 150px;
+    height: 175px;
+    position: absolute;
+    width: 100%;
+    top: -60px;
+    right: -75px;
+    color: transparent;
+
+  }
+  
+  .ageLabel {
+    color: white;
+    font-weight: bold;
+    
+  }
+  

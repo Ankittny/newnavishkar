@@ -1,5 +1,7 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import StoreProvider from "@/redux/StoreProvider";
+import "../styles/app.scss"
 import localFont from "next/font/local";
 
 const geistSans = localFont({
@@ -22,9 +24,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Navbar />
-        {children}
-        <Footer />
+        <StoreProvider>
+          <Navbar />
+          {children}
+          <Footer />
+          
+        </StoreProvider>
       </body>
     </html>
   );

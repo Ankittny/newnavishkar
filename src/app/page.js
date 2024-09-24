@@ -4,7 +4,7 @@ import Register from "./register/page";
 export default function Home() {
   return (
   <>
-     <div>Hello</div>
+  <h1>This is home page</h1>
   </>
   );
 }

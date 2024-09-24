@@ -1,9 +1,21 @@
+:root{
+    --red : red;
+    --blue-400: #1096A4;
+    --blue-500: #1D6498;
+
+    --primay-color: var(--red);
+}
+
+
 
 @import './login';
 @import './register';
+@import './footer';
 
-.root{
+
+.primary-color{
+  background: var( --primay-color) !important;
+} 
     
-}
 
  

@@ -1,8 +1,12 @@
 import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const loader = () => {
   return (
-    <div><h4>Loading ....</h4></div>
+    <div className='loader text-center'>
+      
+    </div>
   )
 }
 

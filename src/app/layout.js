@@ -4,6 +4,7 @@ import StoreProvider from "@/redux/StoreProvider";
 import "../styles/app.scss"
 import localFont from "next/font/local";
 
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",

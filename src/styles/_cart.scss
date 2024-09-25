@@ -1,0 +1,104 @@
+.play-role-title{
+  margin-top: 30px;
+}
+
+.title-access{
+  background-color: #f5f7f8;
+  padding: 10px;
+}
+
+.play-role-title{
+  background-color: #fcf1f1;
+  padding: 30px;
+  border-radius: 16px;
+}
+.play-kit-title img{
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px 20px;
+}
+
+.play-cubric img{
+  padding: 0;
+  border-radius: 0;
+  height: 245px;
+}
+
+.play-cubric img {
+  padding: 0;
+  border-radius: 0;
+  height: inherit;
+}
+
+.playkit-action{
+  margin-top: 50px;
+}
+
+.action-inject{
+  margin-top: 20px;
+}
+.kit-down p{
+  font-size: 14px;
+  color: #000;
+  font-family: "Nunito";
+  font-weight: 500;
+}
+
+.buttton .ex-btn{
+  background: #CC0C39;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.buttton button {
+  border: none;
+  background: none;
+}
+
+.ex-btn{
+  color: #fff;
+  text-decoration: none;
+}
+.ex-btn1{
+  font-size: 24px;
+  font-weight: 700;
+  color: #353535;
+  text-decoration: none;
+}
+
+.ex-btn2{
+  font-size: 24px;
+  font-weight: 400;
+  color: #353535;
+  text-decoration: none;
+}
+
+.add-btn button{
+  background: #fff;
+  border: 1px solid #663399;
+  border-radius: 3px;
+  padding: 5px 20px;
+  color: #663399;
+  font-size: 15px;
+  font-weight: 600;
+}
+.add-btn {
+  margin-top: 20px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Optional: to add space between cards */
+  gap: 20px; /* Optional: to add gap between cards */
+}
+
+.card-container > div {
+  flex: 1 1 calc(33.33% - 20px); /* 3 cards per row with 20px gap */
+  box-sizing: border-box; /* Ensures padding/margins don't affect width */
+  margin-bottom: 20px; /* Optional: space below each card */
+}

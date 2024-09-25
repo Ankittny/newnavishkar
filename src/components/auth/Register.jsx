@@ -1,18 +1,20 @@
 "use client";
 import React, { useState } from "react";
-// import Avatar from '@material-ui/core/Avatar';
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
-import Paper from "@material-ui/core/Paper";
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
+import {
+  Button,
+  CssBaseline,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+  Link,
+  Paper,
+  Grid,
+  Typography,
+  InputAdornment,
+  IconButton
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { register } from "@/redux/Action/Auth";
 import "../../styles/_register.scss";
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -38,12 +40,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "left",
   },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
   form: {
-    width: "100%", // Fix IE 11 issue.
+    width: "100%",
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -53,7 +51,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Register() {
   const classes = useStyles();
-  //   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     fname: "",
@@ -64,6 +61,9 @@ export default function Register() {
     cpassword: "",
     termsAccepted: false,
   });
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showCPassword, setShowCPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -90,7 +90,6 @@ export default function Register() {
 
     try {
       const response = dispatch(register(formData));
-
       const result = await response.json();
       if (response.ok) {
         alert("Account created successfully!");
@@ -113,7 +112,7 @@ export default function Register() {
             Sign Up
           </Typography>
           <p className="signuppara">
-            Let’s get you all st up so you can access your personal account.
+            Let’s get you all set up so you can access your personal account.
           </p>
           <form className={classes.form} noValidate onSubmit={handleFormSubmit}>
             <Grid container spacing={2}>
@@ -140,8 +139,8 @@ export default function Register() {
                   fullWidth
                   name="lname"
                   label="LastName"
-                  id="password"
-                  autoComplete="current-password"
+                  id="lname"
+                  autoComplete="lname"
                   autoFocus
                   value={formData.lname}
                   onChange={handleChange}
@@ -160,7 +159,7 @@ export default function Register() {
                   name="email"
                   autoComplete="email"
                   value={formData.email}
-                  //   autoFocus
+                  onChange={handleChange}
                 />
               </Grid>
 
@@ -176,7 +175,7 @@ export default function Register() {
                   autoComplete="number"
                   type="number"
                   value={formData.number}
-                  //   autoFocus
+                  onChange={handleChange}
                 />
               </Grid>
 
@@ -190,10 +189,21 @@ export default function Register() {
                   label="Password"
                   name="password"
                   autoComplete="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   value={formData.password}
                   onChange={handleChange}
-                  //   autoFocus
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
                 />
               </Grid>
 
@@ -207,13 +217,33 @@ export default function Register() {
                   label="Confirm Password"
                   name="cpassword"
                   autoComplete="cpassword"
-                  autoFocus
+                  type={showCPassword ? "text" : "password"}
                   value={formData.cpassword}
                   onChange={handleChange}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle confirm password visibility"
+                          onClick={() => setShowCPassword(!showCPassword)}
+                        >
+                          {showCPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
                 />
               </Grid>
+
               <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
+                control={
+                  <Checkbox
+                    name="termsAccepted"
+                    checked={formData.termsAccepted}
+                    onChange={handleChange}
+                    color="primary"
+                  />
+                }
                 label="I agree to all the Terms and Condition"
               />
               <Button
@@ -230,8 +260,11 @@ export default function Register() {
 
           <Grid container>
             <Grid item xs>
-              <p className="">
-                Alredy have an account? <span><Link>Login</Link></span>
+              <p>
+                Already have an account?{" "}
+                <span>
+                  <Link>Login</Link>
+                </span>
               </p>
             </Grid>
             <Grid>
@@ -240,16 +273,16 @@ export default function Register() {
           </Grid>
 
           <Grid container>
-             <Grid item xs={6} sm={6}>
-               <div className="signupwithother">
-                 <FacebookIcon />
-               </div>
-             </Grid>
-             <Grid item xs={6} sm={6}>
-             <div className="signupwithother">
-                 <GoogleIcon />
-               </div>
-             </Grid>
+            <Grid item xs={6}>
+              <div className="signupwithother">
+                <FacebookIcon />
+              </div>
+            </Grid>
+            <Grid item xs={6}>
+              <div className="signupwithother">
+                <GoogleIcon />
+              </div>
+            </Grid>
           </Grid>
         </div>
       </Grid>

@@ -18,6 +18,7 @@ import {
   Grid,
   Avatar,
 } from "@mui/material";
+import productDetailBanner from "../../../../assets/product/productDetailBanner.png"
 
 const ProductDetails = () => {
 
@@ -36,7 +37,7 @@ const ProductDetails = () => {
   return (
     <>
       <div className="">
-        <ProductBanner title="Navishkar - Kids Toy Store" />
+        <ProductBanner imageUrl={productDetailBanner}  />
       </div>
       <div className="container mt-5">
         <div className="row">

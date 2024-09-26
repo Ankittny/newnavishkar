@@ -1,11 +1,13 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const ProductBanner = ({ title, description, linkText, linkUrl }) => {
+const ProductBanner = ({ title, description, linkText, linkUrl,imageUrl}) => {
   return (
     <section>
       <div className="productBanner">
+      {imageUrl && <Image src={imageUrl} alt="Product Image" className="product-image" />}
         <div className="navi-title">
           {title && <h1>{title}</h1>}
           {description && <p>{description}</p>}

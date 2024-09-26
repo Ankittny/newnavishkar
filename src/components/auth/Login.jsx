@@ -18,7 +18,9 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import Divider from "@mui/material/Divider";
 import Image from "next/image";
-import log from "../../../assets/log.png"; // Import your image here
+import log from "../../../assets/log.png"; 
+import { InputAdornment,IconButton} from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -57,6 +59,7 @@ export default function Login() {
     password: "",
 
   });
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -97,19 +100,18 @@ export default function Login() {
         <div className={classes.paper}>
           <Grid container>
             <Grid item xs={12} sm={12}>
-              <div className="loginwithother">
-              
-                <GoogleIcon size="large" /><p>Login with Google</p> 
+              <div className="loginwithother ">
+                <GoogleIcon sx={{fontSize:'40px',color:'#175A95'}} /><p className="m-0">Login with Google</p> 
               </div>
             </Grid>
-            <Grid item xs={12} sm={12}>
+            <Grid item xs={12} sm={12} className="mt-2">
               <div className="loginwithother">
-              <FacebookIcon size="Large"/> <p>Login with Facebook</p>
+              <FacebookIcon sx={{fontSize:'40px',color:'#175A95'}}/> <p className="m-0">Login with Facebook</p>
               </div>
             </Grid>
           </Grid>
 
-          <div>
+          <div className="mt-4">
               <Divider>OR</Divider>
             </div>
 
@@ -131,7 +133,7 @@ export default function Login() {
                 />
               </Grid>
               <Grid item xs={12} sm={12}>
-                <TextField
+              <TextField
                   variant="outlined"
                   margin="normal"
                   required
@@ -140,10 +142,21 @@ export default function Login() {
                   label="Password"
                   name="password"
                   autoComplete="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   value={formData.password}
                   onChange={handleChange}
-                  //   autoFocus
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
                 />
               </Grid>
 

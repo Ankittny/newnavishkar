@@ -1,0 +1,25 @@
+
+  .slide-container {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .mySwiper {
+    width: 100%;
+  }
+  
+  .achievement-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  /* Optional: Swiper navigation styles */
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #e63946;
+  }
+  
+  .swiper-pagination-bullet-active {
+    background-color: #e63946;
+  }

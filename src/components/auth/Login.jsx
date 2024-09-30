@@ -12,15 +12,19 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import { register } from "@/redux/Action/Auth";
+import { login, register } from "@/redux/Action/Auth";
 import "../../styles/_login.scss";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import Divider from "@mui/material/Divider";
 import Image from "next/image";
-import log from "../../../assets/log.png"; 
-import { InputAdornment,IconButton} from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import log from "../../../assets/log.png";
+import { InputAdornment, IconButton } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { useSelector,useDispatch } from "react-redux";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,42 +51,44 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    
+   
   },
 }));
 
+const validationSchema = Yup.object({
+  email: Yup.string()
+    .email("Invalid email address")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+      "Please enter a valid email"
+    )
+    .required("Email is required"),
+  password: Yup.string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
+});
+
+
+
 export default function Login() {
-  const classes = useStyles();
-  //   const dispatch = useDispatch();
 
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-
-  });
   const [showPassword, setShowPassword] = useState(false);
+  const classes = useStyles();
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
-  };
+  const dispatch = useDispatch();
+  const {loading: isLoading, success: isSuccess} = useSelector(state=>state.auth);
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    const data = new FormData();
-    data.append("email", formData.email);
-    data.append("password", formData.password);
-
+  const handleSubmit = async (values) => {
     try {
-      const response = dispatch(register(formData));
-      const result = await response.json();
-      if (response.ok) {
-        alert("Account created successfully!");
-      } else {
-        alert(result.message || "Something went wrong");
-      }
+      const response = dispatch(login(values));
+      console.log("response", response)
+      alert("Login Successfully")
+      // if (response.ok) {
+      //   alert("Account created successfully!");
+      // } else {
+      //   alert(result.message || "Something went wrong");
+      // }
     } catch (error) {
       console.error("Error:", error);
       alert("Failed to create account");
@@ -94,46 +100,66 @@ export default function Login() {
       <CssBaseline />
       <Grid item xs={false} sm={6} md={6} className={classes.image}>
         <Image src={log} alt="sjsjs" />
-        </Grid>
+      </Grid>
 
       <Grid item xs={12} sm={6} md={6} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Grid container>
             <Grid item xs={12} sm={12}>
               <div className="loginwithother ">
-                <GoogleIcon sx={{fontSize:'40px',color:'#175A95'}} /><p className="m-0">Login with Google</p> 
+                <GoogleIcon sx={{ fontSize: "40px", color: "#175A95" }} />
+                <p className="m-0">Login with Google</p>
               </div>
             </Grid>
             <Grid item xs={12} sm={12} className="mt-2">
               <div className="loginwithother">
-              <FacebookIcon sx={{fontSize:'40px',color:'#175A95'}}/> <p className="m-0">Login with Facebook</p>
+                <FacebookIcon sx={{ fontSize: "40px", color: "#175A95" }} />{" "}
+                <p className="m-0">Login with Facebook</p>
               </div>
             </Grid>
           </Grid>
 
           <div className="mt-4">
-              <Divider>OR</Divider>
-            </div>
-
-          <form className={classes.form} noValidate onSubmit={handleFormSubmit}>
+            <Divider>OR</Divider>
+          </div>
+           
+           <Formik initialValues={{
+            email:"",
+            password:"",
+           }} validationSchema={validationSchema}  
+            onSubmit={(values) =>{
+              handleSubmit(values)
+            }}
+           >
+            {({ values, handleChange, handleSubmit }) => (
+          <Form className={classes.form} onSubmit={handleSubmit} noValidate>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={12}>
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="email"
-                  type="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  value={formData.email}
-                  //   autoFocus
-                />
+              <Field
+                      as={TextField}
+                      variant="outlined"
+                      margin="normal"
+                      required
+                      fullWidth
+                      id="email"
+                      label="Email Address"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      value={values.email}
+                      onChange={handleChange}
+                      helperText={
+                        <ErrorMessage
+                          name="email"
+                          component="div"
+                          className="error"
+                        />
+                      }
+                    />
               </Grid>
               <Grid item xs={12} sm={12}>
-              <TextField
+                  <Field
+                  as={TextField}
                   variant="outlined"
                   margin="normal"
                   required
@@ -141,9 +167,8 @@ export default function Login() {
                   id="password"
                   label="Password"
                   name="password"
-                  autoComplete="password"
                   type={showPassword ? "text" : "password"}
-                  value={formData.password}
+                  value={values.password}
                   onChange={handleChange}
                   InputProps={{
                     endAdornment: (
@@ -152,33 +177,52 @@ export default function Login() {
                           aria-label="toggle password visibility"
                           onClick={() => setShowPassword(!showPassword)}
                         >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                          {showPassword ? (
+                            <VisibilityOff />
+                          ) : (
+                            <Visibility />
+                          )}
                         </IconButton>
                       </InputAdornment>
                     ),
                   }}
+                  helperText={
+                    <ErrorMessage
+                      name="password"
+                      component="div"
+                      className="error"
+                    />
+                  }
                 />
               </Grid>
 
-              <Grid item xs >
-                 <Link href="">Forget Password</Link>
+              <Grid item xs className="text-end">
+                <Link href="">Forget Password</Link>
               </Grid>
-              <Button
+
+             
+            </Grid>
+            <Grid item xs className="text-center mt-2 mb--2">
+             <Button
                 type="submit"
-                fullWidth
                 variant="contained"
-                color="primary"
-                className={classes.submit}
+                className="loginButton"
               >
                 Login
               </Button>
-            </Grid>
-          </form>
+             </Grid>
+          </Form>
+            )}
+
+          </Formik>
 
           <Grid container>
             <Grid item xs>
-              <p className="">
-                Dont have an account? <span><Link>Register</Link></span>
+              <p className="mt-3 text-center">
+                Dont have an account?{" "}
+                <span>
+                  <Link>Register</Link>
+                </span>
               </p>
             </Grid>
           </Grid>

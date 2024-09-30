@@ -4,7 +4,7 @@ import "../styles/_navbar.scss"
 import Link from 'next/link';
 import Image from 'next/image';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from "../../assets/logo.png";
+// import logo from "../../assets/logo.png";
 import wisthlist from "../../assets/icons/wishlist.png";
 import cart from "../../assets/icons/cart.png";
 import search from "../../assets/icons/search.png";
@@ -24,7 +24,7 @@ const Navbar = () => {
                     <Link href="/" passHref className="navbar-brand">
 
                         {/* <img src="/img/logo.png" alt="Logo" className={logoImage} /> */}
-                        <Image src={logo} alt='Logo' className='logoImage'/>
+                        <Image src={`/logo.png`} alt='Logo' className='logoImage' width={100} height={100}/>
 
                     </Link>
 

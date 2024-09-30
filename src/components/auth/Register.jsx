@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useState } from "react";
 import {
@@ -11,14 +12,18 @@ import {
   Grid,
   Typography,
   InputAdornment,
-  IconButton
+  IconButton,
 } from "@material-ui/core";
+import Divider from "@mui/material/Divider";
 import { makeStyles } from "@material-ui/core/styles";
-import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { register } from "@/redux/Action/Auth";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import "../../styles/_register.scss";
-import FacebookIcon from '@mui/icons-material/Facebook';
-import GoogleIcon from '@mui/icons-material/Google';
+import FacebookIcon from "@mui/icons-material/Facebook";
+import GoogleIcon from "@mui/icons-material/Google";
+import { register } from "@/redux/Action/Auth";
+import { useSelector,useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,53 +54,47 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const validationSchema = Yup.object({
+  fname: Yup.string()
+    .matches(/^[A-Za-z]+$/, "First Name can only contain alphabets")
+    .min(3, "Name must contain at least 3 characters")
+    .required("First Name is required"),
+
+  lname: Yup.string()
+    .matches(/^[A-Za-z]+$/, "Last Name can only contain alphabets")
+    .required("Last Name is required"),
+  email: Yup.string()
+    .email("Invalid email address")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+      "Please enter a valid email"
+    )
+    .required("Email is required"),
+  number: Yup.string()
+    .matches(/^[0-9]{10}$/, "Phone number must be 10 digits")
+    .required("Phone number is required"),
+  password: Yup.string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
+  cpassword: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Passwords must match")
+    .required("Confirm Password is required"),
+  termsAccepted: Yup.bool().oneOf([true], "You must accept the terms"),
+});
+
 export default function Register() {
   const classes = useStyles();
-
-  const [formData, setFormData] = useState({
-    fname: "",
-    lname: "",
-    email: "",
-    number: "",
-    password: "",
-    cpassword: "",
-    termsAccepted: false,
-  });
-
   const [showPassword, setShowPassword] = useState(false);
   const [showCPassword, setShowCPassword] = useState(false);
+ 
+  const dispatch = useDispatch();
+  const {loading:isLoading,success:isSuccess,error}=useSelector(state =>state.auth)
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
-  };
-
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-
-    if (formData.password !== formData.cpassword) {
-      alert("Passwords do not match");
-      return;
-    }
-
-    const data = new FormData();
-    data.append("fname", formData.fname);
-    data.append("lname", formData.lname);
-    data.append("email", formData.email);
-    data.append("number", formData.number);
-    data.append("password", formData.password);
-
+  const handleSubmit = async (values) => {
     try {
-      const response = dispatch(register(formData));
-      const result = await response.json();
-      if (response.ok) {
-        alert("Account created successfully!");
-      } else {
-        alert(result.message || "Something went wrong");
-      }
+      const response = dispatch(register(values));
+      console.log("Response",response);
+      alert("Resiter Successfully")
     } catch (error) {
       console.error("Error:", error);
       alert("Failed to create account");
@@ -114,149 +113,228 @@ export default function Register() {
           <p className="signuppara">
             Let’s get you all set up so you can access your personal account.
           </p>
-          <form className={classes.form} noValidate onSubmit={handleFormSubmit}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="fname"
-                  label="FirstName"
-                  name="fname"
-                  autoComplete="fname"
-                  autoFocus
-                  value={formData.fname}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="lname"
-                  label="LastName"
-                  id="lname"
-                  autoComplete="lname"
-                  autoFocus
-                  value={formData.lname}
-                  onChange={handleChange}
-                />
-              </Grid>
+          <Formik
+            initialValues={{
+              fname: "",
+              lname: "",
+              email: "",
+              number: "",
+              password: "",
+              cpassword: "",
+              termsAccepted: false,
+            }}
+            validationSchema={validationSchema}
+            onSubmit={(values)=>{
+              handleSubmit(values)
+            }}
+            validateOnBlur={true}
+          >
+            {({ values, handleChange,handleSubmit }) => (
+              <Form className={classes.form} noValidate>
+                <Grid container spacing={2}>
+                  <Grid item xs={12} sm={6}>
+                    <Field
+                      as={TextField}
+                      variant="outlined"
+                      margin="normal"
+                      required
+                      fullWidth
+                      id="fname"
+                      label="First Name"
+                      name="fname"
+                      autoComplete="fname"
+                      autoFocus
+                      value={values.fname}
+                      onChange={handleChange}
+                      helperText={
+                        <ErrorMessage
+                          name="fname"
+                          component="div"
+                          className="error"
+                        />
+                      }
+                    />
+                  </Grid>
 
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="email"
-                  type="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                />
-              </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <Field
+                      as={TextField}
+                      variant="outlined"
+                      margin="normal"
+                      required
+                      fullWidth
+                      id="lname"
+                      label="Last Name"
+                      name="lname"
+                      autoComplete="lname"
+                      value={values.lname}
+                      onChange={handleChange}
+                      helperText={
+                        <ErrorMessage
+                          name="lname"
+                          component="div"
+                          className="error"
+                        />
+                      }
+                    />
+                  </Grid>
 
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="number"
-                  label="Phone Number"
-                  name="number"
-                  autoComplete="number"
-                  type="number"
-                  value={formData.number}
-                  onChange={handleChange}
-                />
-              </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <Field
+                      as={TextField}
+                      variant="outlined"
+                      margin="normal"
+                      required
+                      fullWidth
+                      id="email"
+                      label="Email Address"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      value={values.email}
+                      onChange={handleChange}
+                      helperText={
+                        <ErrorMessage
+                          name="email"
+                          component="div"
+                          className="error"
+                        />
+                      }
+                    />
+                  </Grid>
 
-              <Grid item xs={12} sm={12}>
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="password"
-                  label="Password"
-                  name="password"
-                  autoComplete="password"
-                  type={showPassword ? "text" : "password"}
-                  value={formData.password}
-                  onChange={handleChange}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={() => setShowPassword(!showPassword)}
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <Field
+                      as={TextField}
+                      variant="outlined"
+                      margin="normal"
+                      required
+                      fullWidth
+                      id="number"
+                      label="Phone Number"
+                      name="number"
+                      autoComplete="number"
+                      value={values.number}
+                      onChange={handleChange}
+                      inputProps={{ maxLength: 10 }}
+                      helperText={
+                        <ErrorMessage
+                          name="number"
+                          component="div"
+                          className="error"
+                        />
+                      }
+                    />
+                  </Grid>
 
-              <Grid item xs={12} sm={12}>
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="cpassword"
-                  label="Confirm Password"
-                  name="cpassword"
-                  autoComplete="cpassword"
-                  type={showCPassword ? "text" : "password"}
-                  value={formData.cpassword}
-                  onChange={handleChange}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle confirm password visibility"
-                          onClick={() => setShowCPassword(!showCPassword)}
-                        >
-                          {showCPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Grid>
+                  <Grid item xs={12} sm={12}>
+                    <Field
+                      as={TextField}
+                      variant="outlined"
+                      margin="normal"
+                      required
+                      fullWidth
+                      id="password"
+                      label="Password"
+                      name="password"
+                      type={showPassword ? "text" : "password"}
+                      value={values.password}
+                      onChange={handleChange}
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              aria-label="toggle password visibility"
+                              onClick={() => setShowPassword(!showPassword)}
+                            >
+                              {showPassword ? (
+                                <VisibilityOff />
+                              ) : (
+                                <Visibility />
+                              )}
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                      helperText={
+                        <ErrorMessage
+                          name="password"
+                          component="div"
+                          className="error"
+                        />
+                      }
+                    />
+                  </Grid>
 
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    name="termsAccepted"
-                    checked={formData.termsAccepted}
-                    onChange={handleChange}
-                    color="primary"
+                  <Grid item xs={12} sm={12}>
+                    <Field
+                      as={TextField}
+                      variant="outlined"
+                      margin="normal"
+                      required
+                      fullWidth
+                      id="cpassword"
+                      label="Confirm Password"
+                      name="cpassword"
+                      type={showCPassword ? "text" : "password"}
+                      value={values.cpassword}
+                      onChange={handleChange}
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              aria-label="toggle confirm password visibility"
+                              onClick={() => setShowCPassword(!showCPassword)}
+                            >
+                              {showCPassword ? (
+                                <VisibilityOff />
+                              ) : (
+                                <Visibility />
+                              )}
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                      helperText={
+                        <ErrorMessage
+                          name="cpassword"
+                          component="div"
+                          className="error"
+                        />
+                      }
+                    />
+                  </Grid>
+
+                  <FormControlLabel
+                    control={
+                      <Field
+                        as={Checkbox}
+                        name="termsAccepted"
+                        color="primary"
+                        checked={values.termsAccepted}
+                        onChange={handleChange}
+                      />
+                    }
+                    label="I agree to all the Terms and Conditions"
                   />
-                }
-                label="I agree to all the Terms and Condition"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                Create Account
-              </Button>
-            </Grid>
-          </form>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                  >
+                    Create Account
+                  </Button>
+                </Grid>
+              </Form>
+            )}
+          </Formik>
+
+
+          {/* Feedback messages */}
+          {isLoading && <p>Loading...</p>}
+          {isSuccess && <p>Account created successfully!</p>}
+          {error && <p style={{ color: "red" }}>Error: {error}</p>}
 
           <Grid container>
             <Grid item xs>
@@ -267,12 +345,13 @@ export default function Register() {
                 </span>
               </p>
             </Grid>
-            <Grid>
-              <p>or Signup with</p>
-            </Grid>
           </Grid>
 
-          <Grid container>
+          <div className="mt-2 mb-2">
+            <Divider>OR</Divider>
+          </div>
+
+          <Grid container className="mt-2">
             <Grid item xs={6}>
               <div className="signupwithother">
                 <FacebookIcon />

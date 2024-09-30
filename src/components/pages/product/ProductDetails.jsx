@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import ProductBanner from "@/components/ProductBanner";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,7 +8,7 @@ import StarIcon from "@mui/icons-material/Star";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import DangerImage from "../../../../assets/product/image66.png";
 import Minos from "../../../../assets/product/minoscer.png";
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import {
   Box,
   Card,
@@ -18,17 +18,19 @@ import {
   Grid,
   Avatar,
 } from "@mui/material";
-import productDetailBanner from "../../../../assets/product/productDetailBanner.png"
+import productDetailBanner from "../../../../assets/product/productDetailBanner.png";
+import OurAchievement from "@/components/OurAchievment";
+import Certificate from "@/components/Certificate";
 
 const ProductDetails = () => {
-
-  const [mainImage, setMainImage] = useState('https://www.w3schools.com/html/img_chania.jpg');
+  const [mainImage, setMainImage] = useState(
+    "https://www.w3schools.com/html/img_chania.jpg"
+  );
 
   const thumbnails = [
-    'https://www.w3schools.com/html/pic_trulli.jpg',
-    'https://www.w3schools.com/html/html5.gif',
-    'https://www.w3schools.com/html/img_chania.jpg',
-    
+    "https://www.w3schools.com/html/pic_trulli.jpg",
+    "https://www.w3schools.com/html/html5.gif",
+    "https://www.w3schools.com/html/img_chania.jpg",
   ];
   const handleImageError = (e) => {
     e.target.src = "https://via.placeholder.com/340"; // Replace with any fallback image
@@ -37,7 +39,7 @@ const ProductDetails = () => {
   return (
     <>
       <div className="">
-        <ProductBanner imageUrl={productDetailBanner}  />
+        <ProductBanner imageUrl={productDetailBanner} />
       </div>
       <div className="container mt-5">
         <div className="row">
@@ -53,7 +55,7 @@ const ProductDetails = () => {
 
           <div className="row mt-3">
             <div className="col-6 d-flex justify-content-end">
-            <Box sx={{ padding: "20px" }}>
+              <Box sx={{ padding: "20px" }}>
                 {/* Main Product Card */}
                 <Card sx={{ maxWidth: 345, position: "relative" }}>
                   <CardMedia
@@ -74,9 +76,9 @@ const ProductDetails = () => {
                         height="100"
                         image={thumb}
                         alt={`Thumbnail ${index + 1}`}
-                        onClick={() => setMainImage(thumb)}  
-                        style={{ cursor: "pointer" }}  
-                        onError={handleImageError} 
+                        onClick={() => setMainImage(thumb)}
+                        style={{ cursor: "pointer" }}
+                        onError={handleImageError}
                       />
                     </Grid>
                   ))}
@@ -85,9 +87,12 @@ const ProductDetails = () => {
             </div>
             <div className="col-6">
               <div class="motonove-right-title">
-               <div className="d-flex justify-content-between">
-               <h3>Motonova</h3> <span><FavoriteIcon sx={{fontSize: 35, color:'red'}} /></span>
-               </div>
+                <div className="d-flex justify-content-between">
+                  <h3>Motonova</h3>{" "}
+                  <span>
+                    <FavoriteIcon sx={{ fontSize: 35, color: "red" }} />
+                  </span>
+                </div>
                 <p className="">
                   A green energy product that generates energy by the inertia of
                   the flywheel.
@@ -197,25 +202,17 @@ const ProductDetails = () => {
 
             <div className="row mt-2">
               <div className="col-4">
-                <div class="mini-img-minos">
-                  <Image src={Minos} alt="" />
-                  <p class="text-center">Introducing MINOS</p>
-                </div>
-              </div>
-              <div className="col-4">
-                <div class="mini-img-minos">
-                  <Image src={Minos} alt="" />
-                  <p class="text-center">Introducing MINOS</p>
-                </div>
-              </div>
-              <div className="col-4">
-                <div class="mini-img-minos">
-                  <Image src={Minos} alt="" />
-                  <p class="text-center">Certificate</p>
-                </div>
+                <Certificate
+                  title={"Intoducing MINOS"}
+                  imageUrl={Minos}
+                  linkText="Buy Now"
+                  linkUrl="/demo"
+                />
               </div>
             </div>
           </div>
+
+          <OurAchievement />
         </div>
       </div>
     </>

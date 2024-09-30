@@ -18,7 +18,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import Divider from "@mui/material/Divider";
 import Image from "next/image";
-import log from "../../../assets/log.png";
+// import log from "../../../assets/log.png";
 import { InputAdornment, IconButton } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -54,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
     
    
   },
+
 }));
 
 const validationSchema = Yup.object({
@@ -99,7 +100,7 @@ export default function Login() {
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={6} md={6} className={classes.image}>
-        <Image src={log} alt="sjsjs" />
+        <Image src='/log.png' width={700} height={700} alt="sjsjs" />
       </Grid>
 
       <Grid item xs={12} sm={6} md={6} component={Paper} elevation={6} square>
@@ -107,13 +108,16 @@ export default function Login() {
           <Grid container>
             <Grid item xs={12} sm={12}>
               <div className="loginwithother ">
-                <GoogleIcon sx={{ fontSize: "40px", color: "#175A95" }} />
+                {/* <GoogleIcon sx={{ fontSize: "40px", color: "#175A95" }} /> */}
+                <Image src='/icons/google.png' width={30} height={30}/>
+                
                 <p className="m-0">Login with Google</p>
               </div>
             </Grid>
             <Grid item xs={12} sm={12} className="mt-2">
               <div className="loginwithother">
-                <FacebookIcon sx={{ fontSize: "40px", color: "#175A95" }} />{" "}
+                {/* <FacebookIcon sx={{ fontSize: "40px", color: "#175A95" }} />{" "} */}
+                <Image src='/icons/facebook.png' width={30} height={30}/>
                 <p className="m-0">Login with Facebook</p>
               </div>
             </Grid>
@@ -218,7 +222,7 @@ export default function Login() {
 
           <Grid container>
             <Grid item xs>
-              <p className="mt-3 text-center">
+              <p className="mt-4 text-center">
                 Dont have an account?{" "}
                 <span>
                   <Link>Register</Link>

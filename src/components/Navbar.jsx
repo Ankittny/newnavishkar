@@ -4,7 +4,7 @@ import "../styles/_navbar.scss"
 import Link from 'next/link';
 import Image from 'next/image';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// // import logo from "../../assets/logo.png";
+
 // import wisthlist from "../../assets/icons/wishlist.png";
 // import cart from "../../assets/icons/cart.png";
 // import search from "../../assets/icons/search.png";
@@ -22,9 +22,7 @@ const Navbar = () => {
                 <div className="container">
                     {/* Logo */}
                     <Link href="/" passHref className="navbar-brand">
-
-                        {/* <img src="/img/logo.png" alt="Logo" className={logoImage} /> */}
-                        <Image src={`/logo.png`} alt='Logo' className='logoImage' width={100} height={100}/>
+                        <Image src={'/public/logo.png'} alt='Logo' className='logoImage' width={100} height={100}/>
 
                     </Link>
 
@@ -69,13 +67,10 @@ const Navbar = () => {
                     {/* Icons Section (Wishlist, Search, Cart, Profile) */}
                     <div className="d-flex align-items-center">
                         <Link href="/wishlist" passHref className="nav-link mx-2">
-                            <Image src={'/icons/search.png'}  alt="Wishlist" className='icon' />
-                        </Link>
-                        <Link href="/search" passHref className="nav-link mx-2">
-                        <Image src={'/icons/cart.png'}  alt="Wishlist" className='icon' />
+
                         </Link>
                         <Link href="/cart" passHref className="nav-link mx-2">
-                        <Image src={profile}  alt="Wishlist" className='icon' />
+                        <Image src={'/public/icons/profile.png'} width={100} height={100}  alt="Wishlist" className='icon' />
                         </Link>
                         {/* <Link href="/profile" passHref className="nav-link mx-2">
                         <Image src={wisthlist}  alt="Wishlist" className='icon' />

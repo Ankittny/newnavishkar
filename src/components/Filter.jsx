@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import chid from "../../assets/product/children-holding-blank-banner 1.png";
+// import chid from "../../assets/product/children-holding-blank-banner 1.png";
 
 const Filter = () => {
   const [selectedCategories, setSelectedCategories] = useState({
@@ -22,7 +22,7 @@ const Filter = () => {
     <div className="leading-left-title">
       <div className="two-kids-title">
         <Image
-          src={chid}
+          src={'/public/product/children-holding-blank-banner 1.png'}
           alt="children"
         />
       </div>

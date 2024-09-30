@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import related1 from "../../assets/labs/summer1.png";
+// import related1 from "../../assets/labs/summer1.png";
 import Link from 'next/link';
  
 
@@ -10,7 +10,7 @@ const RelatedProduct = () => {
     
     <div className='ReletedslideContainer'>
       <div className='card'>
-        <Image className='cardImgTop' src={related1} alt="Card image cap" />
+        <Image className='cardImgTop' src={'/public/labs/summer1.png'} alt="Card image cap" />
         <div className='cardBody'>
           <h5 className='cardTitle'>Navishkar</h5>
           <p className='cardText'>

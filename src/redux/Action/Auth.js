@@ -46,7 +46,15 @@ export const login = (values) => async (dispatch) => {
   }
 };
 
-export const logout = () => async () => {
+export const logout = () => async (dispatch) => {
   try {
-  } catch (error) {}
+    dispatch({type:'logoutRequest'});
+    localStorage.removeItem("authAdminToken");
+    dispatch({type:'logoutSuccess'});
+  } catch (error) {
+    dispatch({
+      type: "logoutFail",
+      payload: error.response.data.message,
+    })
+  }
 };

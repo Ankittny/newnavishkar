@@ -12,15 +12,15 @@ const Card = ({ imageUrl, title, subtitle, discount, price, oldPrice }) => {
           <div className="kit-down">
             <p>{title} | {subtitle}</p>
           </div>
-          <div className="buttton">
+          <div className="buttton mt-4 buttton mt-4 d-flex gap-3">
             <div className="ex-btn">
                 -{discount}%
             </div>
-            <div>
-                ${price}
+            <div className="price-text">
+                <span>${price}</span>
             </div>
-            <div>
-                ${oldPrice}
+            <div className="overline-text">
+                <p>${oldPrice}</p>
             </div>
           </div>
         </div>

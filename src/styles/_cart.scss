@@ -8,9 +8,9 @@
 }
 
 .play-role-title{
-  background-color: #fcf1f1;
-  padding: 30px;
-  border-radius: 16px;
+  background-color: #f3f5f7;
+  padding: 16px;
+  border-radius: 8px;
 }
 .play-kit-title img{
   width: 100%;
@@ -41,7 +41,7 @@
   margin-top: 20px;
 }
 .kit-down p{
-  font-size: 14px;
+  font-size: 16px;
   color: #000;
   font-family: "Nunito";
   font-weight: 500;
@@ -101,4 +101,11 @@
   flex: 1 1 calc(33.33% - 20px); /* 3 cards per row with 20px gap */
   box-sizing: border-box; /* Ensures padding/margins don't affect width */
   margin-bottom: 20px; /* Optional: space below each card */
+}
+.price-text span{
+  font-weight: 700;
+  font-size: 20px;
+}
+.overline-text p{
+  text-decoration: line-through;
 }

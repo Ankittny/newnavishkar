@@ -3,7 +3,7 @@
 }
 /* lead-brand-start */
 .two-kids-title img{
-    width: 100%;
+    width: 300px;
     height: auto;
 }
 .leading-title{
@@ -29,6 +29,8 @@
     font-size: 18px;
     font-weight: 400;
     font-family: "Poppins";
+    background: #f5f7f8;
+    padding: 5px 13px;
 }
 .left-list-title ul, .left-search-title ul , .left-product-title ul{
     list-style: none;
@@ -45,7 +47,7 @@
 }
 
 .lab-position{
-    margin-top: -22px;
+    margin-top: -153px;
 }
 .battery-title{
     padding: 0;
@@ -57,4 +59,5 @@
     .form-check{
         margin-bottom: 5px !important;
     }
+    
 /* lead-brand-end */

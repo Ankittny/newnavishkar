@@ -44,6 +44,7 @@ const SHopByIntrest = () => {
                 <h5>
                   SHOP BY <span>INTREST</span>
                 </h5>
+              <p>A whole lotta fun & learning</p>
               </div>
             </div>
           </div>

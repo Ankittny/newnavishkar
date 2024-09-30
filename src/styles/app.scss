@@ -1,6 +1,4 @@
 
-@import "~slick-carousel/slick/slick.css";
-@import "~slick-carousel/slick/slick-theme.css";
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 :root{
@@ -25,6 +23,9 @@
     --grey-300:
     --grey-400:
     --grey-500:
+    --green-100: #dcfce7;
+    --green-200: #22c55e;
+    --green-300: #14532d;
 
     --primary-color: var(--blue-500);
     --seconday-color:var(--blue-400);
@@ -58,11 +59,45 @@ p{
 @import "./ourachivment";
 @import "./shopbyintrest";
 @import "./cart";
+@import "./labs";
+@import "./certificate";
 
+
+.error {
+  color:var(--blue-500) !important;
+  font-family: "Alilato", sans-serif !important;
+  // font-size: 16px;
+}
 
 .primary-color{
   color: var( --primay-color) !important;
 } 
     
 
- 
+ .MuiInputBase-input:invalid{
+  background-color: #ECECEC;
+}
+
+.MuiInputBase-root {
+  border-radius: 0 !important;
+  line-height: 1 !important;
+  
+}
+.MuiButton-root {
+  width: max-content;
+  line-height: 1 !important;
+  padding: 20px;
+  box-shadow: none !important;
+  border-radius: 50px !important;
+  &:hover {
+    box-shadow: none !important;
+  }
+}
+.MuiButton-outlined {
+  
+}
+
+
+.MuiInputLabel-shrink .MuiInputLabel-outlined{
+  color: red;
+}

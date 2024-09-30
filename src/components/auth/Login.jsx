@@ -93,7 +93,7 @@ export default function Login() {
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={6} md={6} className={classes.image}>
-        <Image src={'/public/log.png'} width={100} height={100} alt="sjsjs" />
+        <Image src='/log.png' width={700} height={700} alt="sjsjs"   />
       </Grid>
 
       <Grid item xs={12} sm={6} md={6} component={Paper} elevation={6} square>

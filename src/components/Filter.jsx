@@ -22,7 +22,7 @@ const Filter = () => {
     <div className="leading-left-title">
       <div className="two-kids-title">
         <Image
-          src={'/public/product/children-holding-blank-banner 1.png'}
+          src={'/product/children-holding-blank-banner 1.png'} width={100} height={100}
           alt="children"
         />
       </div>

@@ -6,7 +6,7 @@ import Card from "./card/Card";
 const products = [
   {
     id: 1,
-    imageUrl: '/public/product/product1.png', // Replace with actual image paths
+    imageUrl: '/product/product1.png', // Replace with actual image paths
     title: "Play and Learn Kit",
     subtitle: "4-8 years | DIY Activity Kit",
     discount: 15,
@@ -15,7 +15,7 @@ const products = [
   },
   {
     id: 2,
-    imageUrl: '/public/product/product1.png',
+    imageUrl: '/product/product1.png',
     title: "Play and Learn Kit",
     subtitle: "6-12 years | DIY Kit",
     discount: 10,
@@ -24,7 +24,7 @@ const products = [
   },
   {
     id: 3,
-    imageUrl: '/public/product/product1.png',
+    imageUrl: '/product/product1.png',
     title: "Play and Learn Kit",
     subtitle: "6-12 years | DIY Kit",
     discount: 10,

@@ -1,13 +1,9 @@
 "use client";
 import ProductBanner from "@/components/ProductBanner";
 import React from "react";
-import LabBanner from "../../../../assets/labs/labBanner.png";
 import Image from "next/image";
-import Lab1 from "../../../../assets/labs/lab1.png";
 import { Divider } from "@mui/material";
 import Certificate from "@/components/Certificate";
-import Minos from "../../../../assets/product/minoscer.png";
-import Summer1 from "../../../../assets/labs/summer1.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -22,7 +18,7 @@ const Lab = () => {
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elitvashcb biiwuhiwq uidh ih uhi iui "
         linkText="Live Demo"
         linkUrl="/demo"
-        imageUrl={LabBanner}
+        imageUrl={'/public/labs/labBanner.png'}
       />
 
       <div className="container">
@@ -38,7 +34,7 @@ const Lab = () => {
               <div className="col-6">
                 <div class="toddler-title d-flex gap-4">
                   <div class="imag-toddler">
-                    <Image src={Lab1} alt="lab" />
+                    <Image src={'/public/labs/lab1.png'} alt="lab" />
                   </div>
                   <div class="labs-toddler">
                     <p>Toddler Labs</p>
@@ -89,7 +85,7 @@ const Lab = () => {
           <div className="col-4">
             <Certificate
               title={"Intoducing MINOS"}
-              imageUrl={Minos}
+              imageUrl={'/public/product/minoscer.png'}
               linkText="Buy Now"
               linkUrl="/demo"
             />
@@ -114,7 +110,7 @@ const Lab = () => {
                 <div className="row">
                   <div className="col-lg-6">
                     <div className="summer-activity">
-                      <Image src={Summer1} alt="img2" />
+                      <Image src={'/public/labs/summer1.png'} alt="img2" />
                       <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et{" "}

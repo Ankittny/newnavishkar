@@ -3,11 +3,8 @@ import ProductBanner from "@/components/ProductBanner";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import CertificateLogo from "../../../../assets/product/Mark1.png";
 import StarIcon from "@mui/icons-material/Star";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-import DangerImage from "../../../../assets/product/image66.png";
-import Minos from "../../../../assets/product/minoscer.png";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import {
   Box,
@@ -18,7 +15,7 @@ import {
   Grid,
   Avatar,
 } from "@mui/material";
-import productDetailBanner from "../../../../assets/product/productDetailBanner.png";
+// import productDetailBanner from "../../../../assets/product/productDetailBanner.png";
 import OurAchievement from "@/components/OurAchievment";
 import Certificate from "@/components/Certificate";
 
@@ -39,7 +36,7 @@ const ProductDetails = () => {
   return (
     <>
       <div className="">
-        <ProductBanner imageUrl={productDetailBanner} />
+        <ProductBanner imageUrl={'/public/product/productDetailBanner.png'} />
       </div>
       <div className="container mt-5">
         <div className="row">
@@ -115,7 +112,7 @@ const ProductDetails = () => {
                       </li>
                     </ul>
                     <Image
-                      src={CertificateLogo}
+                      src={'/public/product/Mark1.png'}
                       alt="ddd"
                       width={100}
                       height={100}
@@ -197,14 +194,14 @@ const ProductDetails = () => {
             </div>
 
             <div className="image-sec-66 d-flex justify-content-center align-content-center">
-              <Image src={DangerImage} alt="danger" />
+              <Image src={'/public/product/image66.png'} width={100} height={100} alt="danger" />
             </div>
 
             <div className="row mt-2">
               <div className="col-4">
                 <Certificate
                   title={"Intoducing MINOS"}
-                  imageUrl={Minos}
+                  imageUrl={'/public/product/minoscer.png'}
                   linkText="Buy Now"
                   linkUrl="/demo"
                 />

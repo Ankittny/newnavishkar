@@ -1,15 +1,14 @@
 import ProductBanner from "@/components/ProductBanner";
 import React from "react";
-import LabDetailBanner from "../../../../assets/labs/labDetailBanner.png";
 import Image from "next/image";
-import Related1 from "../../../../assets/labs/related1.png";
+// import Related1 from "../../../../assets/labs/related1.png";
 import Link from "next/link";
-import ToddlarLabs from "../../../../assets/labs/tadlarlabs.png";
+// import ToddlarLabs from "../../../../assets/labs/tadlarlabs.png";
 
 const LabDetails = () => {
   return (
     <>
-      <ProductBanner imageUrl={LabDetailBanner} />
+      <ProductBanner imageUrl={'/public/labs/labDetailBanner.png'} />
 
       <div className="container">
         <div className="row">
@@ -21,7 +20,7 @@ const LabDetails = () => {
             <div class="relation-title right-sight-title-brand">
               <h3>Navishkar The Leading Brand</h3>
               <div class="mt-3">
-                <Image src={ToddlarLabs} className="toddlet-tab-img" alt="elec" />
+                <Image src={'/public/labs/tadlarlabs.png'} className="toddlet-tab-img" alt="elec" />
               </div>
             </div>
             <div class="role-ai-title">
@@ -72,7 +71,7 @@ const LabDetails = () => {
             <div class="relation-title-left right-sight-title-brand">
               <div class="toddler d-flex gap-4 mt-3">
                 <div class="imag-toddler">
-                  <Image src={Related1} alt="link" />
+                  <Image src={'/public/labs/related1.png'} alt="link" />
                 </div>
                 <div class="labs-toddler ">
                   <span>Empowering students in the age of AI.</span>

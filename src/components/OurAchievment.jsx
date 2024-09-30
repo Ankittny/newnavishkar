@@ -5,11 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
 import Image from "next/image";
-import achiv1 from "../../assets/achievement/ach1.png";
-import achiv2 from "../../assets/achievement/achi2.png";
-import achiv3 from "../../assets/achievement/ach3.png";
-import achiv4 from "../../assets/achievement/ach4.png";
-import achiv5 from "../../assets/achievement/ach5.png";
+
 
 const OurAchievement = () => {
   return (
@@ -53,19 +49,19 @@ const OurAchievement = () => {
                
               >
                 <SwiperSlide>
-                  <Image src={achiv1} alt="Achievement 1" />
+                  <Image src={'/public/achievement/ach1.png'} height={100} width={100} alt="Achievement 1" />
                 </SwiperSlide>
                 <SwiperSlide>
-                  <Image src={achiv2} alt="Achievement 2" />
+                  <Image src={'/public/achievement/achi2.png'} width={100} height={100} alt="Achievement 2" />
                 </SwiperSlide>
                 <SwiperSlide>
-                  <Image src={achiv3} alt="Achievement 3" />
+                  <Image src={'/public/achievement/ach3.png'} height={100} width={100} alt="Achievement 3" />
                 </SwiperSlide>
                 <SwiperSlide>
-                  <Image src={achiv4} alt="Achievement 4" />
+                  <Image src={'/public/achievement/ach4.png'} width={100} height={100} alt="Achievement 4" />
                 </SwiperSlide>
                 <SwiperSlide>
-                  <Image src={achiv5} alt="Achievement 5" />
+                  <Image src={'/public/achievement/ach5.png'} height={100} width={100} alt="Achievement 5" />
                 </SwiperSlide>
               </Swiper>
             </div>

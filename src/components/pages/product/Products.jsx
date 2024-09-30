@@ -3,7 +3,6 @@ import ProductBanner from "@/components/ProductBanner";
 import ShopByAge from "@/components/ShopByAge";
 import SHopByIntrest from "@/components/SHopByIntrest";
 import React from "react";
-import productBanner from "../../../../assets/product/productbanner.png"
 
 
 const product = () => {
@@ -14,7 +13,7 @@ const product = () => {
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elitvashcb biiwuhiwq uidh ih uhi iui "
         linkText="Live Demo"
         linkUrl="/demo"
-        imageUrl = {productBanner}
+        imageUrl = {'/public/product/productbanner.png'}
       />
       <ShopByAge />
       <SHopByIntrest />

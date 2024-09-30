@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
     
    
   },
+
 }));
 
 const validationSchema = Yup.object({
@@ -93,7 +94,7 @@ export default function Login() {
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={6} md={6} className={classes.image}>
-        <Image src={'/public/log.png'} width={100} height={100} alt="sjsjs" />
+
       </Grid>
 
       <Grid item xs={12} sm={6} md={6} component={Paper} elevation={6} square>
@@ -101,13 +102,16 @@ export default function Login() {
           <Grid container>
             <Grid item xs={12} sm={12}>
               <div className="loginwithother ">
-                <GoogleIcon sx={{ fontSize: "40px", color: "#175A95" }} />
+                {/* <GoogleIcon sx={{ fontSize: "40px", color: "#175A95" }} /> */}
+                <Image src='/icons/google.png' width={30} height={30}/>
+                
                 <p className="m-0">Login with Google</p>
               </div>
             </Grid>
             <Grid item xs={12} sm={12} className="mt-2">
               <div className="loginwithother">
-                <FacebookIcon sx={{ fontSize: "40px", color: "#175A95" }} />{" "}
+                {/* <FacebookIcon sx={{ fontSize: "40px", color: "#175A95" }} />{" "} */}
+                <Image src='/icons/facebook.png' width={30} height={30}/>
                 <p className="m-0">Login with Facebook</p>
               </div>
             </Grid>
@@ -212,7 +216,7 @@ export default function Login() {
 
           <Grid container>
             <Grid item xs>
-              <p className="mt-3 text-center">
+              <p className="mt-4 text-center">
                 Dont have an account?{" "}
                 <span>
                   <Link>Register</Link>

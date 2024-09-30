@@ -4,7 +4,7 @@ import "../styles/_navbar.scss"
 import Link from 'next/link';
 import Image from 'next/image';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import logo from "../../assets/logo.png";
+
 // import wisthlist from "../../assets/icons/wishlist.png";
 // import cart from "../../assets/icons/cart.png";
 // import search from "../../assets/icons/search.png";
@@ -67,10 +67,7 @@ const Navbar = () => {
                     {/* Icons Section (Wishlist, Search, Cart, Profile) */}
                     <div className="d-flex align-items-center">
                         <Link href="/wishlist" passHref className="nav-link mx-2">
-                            <Image src={'/public/icons/search.png'} width={100} height={100}  alt="Wishlist" className='icon' />
-                        </Link>
-                        <Link href="/search" passHref className="nav-link mx-2">
-                        <Image src={'/public/icons/cart.png'} width={100} height={100}  alt="Wishlist" className='icon' />
+
                         </Link>
                         <Link href="/cart" passHref className="nav-link mx-2">
                         <Image src={'/public/icons/profile.png'} width={100} height={100}  alt="Wishlist" className='icon' />

@@ -1,3 +1,11 @@
+.login-wrapper-page{
+  .MuiOutlinedInput-notchedOutline{
+    // border-color: none !important;
+    // background: #ECECEC !important;
+    // color: black;
+  }
+}
+
 .loginwithother {
   display: flex;
   align-items: center;
@@ -8,7 +16,7 @@
   gap: 5px;
 }
 .MuiPaper-root {
-  background: #F7FDFF !important;
+  // background: #F7FDFF !important;
   text-align: end;
   padding: 70px 0px;
 }
@@ -28,3 +36,4 @@
 .MuiButton-label{
   color: #FFF;
 }
+

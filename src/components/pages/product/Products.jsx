@@ -1,11 +1,11 @@
 import OurAchievment from "@/components/OurAchievment";
 import ProductBanner from "@/components/ProductBanner";
 import ShopByAge from "@/components/ShopByAge";
-import SHopByIntrest from "@/components/SHopByIntrest";
 import React from "react";
 
 
 const product = () => {
+
   return (
     <>
       <ProductBanner
@@ -16,7 +16,6 @@ const product = () => {
         imageUrl = {'/product/productbanner.png'}
       />
       <ShopByAge />
-      <SHopByIntrest />
       <OurAchievment />
     </>
   );

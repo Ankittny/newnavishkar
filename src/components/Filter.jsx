@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-// import chid from "../../assets/product/children-holding-blank-banner 1.png";
 
 const Filter = () => {
   const [selectedCategories, setSelectedCategories] = useState({
@@ -22,21 +21,24 @@ const Filter = () => {
     <div className="leading-left-title">
       <div className="two-kids-title">
         <Image
-          src={'/product/children-holding-blank-banner 1.png'} width={100} height={100}
+          src={'/product/children-holding-blank-banner 1.png'}
+          width={100}
+          height={100}
           alt="children"
         />
       </div>
 
       <div className="lab-position">
         <div className="lab-left-title battery-title">
-          <p>Category</p> {/* Fixed the 'P' to lowercase 'p' */}
+          <p>Category</p>
           <div className="left-list-title">
             <div className="battery-opra">
               <div className="form-check">
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  name="steam" // Add name attribute
+                  id="steam" // Add id attribute
+                  name="steam"
                   checked={selectedCategories.steam}
                   onChange={handleChange}
                 />
@@ -50,7 +52,8 @@ const Filter = () => {
                     <input
                       className="form-check-input"
                       type="checkbox"
-                      name="stemToys" // Add name attribute
+                      id="stemToys" // Add id attribute
+                      name="stemToys"
                       checked={selectedCategories.stemToys}
                       onChange={handleChange}
                     />
@@ -64,7 +67,8 @@ const Filter = () => {
                     <input
                       className="form-check-input"
                       type="checkbox"
-                      name="stemProjects" // Add name attribute
+                      id="stemProjects" // Add id attribute
+                      name="stemProjects"
                       checked={selectedCategories.stemProjects}
                       onChange={handleChange}
                     />

@@ -1,8 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Image from 'next/image';
-// import second_logo from "../../assets/logo_second.png";
-
 
 const Footer = () => {
   return (
@@ -14,7 +12,7 @@ const Footer = () => {
             <div className="row">
               <div className="col-lg-12  mb-4">
                 <div className="footer-logo">
-                  <Image src='/logo_second.png' alt="logo" width={150} height={50} className="img-fluid" />
+                  <Image src={'/logo_second.png'} alt="logo" width={150} height={50} className="img-fluid" />
                 </div>
               </div>
 

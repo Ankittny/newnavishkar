@@ -74,9 +74,7 @@ p{
 } 
     
 
- .MuiInputBase-input:invalid{
-  background-color: #ECECEC;
-}
+
 
 .MuiInputBase-root {
   border-radius: 0 !important;
@@ -93,11 +91,8 @@ p{
     box-shadow: none !important;
   }
 }
-.MuiButton-outlined {
-  
-}
 
 
-.MuiInputLabel-shrink .MuiInputLabel-outlined{
-  color: red;
-}
+
+
+

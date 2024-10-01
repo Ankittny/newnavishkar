@@ -112,7 +112,7 @@ export default function Register() {
           <Typography component="h1" variant="h5" className="mainHeading">
             Sign Up
           </Typography>
-          <p className="signuppara">
+          <p className="signuppara mt-3">
             Let’s get you all set up so you can access your personal account.
           </p>
           <Formik

@@ -1,34 +1,39 @@
+.login-wrapper-page{
+  .MuiOutlinedInput-notchedOutline{
+    // border-color: none !important;
+    // background: #ECECEC !important;
+    // color: black;
+  }
+}
+
 .loginwithother {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    padding: 8px;
-    border-radius: 5px;
-    gap: 5px;
-  }
-
-
-  .MuiPaper-root {
-    background: #F7FDFF !important;
-    text-align: end;
-    padding: 70px 0px;
-  }
-
-  .loginButton{
-    background-color:#1096A4 !important;
-    text-align: center;
-    width: 200px;
-    padding: 5px;
-  }
-  .loginwithother{
-    background-color: #fff;
-  }
-  .MuiButton-root{
-    border-radius:6px !important;
-    height:40px;
-  }
-  .MuiButton-label{
-    color: #FFF;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  padding: 8px;
+  border-radius: 5px;
+  gap: 5px;
+}
+.MuiPaper-root {
+  // background: #F7FDFF !important;
+  text-align: end;
+  padding: 70px 0px;
+}
+.loginButton{
+  background-color:#1096A4 !important;
+  text-align: center;
+  width: 200px;
+  padding: 5px;
+}
+.loginwithother{
+  background-color: #fff;
+}
+.MuiButton-root{
+  border-radius:6px !important;
+  height:40px;
+}
+.MuiButton-label{
+  color: #FFF;
+}
 

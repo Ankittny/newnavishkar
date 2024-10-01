@@ -9,6 +9,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
 import RelatedProduct from "@/components/RelatedProduct";
+import Link from "next/link";
+import Filter from "@/components/Filter";
 
 const Lab = () => {
   return (
@@ -18,13 +20,13 @@ const Lab = () => {
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elitvashcb biiwuhiwq uidh ih uhi iui "
         linkText="Live Demo"
         linkUrl="/demo"
-        imageUrl={'/public/labs/labBanner.png'}
+        imageUrl={'/labs/labBanner.png'}
       />
 
       <div className="container">
         <div className="row">
           <div className="col-3">
-            
+            <Filter/>
           </div>
           <div className="col-9">
             <div className="mt-2 right-sight-title-brand">
@@ -34,7 +36,7 @@ const Lab = () => {
               <div className="col-6">
                 <div class="toddler-title d-flex gap-4">
                   <div class="imag-toddler">
-                    <Image src={'/public/labs/lab1.png'} alt="lab" />
+                    <Image src={'/labs/lab1.png'} alt="lab" width={100} height={100} />
                   </div>
                   <div class="labs-toddler">
                     <p>Toddler Labs</p>
@@ -43,7 +45,7 @@ const Lab = () => {
                       children. Focus on all-round development through play.
                     </span>
                     <div class="an-int">
-                      <a href="">Read more</a>
+                      <Link href="">Read more</Link>
                     </div>
                   </div>
                 </div>
@@ -85,7 +87,7 @@ const Lab = () => {
           <div className="col-4">
             <Certificate
               title={"Intoducing MINOS"}
-              imageUrl={'/public/product/minoscer.png'}
+              imageUrl={'/product/minoscer.png'}
               linkText="Buy Now"
               linkUrl="/demo"
             />
@@ -110,7 +112,7 @@ const Lab = () => {
                 <div className="row">
                   <div className="col-lg-6">
                     <div className="summer-activity">
-                      <Image src={'/public/labs/summer1.png'} alt="img2" />
+                    <Image src={'/labs/summer1.png'} alt="img2" width={100} height={100} />
                       <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et{" "}

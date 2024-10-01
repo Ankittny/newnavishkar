@@ -22,7 +22,7 @@ const Navbar = () => {
                 <div className="container">
                     {/* Logo */}
                     <Link href="/" passHref className="navbar-brand">
-                        <Image src={'/public/logo.png'} alt='Logo' className='logoImage' width={100} height={100}/>
+                        <Image src={'/logo.png'} alt='Logo' className='logoImage' width={100} height={100}/>
 
                     </Link>
 
@@ -67,14 +67,16 @@ const Navbar = () => {
                     {/* Icons Section (Wishlist, Search, Cart, Profile) */}
                     <div className="d-flex align-items-center">
                         <Link href="/wishlist" passHref className="nav-link mx-2">
+                        <Image src={'/icons/search.png'} width={100} height={100}  alt="Wishlist" className='icon' />
+                        </Link>
 
-                        </Link>
                         <Link href="/cart" passHref className="nav-link mx-2">
-                        <Image src={'/public/icons/profile.png'} width={100} height={100}  alt="Wishlist" className='icon' />
+                        <Image src={'/icons/cart.png'} width={100} height={100}  alt="Wishlist" className='icon' />
                         </Link>
-                        {/* <Link href="/profile" passHref className="nav-link mx-2">
-                        <Image src={wisthlist}  alt="Wishlist" className='icon' />
-                        </Link> */}
+
+                        <Link href="/profile" passHref className="nav-link mx-2">
+                        <Image src={'/icons/profile.png'} width={100} height={100}  alt="Wishlist" className='icon' />
+                        </Link>
                     </div>
                 </div>
             </nav>

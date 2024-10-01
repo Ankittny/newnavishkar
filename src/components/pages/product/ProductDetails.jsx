@@ -36,7 +36,7 @@ const ProductDetails = () => {
   return (
     <>
       <div className="">
-        <ProductBanner imageUrl={'/public/product/productDetailBanner.png'} />
+        <ProductBanner imageUrl={'/product/productDetailBanner.png'} />
       </div>
       <div className="container mt-5">
         <div className="row">
@@ -112,9 +112,9 @@ const ProductDetails = () => {
                       </li>
                     </ul>
                     <Image
-                      src={'/public/product/Mark1.png'}
+                      src={'/product/Mark1.png'}
                       alt="ddd"
-                      width={100}
+                      width={120}
                       height={100}
                     />
                   </div>
@@ -194,14 +194,14 @@ const ProductDetails = () => {
             </div>
 
             <div className="image-sec-66 d-flex justify-content-center align-content-center">
-              <Image src={'/public/product/image66.png'} width={100} height={100} alt="danger" />
+              <Image src={'/product/image66.png'} width={100} height={100} alt="danger" />
             </div>
 
             <div className="row mt-2">
               <div className="col-4">
                 <Certificate
                   title={"Intoducing MINOS"}
-                  imageUrl={'/public/product/minoscer.png'}
+                  imageUrl={'/product/minoscer.png'}
                   linkText="Buy Now"
                   linkUrl="/demo"
                 />

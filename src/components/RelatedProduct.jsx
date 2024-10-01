@@ -10,7 +10,7 @@ const RelatedProduct = () => {
     
     <div className='ReletedslideContainer'>
       <div className='card'>
-        <Image className='cardImgTop' src={'/public/labs/summer1.png'} alt="Card image cap" />
+        <Image className='cardImgTop' src={'/labs/summer1.png'} width={100} height={100} alt="Card image cap" />
         <div className='cardBody'>
           <h5 className='cardTitle'>Navishkar</h5>
           <p className='cardText'>

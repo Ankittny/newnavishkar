@@ -10,7 +10,7 @@ import Image from "next/image";
 const OurAchievement = () => {
   return (
     <>
-      <div className="container">
+      <div className="container mb-5">
         <div className="row">
           <div className="col-12">
             <div className="shop-by-title text-center">
@@ -49,19 +49,19 @@ const OurAchievement = () => {
                
               >
                 <SwiperSlide>
-                  <Image src={'/public/achievement/ach1.png'} height={100} width={100} alt="Achievement 1" />
+                  <Image src={'/achievement/ach1.png'} height={200} width={200} alt="Achievement 1" />
                 </SwiperSlide>
                 <SwiperSlide>
-                  <Image src={'/public/achievement/achi2.png'} width={100} height={100} alt="Achievement 2" />
+                  <Image src={'/achievement/achi2.png'} width={200} height={200} alt="Achievement 2" />
                 </SwiperSlide>
                 <SwiperSlide>
-                  <Image src={'/public/achievement/ach3.png'} height={100} width={100} alt="Achievement 3" />
+                  <Image src={'/achievement/ach3.png'} height={200} width={200} alt="Achievement 3" />
                 </SwiperSlide>
                 <SwiperSlide>
-                  <Image src={'/public/achievement/ach4.png'} width={100} height={100} alt="Achievement 4" />
+                  <Image src={'/achievement/ach4.png'} width={200} height={200} alt="Achievement 4" />
                 </SwiperSlide>
                 <SwiperSlide>
-                  <Image src={'/public/achievement/ach5.png'} height={100} width={100} alt="Achievement 5" />
+                  <Image src={'/achievement/ach5.png'} height={200} width={200} alt="Achievement 5" />
                 </SwiperSlide>
               </Swiper>
             </div>

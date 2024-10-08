@@ -1,18 +1,28 @@
 import ProductBanner from "@/components/ProductBanner";
 import React from "react";
 import Image from "next/image";
-// import Related1 from "../../../../assets/labs/related1.png";
+
 import Link from "next/link";
 import Filter from "@/components/Filter";
 import RelatedProduct from "@/components/RelatedProduct";
-// import ToddlarLabs from "../../../../assets/labs/tadlarlabs.png";
+import OurAchievement from "@/components/OurAchievment";
+import { useDispatch,useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+
+
 
 const LabDetails = () => {
+
+  const dispatch = useDispatch()
+  const router = useRouter();
+  
+
+
   return (
     <>
       <ProductBanner imageUrl={"/labs/labDetailBanner.png"} />
 
-      <div className="container">
+      <div className="container mb-3">
         <div className="row">
           <div className="col-4">
             <Filter />
@@ -116,7 +126,16 @@ const LabDetails = () => {
         </div>
       </div>
 
-      <RelatedProduct />
+        <div className="row">
+        <div className="col-12 mt-3 mb-3">
+          <div className="text-center ">
+            <h1 className="reletedHead">Related Products</h1>
+          </div>
+        </div>
+        <RelatedProduct />
+        </div>
+
+        <OurAchievement />
     </>
   );
 };

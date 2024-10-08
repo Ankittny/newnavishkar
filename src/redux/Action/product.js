@@ -2,7 +2,7 @@ import axiosInstance from "@/utils/axios";
 
 const axios = axiosInstance;
 
-export const product = () => async (dispatch) => {
+export const products = () => async (dispatch) => {
   try {
     console.log("Hello Product");
     dispatch({ type: "productRequest" });

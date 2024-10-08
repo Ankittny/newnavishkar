@@ -10,7 +10,7 @@ import Image from "next/image";
 const OurAchievement = () => {
   return (
     <>
-      <div className="container mb-5">
+      <div className=" mb-5">
         <div className="row">
           <div className="col-12">
             <div className="shop-by-title text-center">

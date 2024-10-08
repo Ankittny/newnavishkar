@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
+
 const validationSchema = Yup.object({
   email: Yup.string()
     .email("Invalid email address")
@@ -58,15 +59,20 @@ const validationSchema = Yup.object({
     .min(6, "Password must be at least 6 characters")
     .required("Password is required"),
 });
+
 export default function Login() {
+  const guest_id = 1;
   const [showPassword, setShowPassword] = useState(false);
   const classes = useStyles();
   const dispatch = useDispatch();
   const {loading: isLoading, success: isSuccess} = useSelector(state=>state.auth);
   
+
   const handleSubmit = async (values) => {
+  
     try {
-      const response = dispatch(login(values));
+    const updatedValues = { ...values, guest_id};
+      const response = dispatch(login(updatedValues));
       console.log("response", response)
       alert("Login Successfully")
       // if (response.ok) {

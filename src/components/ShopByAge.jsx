@@ -1,11 +1,20 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import SHopByIntrest from "./SHopByIntrest";
 
-const ShopByAge = () => {
+const ShopByAge = ({ categoryData }) => {
+  console.log("CategoryData", categoryData[0]?.name);
 
-  const [selectedAgeGroup, setSelectedAgeGroup] = useState("8-10");
+  const [selectedAgeGroup, setSelectedAgeGroup] = useState(
+    categoryData[0]?.name || ""
+  );
+
+  useEffect(() => {
+    if (categoryData && categoryData.length > 0) {
+      setSelectedAgeGroup(categoryData[0].name); // Set default to the first category name
+    }
+  }, [categoryData]);
 
   const handleAgeGroupClick = (ageGroup) => {
     setSelectedAgeGroup(ageGroup);
@@ -28,17 +37,17 @@ const ShopByAge = () => {
         </div>
 
         <div className="row shopByAge">
-          <div className="col-6 " style={{cursor:'pointer'}}>
-            <div className="group" onClick={() => handleAgeGroupClick("8-10")}>
+          <div className="col-6 " style={{ cursor: "pointer" }}>
+          <div className="group" onClick={() => handleAgeGroupClick(categoryData[0]?.id)}>
               <div className="row">
-                <div className="col-6" >
-                  <h2 className="ageLabel">8-10</h2>
-                  <h2 className="ageLabel">Years</h2>
+                <div className="col-6">
+                <h2 className="ageLabel">{categoryData[0]?.name}</h2>
+                  {/* <h2 className="ageLabel">Years</h2> */}
                 </div>
 
                 <div className="imageWrapper col-6">
                   <Image
-                    src={"/product/child1.png"} // Correct the path if needed
+                    src={categoryData[0]?.icon_full_url?.path} 
                     width={100}
                     height={100}
                     alt="Child holding a robot"
@@ -48,17 +57,17 @@ const ShopByAge = () => {
             </div>
           </div>
 
-          <div className="col-6" style={{cursor:'pointer'}}>
-            <div className="group" onClick={() => handleAgeGroupClick("10+")}>
+          <div className="col-6" style={{ cursor: "pointer" }}>
+          <div className="group" onClick={() => handleAgeGroupClick(categoryData[1]?.id)}>
               <div className="row">
                 <div className="col-6">
-                  <h2 className="ageLabel">10+</h2>
-                  <h2 className="ageLabel">Years</h2>
+                <h2 className="ageLabel">{categoryData[1]?.name}</h2>
+                  {/* <h2 className="ageLabel">Years</h2> */}
                 </div>
 
                 <div className="imageWrapper col-6">
                   <Image
-                    src={"/product/child2.png"} // Correct the path if needed
+                  src={categoryData[1]?.icon_full_url?.path} 
                     width={100}
                     height={100}
                     alt="Child holding a robot"
@@ -76,3 +85,4 @@ const ShopByAge = () => {
 };
 
 export default ShopByAge;
+

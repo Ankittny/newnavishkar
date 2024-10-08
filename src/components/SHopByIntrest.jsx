@@ -1,80 +1,41 @@
-import React, { useState } from "react";
+"use client"
+import React, { useEffect, useState } from "react";
 import Filter from "./Filter";
 import Card from "./card/Card";
 import { useDispatch, useSelector } from "react-redux";
-import { product } from "@/redux/Action/product";
-
-const products = [
-  {
-    id: 1,
-    imageUrl: "/product/product1.png", // Replace with actual image paths
-    title: "Play and Learn Kit",
-    subtitle: "10  years | DIY Activity Kit",
-    discount: 15,
-    price: 765,
-    oldPrice: 899,
-    ageGroup: "10+", // Added ageGroup field
-  },
-  {
-    id: 2,
-    imageUrl: "/product/product1.png",
-    title: "Play and Learn Kit",
-    subtitle: "8-10 years | DIY Kit",
-    discount: 10,
-    price: 1150,
-    oldPrice: 1280,
-    ageGroup: "8-10", // Added ageGroup field
-  },
-  {
-    id: 3,
-    imageUrl: "/product/product1.png",
-    title: "Play and Learn Kit",
-    subtitle: "8-10 years | DIY Kit",
-    discount: 10,
-    price: 1150,
-    oldPrice: 1280,
-    ageGroup: "8-10", // Added ageGroup field
-  },
-  {
-    id: 4,
-    imageUrl: "/product/product1.png",
-    title: "Play and Learn Kit",
-    subtitle: "8-10 years | DIY Kit",
-    discount: 10,
-    price: 1150,
-    oldPrice: 1280,
-    ageGroup: "8-10", // Added ageGroup field
-  },
-  {
-    id: 5,
-    imageUrl: "/product/product1.png",
-    title: "Play and Learn Kit",
-    subtitle: "10+ years | DIY Kit",
-    discount: 20,
-    price: 2000,
-    oldPrice: 2500,
-    ageGroup: "10+", // Added ageGroup field
-  },
-];
+import { categoryByAgeGroups } from "@/redux/Action/category";
+import { useRouter } from "next/navigation";
 
 const SHopByIntrest = ({ selectedAgeGroup }) => {
-  // const [products, setProducts] = useState("");
+  const [filteredCategories, setFilteredCategories] = useState([]);
+  const dispatch = useDispatch();
+  const router = useRouter();
 
-  // const dispatch = useDispatch();
+  
+  const {
+    loading: isLoading,
+    error,
+    categoryByAgeGroup, 
+  } = useSelector((state) => state.category);
 
-  // const { loading: isLoading, success: isSuccess } = useSelector(
-  //   (state) => state.product
-  // );
+  useEffect(() => {
+    if (selectedAgeGroup) {
+      dispatch(categoryByAgeGroups(selectedAgeGroup));
+    }
+  }, [dispatch, selectedAgeGroup]);
 
-  // const fetchProductList = async () => {
-  //   const data = dispatch(product);
-  //   console.log(data);
-  //   setProducts(data);
-  // };
+  
+  useEffect(() => {
+    if (categoryByAgeGroup) {
+      setFilteredCategories(categoryByAgeGroup);
+    }
+  }, [categoryByAgeGroup]);
 
-  const filteredProducts = products.filter(
-    (product) => product.ageGroup === selectedAgeGroup
-  );
+  const handleCardClick = (slug) => {
+    router.push(`/products/${slug}`);
+  };
+
+  console.log("hvbdj",filteredCategories)
 
   return (
     <>
@@ -84,7 +45,7 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
             <div className="col-12">
               <div className="shop-by-title text-center">
                 <h5>
-                  SHOP BY <span>INTREST</span>
+                  SHOP BY <span>INTEREST</span>
                 </h5>
                 <p>A whole lotta fun & learning</p>
               </div>
@@ -96,17 +57,23 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
               <Filter />
             </div>
 
-            <div className="col-8">
+            <div className="col-8 curser">
               <div className="card-container">
-                {filteredProducts.map((product) => (
+                {isLoading && <div>Loading...</div>}
+                {error && <div>Error: {error}</div>}
+                {!isLoading && !error && filteredCategories?.length === 0 && (
+                  <div>No products found for this age group.</div>
+                )}
+                {filteredCategories?.map((category) => (
                   <Card
-                    key={product.id}
-                    imageUrl={product.imageUrl}
-                    title={product.title}
-                    subtitle={product.subtitle}
-                    discount={product.discount}
-                    price={product.price}
-                    oldPrice={product.oldPrice}
+                    key={category.id}
+                    id={category.id} 
+                    imageUrl={category.imagesl}
+                    title={category.name}
+                    discount={category.discount}
+                    price={category.price}
+                    oldPrice={category.oldPrice}
+                    onClick={() => handleCardClick(category.slug)}
                   />
                 ))}
               </div>

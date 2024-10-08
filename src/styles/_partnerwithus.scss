@@ -1,0 +1,80 @@
+.partner img{
+    width: 280px;
+    background: #fff;
+    padding: 10px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 100%;
+    border: 10px solid #D9D9D9;
+}
+.partner-other-int{
+    background-image: url('/PWS/pwsbackend.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 40px 21px 20px 148px;
+    border: 15px solid #dfdfdf;
+    border-radius: 15px;
+    margin-left: 162px;
+    height: 267px;
+    margin-top: 10px;
+}
+.partner-other-int h2{
+    color: #000000;
+    font-weight: 600;
+    font-size: 25px;
+    font-family: "Poppins";
+}
+.partner-other-int p{
+    color: #000000;
+    font-weight: 400;
+    font-size: 16px;
+    font-family: "Poppins";
+}
+.classic-partner-title {
+    position: relative;
+}
+.partner{
+    position: absolute;
+    left: 0;
+    top: 0px;
+    bottom: 0;
+    right: 0;
+} 
+.partners-title{
+    margin-top: 20px;
+}
+.partner-heading h1{
+    color: #175A95;
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 40px;
+}
+.classic-partner-title {
+    margin-top: 50px;
+}
+.partner-title{
+    position: absolute;
+   right: 0;
+   left: inherit;
+   bottom: inherit;
+   top: inherit;
+}
+.partner-int-right{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 40px 150px 20px 35px;
+    border: 15px solid #dfdfdf;
+    border-radius: 15px;
+    margin-right: 162px;
+    height: 267px;
+    margin-top: 10px;
+    margin-left: 0px;
+}
+.partner-other-int h3{
+    font-weight: 400;
+    color: #000;
+    font-family: 'Poppins';
+    font-size: 25px;
+}

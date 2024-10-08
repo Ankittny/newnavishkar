@@ -7,7 +7,6 @@ import Link from 'next/link';
 const RelatedProduct = () => {
   return (
      <>
-    
     <div className='ReletedslideContainer'>
       <div className='card'>
         <Image className='cardImgTop' src={'/labs/summer1.png'} width={100} height={100} alt="Card image cap" />

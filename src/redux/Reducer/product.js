@@ -2,42 +2,43 @@ import { createReducer } from "@reduxjs/toolkit";
 
 const initialState = {
   loading: false,
-  isAuthenticated: false,
-  user: null,
+  product: null,
+  productDetail:null,
   error: null,
-  successMessage: null,
-  isLogdin: false,
+  success: null,
   isError: false,
 };
 
-export const productReducer = createReducer(initialState,(builder)=> {
-    builder
-    .addCase('productRequest',(state) => {
-        state.loading = true;
-        state.isAuthenticated = false;
+export const productReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase('productRequest', (state) => {
+      state.loading = true;
+      state.error = null;
+      state.isError = false;
     })
-    .addCase('productSuccess',(state,action)=>{
+    .addCase('productSuccess', (state, action) => {
       state.loading = false;
-      state.isLogdin = true;
+      state.product = action.payload; 
       state.success = true;
     })
-    .addCase('productFail',(state,action)=>{
-       state.loading = false;
-      state.error = action.payload;
-      state.isError = true;
-    })
-    .addCase('productDetailRequest',(state)=>{
-        state.loading = true;
-        state.isAuthenticated = false;
-    })
-    .addCase('productDetailSuccess',(state)=>{
-        state.loading = false;
-        state.isLogdin = true;
-        state.success = true;
-    })
-    .addCase('productDetailFail',(state,action)=>{
+    .addCase('productFail', (state, action) => {
       state.loading = false;
       state.error = action.payload;
       state.isError = true;
     })
-})
+    .addCase('productDetailRequest', (state) => {
+      state.loading = true;
+      state.error = null;
+      state.isError = false;
+    })
+    .addCase('productDetailSuccess', (state, action) => {
+      state.loading = false;
+      state.productDetail = action.payload;
+      state.success = true;
+    })
+    .addCase('productDetailFail', (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+      state.isError = true;
+    });
+});

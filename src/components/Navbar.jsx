@@ -43,7 +43,7 @@ const Navbar = () => {
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item">
                                 <Link href="/products" passHref className="nav-link">
-                                    Shop
+                                    Product
                                 </Link>
                             </li>
                             <li className="nav-item">

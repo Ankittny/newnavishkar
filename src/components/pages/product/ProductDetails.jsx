@@ -2,7 +2,7 @@
 import ProductBanner from "@/components/ProductBanner";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import StarIcon from "@mui/icons-material/Star";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -15,11 +15,26 @@ import {
   Grid,
   Avatar,
 } from "@mui/material";
-// import productDetailBanner from "../../../../assets/product/productDetailBanner.png";
+
 import OurAchievement from "@/components/OurAchievment";
 import Certificate from "@/components/Certificate";
+import { useDispatch, useSelector } from "react-redux";
+import { CategoryDetail } from "@/redux/Action/category";
 
-const ProductDetails = () => {
+const ProductDetails = ({ params }) => {
+  const categoryId = params.productid;
+  console.log("params slug product details", categoryId);
+
+  const dispatch = useDispatch();
+  const {
+    loading: isLoading,
+    success: isSuccess,
+    error,
+    categoryDetail,
+  } = useSelector((state) => state.category);
+
+  const [categryDetailData, setCategoryDetailData] = useState(null);
+
   const [mainImage, setMainImage] = useState(
     "https://www.w3schools.com/html/img_chania.jpg"
   );
@@ -29,14 +44,36 @@ const ProductDetails = () => {
     "https://www.w3schools.com/html/html5.gif",
     "https://www.w3schools.com/html/img_chania.jpg",
   ];
+
   const handleImageError = (e) => {
-    e.target.src = "https://via.placeholder.com/340"; // Replace with any fallback image
+    e.target.src = "https://via.placeholder.com/340";
   };
+
+  const fetchDataById = async () => {
+    try {
+      dispatch(CategoryDetail(categoryId));
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchDataById();
+  }, [categoryId]);
+
+  useEffect(() => {
+    if (categoryDetail) {
+      console.log("categoryDetail shalu", categoryDetail);
+      setCategoryDetailData(categoryDetail);
+    }
+  }, [categoryDetail]);
+
+  console.log("Categories Detail Data:", categryDetailData);
 
   return (
     <>
       <div className="">
-        <ProductBanner imageUrl={'/product/productDetailBanner.png'} />
+        <ProductBanner imageUrl={"/product/productDetailBanner.png"} />
       </div>
       <div className="container mt-5">
         <div className="row">
@@ -112,7 +149,7 @@ const ProductDetails = () => {
                       </li>
                     </ul>
                     <Image
-                      src={'/product/Mark1.png'}
+                      src={"/product/Mark1.png"}
                       alt="ddd"
                       width={120}
                       height={100}
@@ -194,14 +231,19 @@ const ProductDetails = () => {
             </div>
 
             <div className="image-sec-66 d-flex justify-content-center align-content-center">
-              <Image src={'/product/image66.png'} width={100} height={100} alt="danger" />
+              <Image
+                src={"/product/image66.png"}
+                width={100}
+                height={100}
+                alt="danger"
+              />
             </div>
 
             <div className="row mt-2">
               <div className="col-4">
                 <Certificate
                   title={"Intoducing MINOS"}
-                  imageUrl={'/product/minoscer.png'}
+                  imageUrl={"/product/minoscer.png"}
                   linkText="Buy Now"
                   linkUrl="/demo"
                 />

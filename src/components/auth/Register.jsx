@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState } from "react";
 import {
@@ -20,12 +19,12 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "../../styles/_register.scss";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GoogleIcon from "@mui/icons-material/Google";
+import { Facebook as FacebookIcon, Google as GoogleIcon } from "@mui/icons-material";
 import { register } from "@/redux/Action/Auth";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Image from "next/image";
 
+// Styles for the component
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -54,13 +53,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Validation schema using Yup
 const validationSchema = Yup.object({
-  fname: Yup.string()
+  f_name: Yup.string()
     .matches(/^[A-Za-z]+$/, "First Name can only contain alphabets")
     .min(3, "Name must contain at least 3 characters")
     .required("First Name is required"),
 
-  lname: Yup.string()
+  l_name: Yup.string()
     .matches(/^[A-Za-z]+$/, "Last Name can only contain alphabets")
     .required("Last Name is required"),
   email: Yup.string()
@@ -70,8 +70,8 @@ const validationSchema = Yup.object({
       "Please enter a valid email"
     )
     .required("Email is required"),
-  number: Yup.string()
-    .matches(/^[0-9]{10}$/, "Phone number must be 10 digits")
+  phone: Yup.string()
+    .matches(/^\d{10}$/, "Phone number must be 10 digits")
     .required("Phone number is required"),
   password: Yup.string()
     .min(6, "Password must be at least 6 characters")
@@ -86,15 +86,23 @@ export default function Register() {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const [showCPassword, setShowCPassword] = useState(false);
- 
-  const dispatch = useDispatch();
-  const {loading:isLoading,success:isSuccess,error}=useSelector(state =>state.auth)
 
+  const dispatch = useDispatch();
+  const { loading: isLoading, success: isSuccess, error } = useSelector((state) => state.auth);
+
+  
   const handleSubmit = async (values) => {
     try {
-      const response = dispatch(register(values));
-      console.log("Response",response);
-      alert("Resiter Successfully")
+      const { cpassword, termsAccepted, ...registerValues } = values;
+      console.log("Register Values:", registerValues);
+      const response = await dispatch(register(registerValues));
+
+      if (response) {
+        console.log("Response", response);
+        alert("Register Successfully");
+      } else {
+        alert("Failed to create account");
+      }
     } catch (error) {
       console.error("Error:", error);
       alert("Failed to create account");
@@ -105,7 +113,7 @@ export default function Register() {
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={6} md={6} className={classes.image}>
-        <Image src='/log.png' width={700} height={900} alt="sjsjs"   />
+        <Image src="/log.png" width={700} height={900} alt="Background image" />
       </Grid>
       <Grid item xs={12} sm={6} md={6} component={Paper} elevation={6} square>
         <div className={classes.paper}>
@@ -117,10 +125,10 @@ export default function Register() {
           </p>
           <Formik
             initialValues={{
-              fname: "",
-              lname: "",
+              f_name: "",
+              l_name: "",
               email: "",
-              number: "",
+              phone: "",
               password: "",
               cpassword: "",
               termsAccepted: false,
@@ -129,10 +137,9 @@ export default function Register() {
             onSubmit={(values)=>{
               handleSubmit(values)
             }}
-            validateOnBlur={true}
           >
-            {({ values, handleChange,handleSubmit }) => (
-              <Form className={classes.form} noValidate>
+            {({ values, handleChange, handleSubmit }) => (
+              <Form className={classes.form} onSubmit={handleSubmit} noValidate>
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                     <Field
@@ -141,20 +148,14 @@ export default function Register() {
                       margin="normal"
                       required
                       fullWidth
-                      id="fname"
+                      id="f_name"
                       label="First Name"
-                      name="fname"
-                      autoComplete="fname"
+                      name="f_name"
+                      autoComplete="f_name"
                       autoFocus
-                      value={values.fname}
+                      value={values.f_name}
                       onChange={handleChange}
-                      helperText={
-                        <ErrorMessage
-                          name="fname"
-                          component="div"
-                          className="error"
-                        />
-                      }
+                      helperText={<ErrorMessage name="f_name" component="div" className="error" />}
                     />
                   </Grid>
 
@@ -165,19 +166,13 @@ export default function Register() {
                       margin="normal"
                       required
                       fullWidth
-                      id="lname"
+                      id="l_name"
                       label="Last Name"
-                      name="lname"
-                      autoComplete="lname"
-                      value={values.lname}
+                      name="l_name"
+                      autoComplete="l_name"
+                      value={values.l_name}
                       onChange={handleChange}
-                      helperText={
-                        <ErrorMessage
-                          name="lname"
-                          component="div"
-                          className="error"
-                        />
-                      }
+                      helperText={<ErrorMessage name="l_name" component="div" className="error" />}
                     />
                   </Grid>
 
@@ -195,13 +190,7 @@ export default function Register() {
                       autoComplete="email"
                       value={values.email}
                       onChange={handleChange}
-                      helperText={
-                        <ErrorMessage
-                          name="email"
-                          component="div"
-                          className="error"
-                        />
-                      }
+                      helperText={<ErrorMessage name="email" component="div" className="error" />}
                     />
                   </Grid>
 
@@ -212,20 +201,13 @@ export default function Register() {
                       margin="normal"
                       required
                       fullWidth
-                      id="number"
+                      id="phone"
                       label="Phone Number"
-                      name="number"
-                      autoComplete="number"
-                      value={values.number}
+                      name="phone"
+                      autoComplete="phone"
+                      value={values.phone}
                       onChange={handleChange}
-                      inputProps={{ maxLength: 10 }}
-                      helperText={
-                        <ErrorMessage
-                          name="number"
-                          component="div"
-                          className="error"
-                        />
-                      }
+                      helperText={<ErrorMessage name="phone" component="div" className="error" />}
                     />
                   </Grid>
 
@@ -249,22 +231,12 @@ export default function Register() {
                               aria-label="toggle password visibility"
                               onClick={() => setShowPassword(!showPassword)}
                             >
-                              {showPassword ? (
-                                <VisibilityOff />
-                              ) : (
-                                <Visibility />
-                              )}
+                              {showPassword ? <VisibilityOff /> : <Visibility />}
                             </IconButton>
                           </InputAdornment>
                         ),
                       }}
-                      helperText={
-                        <ErrorMessage
-                          name="password"
-                          component="div"
-                          className="error"
-                        />
-                      }
+                      helperText={<ErrorMessage name="password" component="div" className="error" />}
                     />
                   </Grid>
 
@@ -288,85 +260,37 @@ export default function Register() {
                               aria-label="toggle confirm password visibility"
                               onClick={() => setShowCPassword(!showCPassword)}
                             >
-                              {showCPassword ? (
-                                <VisibilityOff />
-                              ) : (
-                                <Visibility />
-                              )}
+                              {showCPassword ? <VisibilityOff /> : <Visibility />}
                             </IconButton>
                           </InputAdornment>
                         ),
                       }}
-                      helperText={
-                        <ErrorMessage
-                          name="cpassword"
-                          component="div"
-                          className="error"
-                        />
-                      }
+                      helperText={<ErrorMessage name="cpassword" component="div" className="error" />}
                     />
                   </Grid>
 
                   <FormControlLabel
                     control={
-                      <Field
-                        as={Checkbox}
-                        name="termsAccepted"
-                        color="primary"
-                        checked={values.termsAccepted}
-                        onChange={handleChange}
-                      />
+                      <Field as={Checkbox} name="termsAccepted" color="primary" onChange={handleChange} />
                     }
                     label="I agree to all the Terms and Conditions"
                   />
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    className={classes.submit}
-                  >
+                  <Button type="submit" variant="contained" color="primary" className={classes.submit}>
                     Create Account
                   </Button>
                 </Grid>
               </Form>
             )}
           </Formik>
-
-
-          {/* Feedback messages */}
-          {isLoading && <p>Loading...</p>}
-          {isSuccess && <p>Account created successfully!</p>}
-          {error && <p style={{ color: "red" }}>Error: {error}</p>}
-
+          <Divider variant="middle" />
           <Grid container>
-            <Grid item xs>
-              <p>
-                Already have an account?{" "}
-                <span>
-                  <Link>Login</Link>
-                </span>
-              </p>
-            </Grid>
-          </Grid>
-
-          <div className="mt-2 mb-2">
-            <Divider>OR</Divider>
-          </div>
-
-          <Grid container className="mt-2">
-            <Grid item xs={6}>
-              <div className="signupwithother">
-                <FacebookIcon />
-              </div>
-            </Grid>
-            <Grid item xs={6}>
-              <div className="signupwithother">
-                <GoogleIcon />
-              </div>
+            <Grid item>
+              <Link href="#" variant="body2">
+                {"Already have an account? Sign in"}
+              </Link>
             </Grid>
           </Grid>
         </div>
       </Grid>
     </Grid>
-  );
-}
+  );}

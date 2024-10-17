@@ -205,7 +205,7 @@ export default function Login() {
               <p className="mt-4 text-center">
                 Dont have an account?{" "}
                 <span>
-                  <Link>Register</Link>
+                  <Link href="/register" className="curser">Register</Link>
                 </span>
               </p>
             </Grid>

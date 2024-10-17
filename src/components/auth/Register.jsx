@@ -285,9 +285,10 @@ export default function Register() {
           <Divider variant="middle" />
           <Grid container>
             <Grid item>
-              <Link href="#" variant="body2">
-                {"Already have an account? Sign in"}
-              </Link>
+              <p  variant="body2">
+                {"Already have an account?"}
+                <Link href="/login" className="curser">Sign In</Link>
+              </p>
             </Grid>
           </Grid>
         </div>

@@ -1,55 +1,49 @@
 import axiosInstance from "@/utils/axios";
-
 const axios = axiosInstance;
 
+// Register action
 export const register = (values) => async (dispatch) => {
   try {
-    console.log("Hello,Shele");
-    dispatch({type:'registerRequest'});
-    const {data} = await axios.post("auth/register",values);
-    const {token} = data;
-    if (success == true) {
-      console.log("token run", token);
+    dispatch({ type: "registerRequest" });
+    const { data } = await axios.post("auth/register", values);
+    const { token, user } = data;
+
+    if (token) {
       localStorage.setItem("authAdminToken", token);
-      // localStorage.setItem("user", JSON.stringify(user));
-      dispatch({ type: "registerSuccess" });
+      dispatch({ type: "registerSuccess", payload: user });
     } else {
-      dispatch({ type: "registerFail", payload: message });
+      dispatch({ type: "registerFail", payload: "Registration failed. Please try again." });
     }
   } catch (error) {
-    console.log(error)
+    dispatch({ type: "registerFail", payload: error.response?.data?.message || "Something went wrong" });
   }
 };
 
+// Login action
 export const login = (values) => async (dispatch) => {
   try {
     dispatch({ type: "loginRequest" });
-    console.log(values);
-    
-    const { data } = await axios.post("auth/login",values);
-    const {token } = data;
+    const { data } = await axios.post("auth/login", values);
+    const { token, user } = data;
+
     if (token) {
-      console.log("token run", token);
       localStorage.setItem("authAdminToken", token);
-      // localStorage.setItem("user", JSON.stringify(user));
-      dispatch({ type: "loginSuccess" });
+      dispatch({ type: "loginSuccess", payload: user });
     } else {
-      dispatch({ type: "loginFail", payload: message });
+      dispatch({ type: "loginFail", payload: "Login failed. Please check your credentials." });
     }
   } catch (error) {
-    console.log(error)
+    dispatch({ type: "loginFail", payload: error.response?.data?.message || "Login failed" });
   }
 };
 
+// Logout action
 export const logout = () => async (dispatch) => {
   try {
-    dispatch({type:'logoutRequest'});
+    dispatch({ type: "logoutRequest" });
     localStorage.removeItem("authAdminToken");
-    dispatch({type:'logoutSuccess'});
+    dispatch({ type: "logoutSuccess" });
   } catch (error) {
-    dispatch({
-      type: "logoutFail",
-      payload: error.response.data.message,
-    })
+    dispatch({ type: "logoutFail", payload: error.response?.data?.message || "Logout failed" });
   }
 };

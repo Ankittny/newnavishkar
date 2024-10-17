@@ -4,21 +4,22 @@ import Image from "next/image";
 import SHopByIntrest from "./SHopByIntrest";
 
 const ShopByAge = ({ categoryData }) => {
-  console.log("CategoryData", categoryData[0]?.name);
+  // console.log("CategoryData", categoryData[0]?.name);
 
   const [selectedAgeGroup, setSelectedAgeGroup] = useState(
-    categoryData[0]?.name || ""
+    categoryData[0]?.id || ""
   );
 
   useEffect(() => {
     if (categoryData && categoryData.length > 0) {
-      setSelectedAgeGroup(categoryData[0].name); // Set default to the first category name
+      setSelectedAgeGroup(categoryData[0].id);
     }
   }, [categoryData]);
 
-  const handleAgeGroupClick = (ageGroup) => {
-    setSelectedAgeGroup(ageGroup);
+  const handleAgeGroupClick = (ageGroupId) => {
+    setSelectedAgeGroup(ageGroupId);
   };
+
 
   return (
     <>
@@ -37,12 +38,11 @@ const ShopByAge = ({ categoryData }) => {
         </div>
 
         <div className="row shopByAge">
-          <div className="col-6 " style={{ cursor: "pointer" }}>
+          <div className="col-6  curser">
           <div className="group" onClick={() => handleAgeGroupClick(categoryData[0]?.id)}>
               <div className="row">
                 <div className="col-6">
                 <h2 className="ageLabel">{categoryData[0]?.name}</h2>
-                  {/* <h2 className="ageLabel">Years</h2> */}
                 </div>
 
                 <div className="imageWrapper col-6">

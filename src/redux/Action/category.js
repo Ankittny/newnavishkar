@@ -10,7 +10,7 @@ export const categories = () => async (dispatch) => {
     // const token = (typeof window !== 'undefined' && localStorage.getItem('authAdminToken')) || 'navishkar';
     
     const { data } = await axios.get('/categories');
-    console.log("Category Data:", data);
+    console.log("Category Data ss:", data);
     dispatch({ type: 'categorySuccess', payload: data });
   } catch (error) {
     dispatch({
@@ -41,11 +41,11 @@ export const categoryByAgeGroups = (slug) => async (dispatch) => {
   }
 };
 
-export const CategoryDetail = (categoryId) => async (dispatch) => {
+export const CategoryDetail = (categorySlug) => async (dispatch) => {
   try {
-    console.log("Fetching category details for ID:", categoryId);
+    console.log("Fetching category details for Slug :", categorySlug);
     dispatch({ type: "categoryDetailRequest" });
-    const { data } = await axios.get(`/products/details/${categoryId}`);
+    const { data } = await axios.get(`/products/details/${categorySlug}`);
     console.log("Category Details Response", data);
     if (data) {
       dispatch({ type: "categoryDetailSuccess", payload: data });
@@ -62,4 +62,21 @@ export const CategoryDetail = (categoryId) => async (dispatch) => {
 };
 
 
+export const FilterCategory = () => async(dispatch) =>{
+try {
+  console.log("filter catgory call");
+  dispatch({type:'filterCategoryRequest'});
+  const {data} = await axios.get('/categories');
+  console.log("Filter Category Data", data);
+  dispatch({type:'filterCategorySuccess',payload:data});
+
+} catch (error) {
+  dispatch({
+    type: 'filterCategoryFail',
+    payload: error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message,
+  });
+}
+}
 

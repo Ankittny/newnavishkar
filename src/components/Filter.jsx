@@ -1,84 +1,67 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const Filter = () => {
-  const [selectedCategories, setSelectedCategories] = useState({
-    steam: false,
-    stemToys: false,
-    stemProjects: false,
-  });
+const Filter = ({ categories, onFilterChange }) => {
+  console.log("CATEGORY FILTER DATA",categories)
+  const [selectedCategories, setSelectedCategories] = useState({});
+  const [selectedSubCategories, setSelectedSubCategories] = useState({});
 
-  const handleChange = (event) => {
+  // Handle category change
+  const handleCategoryChange = (event) => {
     const { name, checked } = event.target;
     setSelectedCategories((prev) => ({
       ...prev,
       [name]: checked,
     }));
+    onFilterChange("category", name, checked);
   };
 
+
+  // const handleSubCategoryChange = (event) => {
+  //   const { name, checked } = event.target;
+  //   setSelectedSubCategories((prev) => ({
+  //     ...prev,
+  //     [name]: checked,
+  //   }));
+  //   onFilterChange("subcategory", name, checked);
+  // };
+
   return (
-    <div className="leading-left-title">
-      <div className="two-kids-title">
+    <div className="filter-container">
+      <div className="title-section">
         <Image
-          src={'/product/children-holding-blank-banner 1.png'}
+          src="/product/children-holding-blank-banner 1.png"
           width={100}
           height={100}
           alt="children"
         />
       </div>
 
-      <div className="lab-position">
-        <div className="lab-left-title battery-title">
-          <p>Category</p>
-          <div className="left-list-title">
-            <div className="battery-opra">
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  id="steam" // Add id attribute
-                  name="steam"
-                  checked={selectedCategories.steam}
-                  onChange={handleChange}
-                />
-                <label className="form-check-label" htmlFor="steam">
-                  Stem
-                </label>
-              </div>
-              <ul>
-                <li>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      id="stemToys" // Add id attribute
-                      name="stemToys"
-                      checked={selectedCategories.stemToys}
-                      onChange={handleChange}
-                    />
-                    <label className="form-check-label" htmlFor="stemToys">
-                      Stem Toys
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      id="stemProjects" // Add id attribute
-                      name="stemProjects"
-                      checked={selectedCategories.stemProjects}
-                      onChange={handleChange}
-                    />
-                    <label className="form-check-label" htmlFor="stemProjects">
-                      Stem Projects
-                    </label>
-                  </div>
-                </li>
-              </ul>
-            </div>
+      <div className="filter-section">
+        <div className="filter-options">
+          {/* Category Section */}
+          <div className="category-section">
+            <p>Categories</p>
+            {categories && categories.length > 0 ? (
+              categories.map((category) => (
+                <div key={category.id} className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    id={category.name}
+                    name={category.name}
+                    checked={!!selectedCategories[category.name]}
+                    onChange={handleCategoryChange}
+                  />
+                  <label className="form-check-label" htmlFor={category.name}>
+                    {category.name}
+                  </label>
+                </div>
+              ))
+            ) : (
+              <p>No categories available</p>
+            )}
           </div>
         </div>
       </div>

@@ -35,12 +35,7 @@ const Product = () => {
     }
   }, [category]);
 
-  // useEffect(() => {
-  //   console.log("Loading:", isLoading);
-  //   console.log("Success:", isSuccess);
-  //   console.log("Error:", error);
-  // }, [isLoading, isSuccess, error]);
-
+  
   return (
     <>
       <ProductBanner

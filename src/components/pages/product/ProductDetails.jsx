@@ -22,8 +22,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { CategoryDetail } from "@/redux/Action/category";
 
 const ProductDetails = ({ params }) => {
-  const categoryId = params.productid;
-  console.log("params slug product details", categoryId);
+  const categorySlug = params.productid;
+  console.log("params slug product details", categorySlug);
 
   const dispatch = useDispatch();
   const {
@@ -51,7 +51,7 @@ const ProductDetails = ({ params }) => {
 
   const fetchDataById = async () => {
     try {
-      dispatch(CategoryDetail(categoryId));
+      dispatch(CategoryDetail(categorySlug));
     } catch (error) {
       console.error("Error fetching categories:", error);
     }
@@ -59,7 +59,7 @@ const ProductDetails = ({ params }) => {
 
   useEffect(() => {
     fetchDataById();
-  }, [categoryId]);
+  }, [categorySlug]);
 
   useEffect(() => {
     if (categoryDetail) {

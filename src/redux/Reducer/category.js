@@ -4,7 +4,9 @@ const initialState = {
   loading: false,
   category: [],
   categoryByAgeGroup:[],
-  categoryDetail:[],
+  categoryDetail:{},
+  filterCategory:[],
+  filterSubCategory:[],
   error: null,
   success: null,
   isError: false,
@@ -57,5 +59,22 @@ export const categoryReducer = createReducer(initialState, (builder) => {
       state.error = action.payload;
       state.isError = true;
     })
+    .addCase("filterCategoryRequest", (state) => {
+      state.loading = true;
+      state.error = null;
+      state.isError = false;
+      state.success = false; // Reset success
+    })
+    .addCase("filterCategorySuccess", (state, action) => {
+      state.loading = false;
+      state.filterCategory = action.payload;
+      state.success = true;
+    })
+    .addCase("filterCategoryFail", (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+      state.isError = true;
+    })
+    
     
 });

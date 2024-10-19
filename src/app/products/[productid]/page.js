@@ -2,6 +2,8 @@
 import React from 'react';
 import ProductDetailsComponent  from '@/components/pages/product/ProductDetails';
 import {Metadata} from "next";
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 
 const ProductDetails = ({params}) => {
@@ -9,7 +11,9 @@ const ProductDetails = ({params}) => {
   
   return ( 
     <>
+    <Navbar/>
     <ProductDetailsComponent  params={params} />
+    <Footer/>
     </>
   )
 }

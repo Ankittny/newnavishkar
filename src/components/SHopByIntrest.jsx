@@ -1,22 +1,72 @@
-"use client"
 import React, { useEffect, useState } from "react";
 import Filter from "./Filter";
 import Card from "./card/Card";
 import { useDispatch, useSelector } from "react-redux";
-import { categoryByAgeGroups } from "@/redux/Action/category";
+import {
+  categoryByAgeGroups,
+  FilterCategory,
+  FilterSubCategory,
+} from "@/redux/Action/category";
 import { useRouter } from "next/navigation";
 
 const SHopByIntrest = ({ selectedAgeGroup }) => {
-  const [filteredCategories, setFilteredCategories] = useState([]);
+  const [filteredCategories, setFilteredCategories] = useState([
+    selectedAgeGroup,
+  ]);
+  const [categories, setCategories] = useState([]);
+
   const dispatch = useDispatch();
   const router = useRouter();
 
-  
   const {
     loading: isLoading,
     error,
-    categoryByAgeGroup, 
+    categoryByAgeGroup,
+  
   } = useSelector((state) => state.category);
+
+
+  // const fetchCategoryFilterData = async () => {
+  //   try {
+  //     const result = await dispatch(FilterCategory());
+  //     if (result && result.payload) {
+  //       setCategories(result.payload);
+  //       console.log("Categories fetched:", result.payload); // Debugging log
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching categories:", error);
+  //   }
+  // };
+
+  const fetchCategoryFilterData = async () => {
+    try {
+      console.log("Dispatching FilterCategory action");
+      await dispatch(FilterCategory());
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCategoryFilterData();
+  }, []);
+
+  
+  useEffect(() => {
+    if (FilterCategory && FilterCategory.length > 0) {
+      setCategories(FilterCategory);
+      console.log("Categories fitrrrrrrrrrrr fetched:", FilterCategory); // Log fetched categories
+    }
+  }, [FilterCategory]);
+  
+  const handleFilterChange = (type, name, checked) => {
+    console.log(`Filter ${type} changed: ${name}, checked: ${checked}`);
+    
+  };
+
+  const handleAddToCart = (item) => {
+    console.log("Added to cart: ", item);
+  };
 
   useEffect(() => {
     if (selectedAgeGroup) {
@@ -24,9 +74,9 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
     }
   }, [dispatch, selectedAgeGroup]);
 
-  
   useEffect(() => {
     if (categoryByAgeGroup) {
+      console.log("API Response Data:", categoryByAgeGroup);
       setFilteredCategories(categoryByAgeGroup);
     }
   }, [categoryByAgeGroup]);
@@ -34,8 +84,6 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
   const handleCardClick = (slug) => {
     router.push(`/products/${slug}`);
   };
-
-  console.log("hvbdj",filteredCategories)
 
   return (
     <>
@@ -54,10 +102,13 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
 
           <div className="row">
             <div className="col-4">
-              <Filter />
+            <Filter
+              categories={categories}
+              onFilterChange={handleFilterChange}
+            />
             </div>
 
-            <div className="col-8 curser">
+            <div className="col-8 ">
               <div className="card-container">
                 {isLoading && <div>Loading...</div>}
                 {error && <div>Error: {error}</div>}
@@ -67,13 +118,19 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
                 {filteredCategories?.map((category) => (
                   <Card
                     key={category.id}
-                    id={category.id} 
-                    imageUrl={category.imagesl}
-                    title={category.name}
-                    discount={category.discount}
-                    price={category.price}
-                    oldPrice={category.oldPrice}
+                    id={category.id}
+                    imageUrl={category.thumbnail_full_url?.path}
+                    name={category?.name}
+                    discount={category?.discount}
+                    in
+                    the
+                    response
+                    price={category?.unit_price}
+                    oldPrice={category?.purchase_price}
+                    applicable
+                    discount_type={category?.discount_type}
                     onClick={() => handleCardClick(category.slug)}
+                    onAddToCart={handleAddToCart}
                   />
                 ))}
               </div>

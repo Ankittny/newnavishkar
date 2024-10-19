@@ -1,0 +1,10 @@
+.image {
+    background-image: "url(https://source.unsplash.com/random)";
+    background-repeat: "no-repeat";
+    // backgroundColor:
+    //   theme.palette.type === "light"
+    //     ? theme.palette.grey[50]
+    //     : theme.palette.grey[900],
+    background-size: "cover";
+    background-position: "center";
+  }

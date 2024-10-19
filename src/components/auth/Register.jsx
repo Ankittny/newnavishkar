@@ -24,6 +24,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import { register } from "@/redux/Action/Auth";
 import { useSelector,useDispatch } from "react-redux";
+import Image from "next/image";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -104,7 +105,9 @@ export default function Register() {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={false} sm={6} md={6} className={classes.image} />
+      <Grid item xs={false} sm={6} md={6} className={classes.image} >
+      <Image src='/log.png' width={900} height={900} alt="sjsjs" />
+      </Grid>
       <Grid item xs={12} sm={6} md={6} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Typography component="h1" variant="h5" className="mainHeading">

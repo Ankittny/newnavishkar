@@ -112,6 +112,7 @@ export default function Register() {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
+
       <Grid item xs={false} sm={6} md={6} className={classes.image}>
         <Image src="/log.png" width={700} height={900} alt="Background image" />
       </Grid>

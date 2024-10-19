@@ -6,54 +6,62 @@ const initialState = {
   user: null,
   error: null,
   successMessage: null,
-  isLogdin: false,
+  isLoggedIn: false,
   isError: false,
 };
 
 export const authReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase('registerRequest', (state) => {
+    .addCase("registerRequest", (state) => {
       state.loading = true;
       state.isAuthenticated = false;
+      state.error = null;
+      state.isError = false;
     })
-    .addCase('registerSuccess', (state) => {
-      state.loading = false;
-      state.isLogdin = true;
-      state.success = true;
-    })
-    .addCase('registerFail', (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-      state.isError = true;
-    })
-    
-    .addCase('loginRequest', (state) => {
-      state.loading = true;
-      state.isAuthenticated = false;
-    })
-    .addCase('loginSuccess', (state) => {
+    .addCase("registerSuccess", (state, action) => {
       state.loading = false;
       state.isAuthenticated = true;
-      state.isLogdin = true;
-      state.success = true;
+      state.user = action.payload;
+      state.isLoggedIn = true;
+      state.successMessage = "Registration successful!";
+      state.isError = false;
     })
-    .addCase('loginFail', (state, action) => {
+    .addCase("registerFail", (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+      state.isError = true;
+    })
+    
+    .addCase("loginRequest", (state) => {
+      state.loading = true;
+      state.isAuthenticated = false;
+      state.error = null;
+    })
+    .addCase("loginSuccess", (state, action) => {
+      state.loading = false;
+      state.isAuthenticated = true;
+      state.user = action.payload;
+      state.isLoggedIn = true;
+      state.successMessage = "Login successful!";
+    })
+    .addCase("loginFail", (state, action) => {
       state.loading = false;
       state.isAuthenticated = false;
       state.error = action.payload;
       state.isError = true;
     })
     
-    .addCase('logoutRequest', (state) => {
+    .addCase("logoutRequest", (state) => {
       state.loading = true;
     })
-    .addCase('logoutSuccess', (state) => {
+    .addCase("logoutSuccess", (state) => {
       state.loading = false;
       state.isAuthenticated = false;
       state.user = null;
+      state.isLoggedIn = false;
     })
-    .addCase('logoutFail', (state) => {
+    .addCase("logoutFail", (state, action) => {
       state.loading = false;
-      state.isAuthenticated = true;
+      state.error = action.payload;
     });
 });

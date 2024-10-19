@@ -61,7 +61,10 @@ p{
 @import "./cart";
 @import "./labs";
 @import "./certificate";
-@import "./registers";
+
+@import "./partnerwithus";
+@import "./card";
+@import "./payments";
 
 
 .error {
@@ -75,9 +78,7 @@ p{
 } 
     
 
- .MuiInputBase-input:invalid{
-  background-color: #ECECEC;
-}
+
 
 .MuiInputBase-root {
   border-radius: 0 !important;
@@ -94,11 +95,35 @@ p{
     box-shadow: none !important;
   }
 }
-.MuiButton-outlined {
-  
+
+.curser{
+  cursor: pointer;
 }
 
+.search-bar-container {
+  margin: 0; // Adjust as needed
+  padding: 10px; // Space around the search bar
+  background-color: #f8f9fa; // Same background as navbar
+}
+.search-bar-container input {
+  width: 100%; // Full width of the container
+}
+.icon {
+  cursor: pointer; // Change cursor on hover
+  transition: transform 0.3s ease; // Smooth transition for scale effect
+}
 
-.MuiInputLabel-shrink .MuiInputLabel-outlined{
-  color: red;
+.icon:hover {
+  transform: scale(1.1); // Slightly enlarge on hover
+}
+
+.nav-link {
+  position: relative;
+
+  .icon {
+    position: relative;
+    width: 24px; // Adjust based on icon size
+    height: 24px;
+  }
+
 }

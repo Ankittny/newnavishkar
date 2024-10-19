@@ -1,111 +1,143 @@
-.play-role-title{
-  margin-top: 30px;
-}
-
-.title-access{
-  background-color: #f5f7f8;
-  padding: 10px;
-}
-
-.play-role-title{
-  background-color: #f3f5f7;
-  padding: 16px;
-  border-radius: 8px;
-}
-.play-kit-title img{
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  background: #fff;
-  border-radius: 16px;
-  padding: 30px 20px;
-}
-
-.play-cubric img{
-  padding: 0;
-  border-radius: 0;
-  height: 245px;
-}
-
-.play-cubric img {
-  padding: 0;
-  border-radius: 0;
-  height: inherit;
-}
-
-.playkit-action{
-  margin-top: 50px;
-}
-
-.action-inject{
-  margin-top: 20px;
-}
-.kit-down p{
-  font-size: 16px;
-  color: #000;
-  font-family: "Nunito";
-  font-weight: 500;
-}
-
-.buttton .ex-btn{
-  background: #CC0C39;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 6px;
-}
-
-.buttton button {
-  border: none;
-  background: none;
-}
-
-.ex-btn{
-  color: #fff;
-  text-decoration: none;
-}
-.ex-btn1{
-  font-size: 24px;
-  font-weight: 700;
-  color: #353535;
-  text-decoration: none;
-}
-
-.ex-btn2{
-  font-size: 24px;
-  font-weight: 400;
-  color: #353535;
-  text-decoration: none;
-}
-
-.add-btn button{
-  background: #fff;
-  border: 1px solid #663399;
-  border-radius: 3px;
-  padding: 5px 20px;
-  color: #663399;
-  font-size: 15px;
-  font-weight: 600;
-}
-.add-btn {
-  margin-top: 20px;
-}
-
-.card-container {
+.cart-count-badge {
+  position: absolute;
+  top: -8px; // Adjust to position above the icon
+  right: -10px; // Adjust to position to the right of the icon
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  border-radius: 50%;
+  padding: 4px 6px;
+  min-width: 20px;
+  height: 20px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; /* Optional: to add space between cards */
-  gap: 20px; /* Optional: to add gap between cards */
+  align-items: center;
+  justify-content: center;
 }
 
-.card-container > div {
-  flex: 1 1 calc(33.33% - 20px); /* 3 cards per row with 20px gap */
-  box-sizing: border-box; /* Ensures padding/margins don't affect width */
-  margin-bottom: 20px; /* Optional: space below each card */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+
+  button {
+    background-color: #175A95;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+
+  }
+
+  span {
+    font-size: 16px;
+    margin: 0 10px;
+  }
 }
-.price-text span{
-  font-weight: 700;
-  font-size: 20px;
+
+
+.cart-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
 }
-.overline-text p{
-  text-decoration: line-through;
+
+.cart-items {
+  width: 60%;
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-table th, .cart-table td {
+  padding: 10px;
+  border-bottom: 1px solid #175A95;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+}
+
+.quantity-controls button {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  
+  cursor: pointer;
+}
+
+.additional-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.additional-info input {
+  padding: 10px;
+  width: 48%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.order-summary {
+  width: 35%;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+}
+
+.summary-details {
+  margin-bottom: 20px;
+}
+
+.coupon {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.coupon input {
+  padding: 10px;
+  flex: 1;
+}
+
+.coupon button {
+  padding: 10px;
+  background-color: #175A95;
+  color: white;
+  cursor: pointer;
+  border: none;
+  
+}
+
+.checkout-button, .continue-shopping {
+  padding: 15px;
+  width: 100%;
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #175A95;
+  color: white;
+  border-radius: 5px;
+  
+}
+
+.policy-icons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 12px;
 }

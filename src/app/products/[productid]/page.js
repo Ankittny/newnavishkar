@@ -1,11 +1,19 @@
+"use client"
 import React from 'react';
 import ProductDetailsComponent  from '@/components/pages/product/ProductDetails';
-import {Metadata} from "next"
+import {Metadata} from "next";
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
-const ProductDetails = () => {
-  return (
+
+const ProductDetails = ({params}) => {
+  console.log("params slug", params);
+  
+  return ( 
     <>
-    <ProductDetailsComponent />
+    <Navbar/>
+    <ProductDetailsComponent  params={params} />
+    <Footer/>
     </>
   )
 }

@@ -7,7 +7,7 @@ const ProductBanner = ({ title, description, linkText, linkUrl,imageUrl}) => {
   return (
     <section>
       <div className="productBanner">
-      {imageUrl && <Image src={imageUrl} width={100} height={100} alt="Product Image" className="product-image" />}
+      {imageUrl && <Image src={imageUrl} width={1000} height={400} alt="Product Image" className="product-image" />}
         <div className="navi-title">
           {title && <h1>{title}</h1>}
           {description && <p>{description}</p>}

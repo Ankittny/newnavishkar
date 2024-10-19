@@ -1,6 +1,6 @@
 "use client";
 import ProductBanner from "@/components/ProductBanner";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Divider } from "@mui/material";
 import Certificate from "@/components/Certificate";
@@ -9,8 +9,34 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
 import RelatedProduct from "@/components/RelatedProduct";
+import Link from "next/link";
+import Filter from "@/components/Filter";
+import { useRouter } from "next/navigation";
+import { useDispatch,useSelector} from "react-redux";
 
 const Lab = () => {
+  const [labData,setLabData]=useState([]);
+  const router = useRouter();
+  const dispatch =useDispatch();
+
+
+  // here redux logic implement
+
+
+
+
+  const fetchLabData = async () =>{
+   
+  }
+
+  useEffect(()=>{
+    fetchLabData();
+  },[])
+
+  const handleClick = (id) =>{
+    router.push(`/labs${id}`);
+  }
+
   return (
     <>
       <ProductBanner
@@ -18,14 +44,15 @@ const Lab = () => {
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elitvashcb biiwuhiwq uidh ih uhi iui "
         linkText="Live Demo"
         linkUrl="/demo"
-        imageUrl={'/public/labs/labBanner.png'}
+        imageUrl={"/labs/labBanner.png"}
       />
 
       <div className="container">
         <div className="row">
           <div className="col-3">
-            
+            <Filter />
           </div>
+
           <div className="col-9">
             <div className="mt-2 right-sight-title-brand">
               <h1>Navishkar The Leading Brand</h1>
@@ -34,7 +61,12 @@ const Lab = () => {
               <div className="col-6">
                 <div class="toddler-title d-flex gap-4">
                   <div class="imag-toddler">
-                    <Image src={'/public/labs/lab1.png'} alt="lab" />
+                    <Image
+                      src={"/labs/lab1.png"}
+                      alt="lab"
+                      width={100}
+                      height={100}
+                    />
                   </div>
                   <div class="labs-toddler">
                     <p>Toddler Labs</p>
@@ -43,7 +75,7 @@ const Lab = () => {
                       children. Focus on all-round development through play.
                     </span>
                     <div class="an-int">
-                      <a href="">Read more</a>
+                      <Link href="">Read more</Link>
                     </div>
                   </div>
                 </div>
@@ -85,7 +117,7 @@ const Lab = () => {
           <div className="col-4">
             <Certificate
               title={"Intoducing MINOS"}
-              imageUrl={'/public/product/minoscer.png'}
+              imageUrl={"/product/minoscer.png"}
               linkText="Buy Now"
               linkUrl="/demo"
             />
@@ -110,7 +142,12 @@ const Lab = () => {
                 <div className="row">
                   <div className="col-lg-6">
                     <div className="summer-activity">
-                      <Image src={'/public/labs/summer1.png'} alt="img2" />
+                      <Image
+                        src={"/labs/summer1.png"}
+                        alt="img2"
+                        width={100}
+                        height={100}
+                      />
                       <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et{" "}
@@ -123,63 +160,60 @@ const Lab = () => {
             </div>
           </div>
         </div>
-
       </div>
 
       <div className="row">
-      
-          <div className='col-12 mt-3 mb-3'>
-            <div className='text-center '>
-                <h1 className="reletedHead">Related Products</h1>
-            </div>
-         
-     </div>
-          <div className="col-12">
-            <Swiper
-              navigation={false}
-              modules={[Autoplay, Navigation]} // Importing Autoplay module
-              className="mySwiper"
-              autoplay={{
-                delay: 3000, // Adjust delay as needed
-                disableOnInteraction: false,
-              }}
-              loop={true}
-              breakpoints={{
-                640: {
-                  slidesPerView: 2,
-                  spaceBetween: 20,
-                },
-                768: {
-                  slidesPerView: 4,
-                  spaceBetween: 40,
-                },
-                1024: {
-                  slidesPerView: 4,
-                  spaceBetween: 50,
-                },
-              }}
-            >
-              <SwiperSlide>
-                <RelatedProduct />
-              </SwiperSlide>
-              <SwiperSlide>
-                <RelatedProduct />
-              </SwiperSlide>
-              <SwiperSlide>
-                <RelatedProduct />
-              </SwiperSlide>
-              <SwiperSlide>
-                <RelatedProduct />
-              </SwiperSlide>
-              <SwiperSlide>
-                <RelatedProduct />
-              </SwiperSlide>
-              <SwiperSlide>
-                <RelatedProduct />
-              </SwiperSlide>
-            </Swiper>
+        <div className="col-12 mt-3 mb-3">
+          <div className="text-center ">
+            <h1 className="reletedHead">Related Products</h1>
           </div>
         </div>
+        <div className="col-12">
+          <Swiper
+            navigation={false}
+            modules={[Autoplay, Navigation]} // Importing Autoplay module
+            className="mySwiper"
+            autoplay={{
+              delay: 3000, // Adjust delay as needed
+              disableOnInteraction: false,
+            }}
+            loop={true}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 4,
+                spaceBetween: 40,
+              },
+              1024: {
+                slidesPerView: 4,
+                spaceBetween: 50,
+              },
+            }}
+          >
+            <SwiperSlide>
+              <RelatedProduct />
+            </SwiperSlide>
+            <SwiperSlide>
+              <RelatedProduct />
+            </SwiperSlide>
+            <SwiperSlide>
+              <RelatedProduct />
+            </SwiperSlide>
+            <SwiperSlide>
+              <RelatedProduct />
+            </SwiperSlide>
+            <SwiperSlide>
+              <RelatedProduct />
+            </SwiperSlide>
+            <SwiperSlide>
+              <RelatedProduct />
+            </SwiperSlide>
+          </Swiper>
+        </div>
+      </div>
     </>
   );
 };

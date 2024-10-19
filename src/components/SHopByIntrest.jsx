@@ -1,39 +1,90 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Filter from "./Filter";
 import Card from "./card/Card";
-// import product1 from "../../assets/product/product1.png";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  categoryByAgeGroups,
+  FilterCategory,
+  FilterSubCategory,
+} from "@/redux/Action/category";
+import { useRouter } from "next/navigation";
 
-const products = [
-  {
-    id: 1,
-    imageUrl: '/public/product/product1.png', // Replace with actual image paths
-    title: "Play and Learn Kit",
-    subtitle: "4-8 years | DIY Activity Kit",
-    discount: 15,
-    price: 765,
-    oldPrice: 899,
-  },
-  {
-    id: 2,
-    imageUrl: '/public/product/product1.png',
-    title: "Play and Learn Kit",
-    subtitle: "6-12 years | DIY Kit",
-    discount: 10,
-    price: 1150,
-    oldPrice: 1280,
-  },
-  {
-    id: 3,
-    imageUrl: '/public/product/product1.png',
-    title: "Play and Learn Kit",
-    subtitle: "6-12 years | DIY Kit",
-    discount: 10,
-    price: 1150,
-    oldPrice: 1280,
-  },
+const SHopByIntrest = ({ selectedAgeGroup }) => {
+  const [filteredCategories, setFilteredCategories] = useState([
+    selectedAgeGroup,
+  ]);
+  const [categories, setCategories] = useState([]);
+
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const {
+    loading: isLoading,
+    error,
+    categoryByAgeGroup,
   
-];
-const SHopByIntrest = () => {
+  } = useSelector((state) => state.category);
+
+
+  // const fetchCategoryFilterData = async () => {
+  //   try {
+  //     const result = await dispatch(FilterCategory());
+  //     if (result && result.payload) {
+  //       setCategories(result.payload);
+  //       console.log("Categories fetched:", result.payload); // Debugging log
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching categories:", error);
+  //   }
+  // };
+
+  const fetchCategoryFilterData = async () => {
+    try {
+      console.log("Dispatching FilterCategory action");
+      await dispatch(FilterCategory());
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCategoryFilterData();
+  }, []);
+
+  
+  useEffect(() => {
+    if (FilterCategory && FilterCategory.length > 0) {
+      setCategories(FilterCategory);
+      console.log("Categories fitrrrrrrrrrrr fetched:", FilterCategory); // Log fetched categories
+    }
+  }, [FilterCategory]);
+  
+  const handleFilterChange = (type, name, checked) => {
+    console.log(`Filter ${type} changed: ${name}, checked: ${checked}`);
+    
+  };
+
+  const handleAddToCart = (item) => {
+    console.log("Added to cart: ", item);
+  };
+
+  useEffect(() => {
+    if (selectedAgeGroup) {
+      dispatch(categoryByAgeGroups(selectedAgeGroup));
+    }
+  }, [dispatch, selectedAgeGroup]);
+
+  useEffect(() => {
+    if (categoryByAgeGroup) {
+      console.log("API Response Data:", categoryByAgeGroup);
+      setFilteredCategories(categoryByAgeGroup);
+    }
+  }, [categoryByAgeGroup]);
+
+  const handleCardClick = (slug) => {
+    router.push(`/products/${slug}`);
+  };
+
   return (
     <>
       <section className="shopbyintrest">
@@ -42,43 +93,44 @@ const SHopByIntrest = () => {
             <div className="col-12">
               <div className="shop-by-title text-center">
                 <h5>
-                  SHOP BY <span>INTREST</span>
+                  SHOP BY <span>INTEREST</span>
                 </h5>
-              <p>A whole lotta fun & learning</p>
+                <p>A whole lotta fun & learning</p>
               </div>
             </div>
           </div>
 
-          <div className="row ">
+          <div className="row">
             <div className="col-4">
-              <Filter />
+            <Filter
+              categories={categories}
+              onFilterChange={handleFilterChange}
+            />
             </div>
 
-            <div className="col-8">
-              {/* <div className="row">
-              <div className="col-lg-4">   {products.map((product) => (
-                <Card
-                  key={product.id}
-                  imageUrl={product.imageUrl}
-                  title={product.title}
-                  subtitle={product.subtitle}
-                  discount={product.discount}
-                  price={product.price}
-                  oldPrice={product.oldPrice}
-                />
-              ))}</div>
-             
-            </div> */}
+            <div className="col-8 ">
               <div className="card-container">
-                {products.map((product) => (
+                {isLoading && <div>Loading...</div>}
+                {error && <div>Error: {error}</div>}
+                {!isLoading && !error && filteredCategories?.length === 0 && (
+                  <div>No products found for this age group.</div>
+                )}
+                {filteredCategories?.map((category) => (
                   <Card
-                    key={product.id}
-                    imageUrl={product.imageUrl}
-                    title={product.title}
-                    subtitle={product.subtitle}
-                    discount={product.discount}
-                    price={product.price}
-                    oldPrice={product.oldPrice}
+                    key={category.id}
+                    id={category.id}
+                    imageUrl={category.thumbnail_full_url?.path}
+                    name={category?.name}
+                    discount={category?.discount}
+                    in
+                    the
+                    response
+                    price={category?.unit_price}
+                    oldPrice={category?.purchase_price}
+                    applicable
+                    discount_type={category?.discount_type}
+                    onClick={() => handleCardClick(category.slug)}
+                    onAddToCart={handleAddToCart}
                   />
                 ))}
               </div>

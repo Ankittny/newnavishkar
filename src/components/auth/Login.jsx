@@ -19,7 +19,6 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useSelector,useDispatch } from "react-redux";
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -45,10 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    
-   
   },
-
 }));
 
 const validationSchema = Yup.object({
@@ -64,19 +60,19 @@ const validationSchema = Yup.object({
     .required("Password is required"),
 });
 
-
-
 export default function Login() {
-
+  const guest_id = 1;
   const [showPassword, setShowPassword] = useState(false);
   const classes = useStyles();
-
   const dispatch = useDispatch();
   const {loading: isLoading, success: isSuccess} = useSelector(state=>state.auth);
+  
 
   const handleSubmit = async (values) => {
+  
     try {
-      const response = dispatch(login(values));
+    const updatedValues = { ...values, guest_id};
+      const response = dispatch(login(updatedValues));
       console.log("response", response)
       alert("Login Successfully")
       // if (response.ok) {
@@ -89,42 +85,35 @@ export default function Login() {
       alert("Failed to create account");
     }
   };
-
   return (
-    <Grid container component="main" className={classes.root}>
+    <Grid container component="main" className={`${classes.root} login-wrapper-page`}>
       <CssBaseline />
       <Grid item xs={false} sm={6} md={6} className={classes.image}>
       <Image src='/log.png' width={700} height={700} alt="sjsjs" />
       </Grid>
-
       <Grid item xs={12} sm={6} md={6} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Grid container>
             <Grid item xs={12} sm={12}>
               <div className="loginwithother ">
-                {/* <GoogleIcon sx={{ fontSize: "40px", color: "#175A95" }} /> */}
                 <Image src='/icons/google.png' width={30} height={30}/>
-                
                 <p className="m-0">Login with Google</p>
               </div>
             </Grid>
             <Grid item xs={12} sm={12} className="mt-2">
               <div className="loginwithother">
-                {/* <FacebookIcon sx={{ fontSize: "40px", color: "#175A95" }} />{" "} */}
                 <Image src='/icons/facebook.png' width={30} height={30}/>
                 <p className="m-0">Login with Facebook</p>
               </div>
             </Grid>
           </Grid>
-
           <div className="mt-4">
             <Divider>OR</Divider>
           </div>
-           
            <Formik initialValues={{
             email:"",
             password:"",
-           }} validationSchema={validationSchema}  
+           }} validationSchema={validationSchema}
             onSubmit={(values) =>{
               handleSubmit(values)
             }}
@@ -146,6 +135,7 @@ export default function Login() {
                       autoComplete="email"
                       value={values.email}
                       onChange={handleChange}
+                      //  placeholder="Email Address"
                       helperText={
                         <ErrorMessage
                           name="email"
@@ -153,6 +143,7 @@ export default function Login() {
                           className="error"
                         />
                       }
+                      
                     />
               </Grid>
               <Grid item xs={12} sm={12}>
@@ -193,12 +184,9 @@ export default function Login() {
                   }
                 />
               </Grid>
-
               <Grid item xs className="text-end">
-                <Link href="">Forget Password</Link>
+                <Link href="/forget-password">Forget Password</Link>
               </Grid>
-
-             
             </Grid>
             <Grid item xs className="text-center mt-2 mb--2">
              <Button
@@ -211,15 +199,13 @@ export default function Login() {
              </Grid>
           </Form>
             )}
-
           </Formik>
-
           <Grid container>
             <Grid item xs>
               <p className="mt-4 text-center">
                 Dont have an account?{" "}
                 <span>
-                  <Link>Register</Link>
+                  <Link href="/register" className="curser">Register</Link>
                 </span>
               </p>
             </Grid>

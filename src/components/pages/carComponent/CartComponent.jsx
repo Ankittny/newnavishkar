@@ -16,13 +16,12 @@ const Cart = () => {
     dispatch(incrementQuantity(id));
   };
 
-  // Ensure price and quantity are valid numbers to avoid NaN errors
+  
   const calculateTotalPrice = (items) => {
     return items.reduce((acc, item) => {
       const price = parseFloat(item.price);
-      const quantity = parseInt(item.quantity, 10);
-
-      // Ensure both price and quantity are valid numbers
+      const quantity = parseInt(item.quantity,10);
+     
       if (!isNaN(price) && !isNaN(quantity)) {
         return acc + price * quantity;
       }
@@ -31,6 +30,15 @@ const Cart = () => {
   };
 
   const totalPrice = calculateTotalPrice(cartItems);
+
+  const handleProceedToCheckout = () => {
+    router.push('/payment'); // Navigate to the payment page
+  };
+
+  const handleContinueShopping = () => {
+    router.push('/products'); // Navigate to the products page
+  };
+
 
   return (
     <div className="container">
@@ -70,7 +78,7 @@ const Cart = () => {
             </table>
           )}
 
-          {/* Optional Order Note and Zip Code */}
+         
           <div className="additional-info">
             <label>
               Order Note (Optional):
@@ -91,7 +99,7 @@ const Cart = () => {
             <p>Shipping: ₹100.00</p>
             <p>Discount on product: - ₹50.00</p>
 
-            {/* Coupon Code */}
+            
             <div className="coupon">
               <input type="text" placeholder="Coupon code" />
               <button>APPLY</button>
@@ -102,8 +110,12 @@ const Cart = () => {
             <p>Total: ₹{totalPrice.toFixed(2) -100 - 50}</p>
           </div>
 
-          <button className="checkout-button">Proceed to Checkout</button>
-          <button className="continue-shopping">Continue Shopping</button>
+          <button className="checkout-button" onClick={handleProceedToCheckout}>
+            Proceed to Checkout
+          </button>
+           <button className="continue-shopping" onClick={handleContinueShopping}>
+            Continue Shopping
+          </button>
 
           <div className="policy-icons">
             <p>Fast Delivery all across the country</p>

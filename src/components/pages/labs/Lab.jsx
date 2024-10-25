@@ -47,18 +47,18 @@ const Lab = () => {
         imageUrl={"/labs/labBanner.png"}
       />
 
-      <div className="container">
-        <div className="row">
-          <div className="col-3">
+      <div className="container mt-5">
+        <div className="row detail-nav">
+          <div className="col-lg-3">
             <Filter />
           </div>
 
-          <div className="col-9">
+          <div className="col-lg-9">
             <div className="mt-2 right-sight-title-brand">
               <h1>Navishkar The Leading Brand</h1>
             </div>
             <div className="row">
-              <div className="col-6">
+              <div className="col-lg-6">
                 <div class="toddler-title d-flex gap-4">
                   <div class="imag-toddler">
                     <Image
@@ -81,7 +81,7 @@ const Lab = () => {
                 </div>
               </div>
 
-              <div className="col-6">
+              <div className="col-lg-6">
                 <div className="toddler-title d-flex gap-4"></div>
               </div>
             </div>
@@ -114,7 +114,7 @@ const Lab = () => {
         </div>
 
         <div className="row">
-          <div className="col-4">
+          <div className="col-lg-4">
             <Certificate
               title={"Intoducing MINOS"}
               imageUrl={"/product/minoscer.png"}
@@ -163,12 +163,12 @@ const Lab = () => {
       </div>
 
       <div className="row">
-        <div className="col-12 mt-3 mb-3">
+        <div className="col-lg-12 mt-3 mb-3">
           <div className="text-center ">
             <h1 className="reletedHead">Related Products</h1>
           </div>
         </div>
-        <div className="col-12">
+        <div className="col-lg-12">
           <Swiper
             navigation={false}
             modules={[Autoplay, Navigation]} // Importing Autoplay module

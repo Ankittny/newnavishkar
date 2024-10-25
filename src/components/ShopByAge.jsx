@@ -48,8 +48,8 @@ const ShopByAge = ({ categoryData }) => {
                 <div className="imageWrapper col-6">
                   <Image
                     src={categoryData[0]?.icon_full_url?.path} 
-                    width={100}
-                    height={100}
+                    width={200}
+                    height={175}
                     alt="Child holding a robot"
                   />
                 </div>
@@ -68,8 +68,8 @@ const ShopByAge = ({ categoryData }) => {
                 <div className="imageWrapper col-6">
                   <Image
                   src={categoryData[1]?.icon_full_url?.path} 
-                    width={100}
-                    height={100}
+                    width={200}
+                    height={176}
                     alt="Child holding a robot"
                   />
                 </div>

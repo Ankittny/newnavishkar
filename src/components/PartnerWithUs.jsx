@@ -12,8 +12,8 @@ const PartnerWithUs = () => {
             <div class="partner-heading text-center">
                 <h1>Partner with Us</h1>
             </div>
-            <div className="classic-partner-title d-flex">
-              <div className="partner">
+            <div className="classic-partner-title ">
+              <div className="partner d-flex ">
                 <Image src={'/PWS/pwu1.png'} height={100} width={100} alt='pws' />
               </div>
               <div className="partner-other-int">

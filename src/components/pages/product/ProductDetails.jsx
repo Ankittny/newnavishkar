@@ -77,24 +77,24 @@ const ProductDetails = ({ params }) => {
       </div>
       <div className="container mt-5">
         <div className="row">
-          <div className="col-12 text-center proudctDetailHeading">
+          <div className="col-md-12 text-center proudctDetailHeading">
             <h1 className="">Navishkar The Leading Brand</h1>
           </div>
-          <div className="d-flex gap-2">
+          {/* <div className="d-flex gap-2">
             <p className="productCategory">Category</p> /
             <span>
               <p className="productCategory">SubCategory</p>
             </span>
-          </div>
+          </div> */}
 
           <div className="row mt-3">
-            <div className="col-6 d-flex justify-content-end">
+            <div className="col-md-5">
               <Box sx={{ padding: "20px" }}>
                 {/* Main Product Card */}
-                <Card sx={{ maxWidth: 345, position: "relative" }}>
+                <Card sx={{ position: "relative" }}>
                   <CardMedia
                     component="img"
-                    height="340"
+                    // height="340"
                     image={mainImage} // Display the selected image
                     alt="Products"
                     onError={handleImageError}
@@ -119,9 +119,9 @@ const ProductDetails = ({ params }) => {
                 </Grid>
               </Box>
             </div>
-            <div className="col-6">
+            <div className="col-md-7">
               <div class="motonove-right-title">
-                <div className="d-flex justify-content-between">
+                <div className="d-flex gap-5">
                   <h3>Motonova</h3>{" "}
                   <span>
                     <FavoriteIcon sx={{ fontSize: 35, color: "red" }} />
@@ -133,7 +133,7 @@ const ProductDetails = ({ params }) => {
                 </p>
                 <div class="motonova-highlight">
                   <span>Highlights</span>
-                  <div class="wheel-balance d-flex gap-3">
+                  <div class="wheel-balance d-flex gap-3 mt-3">
                     <ul>
                       <li>
                         <Link href="">Monowheel Balance</Link>
@@ -151,8 +151,8 @@ const ProductDetails = ({ params }) => {
                     <Image
                       src={"/product/Mark1.png"}
                       alt="ddd"
-                      width={120}
-                      height={100}
+                      width={80}
+                      height={80}
                     />
                   </div>
                   <div class="rating-title mt-3">
@@ -191,7 +191,7 @@ const ProductDetails = ({ params }) => {
                   </div>
                   <div class="ic0n-about-trust">
                     <h3>About this item</h3>
-                    <h4>
+                    <h4 className="mt-4">
                       Let it go and try how far and how stable your MOTONOVA can
                       run!
                     </h4>
@@ -239,8 +239,8 @@ const ProductDetails = ({ params }) => {
               />
             </div>
 
-            <div className="row mt-2">
-              <div className="col-4">
+            <div className="row mt-2 ">
+              <div className="col-md-4">
                 <Certificate
                   title={"Intoducing MINOS"}
                   imageUrl={"/product/minoscer.png"}

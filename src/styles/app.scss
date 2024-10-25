@@ -17,7 +17,7 @@
     --red-200:
     --red-300:
     --red-400:
-    --red-500:
+    --red-500:#FF0000
     --grey-100:
     --grey-200:
     --grey-300:
@@ -68,7 +68,7 @@ p{
 
 
 .error {
-  color:var(--blue-500) !important;
+  color:#FF0000;
   font-family: "Alilato", sans-serif !important;
   // font-size: 16px;
 }

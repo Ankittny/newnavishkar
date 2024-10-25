@@ -162,3 +162,49 @@
     margin-top: 20px;
   }
   
+
+  .shipping-address {
+    background-color: #f0f4ff; /* Light blue background for emphasis */
+    border: 1px solid #b0c4de; /* Light border for separation */
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .shipping-address h4 {
+    color: #333; /* Dark text color for the heading */
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .shipping-address input {
+    display: block;
+    width: calc(100% - 20px); /* Full width minus padding */
+    padding: 12px; /* More padding for a better touch target */
+    margin: 10px 0; /* Space between inputs */
+    border: 1px solid #ccc; /* Default border color */
+    border-radius: 4px;
+    font-size: 16px; /* Slightly larger font size for readability */
+    transition: border-color 0.3s; /* Transition for focus effect */
+  }
+  
+  .shipping-address input:focus {
+    border-color: #007bff; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+  }
+  
+  .shipping-address input::placeholder {
+    color: #aaa; /* Placeholder text color */
+    opacity: 1; /* Ensures full opacity for better visibility */
+  }
+  
+  @media (max-width: 600px) {
+    .shipping-address {
+      padding: 15px; /* Adjust padding for smaller screens */
+    }
+  
+    .shipping-address input {
+      padding: 10px; /* Adjust input padding for smaller screens */
+      font-size: 14px; /* Slightly smaller font size */
+    }
+  }

@@ -7,12 +7,15 @@ import { useRouter } from "next/navigation";
 const Payment = () => {
   const router = useRouter();
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const [paymentMethod, setPaymentMethod] = useState("creditCard");
-  const [cardDetails, setCardDetails] = useState({
-    cardNumber: "",
-    expiryDate: "",
-    cvv: "",
-    nameOnCard: "",
+  const [paymentMethod, setPaymentMethod] = useState("COD");
+  const [shippingDetails, setShippingDetails] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    pincode: "",
+    addressLine1: "",
+    addressLine2: "",
   });
 
   const calculateTotalPrice = (items) => {
@@ -32,116 +35,157 @@ const Payment = () => {
   const discount = 50;
   const finalPrice = (totalPrice - discount + shipping).toFixed(2);
 
-  const handlePaymentSubmit = (e) => {
-    e.preventDefault();
-    router.push("/confirmation");
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setShippingDetails((prevDetails) => ({
+      ...prevDetails,
+      [name]: value,
+    }));
   };
 
-  const handleCardDetailsChange = (e) => {
-    setCardDetails({
-      ...cardDetails,
-      [e.target.name]: e.target.value,
-    });
+  const handlePaymentSubmit = async (e) => {
+    e.preventDefault();
+
+    if (paymentMethod === "RazorPay") {
+      // Redirect to RazorPay page or handle RazorPay payment here
+      router.push("/razorpay");
+    } else {
+      // Handle COD payment logic and send email
+      const emailContent = {
+        shippingDetails,
+        cartItems,
+        totalPrice: finalPrice,
+      };
+
+      // Call your email API here (e.g., using fetch or axios)
+      try {
+        const response = await fetch("/api/send-email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(emailContent),
+        });
+
+        if (response.ok) {
+          // Successfully sent email
+          router.push("/confirmation");
+        } else {
+          // Handle error
+          console.error("Error sending email:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
   };
 
   return (
     <div className="container">
-<div className="payment-page">
-      <h2 className="payment-title">Payment Information</h2>
+      <div className="payment-page">
+        <h2 className="payment-title">Payment Information</h2>
 
-      <div className="payment-container">
-        <div className="order-summary">
-          <h3>Order Summary</h3>
-          <p>Sub Total: ₹{totalPrice.toFixed(2)}</p>
-          <p>Shipping: ₹{shipping.toFixed(2)}</p>
-          <p>Discount: -₹{discount.toFixed(2)}</p>
-          <hr />
-          <p>Total: ₹{finalPrice}</p>
-        </div>
+        <div className="payment-container">
+          <div className="order-summary">
+            <h3>Order Summary</h3>
+            <p>Sub Total: ₹{totalPrice.toFixed(2)}</p>
+            <p>Shipping: ₹{shipping.toFixed(2)}</p>
+            <p>Discount: -₹{discount.toFixed(2)}</p>
+            <hr />
+            <p>Total: ₹{finalPrice}</p>
+          </div>
 
-        <div className="payment-methods">
-          <h3>Choose Payment Method</h3>
-          <label className="payment-label">
-            <input
-              type="radio"
-              name="paymentMethod"
-              value="creditCard"
-              checked={paymentMethod === "creditCard"}
-              onChange={(e) => setPaymentMethod(e.target.value)}
-            />
-            Credit Card
-          </label>
-          <label className="payment-label">
-            <input
-              type="radio"
-              name="paymentMethod"
-              value="paypal"
-              onChange={(e) => setPaymentMethod(e.target.value)}
-            />
-            PayPal
-          </label>
-        </div>
+          <div className="payment-methods">
+            <h3>Choose Payment Method</h3>
+            <label className="payment-label">
+              <input
+                type="radio"
+                name="paymentMethod"
+                value="COD"
+                checked={paymentMethod === "COD"}
+                onChange={(e) => setPaymentMethod(e.target.value)}
+              />
+              COD
+            </label>
+            <label className="payment-label">
+              <input
+                type="radio"
+                name="paymentMethod"
+                value="RazorPay"
+                checked={paymentMethod === "RazorPay"}
+                onChange={(e) => setPaymentMethod(e.target.value)}
+              />
+              RazorPay
+            </label>
+          </div>
 
-        {paymentMethod === "creditCard" && (
-          <form onSubmit={handlePaymentSubmit} className="card-details-form">
-            <h3>Credit Card Details</h3>
-            <div className="form-group">
-              <label>Card Number</label>
+          {/* Conditionally render the shipping address input for COD */}
+          {paymentMethod === "COD" && (
+            <div className="shipping-address">
+              <h4>Shipping Address</h4>
               <input
                 type="text"
-                name="cardNumber"
-                placeholder="1234 5678 9101 1121"
-                value={cardDetails.cardNumber}
-                onChange={handleCardDetailsChange}
+                name="firstName"
+                placeholder="First Name"
+                value={shippingDetails.firstName}
+                onChange={handleInputChange}
                 required
               />
-            </div>
-            <div className="form-group">
-              <label>Expiry Date</label>
               <input
                 type="text"
-                name="expiryDate"
-                placeholder="MM/YY"
-                value={cardDetails.expiryDate}
-                onChange={handleCardDetailsChange}
+                name="lastName"
+                placeholder="Last Name"
+                value={shippingDetails.lastName}
+                onChange={handleInputChange}
                 required
               />
-            </div>
-            <div className="form-group">
-              <label>CVV</label>
               <input
                 type="text"
-                name="cvv"
-                placeholder="123"
-                value={cardDetails.cvv}
-                onChange={handleCardDetailsChange}
+                name="phone"
+                placeholder="Phone Number"
+                value={shippingDetails.phone}
+                onChange={handleInputChange}
                 required
               />
-            </div>
-            <div className="form-group">
-              <label>Name on Card</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                value={shippingDetails.email}
+                onChange={handleInputChange}
+                required
+              />
               <input
                 type="text"
-                name="nameOnCard"
-                placeholder="John Doe"
-                value={cardDetails.nameOnCard}
-                onChange={handleCardDetailsChange}
+                name="pincode"
+                placeholder="Pincode"
+                value={shippingDetails.pincode}
+                onChange={handleInputChange}
                 required
               />
+              <input
+                type="text"
+                name="addressLine1"
+                placeholder="Address Line 1"
+                value={shippingDetails.addressLine1}
+                onChange={handleInputChange}
+                required
+              />
+              <input
+                type="text"
+                name="addressLine2"
+                placeholder="Address Line 2"
+                value={shippingDetails.addressLine2}
+                onChange={handleInputChange}
+              />
             </div>
-            <button type="submit" className="submit-payment-button">
-              Submit Payment
-            </button>
-          </form>
-        )}
+          )}
 
-        {paymentMethod === "paypal" && (
           <button onClick={handlePaymentSubmit} className="submit-payment-button">
-            Pay with PayPal
+            {paymentMethod === "RazorPay" ? "Pay with RazorPay" : "Confirm Order"}
           </button>
-        )}
+        </div>
       </div>
-    </div>
     </div>
   );
 };

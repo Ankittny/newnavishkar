@@ -80,3 +80,22 @@ try {
 }
 }
 
+// export const FilterCategory = () => async (dispatch) => {
+//   try {
+//     console.log("Filter category call");
+//     dispatch({ type: 'filterCategoryRequest' });
+    
+//     const { data } = await axios.get('/categories');  // Assuming the correct endpoint
+//     console.log("Filter Category Data", data);
+
+//     dispatch({ type: 'filterCategorySuccess', payload: data });
+    
+//   } catch (error) {
+//     dispatch({
+//       type: 'filterCategoryFail',
+//       payload: error.response && error.response.data.message
+//         ? error.response.data.message
+//         : error.message,
+//     });
+//   }
+// };

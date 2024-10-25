@@ -37,11 +37,38 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    // addToCart: (state, action) => {
+    //   const item = action.payload;
+    //   state.cartItems.push(item);
+    //   state.cartCount += 1;
+    //   saveCartToLocalStorage(state); 
+    // },
+
+
     addToCart: (state, action) => {
       const item = action.payload;
-      state.cartItems.push(item);
-      state.cartCount += 1;
-      saveCartToLocalStorage(state); 
+      if (!item.id) {
+        console.error("Item must have an id");
+        return;
+      }
+    
+      const existingItem = state.cartItems.find((cartItem) => cartItem.id === item.id);
+    
+      if (existingItem) {
+        existingItem.quantity += 1;
+        existingItem.totalPrice = existingItem.quantity * existingItem.price;
+      } else {
+        state.cartItems.push({
+          ...item,
+          quantity: 1,
+          totalPrice: item.price,
+        });
+      }
+    
+      state.cartCount = state.cartItems.reduce((count, cartItem) => count + cartItem.quantity, 0);
+    
+      // Save the updated cart to localStorage
+      saveCartToLocalStorage(state);
     },
     removeFromCart: (state, action) => {
       const itemId = action.payload;
@@ -50,35 +77,50 @@ const cartSlice = createSlice({
       saveCartToLocalStorage(state); 
     },
     
+    
     incrementQuantity: (state, action) => {
       const itemId = action.payload;
-      const item = state.cartItems.find((cartItem) => cartItem.id === itemId);
-
-      if (item) {
-        item.quantity += 1;
-        item.totalPrice = item.quantity * item.price;
-      }
-
-      
+      state.cartItems = state.cartItems.map((item) => {
+        if (item.id === itemId) {
+          return {
+            ...item, // Ensure you spread the existing item properties
+            quantity: item.quantity + 1, // Increment the quantity
+            totalPrice: (item.quantity + 1) * item.price, // Update totalPrice
+          };
+        }
+        return item; // Return unchanged item
+      });
+    
+      // Update cart count
       state.cartCount = state.cartItems.reduce((count, item) => count + item.quantity, 0);
-      saveCartToLocalStorage(state);
+      saveCartToLocalStorage(state); // Save the updated cart to localStorage
     },
-
+    
     decrementQuantity: (state, action) => {
       const itemId = action.payload;
-      const item = state.cartItems.find((cartItem) => cartItem.id === itemId);
-
-      if (item && item.quantity > 1) {
-        item.quantity -= 1;
-        item.totalPrice = item.quantity * item.price;
-      } else {
-        
-        state.cartItems = state.cartItems.filter((cartItem) => cartItem.id !== itemId);
-      }
-
+    
+      state.cartItems = state.cartItems.reduce((acc, item) => {
+        if (item.id === itemId) {
+          if (item.quantity > 1) {
+            acc.push({
+              ...item,
+              quantity: item.quantity - 1, // Decrement the quantity
+              totalPrice: (item.quantity - 1) * item.price, // Update totalPrice
+            });
+          } 
+          // If quantity is 1, it will not be added to acc, effectively removing it
+        } else {
+          acc.push(item); // Keep other items unchanged
+        }
+        return acc;
+      }, []);
+    
+      // Update cart count
       state.cartCount = state.cartItems.reduce((count, item) => count + item.quantity, 0);
-      saveCartToLocalStorage(state);
+      saveCartToLocalStorage(state); // Save the updated cart to localStorage
     },
+
+    
 
     clearCart: (state) => {
       state.cartItems = [];

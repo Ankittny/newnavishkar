@@ -22,51 +22,9 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
     loading: isLoading,
     error,
     categoryByAgeGroup,
-  
+    filterCategory,
   } = useSelector((state) => state.category);
 
-
-  // const fetchCategoryFilterData = async () => {
-  //   try {
-  //     const result = await dispatch(FilterCategory());
-  //     if (result && result.payload) {
-  //       setCategories(result.payload);
-  //       console.log("Categories fetched:", result.payload); // Debugging log
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching categories:", error);
-  //   }
-  // };
-
-  const fetchCategoryFilterData = async () => {
-    try {
-      console.log("Dispatching FilterCategory action");
-      await dispatch(FilterCategory());
-    } catch (error) {
-      console.error("Error fetching categories:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchCategoryFilterData();
-  }, []);
-
-  
-  useEffect(() => {
-    if (FilterCategory && FilterCategory.length > 0) {
-      setCategories(FilterCategory);
-      console.log("Categories fitrrrrrrrrrrr fetched:", FilterCategory); // Log fetched categories
-    }
-  }, [FilterCategory]);
-  
-  const handleFilterChange = (type, name, checked) => {
-    console.log(`Filter ${type} changed: ${name}, checked: ${checked}`);
-    
-  };
-
-  const handleAddToCart = (item) => {
-    console.log("Added to cart: ", item);
-  };
 
   useEffect(() => {
     if (selectedAgeGroup) {
@@ -84,6 +42,41 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
   const handleCardClick = (slug) => {
     router.push(`/products/${slug}`);
   };
+
+
+  const fetchCategoryFilterData = async () => {
+    try {
+      console.log("Dispatching FilterCategory action");
+      await dispatch(FilterCategory());
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCategoryFilterData();
+  }, []);
+
+  
+  useEffect(() => {
+    if (filterCategory && filterCategory.length > 0) {
+      setCategories(filterCategory); // Correctly set the fetched data
+      console.log("Categories fetched:", filterCategory); // Log fetched categories
+    }
+  }, [filterCategory]);
+
+
+  console.log("Fffffffffffffffffff",filterCategory)
+  
+  const handleFilterChange = (type, name, checked) => {
+    console.log(`Filter ${type} changed: ${name}, checked: ${checked}`);
+    
+  };
+
+  const handleAddToCart = (item) => {
+    console.log("Added to cart: ", item);
+  };
+
 
   return (
     <>
@@ -143,3 +136,5 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
 };
 
 export default SHopByIntrest;
+
+

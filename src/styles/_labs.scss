@@ -133,3 +133,38 @@
     width: 100%;
     height: auto;
 }
+.all-details-age p{
+    font-size: 15px;
+}
+.all-details-age span{
+    font-size: 13px;
+}
+.camp-title-act p{
+    font-size: 20px;
+}
+.cardBody button{
+    background-color: #203D6A;
+    border:none;
+}
+.cardBody a{
+    color: #fff;
+}
+.summer-activity p{
+    font-size: 18px;
+}
+.retation-int{
+    margin-bottom: 0px;
+    
+}
+.left-right-tr{
+    margin-top: 20px !important;
+}
+.artical-tag-role p{
+    text-align: justify;
+}
+
+@media(max-width:768px){
+    .detail-nav{
+        flex-direction: column;
+    }
+}

@@ -1,3 +1,4 @@
+"use client"
 import ProductBanner from "@/components/ProductBanner";
 import React from "react";
 import Image from "next/image";
@@ -22,13 +23,13 @@ const LabDetails = () => {
     <>
       <ProductBanner imageUrl={"/labs/labDetailBanner.png"} />
 
-      <div className="container mb-3">
+      <div className="container mb-3 mt-5">
         <div className="row">
-          <div className="col-4">
+          <div className="col-lg-4">
             <Filter />
           </div>
 
-          <div className="col-4">
+          <div className="col-lg-4">
             <div class="relation-title right-sight-title-brand">
               <h3>Navishkar The Leading Brand</h3>
               <div class="mt-3">
@@ -102,9 +103,12 @@ const LabDetails = () => {
             </div>
           </div>
 
-          <div className="col-4">
-            <h4>Related Labs</h4>
-            <div class="relation-title-left right-sight-title-brand">
+          <div className="col-lg-4">
+          <div class="relation-title retation-int right-sight-title-brand">
+          <h4>Related Labs</h4>
+          </div>
+            <div class="relation-title-left left-right-tr right-sight-title-brand">
+        
               <div class="toddler d-flex gap-4 mt-3">
                 <div class="imag-toddler">
                   <Image
@@ -127,7 +131,7 @@ const LabDetails = () => {
       </div>
 
         <div className="row">
-        <div className="col-12 mt-3 mb-3">
+        <div className="col-lg-12 mt-3 mb-3 ">
           <div className="text-center ">
             <h1 className="reletedHead">Related Products</h1>
           </div>

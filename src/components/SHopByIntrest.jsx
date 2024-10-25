@@ -100,15 +100,15 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
             </div>
           </div>
 
-          <div className="row">
-            <div className="col-4">
+          <div className="row dr-title">
+            <div className="col-md-4">
             <Filter
               categories={categories}
               onFilterChange={handleFilterChange}
             />
             </div>
 
-            <div className="col-8 ">
+            <div className="col-md-8 ">
               <div className="card-container">
                 {isLoading && <div>Loading...</div>}
                 {error && <div>Error: {error}</div>}

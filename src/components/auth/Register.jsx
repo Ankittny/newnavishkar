@@ -276,10 +276,11 @@ export default function Register() {
                     }
                     label="I agree to all the Terms and Conditions"
                   />
-                  <Button type="submit" variant="contained" color="primary" className={classes.submit}>
+                 
+                </Grid>
+                <Button type="submit" variant="contained" color="primary" className={classes.submit}>
                     Create Account
                   </Button>
-                </Grid>
               </Form>
             )}
           </Formik>

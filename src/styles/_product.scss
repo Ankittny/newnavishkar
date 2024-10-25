@@ -1,6 +1,5 @@
 .productBanner{
     width: 100% !important;
-    height: 464px;
     background-repeat:no-repeat;
     background-size: cover;
     position: relative;
@@ -40,7 +39,7 @@
 .shop-by-title h5{
     color: #353535;
     font-size: 30px;
-    font-weight: 700;
+    font-weight: 800;
 }
 .shop-by-title h5 span{
     color: #006ED3;
@@ -123,7 +122,7 @@
 
 .motonova-highlight span{
     font-weight: 600;
-    font-size:25px;
+    font-size:20px;
     color: #185695;
     font-family: "Poppins";   
 }
@@ -176,7 +175,7 @@
     color: #635F5F;
     font-weight: 400;
     font-family: "Poppins";
-    font-size: 22px;
+    font-size: 20px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     margin-top: 30px;
     padding: 5px 20px;
@@ -217,11 +216,6 @@
     width: 100%;
 }
 
-.relatedProduct{
-   
-}
-
-  
   .card {
     width: 300px;
     border-radius: 15px;
@@ -276,3 +270,117 @@
     background-color: #0056b3;
     color: white;
   }
+  .logoImage {
+    height: 25px !important;
+    width: 100%;
+}
+.product-image{
+ width: 100%;
+//  height: 350px;
+}
+.proudctDetailHeading h1{
+    font-weight: 800;
+}
+.mini-img-minos button a{
+    color: #fff !important;
+}
+.mini-img-minos button{
+    padding: 10px 25px !important;
+}
+.ageLabel{
+    font-size: 25px;
+}
+.title-section img{
+    width: 100%;
+    height: auto;
+}
+.swiper-slide img {
+    width: 100%;
+    height: auto;
+}
+
+// media query start
+@media(max-width:991px){
+    .productBanner img{
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+    }
+   
+    .navi-title {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 42%;
+        left: 54%;
+        width: 100%;
+    }
+    .shopByAge{
+        flex-direction: row;
+        // text-align: -webkit-center;
+    }
+    .shopByAge {
+        width: inherit; 
+        margin: auto; 
+       }
+    .group{
+        margin-top: 70px;
+    }
+    .card-container{
+        flex-direction: column;
+    }
+    .play-role-title, .title-access{
+        width: 100%;
+    }
+    .dr-title{
+        flex-direction: column;
+    }
+    .css-cmv4v0-MuiGrid-root{
+        flex-direction: column;
+    }
+.swiper-slide img{
+    width: 100%;
+    height: auto;
+}
+.makeStyles-image-2 img{
+    width: 100%;
+    height: auto;
+}
+}
+
+
+@media (max-width:991px) and (min-width:767px) {
+    .productBanner img {
+        width: 100%;
+        height: 225px;
+        object-fit: cover;
+    }
+}
+
+
+
+@media(max-width:768px){
+    .productBanner img {
+        width: 100%;
+        height: 210px;
+        object-fit: cover;
+    }
+    .MuiGrid-container {
+        display: flex !important;
+    }
+}
+
+@media(max-width:425px){
+    .shopByAge {
+     width: inherit; 
+     margin: auto; 
+     flex-direction: column;
+    }
+    .productBanner img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+      .MuiGrid-container {
+        display: flex !important;
+    }
+}

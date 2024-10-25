@@ -4,13 +4,13 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/Reducer/Cart"; // Import the addToCart action
 
-const Card = ({ imageUrl, name, discount, price, discount_type, onClick }) => {
+const Card = ({ imageUrl, name, discount, price, discount_type, onClick,id }) => {
   const dispatch = useDispatch();
   const percentage = (price * discount) / 100;
   const ActualPrice = price - percentage;
 
   const handleAddToCart = () => {
-    dispatch(addToCart({ name, price: ActualPrice, imageUrl }));
+    dispatch(addToCart({ name, price: ActualPrice, imageUrl,id}));
   };
 
   return (

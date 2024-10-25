@@ -1,8 +1,11 @@
 "use client"
+<<<<<<< HEAD
+
+=======
+>>>>>>> 67349c4352f4b37035d8b8ca7e10b67707584758
 import ProductBanner from "@/components/ProductBanner";
 import React from "react";
 import Image from "next/image";
-
 import Link from "next/link";
 import Filter from "@/components/Filter";
 import RelatedProduct from "@/components/RelatedProduct";
@@ -16,9 +19,8 @@ const LabDetails = () => {
 
   const dispatch = useDispatch()
   const router = useRouter();
+
   
-
-
   return (
     <>
       <ProductBanner imageUrl={"/labs/labDetailBanner.png"} />

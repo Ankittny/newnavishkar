@@ -21,10 +21,11 @@ const Navbar = () => {
   };
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  console.log("LOGIN",isLoggedIn)
   const cartCount = useSelector((state) => state.cart.cartCount) || 0;
 
   const handleCartClick = () => {
-    if (!isLoggedIn) {
+    if (isLoggedIn) {
       router.push("/login"); // Redirect to login if not logged in
     } else {
       router.push("/cart"); // Redirect to cart if logged in

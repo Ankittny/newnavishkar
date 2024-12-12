@@ -13,6 +13,7 @@ import Link from "next/link";
 import Filter from "@/components/Filter";
 import { useRouter } from "next/navigation";
 import { useDispatch,useSelector} from "react-redux";
+import BoysToys from "@/components/BoysToys";
 
 const Lab = () => {
   const [labData,setLabData]=useState([]);
@@ -50,7 +51,8 @@ const Lab = () => {
       <div className="container mt-5">
         <div className="row detail-nav">
           <div className="col-lg-3">
-            <Filter />
+            {/* <Filter /> */}
+            <BoysToys />
           </div>
 
           <div className="col-lg-9">

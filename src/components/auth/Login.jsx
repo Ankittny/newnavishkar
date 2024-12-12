@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -18,6 +18,8 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useSelector,useDispatch } from "react-redux";
+import Swal from "sweetalert2"; // Import SweetAlert2
+import { useRouter } from 'next/navigation'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,26 +67,28 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const classes = useStyles();
   const dispatch = useDispatch();
-  const {loading: isLoading, success: isSuccess} = useSelector(state=>state.auth);
+  const router = useRouter(); // Initialize useRouter for redirection
+  const {loading: isLoading, success: isSuccess,error: authError} = useSelector(state=>state.auth);
   
 
-  const handleSubmit = async (values) => {
-  
-    try {
-    const updatedValues = { ...values, guest_id};
-      const response = dispatch(login(updatedValues));
-      console.log("response", response)
-      alert("Login Successfully")
-      // if (response.ok) {
-      //   alert("Account created successfully!");
-      // } else {
-      //   alert(result.message || "Something went wrong");
-      // }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Failed to create account");
+  useEffect(() => {
+    if (isSuccess) {
+      router.push("/products"); // Redirect to home page after successful login
+    } else if (authError) {
+      Swal.fire({
+        icon: "error",
+        title: "Login Failed",
+        text: authError || "Invalid credentials. Please try again.",
+      });
     }
+  }, [isSuccess, authError, router]); // Make sure to include router in the dependency array
+  
+  const handleSubmit = async (values) => {
+    const updatedValues = { ...values, guest_id };
+    dispatch(login(updatedValues));
   };
+
+
   return (
     <Grid container component="main" className={`${classes.root} login-wrapper-page`}>
       <CssBaseline />
@@ -215,3 +219,4 @@ export default function Login() {
     </Grid>
   );
 }
+

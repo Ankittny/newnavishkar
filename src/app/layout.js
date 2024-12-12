@@ -4,6 +4,8 @@ import StoreProvider from "@/redux/StoreProvider";
 import "../styles/app.scss";
 import localFont from "next/font/local";
 // import MainLayout from "@/layouts/MainLayout";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

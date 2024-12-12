@@ -69,7 +69,7 @@ const Cart = () => {
                       <img src={item.imageUrl} alt={item.name} width={100} />
                       <p>{item.name}</p>
                     </td>
-                    <td>₹{parseFloat(item.price).toFixed(2)}</td>
+                    <td className="">₹{parseFloat(item.price).toFixed(2)}</td>
                     <td className="quantity-controls">
                       <button onClick={() => handleDecrement(item.id)}>-</button>
                       <span>{parseInt(item.quantity, 10)}</span>

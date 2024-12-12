@@ -73,12 +73,27 @@ const Navbar = () => {
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
                 <Link href="/products" passHref className="nav-link">
-                  Product
+                  Shop
                 </Link>
               </li>
               <li className="nav-item">
                 <Link href="/labs" passHref className="nav-link">
                   Labs
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link href="/labs" passHref className="nav-link">
+                  Toys
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link href="/labs" passHref className="nav-link">
+                  Projects
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link href="/labs" passHref className="nav-link">
+                  Books
                 </Link>
               </li>
               <li className="nav-item">

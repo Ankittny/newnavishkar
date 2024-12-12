@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Filter from "./Filter";
+// import Filter from "./Filter";
 import Card from "./card/Card";
 import { useDispatch, useSelector } from "react-redux";
 import {
   categoryByAgeGroups,
   FilterCategory,
   FilterSubCategory,
-} from "@/redux/Action/category";
+}
+  from "@/redux/Action/category";
 import { useRouter } from "next/navigation";
 
 const SHopByIntrest = ({ selectedAgeGroup }) => {
@@ -57,7 +58,7 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
     fetchCategoryFilterData();
   }, []);
 
-  
+
   useEffect(() => {
     if (filterCategory && filterCategory.length > 0) {
       setCategories(filterCategory); // Correctly set the fetched data
@@ -66,11 +67,11 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
   }, [filterCategory]);
 
 
-  console.log("Fffffffffffffffffff",filterCategory)
-  
+  console.log("Fffffffffffffffffff", filterCategory)
+
   const handleFilterChange = (type, name, checked) => {
     console.log(`Filter ${type} changed: ${name}, checked: ${checked}`);
-    
+
   };
 
   const handleAddToCart = (item) => {
@@ -80,6 +81,141 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
 
   return (
     <>
+
+      {/* ============================================Best-Seller======================================== */}
+      <section>
+        <div className="seller-top">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="shop-by-title text-center">
+                  <h5>
+                    BEST<span>SELLER</span>
+                  </h5>
+                  <p>Crowd-pleasers for every age</p>
+                </div>
+
+              </div>
+
+              <div className="col-lg-3">
+                <div className="seller-offer">
+                  <div className="seller-sell">
+                    <img src="product/motor.png" />
+                  </div>
+                  <div className="playkit-action action-inject">
+                    <div className="kit-down"><p>Play and Learn Kit | 3-6 years | DIY
+                      Activity Kit</p>
+                    </div>
+                    <div className="button mt-4 d-flex gap-3 align-items-center">
+                      <div className="ex-btn">-15%</div>
+                      <div className="price-text">
+                        <span>₹699</span>
+                      </div>
+                      <div className="overline-text">
+                        <p>₹799</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-3">
+                <div className="seller-offer">
+                  <div className="seller-sell">
+                    <img src="product/motor.png" />
+                  </div>
+                  <div className="playkit-action action-inject">
+                    <div className="kit-down"><p>Play and Learn Kit | 3-6 years | DIY
+                      Activity Kit</p>
+                    </div>
+                    <div className="button mt-4 d-flex gap-3 align-items-center">
+                      <div className="ex-btn">-15%</div>
+                      <div className="price-text">
+                        <span>₹699</span>
+                      </div>
+                      <div className="overline-text">
+                        <p>₹799</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-3">
+                <div className="seller-offer">
+                  <div className="seller-sell">
+                    <img src="product/motor.png" />
+                  </div>
+                  <div className="playkit-action action-inject">
+                    <div className="kit-down"><p>Play and Learn Kit | 3-6 years | DIY
+                      Activity Kit</p>
+                    </div>
+                    <div className="button mt-4 d-flex gap-3 align-items-center">
+                      <div className="ex-btn">-15%</div>
+                      <div className="price-text">
+                        <span>₹699</span>
+                      </div>
+                      <div className="overline-text">
+                        <p>₹799</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-3">
+                <div className="seller-offer">
+                  <div className="seller-sell">
+                    <img src="product/motor.png" />
+                  </div>
+                  <div className="playkit-action action-inject">
+                    <div className="kit-down"><p>Play and Learn Kit | 3-6 years | DIY
+                      Activity Kit</p>
+                    </div>
+                    <div className="button mt-4 d-flex gap-3 align-items-center">
+                      <div className="ex-btn">-15%</div>
+                      <div className="price-text">
+                        <span>₹699</span>
+                      </div>
+                      <div className="overline-text">
+                        <p>₹799</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================Kids-toy-store===================================== */}
+      <section>
+        <div className="nami-toys-toys-store">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="all-toys d-flex justify-content-between align-items-center">
+                  <div className="toys-text">
+                    <h4>Navishkar - Kids Toy Store</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing <br /> elit, sed do eiusmod tempor
+                      incididunt ut labore et <br /> dolore magna aliqua. Ut enim ad minim veniam, quis <br />
+                      nostrud exercitation ullamco laboris nisi ut aliquip <br /> ex ea commodo consequat.
+                    </p>
+                    {/* <a href="">Shop More </a> */}
+                  </div>
+                  <div className="img-toys-titles">
+                    <img src="./product/Group 77.png" alt="77" />
+                  </div>
+                  <div className="img-toys-title">
+                    <img src="./product/pngtree-cheerful.png" alt="77" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
       <section className="shopbyintrest">
         <div className="container">
           <div className="row">
@@ -90,18 +226,22 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
                 </h5>
                 <p>A whole lotta fun & learning</p>
               </div>
+              <div class="list-items">
+                <ul class="list-inline d-flex justify-content-center gap-5">
+                  <li class="active"><a href="#">Activity Kits</a></li>
+                  <li><a href="#">Mechanical Toys</a></li>
+                  <li><a href="#">Games</a></li>
+                  <li><a href="#">Technology Toys</a></li>
+                  <li><a href="#">Science Toys</a></li>
+                  <li><a href="#">Engineering Toys</a></li>
+
+                </ul>
+              </div>
             </div>
           </div>
 
           <div className="row dr-title">
-            <div className="col-md-4">
-            <Filter
-              categories={categories}
-              onFilterChange={handleFilterChange}
-            />
-            </div>
-
-            <div className="col-md-8 ">
+            <div className="col-md-12">
               <div className="card-container">
                 {isLoading && <div>Loading...</div>}
                 {error && <div>Error: {error}</div>}

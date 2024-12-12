@@ -26,7 +26,7 @@ const Product = () => {
   };
 
   useEffect(() => {
-    fetchData(); 
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -35,7 +35,6 @@ const Product = () => {
     }
   }, [category]);
 
-  
   return (
     <>
       <ProductBanner
@@ -45,8 +44,9 @@ const Product = () => {
         linkUrl="/demo"
         imageUrl={"/product/productbanner.png"}
       />
-  
+      {/* ==================================================BEST_SELLER======================================= */}
     
+
       <ShopByAge categoryData={categoryData} />
       <OurAchievment />
     </>

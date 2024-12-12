@@ -30,14 +30,14 @@ const Filter = ({ categories, onFilterChange }) => {
 
   return (
     <div className="filter-container">
-      <div className="title-section">
+      {/* <div className="title-section">
         <Image
-          src="/product/children-holding-blank-banner 1.png"
+          src="/product/children-holding-blank-banner-1.png"
           width={100}
           height={100}
           alt="children"
         />
-      </div>
+      </div> */}
 
       <div className="filter-section">
         <div className="filter-options">

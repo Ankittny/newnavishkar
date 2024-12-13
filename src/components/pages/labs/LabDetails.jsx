@@ -1,8 +1,5 @@
 "use client"
-<<<<<<< HEAD
 
-=======
->>>>>>> 67349c4352f4b37035d8b8ca7e10b67707584758
 import ProductBanner from "@/components/ProductBanner";
 import React from "react";
 import Image from "next/image";

@@ -92,8 +92,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href="/labs" passHref className="nav-link">
-                  Books 
+                <Link href="/labs" passHref className="nav-link">Books
                 </Link>
               </li>
               <li className="nav-item">

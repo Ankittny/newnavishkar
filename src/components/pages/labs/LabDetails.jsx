@@ -1,5 +1,4 @@
 "use client"
-
 import ProductBanner from "@/components/ProductBanner";
 import React from "react";
 import Image from "next/image";

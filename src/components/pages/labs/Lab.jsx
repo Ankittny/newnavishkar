@@ -16,27 +16,23 @@ import { useDispatch,useSelector} from "react-redux";
 import BoysToys from "@/components/BoysToys";
 
 const Lab = () => {
-  const [labData,setLabData]=useState([]);
+  const [labData, setLabData] = useState([]);
   const router = useRouter();
-  const dispatch =useDispatch();
-
+  const dispatch = useDispatch();
 
   // here redux logic implement
 
+  const fetchLabData = async () => {};
 
-
-
-  const fetchLabData = async () =>{
-   
-  }
-
-  useEffect(()=>{
+  useEffect(() => {
     fetchLabData();
-  },[])
+  }, []);
 
-  const handleClick = (id) =>{
+  const handleClick = (id) => {
     router.push(`/labs${id}`);
-  }
+  };
+
+  
 
   return (
     <>
@@ -126,6 +122,7 @@ const Lab = () => {
           </div>
         </div>
 
+      
         <div className="camp-activity-title" id="camp-activity-title">
           <div className="container">
             <div className="row">

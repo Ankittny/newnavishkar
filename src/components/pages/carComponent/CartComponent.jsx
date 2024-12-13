@@ -42,7 +42,7 @@ const Cart = () => {
   };
 
   const handleContinueShopping = () => {
-    router.push("/cart/confirmation"); // Navigate to the products page
+    router.push("/"); // Navigate to the products page
   };
 
   return (

@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <>
      {/* Footer Section */}
-    <section>
+    <section className=''>
         <div className={`footer_namiskar py-5 text-white`} >
           <div className="container">
             <div className="row">

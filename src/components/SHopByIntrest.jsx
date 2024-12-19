@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import Filter from "./Filter";
 import Card from "./card/Card";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -9,6 +8,8 @@ import {
 }
   from "@/redux/Action/category";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import Filter from "./Filter";
 
 const SHopByIntrest = ({ selectedAgeGroup }) => {
   const [filteredCategories, setFilteredCategories] = useState([
@@ -228,20 +229,23 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
               </div>
               <div class="list-items">
                 <ul class="list-inline d-flex justify-content-center gap-5">
-                  <li class="active"><a href="#">Activity Kits</a></li>
-                  <li><a href="#">Mechanical Toys</a></li>
-                  <li><a href="#">Games</a></li>
-                  <li><a href="#">Technology Toys</a></li>
-                  <li><a href="#">Science Toys</a></li>
-                  <li><a href="#">Engineering Toys</a></li>
+                  <li class="active"><Link href="#">Activity Kits</Link></li>
+                  <li><Link href="#">Mechanical Toys</Link></li>
+                  <li><Link href="#">Games</Link></li>
+                  <li><Link href="#">Technology Toys</Link></li>
+                  <li><Link href="#">Science Toys</Link></li>
+                  <li><Link href="#">Engineering Toys</Link></li>
 
                 </ul>
               </div>
             </div>
           </div>
 
-          <div className="row dr-title">
-            <div className="col-md-12">
+          <div className="row dr-title mt-4">
+            <div className="col-md-3">
+              <Filter />
+            </div>
+            <div className="col-md-9">
               <div className="card-container">
                 {isLoading && <div>Loading...</div>}
                 {error && <div>Error: {error}</div>}
@@ -268,6 +272,7 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
                 ))}
               </div>
             </div>
+            
           </div>
         </div>
       </section>

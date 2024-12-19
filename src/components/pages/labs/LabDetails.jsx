@@ -8,6 +8,7 @@ import RelatedProduct from "@/components/RelatedProduct";
 import OurAchievement from "@/components/OurAchievment";
 import { useDispatch,useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import BoysToys from "@/components/BoysToys";
 
 
 
@@ -23,11 +24,11 @@ const LabDetails = () => {
 
       <div className="container mb-3 mt-5">
         <div className="row">
-          <div className="col-lg-4">
-            <Filter />
+          <div className="col-lg-3 mt-5">
+            <BoysToys/>
           </div>
 
-          <div className="col-lg-4">
+          <div className="col-lg-5">
             <div class="relation-title right-sight-title-brand">
               <h3>Navishkar The Leading Brand</h3>
               <div class="mt-3">

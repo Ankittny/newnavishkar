@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 import { useDispatch,useSelector} from "react-redux";
 import BoysToys from "@/components/BoysToys";
 
-const Lab = () => {
+const Workshop = () => {
   const [labData, setLabData] = useState([]);
   const router = useRouter();
   const dispatch = useDispatch();
@@ -52,7 +52,7 @@ const Lab = () => {
 
           <div className="col-lg-9">
             <div className="mt-2 right-sight-title-brand">
-              <h1>Navishkar The Leading Brand</h1>
+              <h1>Navishkar Workshop</h1>
             </div>
 
             <div className="row">
@@ -311,4 +311,4 @@ const Lab = () => {
   );
 };
 
-export default Lab;
+export default Workshop;

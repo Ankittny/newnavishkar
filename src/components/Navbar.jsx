@@ -67,10 +67,10 @@ const Navbar = () => {
 
           {/* Navigation Links */}
           <div
-            className={`collapse navbar-collapse ${isMobileMenuOpen ? "show" : ""}`}
+            className={`collapse navbar-collapse justify-content-center ${isMobileMenuOpen ? "show" : ""}`}
             id="navbarNav"
           >
-            <ul className="navbar-nav ms-auto">
+            <ul className="navbar-nav ">
               <li className="nav-item">
                 <Link href="/products" passHref className="nav-link">
                   Shop

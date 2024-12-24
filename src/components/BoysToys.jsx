@@ -3,7 +3,7 @@ import { IoSearch } from "react-icons/io5";
 
 const BoysToys = () => {
     return (
-        <>
+        <> 
                     <div className="leading-left-title">
                         <div className="two-kids-title">
                             <img src="./product/children-holding-blank-banner-1.png" alt="children" />

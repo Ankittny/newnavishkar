@@ -3,6 +3,7 @@ import Register from "./register/page";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Home from "@/components/pages/home/Home"
+import Script from "next/script";
 
 export default function HomePage() {
   return (
@@ -10,6 +11,8 @@ export default function HomePage() {
   <Navbar />
   <Home />
   <Footer />
+  
   </>
+  
   );
 }

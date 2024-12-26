@@ -12,7 +12,7 @@ import RelatedProduct from "@/components/RelatedProduct";
 import Link from "next/link";
 import Filter from "@/components/Filter";
 import { useRouter } from "next/navigation";
-import { useDispatch,useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import BoysToys from "@/components/BoysToys";
 
 const Lab = () => {
@@ -31,8 +31,6 @@ const Lab = () => {
   const handleClick = (id) => {
     router.push(`/labs${id}`);
   };
-
-  
 
   return (
     <>
@@ -216,7 +214,6 @@ const Lab = () => {
         </div>
       </section>
 
-      
         <div className="camp-activity-title" id="camp-activity-title">
           <div className="container">
             <div className="row">

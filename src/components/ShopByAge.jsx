@@ -38,10 +38,10 @@ const ShopByAge = ({ categoryData }) => {
         </div>
 
         <div className="row shopByAge">
-          <div className="col-6  curser">
+          <div className="col-lg-6  curser">
           <div className="group" onClick={() => handleAgeGroupClick(categoryData[0]?.id)}>
               <div className="row">
-                <div className="col-6">
+                <div className="col-lg-6">
                 <h2 className="ageLabel">{categoryData[0]?.name}</h2>
                 </div>
 
@@ -57,15 +57,15 @@ const ShopByAge = ({ categoryData }) => {
             </div>
           </div>
 
-          <div className="col-6" style={{ cursor: "pointer" }}>
+          <div className="col-lg-6" style={{ cursor: "pointer" }}>
           <div className="group" onClick={() => handleAgeGroupClick(categoryData[1]?.id)}>
               <div className="row">
-                <div className="col-6">
+                <div className="col-lg-6">
                 <h2 className="ageLabel">{categoryData[1]?.name}</h2>
                   {/* <h2 className="ageLabel">Years</h2> */}
                 </div>
 
-                <div className="imageWrapper col-6">
+                <div className="imageWrapper col-lg-6">
                   <Image
                   src={categoryData[1]?.icon_full_url?.path} 
                     width={200}

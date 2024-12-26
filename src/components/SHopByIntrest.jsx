@@ -8,8 +8,12 @@ import {
 }
   from "@/redux/Action/category";
 import { useRouter } from "next/navigation";
+
 import Link from "next/link";
 import Filter from "./Filter";
+
+import Button from "./Button";
+
 
 const SHopByIntrest = ({ selectedAgeGroup }) => {
   const [filteredCategories, setFilteredCategories] = useState([
@@ -79,6 +83,15 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
     console.log("Added to cart: ", item);
   };
 
+
+  const buttonsData = [
+    { name: "Activity Kits" },
+    { name: "Mechanical Toys" },
+    { name: "Games" },
+    { name: "Technology Toys" },
+    { name: "Science Toys" },
+    { name: "Engineering Toys" }
+];
 
   return (
     <>
@@ -228,6 +241,7 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
                 <p>A whole lotta fun & learning</p>
               </div>
               <div class="list-items">
+                
                 <ul class="list-inline d-flex justify-content-center gap-5">
                   <li class="active"><Link href="#">Activity Kits</Link></li>
                   <li><Link href="#">Mechanical Toys</Link></li>
@@ -235,8 +249,15 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
                   <li><Link href="#">Technology Toys</Link></li>
                   <li><Link href="#">Science Toys</Link></li>
                   <li><Link href="#">Engineering Toys</Link></li>
-
-                </ul>
+              <Button  buttonsData={buttonsData}/>
+                {/* <ul class="list-inline d-flex justify-content-center gap-5">
+                  <li class="active"><a href="#">Activity Kits</a></li>
+                  <li><a href="#">Mechanical Toys</a></li>
+                  <li><a href="#">Games</a></li>
+                  <li><a href="#">Technology Toys</a></li>
+                  <li><a href="#">Science Toys</a></li>
+                  <li><a href="#">Engineering Toys</a></li>
+                </ul> */}
               </div>
             </div>
           </div>
@@ -247,11 +268,11 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
             </div>
             <div className="col-md-9">
               <div className="card-container">
-                {isLoading && <div>Loading...</div>}
+                {/* {isLoading && <div>Loading...</div>}
                 {error && <div>Error: {error}</div>}
                 {!isLoading && !error && filteredCategories?.length === 0 && (
                   <div>No products found for this age group.</div>
-                )}
+                )} */}
                 {filteredCategories?.map((category) => (
                   <Card
                     key={category.id}

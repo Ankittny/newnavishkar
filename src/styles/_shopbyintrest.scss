@@ -112,14 +112,23 @@
 .img-toys-title {
     margin-top: -85px;
 }
-.list-items ul li.active {
-    background-color: #fda000;
-}
+// .list-items ul li.active {
+//     background-color: #fda000;
+// }
 .list-items ul li {
     list-style: none;
     border: 1px solid #e7e7e7;
     border-radius: 30px;
     padding: 5px 10px;
+   
+
+}
+.list-items ul li:first-child{
+    background-color: #fda000;
+}
+.list-items ul li button{
+    background-color: inherit;
+    border: none;
 }
 .list-items ul li a {
     text-decoration: none;
@@ -140,4 +149,23 @@
     font-size: 20px;
     height: 34px;
     border-radius: 0 5px 5px 0;
+}
+
+// ================================================media -query ================================================
+@media(max-width:991px){
+    .seller-offer{
+        margin-top: 20px;
+    }
+    .list-inline {
+        flex-direction: column;
+        text-align: center;
+    }
+   
+}
+
+@media(max-width:767px){
+    .all-toys{
+        flex-direction: column;
+        padding: 10px 0;
+    }
 }

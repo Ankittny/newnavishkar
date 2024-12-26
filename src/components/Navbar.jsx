@@ -72,13 +72,14 @@ const Navbar = () => {
                   aria-expanded="false"
                 >
                   N-Shop
+                  </Link>
 
-            <ul className="navbar-nav ">
-              <li className="nav-item">
-                <Link href="/products" passHref className="nav-link">
+            {/* <ul className="navbar-nav "> */}
+              {/* <li className="nav-item"> */}
+                {/* <Link href="/products" passHref className="nav-link">
                   Shop
 
-                </Link>
+                </Link> */}
                 <ul className="dropdown-menu" aria-labelledby="nShopDropdown">
                   <li>
                     <Link href="/products" passHref className="dropdown-item">

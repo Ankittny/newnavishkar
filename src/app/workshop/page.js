@@ -1,16 +1,16 @@
 import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
-import ContactUs from '@/components/pages/contact/ContactUs'
+import Workshop from '@/components/pages/workshop/Workshop'
 import React from 'react'
 
-const Contactus = () => {
+const page = () => {
   return (
     <div>
-      <Navbar/>
-        <ContactUs/>
+        <Navbar/>
+        <Workshop />
         <Footer/>
     </div>
   )
 }
 
-export default Contactus
+export default page

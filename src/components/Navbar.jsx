@@ -7,20 +7,14 @@ import Image from "next/image";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
-// import { logout } from "../store/authSlice"; // Import logout action if using Redux
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isSearchBarVisible, setSearchBarVisible] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  const toggleSearchBar = () => {
-    setSearchBarVisible(!isSearchBarVisible);
   };
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -33,10 +27,6 @@ const Navbar = () => {
       router.push("/login");
     }
   };
-
-  // const handleLogout = () => {
-  //   dispatch(logout()); // Dispatch logout action if using Redux
-  // };
 
   return (
     <header>
@@ -70,30 +60,87 @@ const Navbar = () => {
             className={`collapse navbar-collapse justify-content-center ${isMobileMenuOpen ? "show" : ""}`}
             id="navbarNav"
           >
+
+            <ul className="navbar-nav ms-auto">
+              {/* N-Shop with Dropdown */}
+              <li className="nav-item dropdown">
+                <Link
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  id="nShopDropdown"
+                  role="button"
+                  aria-expanded="false"
+                >
+                  N-Shop
+
             <ul className="navbar-nav ">
               <li className="nav-item">
                 <Link href="/products" passHref className="nav-link">
                   Shop
+
                 </Link>
+                <ul className="dropdown-menu" aria-labelledby="nShopDropdown">
+                  <li>
+                    <Link href="/products" passHref className="dropdown-item">
+                      Products
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/projects" passHref className="dropdown-item">
+                      Projects
+                    </Link>
+                  </li>
+                </ul>
               </li>
-              <li className="nav-item">
-                <Link href="/labs" passHref className="nav-link">
-                  Labs
+
+              {/* K-Shop without Dropdown */}
+            
+              {/* Other Links */}
+              <li className="nav-item dropdown">
+                <Link
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  id="nShopDropdown"
+                  role="button"
+                  aria-expanded="false"
+                >
+                  K-12 Offering
                 </Link>
+                <ul className="dropdown-menu" aria-labelledby="nShopDropdown">
+                  <li>
+                    <Link href="/workshop" passHref className="dropdown-item">
+                      Workshops
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/labs" passHref className="dropdown-item">
+                      N-Labs
+                    </Link>
+                  </li>
+                </ul>
               </li>
-              <li className="nav-item">
-                <Link href="/labs" passHref className="nav-link">
-                  Toys
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="/labs" passHref className="nav-link">
+              <li className="nav-item dropdown">
+                <Link
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  id="nShopDropdown"
+                  role="button"
+                  aria-expanded="false"
+                >
                   Projects
                 </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="/labs" passHref className="nav-link">Books
-                </Link>
+                <ul className="dropdown-menu" aria-labelledby="nShopDropdown">
+                  <li>
+                    <Link href="/complete-project" passHref className="dropdown-item">
+                      Completed Project
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/live-projects" passHref className="dropdown-item">
+                      Live Projects
+                    </Link>
+                  </li>
+                </ul>
               </li>
               <li className="nav-item">
                 <Link href="/partner-with-us" passHref className="nav-link">
@@ -102,33 +149,14 @@ const Navbar = () => {
               </li>
               <li className="nav-item">
                 <Link href="/contactus" passHref className="nav-link">
-                  Contact Us
+                  Live Location
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Icons Section (Wishlist, Search, Cart, Profile/Logout) */}
+          {/* Cart and Profile Section */}
           <div className="d-flex align-items-center">
-            {isSearchBarVisible && (
-              <div className="search-bar-container">
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  className="form-control"
-                />
-              </div>
-            )}
-            <div className="nav-link mx-2" onClick={toggleSearchBar}>
-              <Image
-                src={"/icons/search.png"}
-                width={100}
-                height={100}
-                alt="Search"
-                className="icon"
-              />
-            </div>
-
             <div className="nav-link mx-2" onClick={handleCartClick}>
               <Image
                 src={"/icons/cart.png"}
@@ -141,9 +169,7 @@ const Navbar = () => {
             </div>
 
             {isLoggedIn ? (
-              <button  className="btn btn-link nav-link mx-2">
-                Logout
-              </button>
+              <button className="btn btn-link nav-link mx-2">Logout</button>
             ) : (
               <Link href="/login" passHref className="nav-link mx-2">
                 <Image

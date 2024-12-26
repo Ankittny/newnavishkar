@@ -142,7 +142,7 @@ const Navbar = () => {
               </li>
               <li className="nav-item">
                 <Link href="/contactus" passHref className="nav-link">
-                  Live Location
+                Innovation
                 </Link>
               </li>
             </ul>

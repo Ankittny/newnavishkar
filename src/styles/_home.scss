@@ -144,7 +144,7 @@
 
 .swiper-slide img{
     // width: 37rem;
-    border-radius: 2rem;
+    border-radius: 1rem;
     object-fit: cover;
 }
 .swiper-slide-shadow-left, .swiper-slide-shadow-right{
@@ -222,7 +222,7 @@
 }
 .testiminoal-flower-typical p{
     font-size: 14px;
-    color: #543CDF;
+    color: #010821;
 }
 .store-school-text{
     background-color: #010821;
@@ -244,6 +244,13 @@
     padding: 10px 20px ;
     border: none;
 
+}
+.swiper-slide-visible p{
+    position: absolute;
+    top: 10px;
+    padding: 20px;
+    color: #010821;
+    font-weight: 500;
 }
 
 
@@ -327,4 +334,9 @@
 .Learning-title {
     font-size: 25px;
 }
+}
+
+.testiminoal-flower-typical strong{
+    font-size: 25px;
+    color: #030F40;
 }

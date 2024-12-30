@@ -392,8 +392,8 @@ const AboutUs = () => {
                                         autoplay={{
                                             delay: 2500,
                                             disableOnInteraction: false,
-                                          }}
-                                        
+                                        }}
+
                                         pagination={true}
                                         modules={[EffectCoverflow, Pagination, Autoplay]}
                                         className="mySwiper"
@@ -405,7 +405,18 @@ const AboutUs = () => {
                                                 <p>I’ve had the pleasure of collaborating with Struktura on multiple projects, and i must say
                                                     their commitment to quality and attention to detail is unmatched, Their team’s expertise
                                                     in construction  has truly elevated the success of my developments. </p>
-                                            
+
+                                                <span className="fw-bold">Medison Johnson</span>
+                                            </div>
+                                        </SwiperSlide>
+                                        <SwiperSlide>
+                                            <div className="slider-faze1">
+                                                <h3>“ Their commitment to quality and attention to
+                                                    detail is unmatched</h3>
+                                                <p>I’ve had the pleasure of collaborating with Struktura on multiple projects, and i must say
+                                                    their commitment to quality and attention to detail is unmatched, Their team’s expertise
+                                                    in construction  has truly elevated the success of my developments. </p>
+
                                                 <span className="fw-bold">Medison Johnson</span>
                                             </div>
                                         </SwiperSlide>
@@ -438,22 +449,10 @@ const AboutUs = () => {
                                                 <p>I’ve had the pleasure of collaborating with Struktura on multiple projects, and i must say
                                                     their commitment to quality and attention to detail is unmatched, Their team’s expertise
                                                     in construction  has truly elevated the success of my developments. </p>
-                                                
+
                                                 <span className="fw-bold">Medison Johnson</span>
                                             </div>
                                         </SwiperSlide>
-                                        <SwiperSlide>
-                                            <div className="slider-faze1">
-                                                <h3>“ Their commitment to quality and attention to
-                                                    detail is unmatched</h3>
-                                                <p>I’ve had the pleasure of collaborating with Struktura on multiple projects, and i must say
-                                                    their commitment to quality and attention to detail is unmatched, Their team’s expertise
-                                                    in construction  has truly elevated the success of my developments. </p>
-
-                                                <span className="fw-bold">Medison Johnson</span>
-                                        </div>
-                                        </SwiperSlide>
-
                                     </Swiper>
                                 </div>
                             </div>
@@ -471,7 +470,7 @@ const AboutUs = () => {
             </section>
             <section>
                 <Footer />
-                </section>
+            </section>
         </>
     );
 };

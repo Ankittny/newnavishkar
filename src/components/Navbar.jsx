@@ -31,7 +31,7 @@ const Navbar = () => {
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-light">
-        <div className="container">
+        <div className="containers grip-contain ">
           {/* Logo */}
           <Link href="/" passHref className="navbar-brand">
             <Image
@@ -61,7 +61,7 @@ const Navbar = () => {
             id="navbarNav"
           >
 
-            <ul className="navbar-nav ms-auto">
+            <ul className="navbar-nav  d-flex gap-5">
               {/* N-Shop with Dropdown */}
               <li className="nav-item dropdown">
                 <Link

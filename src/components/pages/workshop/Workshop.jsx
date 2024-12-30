@@ -12,7 +12,7 @@ import RelatedProduct from "@/components/RelatedProduct";
 import Link from "next/link";
 import Filter from "@/components/Filter";
 import { useRouter } from "next/navigation";
-import { useDispatch,useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import BoysToys from "@/components/BoysToys";
 
 const Workshop = () => {
@@ -22,7 +22,7 @@ const Workshop = () => {
 
   // here redux logic implement
 
-  const fetchLabData = async () => {};
+  const fetchLabData = async () => { };
 
   useEffect(() => {
     fetchLabData();
@@ -32,7 +32,7 @@ const Workshop = () => {
     router.push(`/labs${id}`);
   };
 
-  
+
 
   return (
     <>
@@ -100,9 +100,9 @@ const Workshop = () => {
                     </div>
                   </div>
                 </div>
-            </div>
+              </div>
 
-            <div className="col-lg-6">
+              <div className="col-lg-6">
                 <div class="toddler-title d-flex gap-4">
                   <div class="imag-toddler">
                     <Image
@@ -123,9 +123,9 @@ const Workshop = () => {
                     </div>
                   </div>
                 </div>
-            </div>
+              </div>
 
-            <div className="col-lg-6">
+              <div className="col-lg-6">
                 <div class="toddler-title d-flex gap-4">
                   <div class="imag-toddler">
                     <Image
@@ -146,7 +146,7 @@ const Workshop = () => {
                     </div>
                   </div>
                 </div>
-            </div>
+              </div>
             </div>
 
             <Divider
@@ -155,7 +155,8 @@ const Workshop = () => {
                 borderColor: "#175A95", // Custom color
                 borderBottomWidth: 2, // Custom width
               }}
-            ></Divider>
+            >
+            </Divider>
             <div class="all-details-age mt-3">
               <p>Battery and Non battery operated</p>
               <span>Battery Operated | Non-Battery Operated</span>
@@ -186,10 +187,10 @@ const Workshop = () => {
             />
           </div>
         </div>
-</div>
+      </div>
 
-{/* Kids Toy */}
-        <section>
+      {/* Kids Toy */}
+      <section>
         <div className="nami-toys-toys-store">
           <div className="container">
             <div className="row">
@@ -216,44 +217,44 @@ const Workshop = () => {
         </div>
       </section>
 
-      
-        <div className="camp-activity-title" id="camp-activity-title">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="camp-title-act text-center">
-                  <h2>
-                    Our summer camp <span>activity</span>{" "}
-                  </h2>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  </p>
-                </div>
-                <div className="row">
-                  <div className="col-lg-6">
-                    <div className="summer-activity">
-                      <Image
-                        src={"/labs/summer1.png"}
-                        alt="img2"
-                        width={100}
-                        height={100}
-                      />
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et{" "}
-                      </p>
-                    </div>
+
+      <div className="camp-activity-title" id="camp-activity-title">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="camp-title-act text-center">
+                <h2>
+                  Our summer camp <span>activity</span>
+                </h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna
+                  aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                  ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+              </div>
+              <div className="row">
+                <div className="col-lg-6">
+                  <div className="summer-activity">
+                    <Image
+                      src={"/labs/summer1.png"}
+                      alt="img2"
+                      width={100}
+                      height={100}
+                    />
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et{" "}
+                    </p>
                   </div>
-                  <div class="col-lg-6"></div>
                 </div>
+                <div class="col-lg-6"></div>
               </div>
             </div>
           </div>
         </div>
-      
+      </div>
+
 
       <div className="row">
         <div className="col-lg-12 mt-3 mb-3">

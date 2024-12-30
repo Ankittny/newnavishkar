@@ -17,7 +17,7 @@ import "swiper/css/navigation";
 
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 import OurAchievement from '@/components/OurAchievment';
-import Footer from '@/components/Footer';
+
 
 
 
@@ -207,14 +207,14 @@ const Home = () => {
 
         <div className="video-title">
           <div className="row">
-            <div className="col-lg-7">
+            <div className="col-lg-6">
               <video autoPlay loop muted className="frontend-video" style={{ width: '100%' }}>
                 <source src="product/video/Navishkar.mp4" type="video/mp4" />
               </video>
             </div>
-            <div className="col-lg-5">
+            <div className="col-lg-6">
               <div className="drone-image">
-                <img src="product/DeWatermark.png" height={437} style={{ width: '100%' }}></img>
+                <img src="product/DeWatermark.png" height={374} style={{ width: '100%' }}></img>
               </div>
             </div>
           </div>
@@ -233,7 +233,7 @@ const Home = () => {
    <Button  buttonsData={buttonsData}/>
    </div> */}
       <section className="shopbyintrest mt-5">
-        <div className="container">
+        <div className="containers">
           <div className="row">
             <div className="col-12">
               <div class="list-items">
@@ -276,7 +276,7 @@ const Home = () => {
       </section>
 
       <section className="shopbyintrest">
-        <div className="container">
+        <div className="containers">
           <div className="row">
             <div className="col-12">
               <div className="shop-by-title text-center">
@@ -299,7 +299,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div class="row dr-title">
+          <div class="row dr-title mt-5">
             <div class="col-md-12">
               <div class="card-container">
                 <div class="play-role-title title-access">
@@ -392,14 +392,12 @@ const Home = () => {
             <div className="row pt-5">
               <div className="col-lg-5">
                 <div className="testiminoal-flower-typical">
-                  <span>Testimonial</span>
-                  <p className="pt-5">Sit amet mauris commodo quis imperdiet massa
-                    tincidunt nunc. Tortor id aliquet lectus proin. Turpis
-                    nunc eget lorem dolor sed viverra ipsum.</p>
-                  <div className="rating-declear">
-                    <h4 className="fw-bold">4.8</h4>
-                    <span>Score on App Store</span>
-                  </div>
+                  <strong>Our clients</strong>
+                  <p className="pt-5">"The team at ABC Drone Services did an
+                    exceptional job capturing aerial shots for our real estate listings.
+                    Their attention to detail and ability to showcase properties from unique
+                    angles helped us attract more buyers. Highly professional and worth every penny!"</p>
+
                 </div>
               </div>
               <div className="col-lg-7">
@@ -422,7 +420,7 @@ const Home = () => {
                       delay: 2500,
                       disableOnInteraction: false,
                     }}
-                  
+
                     pagination={{
                       el: ".swiper-pagination", clickable: true
                     }}
@@ -434,20 +432,40 @@ const Home = () => {
                     modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
                     className="swiper_container"
                   >
-                    <SwiperSlide>
+                    <SwiperSlide >
                       <img src="product/DeWatermark.png" />
+                      <p>The team at ABC Drone Services did an
+                        exceptional job capturing aerial shots for our real estate listings.
+                        Their attention to detail and ability to showcase properties 
+                        angles helped us attract more buyers. </p>
                     </SwiperSlide>
                     <SwiperSlide>
                       <img src="product/DeWatermark.png" />
+                      <p>The team at ABC Drone Services did an
+                        exceptional job capturing aerial shots for our real estate listings.
+                        Their attention to detail and ability to showcase properties from 
+                        angles helped us attract more buyers. </p>
                     </SwiperSlide>
                     <SwiperSlide>
                       <img src="product/DeWatermark.png" />
+                      <p>The team at ABC Drone Services did an
+                        exceptional job capturing aerial shots for our real estate listings.
+                        Their attention to detail and ability to showcase properties from 
+                        angles helped us attract more buyers. </p>
                     </SwiperSlide>
                     <SwiperSlide>
                       <img src="product/DeWatermark.png" />
+                      <p>The team at ABC Drone Services did an
+                        exceptional job capturing aerial shots for our real estate listings.
+                        Their attention to detail and ability to showcase properties from 
+                        angles helped us attract more buyers. </p>
                     </SwiperSlide>
                     <SwiperSlide>
                       <img src="product/DeWatermark.png" />
+                      <p>The team at ABC Drone Services did an
+                        exceptional job capturing aerial shots for our real estate listings.
+                        Their attention to detail and ability to showcase properties from 
+                        angles helped us attract more buyers. </p>
                     </SwiperSlide>
 
                     <div className="slider-controler">
@@ -499,7 +517,7 @@ const Home = () => {
       <section>
         <OurAchievement />
       </section>
-     
+
     </>
 
   )

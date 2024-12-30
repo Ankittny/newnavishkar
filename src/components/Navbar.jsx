@@ -87,7 +87,7 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/projects" passHref className="dropdown-item">
+                    <Link href="/complete-project" passHref className="dropdown-item">
                       Projects
                     </Link>
                   </li>
@@ -150,7 +150,7 @@ const Navbar = () => {
               </li>
               <li className="nav-item">
                 <Link href="/contactus" passHref className="nav-link">
-                  Live Location
+                  Innovation
                 </Link>
               </li>
             </ul>

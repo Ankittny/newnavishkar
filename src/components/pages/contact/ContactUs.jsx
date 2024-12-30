@@ -27,7 +27,7 @@ const ContactUs = () => {
                   <div>+91 81303 31254</div>
                 </div>
               </div>
-              <div className="col-md-4 col-12 position-relative text-center mb-4 mb-md-0">
+              <div className="col-md-4 col-12 position-relative text-center mb-4 mb-md-0 t-top">
                 <div className="contact-icon-wrapper">
                   <img
                     src="./Contact/location.svg"
@@ -41,7 +41,7 @@ const ContactUs = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-md-4 col-12 position-relative text-center">
+              <div className="col-md-4 col-12 position-relative text-center t-top">
                 <div className="contact-icon-wrapper">
                   <img
                     src="./Contact/mail.svg"
@@ -83,7 +83,7 @@ const ContactUs = () => {
                         type="text"
                         placeholder="First Name"
                         required
-                        className="form-control"
+                        className="form-control control-now"
                       />
                     </div>
                     <div className="col-md-6">

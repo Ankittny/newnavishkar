@@ -61,7 +61,7 @@ const Navbar = () => {
             id="navbarNav"
           >
 
-            <ul className="navbar-nav ms-auto">
+            <ul className="navbar-nav  d-flex gap-4">
               {/* N-Shop with Dropdown */}
               <li className="nav-item dropdown">
                 <Link

@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState } from "react";
 import "../styles/_navbar.scss";
@@ -57,10 +56,9 @@ const Navbar = () => {
 
           {/* Navigation Links */}
           <div
-            className={`collapse navbar-collapse justify-content-center ${isMobileMenuOpen ? "show" : ""}`}
+            className={`collapse navbar-collapse ${isMobileMenuOpen ? "show" : ""}`}
             id="navbarNav"
           >
-
             <ul className="navbar-nav ms-auto">
               {/* N-Shop with Dropdown */}
               <li className="nav-item dropdown">
@@ -72,12 +70,6 @@ const Navbar = () => {
                   aria-expanded="false"
                 >
                   N-Shop
-
-            <ul className="navbar-nav ">
-              <li className="nav-item">
-                <Link href="/products" passHref className="nav-link">
-                  Shop
-
                 </Link>
                 <ul className="dropdown-menu" aria-labelledby="nShopDropdown">
                   <li>

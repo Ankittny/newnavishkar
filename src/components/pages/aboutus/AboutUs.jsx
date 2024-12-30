@@ -36,7 +36,7 @@ const AboutUs = () => {
             </section>
 
             <section className="who-section py-lg-5">
-                <div className="containers">
+                <div className="container">
                     <div className="who-content">
                         <div className="who-text mt-lg-5">
                             <h1>Who We Are ?</h1>
@@ -62,7 +62,7 @@ const AboutUs = () => {
             </section>
 
             <section className="why-us-section my-lg-4">
-                <div className="containers">
+                <div className="container">
                     <div className="row align-items-center">
                         <div className="col-lg-5">
                             <div className="robot-animation text-center">
@@ -107,7 +107,7 @@ const AboutUs = () => {
             </section>
 
             <section className="driving-innovations py-lg-5">
-                <div className="containers">
+                <div className="container">
                     <div className="contents-wrappers">
                         {/* Content Column */}
                         <div className="content-col">
@@ -144,7 +144,7 @@ const AboutUs = () => {
 
             <section>
                 <div className="DIGNITY-title py-lg-5">
-                    <div className="containers">
+                    <div className="container">
                         <div className="row">
                             <div className="col-lg-3">
                                 <div className="dignity-version-end ">
@@ -237,7 +237,7 @@ const AboutUs = () => {
                         <h3>Our Vision & Mission</h3>
                     </div>
 
-                    <div className="containers">
+                    <div className="container">
                         {/* Vision Section */}
                         <div className="row align-items-center">
                             <div className="col-lg-6">
@@ -366,7 +366,7 @@ const AboutUs = () => {
 
             <section>
                 <div className="client-title">
-                    <div className="containers">
+                    <div className="container">
                         <div className="row">
                             <div className="col-12">
                                 <div className="clients-subject-heading">

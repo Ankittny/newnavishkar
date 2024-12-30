@@ -60,10 +60,8 @@
  
 }
 .back-bg-title img{
-    width: 250px;
-    height: 278px;
     border-radius: 20px;
-    object-fit: cover;
+    
 }
 .back-bg-title h2{
     font-size: 22px;
@@ -245,12 +243,16 @@
     border: none;
 
 }
-.swiper-slide-visible p{
-    position: absolute;
-    top: 10px;
-    padding: 20px;
-    color: #010821;
-    font-weight: 500;
+// .swiper-slide-visible p{
+//     position: absolute;
+//     top: 10px;
+//     padding: 20px;
+//     color: #010821;
+//     font-weight: 500;
+//     font-size: 14px;
+// }
+.swiper-3d .swiper-wrapper {
+    transform-style: inherit !important;
 }
 
 

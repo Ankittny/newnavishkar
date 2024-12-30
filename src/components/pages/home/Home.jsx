@@ -60,7 +60,7 @@ const Home = () => {
     <>
       <section>
         <div className="home-page-title text-center mt-5">
-          <div className="containers">
+          <div className="container">
             <div className="home-learn-title d-flex justify-content-center align-items-center gap-3">
               <h1 className="title-home fw-bold">Learn</h1>
               <span className="easily-title">
@@ -112,7 +112,7 @@ const Home = () => {
               </div>
               <div className="col-lg-4">
                 <div className="training-title">
-                  <img src="product/wheel.gif" style={{ width: '100%' }} />
+                  <img src="product/wheel.gif" style={{ width: '80%' }} />
                 </div>
               </div>
             </div>
@@ -126,12 +126,12 @@ const Home = () => {
       <section>
         <div className="world-title">
           <div className="Learning-title text-center fw-bold">Experience the world of immersive <br /> Learning</div>
-          <div className="containers mt-4">
+          <div className="container mt-4">
             <div className="row">
               <div className="col-lg-6">
                 <div className=" bg-find d-flex gap-3">
                   <div className="back-bg-title">
-                    <img src="product/whats.png" />
+                    <img src="product/Untitled-90.png" />
                   </div>
                   <div className='pt-4 px-3 devp-text'>
                     <h2 className=" innovation-heading text-white fw-bold">Workshop </h2>
@@ -161,7 +161,7 @@ const Home = () => {
                     <button className="bg-white dx-text-bg px-4 py-2 border-0 mb-2 ">View Product</button>
                   </div>
                   <div className="back-bg-title">
-                    <img src="product/whats.png" />
+                    <img src="product/Untitled-90.png" />
                   </div>
                 </div>
               </div>
@@ -184,7 +184,7 @@ const Home = () => {
       {/* ===============================================drone-services =================================== */}
       <section>
         <div className="drone-services-title mt-5 py-4">
-          <div className="containers">
+          <div className="container">
             <div className="row">
               <div className="col-lg-6">
                 <div className="drone-humble-drnoe">
@@ -233,7 +233,7 @@ const Home = () => {
    <Button  buttonsData={buttonsData}/>
    </div> */}
       <section className="shopbyintrest mt-5">
-        <div className="containers">
+        <div className="container">
           <div className="row">
             <div className="col-12">
               <div class="list-items">
@@ -276,7 +276,7 @@ const Home = () => {
       </section>
 
       <section className="shopbyintrest">
-        <div className="containers">
+        <div className="container">
           <div className="row">
             <div className="col-12">
               <div className="shop-by-title text-center">
@@ -375,7 +375,7 @@ const Home = () => {
       {/* ==================================================drone========================================= */}
       <section>
         <div className="drone-fly mt-5">
-          <div className="containers">
+          <div className="container">
             <div className="cpi-drone">
               <span>MINOS</span>
               <img src="product/TEST-13.png" style={{ width: "100%" }}></img>
@@ -390,17 +390,82 @@ const Home = () => {
         <div className="testimionial-lyer mt-5">
           <div className="container">
             <div className="row pt-5">
-              <div className="col-lg-5">
+              <div className="col-lg-6">
                 <div className="testiminoal-flower-typical">
-                  <strong>Our clients</strong>
-                  <p className="pt-5">"The team at ABC Drone Services did an
-                    exceptional job capturing aerial shots for our real estate listings.
-                    Their attention to detail and ability to showcase properties from unique
-                    angles helped us attract more buyers. Highly professional and worth every penny!"</p>
+                  <strong>Our clients</strong>  
+                  <Swiper effect={"coverflow"}
+                    grabCursor={"true"}
+                    conteredSlides={"true"}
+                    loop={"true"}
+                    slidesPerView={"auto"}
+                    coverflowEffect={
+                      {
+                        rotate: 0,
+                        stretch: 0,
+                        depth: 100,
+                        modifier: 2.5,
+                      }
+                    }
+                    autoplay={{
+                      delay: 2500,
+                      disableOnInteraction: false,
+                    }}
+
+                    pagination={{
+                      el: ".swiper-pagination", clickable: true
+                    }}
+                    navigation={{
+                      nextEl: "swiper-button-next",
+                      prevEl: "swiper-button-prev",
+                      clickable: true,
+                    }}
+                    modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
+                    className="swiper_container"
+                  >
+                    <SwiperSlide >
+                      {/* <img src="product/DeWatermark.png" /> */}
+                      <p>The team at ABC Drone Services did an
+                        exceptional job capturing aerial shots for our real estate listings.
+                        Their attention to detail and ability to showcase properties 
+                        angles helped us attract more buyers. </p>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      {/* <img src="product/DeWatermark.png" /> */}
+                      <p>The team at ABC Drone Services did an
+                        exceptional job capturing aerial shots for our real estate listings.
+                        Their attention to detail and ability to showcase properties from 
+                        angles helped us attract more buyers. </p>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      {/* <img src="product/DeWatermark.png" /> */}
+                      <p>The team at ABC Drone Services did an
+                        exceptional job capturing aerial shots for our real estate listings.
+                        Their attention to detail and ability to showcase properties from 
+                        angles helped us attract more buyers. </p>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      {/* <img src="product/DeWatermark.png" /> */}
+                      <p>The team at ABC Drone Services did an
+                        exceptional job capturing aerial shots for our real estate listings.
+                        Their attention to detail and ability to showcase properties from 
+                        angles helped us attract more buyers. </p>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      {/* <img src="product/DeWatermark.png" /> */}
+                      <p>The team at ABC Drone Services did an
+                        exceptional job capturing aerial shots for our real estate listings.
+                        Their attention to detail and ability to showcase properties from 
+                        angles helped us attract more buyers. </p>
+                    </SwiperSlide>
+
+                    {/* <div className="slider-controler">
+                      <div className="swiper-pagination"></div>
+                    </div> */}
+                  </Swiper>
 
                 </div>
               </div>
-              <div className="col-lg-7">
+              <div className="col-lg-6">
                 <div className="swiper-galley">
 
                   <Swiper effect={"coverflow"}
@@ -434,38 +499,38 @@ const Home = () => {
                   >
                     <SwiperSlide >
                       <img src="product/DeWatermark.png" />
-                      <p>The team at ABC Drone Services did an
+                      {/* <p>The team at ABC Drone Services did an
                         exceptional job capturing aerial shots for our real estate listings.
                         Their attention to detail and ability to showcase properties 
-                        angles helped us attract more buyers. </p>
+                        angles helped us attract more buyers. </p> */}
                     </SwiperSlide>
                     <SwiperSlide>
                       <img src="product/DeWatermark.png" />
-                      <p>The team at ABC Drone Services did an
+                      {/* <p>The team at ABC Drone Services did an
                         exceptional job capturing aerial shots for our real estate listings.
                         Their attention to detail and ability to showcase properties from 
-                        angles helped us attract more buyers. </p>
+                        angles helped us attract more buyers. </p> */}
                     </SwiperSlide>
                     <SwiperSlide>
                       <img src="product/DeWatermark.png" />
-                      <p>The team at ABC Drone Services did an
+                      {/* <p>The team at ABC Drone Services did an
                         exceptional job capturing aerial shots for our real estate listings.
                         Their attention to detail and ability to showcase properties from 
-                        angles helped us attract more buyers. </p>
+                        angles helped us attract more buyers. </p> */}
                     </SwiperSlide>
                     <SwiperSlide>
                       <img src="product/DeWatermark.png" />
-                      <p>The team at ABC Drone Services did an
+                      {/* <p>The team at ABC Drone Services did an
                         exceptional job capturing aerial shots for our real estate listings.
                         Their attention to detail and ability to showcase properties from 
-                        angles helped us attract more buyers. </p>
+                        angles helped us attract more buyers. </p> */}
                     </SwiperSlide>
                     <SwiperSlide>
                       <img src="product/DeWatermark.png" />
-                      <p>The team at ABC Drone Services did an
+                      {/* <p>The team at ABC Drone Services did an
                         exceptional job capturing aerial shots for our real estate listings.
                         Their attention to detail and ability to showcase properties from 
-                        angles helped us attract more buyers. </p>
+                        angles helped us attract more buyers. </p> */}
                     </SwiperSlide>
 
                     <div className="slider-controler">

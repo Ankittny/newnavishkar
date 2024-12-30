@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useState } from "react";
 import "../styles/_navbar.scss";
@@ -56,9 +57,10 @@ const Navbar = () => {
 
           {/* Navigation Links */}
           <div
-            className={`collapse navbar-collapse ${isMobileMenuOpen ? "show" : ""}`}
+            className={`collapse navbar-collapse justify-content-center ${isMobileMenuOpen ? "show" : ""}`}
             id="navbarNav"
           >
+
             <ul className="navbar-nav ms-auto">
               {/* N-Shop with Dropdown */}
               <li className="nav-item dropdown">
@@ -70,13 +72,14 @@ const Navbar = () => {
                   aria-expanded="false"
                 >
                   N-Shop
+                  </Link>
 
-            <ul className="navbar-nav ">
-              <li className="nav-item">
-                <Link href="/products" passHref className="nav-link">
+            {/* <ul className="navbar-nav "> */}
+              {/* <li className="nav-item"> */}
+                {/* <Link href="/products" passHref className="nav-link">
                   Shop
 
-                </Link>
+                </Link> */}
                 <ul className="dropdown-menu" aria-labelledby="nShopDropdown">
                   <li>
                     <Link href="/products" passHref className="dropdown-item">
@@ -84,7 +87,7 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/projects" passHref className="dropdown-item">
+                    <Link href="/complete-project" passHref className="dropdown-item">
                       Projects
                     </Link>
                   </li>
@@ -147,7 +150,7 @@ const Navbar = () => {
               </li>
               <li className="nav-item">
                 <Link href="/contactus" passHref className="nav-link">
-                Innovation
+                  Innovation
                 </Link>
               </li>
             </ul>

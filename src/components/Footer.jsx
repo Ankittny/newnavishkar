@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Footer = () => {
   return (
@@ -33,12 +34,32 @@ const Footer = () => {
                   <h3>Quick Links</h3>
                   <ul className="list-unstyled">
                     <li>Compiler</li>
-                    <li>About Us</li>
-                    <li>Contact Us</li>
-                    <li>Our Team</li>
-                    <li>Labs</li>
-                    <li>Products</li>
-                    <li>Partner With Us</li>
+                    <li>
+                      <Link href={'/aboutus'}>About Us</Link>
+                    </li>
+                    <li>
+                      <Link href={'/contactus'}>
+                      Contact Us
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href={'/aboutus'}>Our Team</Link>
+                    </li>
+                    <li>
+                      <Link href={'/labs'}>
+                      Labs
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href={'/products'}>
+                      Products
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href={'/partner-with-us'}>
+                      Partner With Us
+                      </Link>
+                    </li>
                   </ul>
                 </div>
               </div>

@@ -40,6 +40,32 @@ const Footer = () => {
                     <li><Link href="/labs">Labs</Link></li>
                     <li><Link href="/products">Products</Link></li>
                     <li><Link href="/partner-with-us">Partner With Us</Link></li>
+                    <li>
+                      <Link href={'/aboutus'}>About Us</Link>
+                    </li>
+                    <li>
+                      <Link href={'/contactus'}>
+                      Contact Us
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href={'/aboutus'}>Our Team</Link>
+                    </li>
+                    <li>
+                      <Link href={'/labs'}>
+                      Labs
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href={'/products'}>
+                      Products
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href={'/partner-with-us'}>
+                      Partner With Us
+                      </Link>
+                    </li>
                   </ul>
                 </div>
               </div>

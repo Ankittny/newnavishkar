@@ -242,14 +242,14 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
               </div>
               <div class="list-items">
                 
-                <ul class="list-inline d-flex justify-content-center gap-5">
+                {/* <ul class="list-inline d-flex justify-content-center gap-5">
                   <li class="active"><Link href="#">Activity Kits</Link></li>
                   <li><Link href="#">Mechanical Toys</Link></li>
                   <li><Link href="#">Games</Link></li>
                   <li><Link href="#">Technology Toys</Link></li>
                   <li><Link href="#">Science Toys</Link></li>
-                  <li><Link href="#">Engineering Toys</Link></li>
-              <Button  buttonsData={buttonsData}/>
+                  <li><Link href="#">Engineering Toys</Link></li> */}
+                   <Button  buttonsData={buttonsData}/>
                 {/* <ul class="list-inline d-flex justify-content-center gap-5">
                   <li class="active"><a href="#">Activity Kits</a></li>
                   <li><a href="#">Mechanical Toys</a></li>
@@ -258,6 +258,7 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
                   <li><a href="#">Science Toys</a></li>
                   <li><a href="#">Engineering Toys</a></li>
                 </ul> */}
+                {/* </ul> */}
               </div>
             </div>
           </div>

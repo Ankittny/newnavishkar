@@ -29,7 +29,7 @@ const Navbar = () => {
     }
   };
 
-  const logout =()=>{
+  const logout =() => {
     localStorage.removeItem("authAdminToken");
     // router.push("/");
     window.location.href = "/";

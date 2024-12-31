@@ -51,7 +51,7 @@ const CompleteProject = () => {
 
           <div className="col-lg-9">
             <div className="mt-2 right-sight-title-brand">
-              <h1>Complete Projects</h1>
+              <h1 className="text-center font-complete">Complete Projects</h1>
             </div>
 
             <div className="row">

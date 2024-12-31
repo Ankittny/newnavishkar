@@ -7,6 +7,7 @@ import Image from "next/image";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
+import { move } from "formik";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -27,6 +28,12 @@ const Navbar = () => {
       router.push("/login");
     }
   };
+
+  const logout =()=>{
+    localStorage.removeItem("authAdminToken");
+    // router.push("/");
+    window.location.href = "/";
+  }
 
   return (
     <header>
@@ -170,7 +177,7 @@ const Navbar = () => {
             </div>
 
             {isLoggedIn ? (
-              <button className="btn btn-link nav-link mx-2">Logout</button>
+              <button onClick={logout} className="btn btn-link nav-link mx-2">Logout</button>
             ) : (
               <Link href="/login" passHref className="nav-link mx-2">
                 <Image

@@ -20,6 +20,23 @@ export const register = (values) => async (dispatch) => {
 };
 
 // Login action
+// export const login = (values) => async (dispatch) => {
+//   try {
+//     dispatch({ type: "loginRequest" });
+//     const { data } = await axios.post("auth/login", values);
+//     const { token, user } = data;
+
+//     if (token) {
+//       localStorage.setItem("authAdminToken", token);
+//       dispatch({ type: "loginSuccess", payload: user });
+//     } else {
+//       dispatch({ type: "loginFail", payload: "Login failed. Please check your credentials." });
+//     }
+//   } catch (error) {
+//     dispatch({ type: "loginFail", payload: error.response?.data?.message || "Login failed" });
+//   }
+// };
+
 export const login = (values) => async (dispatch) => {
   try {
     dispatch({ type: "loginRequest" });
@@ -36,7 +53,6 @@ export const login = (values) => async (dispatch) => {
     dispatch({ type: "loginFail", payload: error.response?.data?.message || "Login failed" });
   }
 };
-
 // Logout action
 export const logout = () => async (dispatch) => {
   try {

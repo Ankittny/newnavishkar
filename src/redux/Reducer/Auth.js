@@ -8,6 +8,7 @@ const initialState = {
   successMessage: null,
   isLoggedIn: false,
   isError: false,
+  isSuccess: false, // Add this to the initial state
 };
 
 export const authReducer = createReducer(initialState, (builder) => {
@@ -36,6 +37,7 @@ export const authReducer = createReducer(initialState, (builder) => {
       state.loading = true;
       state.isAuthenticated = false;
       state.error = null;
+      state.isSuccess = false; // Reset isSuccess
     })
     .addCase("loginSuccess", (state, action) => {
       state.loading = false;
@@ -43,14 +45,16 @@ export const authReducer = createReducer(initialState, (builder) => {
       state.user = action.payload;
       state.isLoggedIn = true;
       state.successMessage = "Login successful!";
+      state.isError = false;
+      state.isSuccess = true; // Set isSuccess to true
     })
     .addCase("loginFail", (state, action) => {
       state.loading = false;
       state.isAuthenticated = false;
       state.error = action.payload;
       state.isError = true;
+      state.isSuccess = false; // Reset isSuccess
     })
-    
     .addCase("logoutRequest", (state) => {
       state.loading = true;
     })

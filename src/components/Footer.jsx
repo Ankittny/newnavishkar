@@ -1,62 +1,68 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Image from 'next/image';
-import Link from 'next/link';
-
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Image from "next/image";
+import Link from "next/link";
+import { FaFacebookSquare } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaLinkedin } from "react-icons/fa6";
+import { FaYoutubeSquare } from "react-icons/fa";
+import { FaInstagramSquare } from "react-icons/fa";
+import { FaWhatsappSquare } from "react-icons/fa";
 const Footer = () => {
   return (
     <>
-     {/* Footer Section */}
-    <section className=''>
-        <div className={`footer_namiskar py-5 text-white`} >
+      {/* Footer Section */}
+      <section className="">
+        <div className={`footer_namiskar py-5 text-white`}>
           <div className="container">
             <div className="row">
               <div className="col-lg-12  mb-4">
                 <div className="footer-logo">
-                  <Image src={'/logo_second.png'} alt="logo" width={150} height={50} className="img-fluid" />
+                  <Image
+                    src={"/logo_second.png"}
+                    alt="logo"
+                    width={150}
+                    height={50}
+                    className="img-fluid"
+                  />
                 </div>
               </div>
 
               {/* About Us */}
               <div className="col-lg-3 mb-4">
-                <div className='ct_contact_us'>
+                <div className="ct_contact_us">
                   <h3>About Us</h3>
                   <p>
-                    Derived from the words "Nav" stands for new and "Avishkar" stands for discovery,
-                    we are passionately committed to providing high-quality STEAM education for young minds.
+                    Derived from the words "Nav" stands for new and "Avishkar"
+                    stands for discovery, we are passionately committed to
+                    providing high-quality STEAM education for young minds.
                   </p>
                 </div>
               </div>
 
               {/* Quick Links */}
               <div className="col-lg-3 mb-4">
-                <div className='ct_contact_us'>
+                <div className="ct_contact_us">
                   <h3>Quick Links</h3>
                   <ul className="list-unstyled">
                     <li>Compiler</li>
-                    <li><Link href="/aboutus">About Us</Link></li>
                     <li>
-                      <Link href={'/contactus'}>
-                      Contact Us
-                      </Link>
+                      <Link href="/aboutus">About Us</Link>
                     </li>
                     <li>
-                      <Link href={'/aboutus'}>Our Team</Link>
+                      <Link href={"/contactus"}>Contact Us</Link>
                     </li>
                     <li>
-                      <Link href={'/labs'}>
-                      Labs
-                      </Link>
+                      <Link href={"/aboutus"}>Our Team</Link>
                     </li>
                     <li>
-                      <Link href={'/products'}>
-                      Products
-                      </Link>
+                      <Link href={"/labs"}>Labs</Link>
                     </li>
                     <li>
-                      <Link href={'/partner-with-us'}>
-                      Partner With Us
-                      </Link>
+                      <Link href={"/products"}>Products</Link>
+                    </li>
+                    <li>
+                      <Link href={"/partner-with-us"}>Partner With Us</Link>
                     </li>
                   </ul>
                 </div>
@@ -64,7 +70,7 @@ const Footer = () => {
 
               {/* Follow Us */}
               <div className="col-lg-3 mb-4">
-                <div className='ct_contact_us'>
+                <div className="ct_contact_us">
                   <h3>Follow Us</h3>
                   <ul className="list-unstyled">
                     <li>Return Policy Page</li>
@@ -80,22 +86,49 @@ const Footer = () => {
 
               {/* Contact Us */}
               <div className="col-lg-3 mb-4">
-                <div  className='ct_contact_us'>
+                <div className="ct_contact_us">
                   <h3>Contact Us</h3>
                   <ul className="list-unstyled">
-                    <li><i className="ri-home-line mx-2"></i>A 12-13, 2nd Floor, Sector 16, Gautam Buddha Nagar Noida, Uttar Pradesh 201301</li>
-                    <li><i className="ri-mail-line mx-2"></i>info@navishkar.com</li>
-                    <li><i className="ri-phone-fill mx-2"></i>+91 81303 31254</li>
+                    <li>
+                      A 12-13, 2nd Floor, Sector 16, Gautam Buddha Nagar Noida,
+                      Uttar Pradesh 201301
+                    </li>
+                    <li>info@navishkar.com</li>
+                    <li>+91 81303 31254</li>
                   </ul>
                 </div>
                 <div className="social-icons">
-                  <ul className="d-flex gap-3">
-                    <li><i className="ri-facebook-line"></i></li>
-                    <li><i className="ri-twitter-line"></i></li>
-                    <li><i className="ri-linkedin-line"></i></li>
-                    <li><i className="ri-youtube-line"></i></li>
-                    <li><i className="ri-instagram-line"></i></li>
-                    <li><i className="ri-whatsapp-line"></i></li>
+                  <ul className="d-flex gap-3" style={{ paddingLeft: "0px" }}>
+                    <li style={{ listStyle: "none" }}>
+                      <Link href={"/"}>
+                        <FaFacebookSquare size={30} />
+                      </Link>
+                    </li>
+                    <li style={{ listStyle: "none" }}>
+                      <Link href={"/"}>
+                        <FaXTwitter size={30} />
+                      </Link>
+                    </li>
+                    <li style={{ listStyle: "none" }}>
+                      <Link href={"/"}>
+                        <FaLinkedin size={30} />
+                      </Link>
+                    </li>
+                    <li style={{ listStyle: "none" }}>
+                      <Link href={""}>
+                        <FaYoutubeSquare size={30} />
+                      </Link>
+                    </li>
+                    <li style={{ listStyle: "none" }}>
+                      <Link href={""}>
+                        <FaInstagramSquare size={30} />
+                      </Link>
+                    </li>
+                    <li style={{ listStyle: "none" }}>
+                      <Link href={""}>
+                        <FaWhatsappSquare size={30} />
+                      </Link>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -104,14 +137,17 @@ const Footer = () => {
         </div>
       </section>
 
-  {/* Footer Bottom Section */}
+      {/* Footer Bottom Section */}
       <section>
         <div className={`down_footer text-center py-3 bg-light `}>
-          <h5 className=''>Copyrights © 2024. All rights reserved by <span>Tinkering Intelli Labs Pvt. Ltd.</span></h5>
+          <h5 className="">
+            Copyrights © 2024. All rights reserved by{" "}
+            <span>Tinkering Intelli Labs Pvt. Ltd.</span>
+          </h5>
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

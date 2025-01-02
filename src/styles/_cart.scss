@@ -17,7 +17,7 @@
 .quantity-controls {
   display: flex;
   align-items: center;
-  margin-top: 10px;
+ 
 
   button {
     background-color: #175A95;
@@ -56,7 +56,13 @@
 
 .cart-table th, .cart-table td {
   padding: 10px;
+
+}
+table tr{
   border-bottom: 1px solid #175A95;
+  display: flex;
+  align-items: center;
+  justify-content: end;
 }
 
 .cart-item {
@@ -68,14 +74,12 @@
 .quantity-controls {
   display: flex;
   align-items: center;
-
   gap: 5px;
 }
 
 .quantity-controls button {
   padding: 5px 10px;
   border: 1px solid #ccc;
-  
   cursor: pointer;
 }
 
@@ -140,4 +144,49 @@
   justify-content: space-between;
   margin-top: 20px;
   font-size: 12px;
+}
+
+
+// ==============================================media-query-start==============================================
+@media(max-width:1199px) and (min-width:992px){
+  .cart-items {
+    width: 65%;
+  }
+  .order-summary{
+    width: 40%;
+  }
+}
+
+@media(max-width:991px) and (min-width:768px){
+  .cart-container{
+    flex-direction: column;
+  }
+  .order-summary{
+    width: 100%;
+  }
+  .cart-items {
+    width: 100%;
+  }
+}
+
+@media(max-width:767px){
+  .cart-container{
+    flex-direction: column;
+  }
+  .order-summary{
+    width: 100%;
+  }
+  table tr {
+    justify-content: flex-start;
+    display: inherit;
+}
+.cart-items {
+  width: 100%;
+}
+}
+
+@media(max-width:375px){
+  .coupon{
+    flex-direction: column;
+  }
 }

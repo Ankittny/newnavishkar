@@ -1,29 +1,25 @@
-"use client"
-import { useState, useEffect } from 'react';
+"use client";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import "../../../styles/_home.scss";
-import Button from '@/components/Button';
-import { Shop } from '@mui/icons-material';
-import { useDispatch } from "react-redux";
-import React, { useRef } from 'react';
+import Button from "@/components/Button";
+import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { HiArrowLongRight } from "react-icons/hi2";
-import { Autoplay } from 'swiper/modules';
-
+import { Autoplay } from "swiper/modules";
+import { useRouter } from "next/navigation";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
-import OurAchievement from '@/components/OurAchievment';
-
-
-
-
-
-
-
+import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
+import OurAchievement from "@/components/OurAchievment";
+import Card from "@/components/card/Card";
+import { useDispatch, useSelector } from "react-redux";
+// import { categories } from "@/redux/Action/category";
+import { homeProducts } from "@/redux/Action/HomeProduct";
+import { API_URL } from "../../../config/config";
 
 const buttonsData = [
   { name: "Activity Kits" },
@@ -31,30 +27,58 @@ const buttonsData = [
   { name: "Games" },
   { name: "Technology Toys" },
   { name: "Science Toys" },
-  { name: "Engineering Toys" }
+  { name: "Engineering Toys" },
 ];
 
-
-
 const Home = () => {
-
+  const dispatch = useDispatch();
+  const router = useRouter();
   const [showImage, setShowImage] = useState(true);
-  function AutoSwap() {
 
+  const [productsData, setProductsData] = useState([]);
+  const { loading, products, error } = useSelector((state) => state.home);
 
-    // Automatically toggle every 3 seconds
-    useEffect(() => {
-      const interval = setInterval(() => {
-        setShowImage((prev) => !prev);
-      }, 3000); // 3000ms = 3 seconds
+  const fetchProductData = async () => {
+    try {
+      console.log("Dispatching product action");
+      await dispatch(homeProducts()); // Dispatch homeProducts action to fetch data
+    } catch (error) {
+      console.error("Error fetching category products:", error);
+    }
+  };
 
-      // Cleanup interval on component unmount
-      return () => clearInterval(interval);
-    }, []);
+  useEffect(() => {
+    fetchProductData(); // Trigger product data fetching when component mounts
+  }, [dispatch]);
 
-  }
+  useEffect(() => {
+    if (products && products.length > 0) {
+      setProductsData(products); // Update local state with Redux products data
+      console.log("Fetched product:", products); // Log the fetched products
+    } else {
+      console.log("No products fetched or empty array:", products);
+    }
+  }, [products]);
 
+  console.log("ANkit sir", productsData);
 
+  const handleCardClick = (slug) => {
+    console.log(`Card clicked: ${slug}`);
+  };
+
+  const handleAddToCart = (id) => {
+    console.log(`Added to cart: ${id}`);
+  };
+
+  // Automatically toggle every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowImage((prev) => !prev);
+    }, 3000); // 3000ms = 3 seconds
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
@@ -63,15 +87,12 @@ const Home = () => {
           <div className="container">
             <div className="home-learn-title d-flex justify-content-center align-items-center gap-3">
               <h1 className="title-home fw-bold">Learn</h1>
-              <span className="easily-title">
-                Easily
-              </span>
+              <span className="easily-title">Easily</span>
               <img src="product/little.png" />
             </div>
             <div className="anywhere-title d-flex justify-content-center align-items-cengter gap-4 fw-bold">
               <div className="first-itme">
-                <h1 className="text-data-analytics">
-                  Anywhere </h1>
+                <h1 className="text-data-analytics">Anywhere </h1>
               </div>
               <div className="image-item d-flex align-items-center">
                 <img src="product/IMG_5991.png" width={45} height={45} />
@@ -82,20 +103,22 @@ const Home = () => {
               <div className="text-data-analytics">
                 <h1 className="text-data-analytics">and Anytime</h1>
               </div>
-
             </div>
           </div>
           <div className="award-section">
             <div className="row">
               <div className="col-lg-4">
                 <div className="award-name">
-                  <img src="product/200w.gif" style={{ width: '75%' }} />
+                  <img src="product/200w.gif" style={{ width: "75%" }} />
                 </div>
               </div>
               <div className="col-lg-4">
                 <div className="award-name">
-                  <h2>On my website, you'll find resources and trainings to help you
-                    find aliveness and vitality in your relationships.</h2> </div>
+                  <h2>
+                    On my website, you'll find resources and trainings to help
+                    you find aliveness and vitality in your relationships.
+                  </h2>{" "}
+                </div>
                 <div className="award-price d-flex justify-content-center align-items-center gap-3">
                   <div className="training-title">
                     <img src="product/Group-95.png" width={150} />
@@ -112,12 +135,11 @@ const Home = () => {
               </div>
               <div className="col-lg-4">
                 <div className="training-title">
-                  <img src="product/wheel.gif" style={{ width: '80%' }} />
+                  <img src="product/wheel.gif" style={{ width: "80%" }} />
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </section>
 
@@ -125,7 +147,9 @@ const Home = () => {
 
       <section>
         <div className="world-title">
-          <div className="Learning-title text-center fw-bold">Experience the world of immersive <br /> Learning</div>
+          <div className="Learning-title text-center fw-bold">
+            Experience the world of immersive <br /> Learning
+          </div>
           <div className="container mt-4">
             <div className="row">
               <div className="col-lg-6">
@@ -133,32 +157,42 @@ const Home = () => {
                   <div className="back-bg-title">
                     <img src="product/Untitled-90.png" />
                   </div>
-                  <div className='pt-4 px-3 devp-text'>
-                    <h2 className=" innovation-heading text-white fw-bold">Workshop </h2>
-                    <p>AI and Robotics workshop that we wish to
-                      conduct in the school premises. The purpose
-                      of this workshop is to increase awareness and
-                      generate interest in the field of AI and Robotics
-                      and drone  and to educate the students regarding the
-                      new emerging technologies and how important it is to stay
-                      updated in this technology driven world.</p>
-                    <button className="bg-white px-4 py-2 border-0 mb-2 ">View Product</button>
+                  <div className="pt-4 px-3 devp-text">
+                    <h2 className=" innovation-heading text-white fw-bold">
+                      Workshop{" "}
+                    </h2>
+                    <p>
+                      AI and Robotics workshop that we wish to conduct in the
+                      school premises. The purpose of this workshop is to
+                      increase awareness and generate interest in the field of
+                      AI and Robotics and drone and to educate the students
+                      regarding the new emerging technologies and how important
+                      it is to stay updated in this technology driven world.
+                    </p>
+                    <button className="bg-white px-4 py-2 border-0 mb-2 ">
+                      View Product
+                    </button>
                   </div>
                 </div>
               </div>
               <div className="col-lg-6">
                 <div className="world-title-heading d-flex gap-3">
-                  <div className=' pt-4 px-3 devp-text'>
-                    <h2 className=" innovation-heading fw-bold">innovative <span>projects</span> </h2>
-                    <p>AI and Robotics workshop that we wish to
-                      conduct in the school premises. The purpose
-                      of this workshop is to increase awareness and
-                      generate interest in the field of AI and Robotics
-                      and drone  and to educate the students regarding the
-                      new emerging technologies and how important it is to stay
-                      updated in this technology driven world.</p>
+                  <div className=" pt-4 px-3 devp-text">
+                    <h2 className=" innovation-heading fw-bold">
+                      innovative <span>projects</span>{" "}
+                    </h2>
+                    <p>
+                      AI and Robotics workshop that we wish to conduct in the
+                      school premises. The purpose of this workshop is to
+                      increase awareness and generate interest in the field of
+                      AI and Robotics and drone and to educate the students
+                      regarding the new emerging technologies and how important
+                      it is to stay updated in this technology driven world.
+                    </p>
 
-                    <button className="bg-white dx-text-bg px-4 py-2 border-0 mb-2 ">View Product</button>
+                    <button className="bg-white dx-text-bg px-4 py-2 border-0 mb-2 ">
+                      View Product
+                    </button>
                   </div>
                   <div className="back-bg-title">
                     <img src="product/Untitled-90.png" />
@@ -166,20 +200,14 @@ const Home = () => {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
       {/* ===========================================minos -title =================================== */}
       <div className="containers">
-        <div class="frame mt-5">
-        </div>
+        <div class="frame mt-5"></div>
       </div>
-
-
-
-
 
       {/* ===============================================drone-services =================================== */}
       <section>
@@ -188,17 +216,22 @@ const Home = () => {
             <div className="row">
               <div className="col-lg-6">
                 <div className="drone-humble-drnoe">
-                  <h2 className="">N - <span>Labs</span></h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
+                  <h2 className="">
+                    N - <span>Labs</span>
+                  </h2>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.{" "}
+                  </p>
                 </div>
               </div>
               <div className="col-lg-6">
                 <div className="drone-humble-drnoe pt-5 d-flex justify-content-center">
-                  <h2 className="">N - <span>DRONE SERVICE</span></h2>
-
+                  <h2 className="">
+                    N - <span>DRONE SERVICE</span>
+                  </h2>
                 </div>
               </div>
             </div>
@@ -208,17 +241,26 @@ const Home = () => {
         <div className="video-title">
           <div className="row">
             <div className="col-lg-6">
-              <video autoPlay loop muted className="frontend-video" style={{ width: '100%' }}>
+              <video
+                autoPlay
+                loop
+                muted
+                className="frontend-video"
+                style={{ width: "100%" }}
+              >
                 <source src="product/video/Navishkar.mp4" type="video/mp4" />
               </video>
             </div>
             <div className="col-lg-6">
               <div className="drone-image">
-                <img src="product/DeWatermark.png" height={374} style={{ width: '100%' }}></img>
+                <img
+                  src="product/DeWatermark.png"
+                  height={374}
+                  style={{ width: "100%" }}
+                ></img>
               </div>
             </div>
           </div>
-
         </div>
       </section>
 
@@ -238,37 +280,40 @@ const Home = () => {
             <div className="col-12">
               <div class="list-items">
                 <Button buttonsData={buttonsData} />
-                {/* <ul class="list-inline d-flex justify-content-center gap-5">
-                  <li class="active"><a href="#">Activity Kits</a></li>
-                  <li><a href="#">Mechanical Toys</a></li>
-                  <li><a href="#">Games</a></li>
-                  <li><a href="#">Technology Toys</a></li>
-                  <li><a href="#">Science Toys</a></li>
-                  <li><a href="#">Engineering Toys</a></li>
-
-                </ul> */}
               </div>
             </div>
           </div>
           <div className="row mt-5">
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
               <div className="meet-minos-title mt-5">
-                <img src="product/video/MicrosoftTeams-video (2).png" style={{ width: '100%' }} />
+                <img
+                  src="product/video/MicrosoftTeams-video (2).png"
+                  style={{ width: "100%" }}
+                />
               </div>
             </div>
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
               <div className="meet-minos-title mt-3">
-                <img src="product/video/MicrosoftTeams-video (3).png" style={{ width: '100%' }} />
+                <img
+                  src="product/video/MicrosoftTeams-video (3).png"
+                  style={{ width: "100%" }}
+                />
               </div>
             </div>
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
               <div className="meet-minos-title">
-                <img src="product/video/MicrosoftTeams-video (5) 1.png" style={{ width: '100%' }} />
+                <img
+                  src="product/video/MicrosoftTeams-video (5) 1.png"
+                  style={{ width: "100%" }}
+                />
               </div>
             </div>
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
               <div className="meet-minos-title mt-3">
-                <img src="product/video/MicrosoftTeams-video.png" style={{ width: '100%' }} />
+                <img
+                  src="product/video/MicrosoftTeams-video.png"
+                  style={{ width: "100%" }}
+                />
               </div>
             </div>
           </div>
@@ -281,91 +326,94 @@ const Home = () => {
             <div className="col-12">
               <div className="shop-by-title text-center">
                 <h5>
-                  SHOP BY <span>INTEREST</span>
+                  SHOP BY{" "}
+                  <span>
+                    {productsData && productsData[0]
+                      ? productsData[0].slug
+                      : "No category available"}
+                  </span>
                 </h5>
-                <p>A whole lotta fun & learning</p>
               </div>
-              <div class="list-items">
-                <Button buttonsData={buttonsData} />
-                {/* <ul class="list-inline d-flex justify-content-center gap-5">
-                  <li class="active"><a href="#">Activity Kits</a></li>
-                  <li><a href="#">Mechanical Toys</a></li>
-                  <li><a href="#">Games</a></li>
-                  <li><a href="#">Technology Toys</a></li>
-                  <li><a href="#">Science Toys</a></li>
-                  <li><a href="#">Engineering Toys</a></li>
-
-                </ul> */}
+              <div className="list-items">
+                {productsData[0] &&
+                productsData[0].childes &&
+                productsData[0].childes.length > 0 ? (
+                  productsData[0].childes.map((child) => (
+                    <Button key={child.id} buttonName={child.name} />
+                  ))
+                ) : (
+                  <p>No Subcategory</p>
+                )}
               </div>
             </div>
           </div>
           <div class="row dr-title mt-5">
             <div class="col-md-12">
               <div class="card-container">
-                <div class="play-role-title title-access">
-                  <div class="play-kit-title play-cubric">
-                    <img src="product/toys6.webp" />
-                  </div>
-                  <div class="playkit-action action-inject">
-                    <div class="kit-down">
-                      <p>Foil Magic - Princess Fairy Tales | 4-8 years | DIY Activity Kit</p>
-                    </div>
-                    <div class="button mt-4 d-flex gap-3 align-items-center">
-                      <div class="ex-btn">-15%</div>
-                      <div class="price-text"><span>₹764.15</span>
-                      </div>
-                      <div class="overline-text">
-                        <p>₹899</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="add-btn text-center">
-                    <button>ADD TO CART</button>
-                  </div>
-                </div>
-                <div class="play-role-title title-access">
-                  <div class="play-kit-title play-cubric">
-                    <img src="product/toys6.webp" />
-                  </div>
-                  <div class="playkit-action action-inject">
-                    <div class="kit-down">
-                      <p>Foil Magic - Princess Fairy Tales | 4-8 years | DIY Activity Kit</p>
-                    </div>
-                    <div class="button mt-4 d-flex gap-3 align-items-center">
-                      <div class="ex-btn">-10%</div>
-                      <div class="price-text">
-                        <span>₹809.1</span>
-                      </div>
-                      <div class="overline-text">
-                        <p>₹899</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="add-btn text-center">
-                    <button>ADD TO CART</button>
-                  </div>
-                </div>
-                <div class="play-role-title title-access">
-                  <div class="play-kit-title play-cubric">
-                    <img src="product/toys6.webp" />
-                  </div>
-                  <div class="playkit-action action-inject">
-                    <div class="kit-down"><p>Foil Magic - Creative Jewelry Studio | 4-8 years | DIY Activity Kit</p>
-                    </div>
-                    <div class="button mt-4 d-flex gap-3 align-items-center">
-                      <div class="save-btn">Save ₹20</div>
-                      <div class="price-text">
-                        <span>₹1180</span>
-                      </div>
-                      <div class="overline-text">
-                        <p>₹1200</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="add-btn text-center">
-                    <button>ADD TO CART</button>
-                  </div>
-                </div>
+                {productsData[0] &&
+                productsData[0].products &&
+                productsData[0].products.length > 0 ? (
+                  productsData[0].products.map((product) => (
+                    <Card
+                      key={product.id} // Ensure product id is unique for each Card
+                      id={product.id}
+                      imageUrl={`${API_URL}product.thumbnail` || ""}
+                      name={product.name}
+                      onClick={() => handleCardClick(product.slug)} // Handle card click action
+                      onAddToCart={() => handleAddToCart(product.id)} // Handle add to cart action
+                    />
+                  ))
+                ) : (
+                  <p>No products available</p> // Show if no products found
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-12">
+              <div className="shop-by-title text-center">
+                <h5>
+                  SHOP BY{" "}
+                  <span>
+                    {productsData && productsData[1]
+                      ? productsData[1].slug
+                      : "No category available"}
+                  </span>
+                </h5>
+              </div>
+              <div className="list-items">
+                {productsData[1] &&
+                productsData[1].childes &&
+                productsData[1].childes.length > 0 ? (
+                  productsData[1].childes.map((child) => (
+                    <Button key={child.id} buttonName={child.name} />
+                  ))
+                ) : (
+                  <p>No Subcategory</p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div class="row dr-title mt-5">
+            <div class="col-md-12">
+              <div class="card-container">
+                {productsData[1] &&
+                productsData[1].products &&
+                productsData[1].products.length > 0 ? (
+                  productsData[1].products.map((product) => (
+                    <Card
+                      key={product.id} // Ensure product id is unique for each Card
+                      id={product.id}
+                      imageUrl={`${API_URL}product.thumbnail` || ""}
+                      name={product.name}
+                      onClick={() => handleCardClick(product.slug)} // Handle card click action
+                      onAddToCart={() => handleAddToCart(product.id)} // Handle add to cart action
+                    />
+                  ))
+                ) : (
+                  <p>No products available</p> // Show if no products found
+                )}
               </div>
             </div>
           </div>
@@ -384,7 +432,6 @@ const Home = () => {
         </div>
       </section>
 
-
       {/* ==================================================testimonial========================================= */}
       <section>
         <div className="testimionial-lyer mt-5">
@@ -392,112 +439,128 @@ const Home = () => {
             <div className="row pt-5">
               <div className="col-lg-6">
                 <div className="testiminoal-flower-typical">
-                  <strong>Our clients</strong>  
-                  <Swiper effect={"coverflow"}
+                  <strong>Our clients</strong>
+                  <Swiper
+                    effect={"coverflow"}
                     grabCursor={"true"}
                     conteredSlides={"true"}
                     loop={"true"}
                     slidesPerView={"auto"}
-                    coverflowEffect={
-                      {
-                        rotate: 0,
-                        stretch: 0,
-                        depth: 100,
-                        modifier: 2.5,
-                      }
-                    }
+                    coverflowEffect={{
+                      rotate: 0,
+                      stretch: 0,
+                      depth: 100,
+                      modifier: 2.5,
+                    }}
                     autoplay={{
                       delay: 2500,
                       disableOnInteraction: false,
                     }}
-
                     pagination={{
-                      el: ".swiper-pagination", clickable: true
+                      el: ".swiper-pagination",
+                      clickable: true,
                     }}
                     navigation={{
                       nextEl: "swiper-button-next",
                       prevEl: "swiper-button-prev",
                       clickable: true,
                     }}
-                    modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
+                    modules={[
+                      EffectCoverflow,
+                      Pagination,
+                      Navigation,
+                      Autoplay,
+                    ]}
                     className="swiper_container"
                   >
-                    <SwiperSlide >
+                    <SwiperSlide>
                       {/* <img src="product/DeWatermark.png" /> */}
-                      <p>The team at ABC Drone Services did an
-                        exceptional job capturing aerial shots for our real estate listings.
-                        Their attention to detail and ability to showcase properties 
-                        angles helped us attract more buyers. </p>
+                      <p>
+                        The team at ABC Drone Services did an exceptional job
+                        capturing aerial shots for our real estate listings.
+                        Their attention to detail and ability to showcase
+                        properties angles helped us attract more buyers.{" "}
+                      </p>
                     </SwiperSlide>
                     <SwiperSlide>
                       {/* <img src="product/DeWatermark.png" /> */}
-                      <p>The team at ABC Drone Services did an
-                        exceptional job capturing aerial shots for our real estate listings.
-                        Their attention to detail and ability to showcase properties from 
-                        angles helped us attract more buyers. </p>
+                      <p>
+                        The team at ABC Drone Services did an exceptional job
+                        capturing aerial shots for our real estate listings.
+                        Their attention to detail and ability to showcase
+                        properties from angles helped us attract more buyers.{" "}
+                      </p>
                     </SwiperSlide>
                     <SwiperSlide>
                       {/* <img src="product/DeWatermark.png" /> */}
-                      <p>The team at ABC Drone Services did an
-                        exceptional job capturing aerial shots for our real estate listings.
-                        Their attention to detail and ability to showcase properties from 
-                        angles helped us attract more buyers. </p>
+                      <p>
+                        The team at ABC Drone Services did an exceptional job
+                        capturing aerial shots for our real estate listings.
+                        Their attention to detail and ability to showcase
+                        properties from angles helped us attract more buyers.{" "}
+                      </p>
                     </SwiperSlide>
                     <SwiperSlide>
                       {/* <img src="product/DeWatermark.png" /> */}
-                      <p>The team at ABC Drone Services did an
-                        exceptional job capturing aerial shots for our real estate listings.
-                        Their attention to detail and ability to showcase properties from 
-                        angles helped us attract more buyers. </p>
+                      <p>
+                        The team at ABC Drone Services did an exceptional job
+                        capturing aerial shots for our real estate listings.
+                        Their attention to detail and ability to showcase
+                        properties from angles helped us attract more buyers.{" "}
+                      </p>
                     </SwiperSlide>
                     <SwiperSlide>
                       {/* <img src="product/DeWatermark.png" /> */}
-                      <p>The team at ABC Drone Services did an
-                        exceptional job capturing aerial shots for our real estate listings.
-                        Their attention to detail and ability to showcase properties from 
-                        angles helped us attract more buyers. </p>
+                      <p>
+                        The team at ABC Drone Services did an exceptional job
+                        capturing aerial shots for our real estate listings.
+                        Their attention to detail and ability to showcase
+                        properties from angles helped us attract more buyers.{" "}
+                      </p>
                     </SwiperSlide>
 
                     {/* <div className="slider-controler">
                       <div className="swiper-pagination"></div>
                     </div> */}
                   </Swiper>
-
                 </div>
               </div>
               <div className="col-lg-6">
                 <div className="swiper-galley">
-
-                  <Swiper effect={"coverflow"}
+                  <Swiper
+                    effect={"coverflow"}
                     grabCursor={"true"}
                     conteredSlides={"true"}
                     loop={"true"}
                     slidesPerView={"auto"}
-                    coverflowEffect={
-                      {
-                        rotate: 0,
-                        stretch: 0,
-                        depth: 100,
-                        modifier: 2.5,
-                      }
-                    }
+                    coverflowEffect={{
+                      rotate: 0,
+                      stretch: 0,
+                      depth: 100,
+                      modifier: 2.5,
+                    }}
                     autoplay={{
                       delay: 2500,
                       disableOnInteraction: false,
                     }}
-
                     pagination={{
-                      el: ".swiper-pagination", clickable: true
+                      el: ".swiper-pagination",
+                      clickable: true,
                     }}
                     navigation={{
                       nextEl: "swiper-button-next",
                       prevEl: "swiper-button-prev",
                       clickable: true,
                     }}
-                    modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
+                    modules={[
+                      EffectCoverflow,
+                      Pagination,
+                      Navigation,
+                      Autoplay,
+                    ]}
                     className="swiper_container"
                   >
-                    <SwiperSlide >
+                    <SwiperSlide>
                       <img src="product/DeWatermark.png" />
                       {/* <p>The team at ABC Drone Services did an
                         exceptional job capturing aerial shots for our real estate listings.
@@ -537,7 +600,6 @@ const Home = () => {
                       <div className="swiper-pagination"></div>
                     </div>
                   </Swiper>
-
                 </div>
               </div>
             </div>
@@ -552,25 +614,36 @@ const Home = () => {
               <div className="col-lg-12">
                 <div className="all-toys d-flex justify-content-between align-items-center">
                   <div className="img-toys-title">
-                    <img src="./product/laugh.png" alt="77" style={{ maxWidth: "100%", height: "inherit" }} />
+                    <img
+                      src="./product/laugh.png"
+                      alt="77"
+                      style={{ maxWidth: "100%", height: "inherit" }}
+                    />
                   </div>
                   <div className="toys-text text-white">
                     <span>EXPLORE</span>
-                    <h4 className="text-white fw-bold mt-3">Get Creative With <br />
-                      Navishkar</h4>
-                    <p className="text-white mt-3">Sit amet mauris commodo quis imperdiet massa tincidunt
-                      nunc. Tortor id aliquet lectus proin. Turpis nunc eget lorem
-                      dolor sed viverra ipsum.
+                    <h4 className="text-white fw-bold mt-3">
+                      Get Creative With <br />
+                      Navishkar
+                    </h4>
+                    <p className="text-white mt-3">
+                      Sit amet mauris commodo quis imperdiet massa tincidunt
+                      nunc. Tortor id aliquet lectus proin. Turpis nunc eget
+                      lorem dolor sed viverra ipsum.
                     </p>
                     <ul className="listing-upper-title">
-                      <li>Learn creative skills to achieve your personal and
-                        professional goals.</li>
                       <li>
-                        Tune in and level up at your own pace
+                        Learn creative skills to achieve your personal and
+                        professional goals.
                       </li>
-                      <li>Connect with a global community of curious creatives.</li>
+                      <li>Tune in and level up at your own pace</li>
+                      <li>
+                        Connect with a global community of curious creatives.
+                      </li>
                     </ul>
-                    <button className="get-set-btn">Get started today <HiArrowLongRight /> </button>
+                    <button className="get-set-btn">
+                      Get started today <HiArrowLongRight />{" "}
+                    </button>
                   </div>
                 </div>
               </div>
@@ -582,12 +655,8 @@ const Home = () => {
       <section>
         <OurAchievement />
       </section>
-
     </>
+  );
+};
 
-  )
-}
-
-
-
-export default Home
+export default Home;

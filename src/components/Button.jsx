@@ -1,19 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react';
 
-const Button = ({buttonsData}) => {
-   
+const Button = ({ buttonName }) => {
     return (
-        <div>
+      <div>
         <ul className="list-inline d-flex justify-content-center gap-5">
-            {/* Map through the buttonsData array and render buttons */}
-            {buttonsData.map((item, index) => (
-                <li key={index}>
-                    <button>{item.name}</button>
-                </li>
-            ))}
+          <li>
+            <button>{buttonName}</button>
+          </li>
         </ul>
-    </div>
-    )
-}
+      </div>
+    );
+  };
 
-export default Button
+export default Button;

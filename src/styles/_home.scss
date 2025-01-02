@@ -85,6 +85,10 @@
 .feature-heading h3{
     font-size: 40px;
 }
+.list-items{
+    display: flex;
+    gap: 20px;
+}
 .list-items ul li:first-child {
     background-color: #fda000;
 }

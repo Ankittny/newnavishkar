@@ -4,6 +4,7 @@ import { authReducer } from "./Reducer/Auth"; // Assuming the path is correct
 import { categoryReducer } from "./Reducer/category";
 import { labReducer } from "./Reducer/lab";
 import cartReducer from "./Reducer/Cart"; // Import the cart reducer
+import { homeReducer } from "./Reducer/HomeProduct";
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     category:categoryReducer,
     lab:labReducer,
     cart: cartReducer, // Add cart reducer
+    home: homeReducer
   },
 });
 

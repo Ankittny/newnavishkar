@@ -100,7 +100,7 @@
   /* Buttons */
   .payment-page .submit-payment-button, 
   .payment-page .continue-button {
-    background-color: #0070f3;
+    background-color: #175A95;
     color: white;
     padding: 12px 20px;
     font-size: 16px;
@@ -164,11 +164,10 @@
   
 
   .shipping-address {
-    background-color: #f0f4ff; /* Light blue background for emphasis */
-    border: 1px solid #b0c4de; /* Light border for separation */
+    // background-color: #f0f4ff; /* Light blue background for emphasis */
+    border: 1px solid #175A95; /* Light border for separation */
     border-radius: 8px;
     padding: 20px;
-    margin-top: 20px;
   }
   
   .shipping-address h4 {
@@ -189,7 +188,7 @@
   }
   
   .shipping-address input:focus {
-    border-color: #007bff; /* Change border color on focus */
+    border-color: #175A95; /* Change border color on focus */
     outline: none; /* Remove default outline */
   }
   

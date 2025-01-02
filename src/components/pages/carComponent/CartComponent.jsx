@@ -50,9 +50,25 @@ const Cart = () => {
       <div className="cart-container">
         <div className="cart-items">
           <h2>Shopping Cart</h2>
+           <table className="process-card">
+            <thead>
+            <tr>
+                  <th>Product</th>
+                  <th>Unit Price</th>
+                  <th>Qty</th>
+                  <th>Total</th>
+                </tr>
+            </thead>
+           </table>
+           <div className="card-process-number text-center py-5 mt-5">
+           <img src="/product/empty-cart.svg"/>
+           <p className="text-center">Your cart is empty</p>
+           </div>
           {cartItems.length === 0 ? (
-            <p>Your cart is empty</p>
-          ) : (
+          <p></p>
+          ) 
+          : (
+            
             <table className="cart-table">
               <thead>
                 <tr>
@@ -86,6 +102,7 @@ const Cart = () => {
             </table>
           )}
         </div>
+        
 
         <div className="order-summary">
           <h3>Order Summary</h3>

@@ -4,6 +4,20 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 
+const PaymentPage = () => {
+  const [currentPage, setCurrentPage] = useState("orderPage"); // "orderPage" or "paymentPage"
+  const [paymentMethod, setPaymentMethod] = useState("RazorPay");
+}
+
+  const handlePaymentSubmit = () => {
+    if (currentPage === "orderPage") {
+      console.log("Order confirmed!");
+      setCurrentPage("paymentPage"); // Navigate to the payment page
+    } else if (currentPage === "paymentPage") {
+      console.log("Payment submitted using:", paymentMethod);
+    }
+  };
+
 const Payment = () => {
   const router = useRouter();
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -83,22 +97,114 @@ const Payment = () => {
   return (
     <div className="container">
       <div className="payment-page">
-        <h2 className="payment-title">Payment Information</h2>
+        <h2 className="payment-title text-center mt-3">Payment Information</h2>
+        <div className="payment-container mt-4">
+          <div className="row">
+            <div className="col-lg-5">
+              <div className="order-summary">
+                <h3>Order Summary</h3>
+                <p>Sub Total: ₹{totalPrice.toFixed(2)}</p>
+                <p>Shipping: ₹{shipping.toFixed(2)}</p>
+                <p>Discount: -₹{discount.toFixed(2)}</p>
+                <hr />
+                <p>Total: ₹{finalPrice}</p>
+              </div>
+            </div>
+            <div className="col-lg-7">
+              {/* Conditionally render the shipping address input for COD */}
+              {paymentMethod === "COD" && (
+                <div className="shipping-address">
+                  <h4>Shipping Address</h4>
+                  <div className="row">
+                    <div className="col-lg-6">
+                      <input
+                        type="text"
+                        name="firstName"
+                        placeholder="First Name"
+                        value={shippingDetails.firstName}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                    <div className="col-lg-6">
+                      <input
+                        type="text"
+                        name="lastName"
+                        placeholder="Last Name"
+                        value={shippingDetails.lastName}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                
 
-        <div className="payment-container">
-          <div className="order-summary">
-            <h3>Order Summary</h3>
-            <p>Sub Total: ₹{totalPrice.toFixed(2)}</p>
-            <p>Shipping: ₹{shipping.toFixed(2)}</p>
-            <p>Discount: -₹{discount.toFixed(2)}</p>
-            <hr />
-            <p>Total: ₹{finalPrice}</p>
+                  <div className="col-lg-6">
+                  <input
+                    type="text"
+                    name="phone"
+                    placeholder="Phone Number"
+                    value={shippingDetails.phone}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  </div>
+                  <div className="col-lg-6">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    value={shippingDetails.email}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  </div>
+                  <div className="col-lg-6">
+                  <input
+                    type="text"
+                    name="pincode"
+                    placeholder="Pincode"
+                    value={shippingDetails.pincode}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  </div>
+                  <div className="col-lg-6">
+                  <input
+                    type="text"
+                    name="addressLine1"
+                    placeholder="Address Line 1"
+                    value={shippingDetails.addressLine1}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  </div>
+                  <div className="col-lg-12">
+                  <input
+                    type="text"
+                    name="addressLine2"
+                    placeholder="Address Line 2"
+                    value={shippingDetails.addressLine2}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                </div>
+                </div>
+              )}
+               <div className="text-center">
+              <button onClick={handlePaymentSubmit} className="submit-payment-button mt-3">
+                {paymentMethod === "RazorPay" ? "Pay with RazorPay" : "Confirm Order"}
+              </button>
+              </div>
+            </div>
           </div>
+
+
 
           <div className="payment-methods">
             <h3>Choose Payment Method</h3>
             <label className="payment-label">
               <input
+                className="mx-2"
                 type="radio"
                 name="paymentMethod"
                 value="COD"
@@ -109,6 +215,7 @@ const Payment = () => {
             </label>
             <label className="payment-label">
               <input
+                className="mx-2"
                 type="radio"
                 name="paymentMethod"
                 value="RazorPay"
@@ -118,72 +225,6 @@ const Payment = () => {
               RazorPay
             </label>
           </div>
-
-          {/* Conditionally render the shipping address input for COD */}
-          {paymentMethod === "COD" && (
-            <div className="shipping-address">
-              <h4>Shipping Address</h4>
-              <input
-                type="text"
-                name="firstName"
-                placeholder="First Name"
-                value={shippingDetails.firstName}
-                onChange={handleInputChange}
-                required
-              />
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Last Name"
-                value={shippingDetails.lastName}
-                onChange={handleInputChange}
-                required
-              />
-              <input
-                type="text"
-                name="phone"
-                placeholder="Phone Number"
-                value={shippingDetails.phone}
-                onChange={handleInputChange}
-                required
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                value={shippingDetails.email}
-                onChange={handleInputChange}
-                required
-              />
-              <input
-                type="text"
-                name="pincode"
-                placeholder="Pincode"
-                value={shippingDetails.pincode}
-                onChange={handleInputChange}
-                required
-              />
-              <input
-                type="text"
-                name="addressLine1"
-                placeholder="Address Line 1"
-                value={shippingDetails.addressLine1}
-                onChange={handleInputChange}
-                required
-              />
-              <input
-                type="text"
-                name="addressLine2"
-                placeholder="Address Line 2"
-                value={shippingDetails.addressLine2}
-                onChange={handleInputChange}
-              />
-            </div>
-          )}
-
-          <button onClick={handlePaymentSubmit} className="submit-payment-button">
-            {paymentMethod === "RazorPay" ? "Pay with RazorPay" : "Confirm Order"}
-          </button>
         </div>
       </div>
     </div>

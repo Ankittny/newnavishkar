@@ -4,19 +4,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 
-const PaymentPage = () => {
-  const [currentPage, setCurrentPage] = useState("orderPage"); // "orderPage" or "paymentPage"
-  const [paymentMethod, setPaymentMethod] = useState("RazorPay");
-}
 
-  const handlePaymentSubmit = () => {
-    if (currentPage === "orderPage") {
-      console.log("Order confirmed!");
-      setCurrentPage("paymentPage"); // Navigate to the payment page
-    } else if (currentPage === "paymentPage") {
-      console.log("Payment submitted using:", paymentMethod);
-    }
-  };
 
 const Payment = () => {
   const router = useRouter();
@@ -100,16 +88,7 @@ const Payment = () => {
         <h2 className="payment-title text-center mt-3">Payment Information</h2>
         <div className="payment-container mt-4">
           <div className="row">
-            <div className="col-lg-5">
-              <div className="order-summary">
-                <h3>Order Summary</h3>
-                <p>Sub Total: ₹{totalPrice.toFixed(2)}</p>
-                <p>Shipping: ₹{shipping.toFixed(2)}</p>
-                <p>Discount: -₹{discount.toFixed(2)}</p>
-                <hr />
-                <p>Total: ₹{finalPrice}</p>
-              </div>
-            </div>
+           
             <div className="col-lg-7">
               {/* Conditionally render the shipping address input for COD */}
               {paymentMethod === "COD" && (
@@ -196,11 +175,16 @@ const Payment = () => {
               </button>
               </div>
             </div>
-          </div>
-
-
-
-          <div className="payment-methods">
+            <div className="col-lg-5">
+              <div className="order-summary">
+                <h3>Order Summary</h3>
+                <p>Sub Total: ₹{totalPrice.toFixed(2)}</p>
+                <p>Shipping: ₹{shipping.toFixed(2)}</p>
+                <p>Discount: -₹{discount.toFixed(2)}</p>
+                <hr />
+                <p>Total: ₹{finalPrice}</p>
+              </div>
+              <div className="payment-methods mt-3">
             <h3>Choose Payment Method</h3>
             <label className="payment-label">
               <input
@@ -225,6 +209,12 @@ const Payment = () => {
               RazorPay
             </label>
           </div>
+            </div>
+          </div>
+
+
+
+          
         </div>
       </div>
     </div>

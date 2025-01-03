@@ -1,14 +1,13 @@
 "use client";
-
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { incrementQuantity, decrementQuantity } from "../../../redux/Reducer/Cart";
-import { useRouter } from "next/navigation"; // Import useRouter from next/navigation
+import { useRouter } from "next/navigation";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const router = useRouter(); // Initialize useRouter
+  const router = useRouter();
 
   const handleDecrement = (id) => {
     dispatch(decrementQuantity(id));
@@ -31,10 +30,9 @@ const Cart = () => {
   };
 
   const subTotal = calculateSubTotal(cartItems);
-  const shippingCost = 100; // Shipping charge
-  const discount = 50; // Fixed discount
+  const shippingCost = 100;
+  const discount = 50;
 
-  // Grand total calculation
   const grandTotal = subTotal + shippingCost - discount;
 
   const handleProceedToCheckout = () => {
@@ -42,7 +40,7 @@ const Cart = () => {
   };
 
   const handleContinueShopping = () => {
-    router.push("/"); // Navigate to the products page
+    router.push("/");
   };
 
   return (
@@ -50,25 +48,13 @@ const Cart = () => {
       <div className="cart-container">
         <div className="cart-items">
           <h2>Shopping Cart</h2>
-           <table className="process-card">
-            <thead>
-            <tr>
-                  <th>Product</th>
-                  <th>Unit Price</th>
-                  <th>Qty</th>
-                  <th>Total</th>
-                </tr>
-            </thead>
-           </table>
-           <div className="card-process-number text-center py-5 mt-5">
-           <img src="/product/empty-cart.svg"/>
-           <p className="text-center">Your cart is empty</p>
-           </div>
+
           {cartItems.length === 0 ? (
-          <p></p>
-          ) 
-          : (
-            
+            <div className="card-process-number text-center py-5 mt-5">
+              <img src="/product/empty-cart.svg" alt="Empty Cart" />
+              <p className="text-center">Your cart is empty</p>
+            </div>
+          ) : (
             <table className="cart-table">
               <thead>
                 <tr>
@@ -85,8 +71,7 @@ const Cart = () => {
                       <img src={item.imageUrl} alt={item.name} width={100} />
                       <p>{item.name}</p>
                     </td>
-                    <tr style={{borderBottom:"none"}}>
-                    <td className="">₹{parseFloat(item.price).toFixed(2)}</td>
+                    <td>₹{parseFloat(item.price).toFixed(2)}</td>
                     <td className="quantity-controls">
                       <button onClick={() => handleDecrement(item.id)}>-</button>
                       <span>{parseInt(item.quantity, 10)}</span>
@@ -95,14 +80,12 @@ const Cart = () => {
                     <td>
                       ₹{(parseFloat(item.price) * parseInt(item.quantity, 10)).toFixed(2)}
                     </td>
-                    </tr>
                   </tr>
                 ))}
               </tbody>
             </table>
           )}
         </div>
-        
 
         <div className="order-summary">
           <h3>Order Summary</h3>

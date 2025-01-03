@@ -60,12 +60,11 @@ const Cart = () => {
                 </tr>
             </thead>
            </table>
+           {cartItems.length === 0 ? (
            <div className="card-process-number text-center py-5 mt-5">
            <img src="/product/empty-cart.svg"/>
            <p className="text-center">Your cart is empty</p>
            </div>
-          {cartItems.length === 0 ? (
-          <p></p>
           ) 
           : (
             

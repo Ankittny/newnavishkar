@@ -88,7 +88,7 @@ const Payment = () => {
         <h2 className="payment-title text-center mt-3">Payment Information</h2>
         <div className="payment-container mt-4">
           <div className="row">
-           
+
             <div className="col-lg-7">
               {/* Conditionally render the shipping address input for COD */}
               {paymentMethod === "COD" && (
@@ -115,64 +115,65 @@ const Payment = () => {
                         required
                       />
                     </div>
-                
 
-                  <div className="col-lg-6">
-                  <input
-                    type="text"
-                    name="phone"
-                    placeholder="Phone Number"
-                    value={shippingDetails.phone}
-                    onChange={handleInputChange}
-                    required
-                  />
+
+                    <div className="col-lg-6">
+                      <input
+                        type="text"
+                        name="phone"
+                        placeholder="Phone Number"
+                        value={shippingDetails.phone}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                    <div className="col-lg-6">
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Email Address"
+                        value={shippingDetails.email}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                    <div className="col-lg-6">
+                      <input
+                        type="text"
+                        name="pincode"
+                        placeholder="Pincode"
+                        value={shippingDetails.pincode}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                    <div className="col-lg-6">
+                      <input
+                        type="text"
+                        name="addressLine1"
+                        placeholder="Address Line 1"
+                        value={shippingDetails.addressLine1}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                    <div className="col-lg-12">
+                      <input
+                        type="text"
+                        name="addressLine2"
+                        placeholder="Address Line 2"
+                        value={shippingDetails.addressLine2}
+                        onChange={handleInputChange}
+                      />
+                    </div>
                   </div>
-                  <div className="col-lg-6">
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email Address"
-                    value={shippingDetails.email}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  </div>
-                  <div className="col-lg-6">
-                  <input
-                    type="text"
-                    name="pincode"
-                    placeholder="Pincode"
-                    value={shippingDetails.pincode}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  </div>
-                  <div className="col-lg-6">
-                  <input
-                    type="text"
-                    name="addressLine1"
-                    placeholder="Address Line 1"
-                    value={shippingDetails.addressLine1}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  </div>
-                  <div className="col-lg-12">
-                  <input
-                    type="text"
-                    name="addressLine2"
-                    placeholder="Address Line 2"
-                    value={shippingDetails.addressLine2}
-                    onChange={handleInputChange}
-                  />
-                </div>
-                </div>
                 </div>
               )}
-               <div className="text-center">
-              <button onClick={handlePaymentSubmit} className="submit-payment-button mt-3">
-                {paymentMethod === "RazorPay" ? "Pay with RazorPay" : "Confirm Order"}
-              </button>
+              
+              <div className="text-center">
+                <button onClick={handlePaymentSubmit} className="submit-payment-button mt-3">
+                  {paymentMethod === "RazorPay" ? "Pay with RazorPay" : "Confirm Order"}
+                </button>
               </div>
             </div>
             <div className="col-lg-5">
@@ -185,36 +186,34 @@ const Payment = () => {
                 <p>Total: ₹{finalPrice}</p>
               </div>
               <div className="payment-methods mt-3">
-            <h3>Choose Payment Method</h3>
-            <label className="payment-label">
-              <input
-                className="mx-2"
-                type="radio"
-                name="paymentMethod"
-                value="COD"
-                checked={paymentMethod === "COD"}
-                onChange={(e) => setPaymentMethod(e.target.value)}
-              />
-              COD
-            </label>
-            <label className="payment-label">
-              <input
-                className="mx-2"
-                type="radio"
-                name="paymentMethod"
-                value="RazorPay"
-                checked={paymentMethod === "RazorPay"}
-                onChange={(e) => setPaymentMethod(e.target.value)}
-              />
-              RazorPay
-            </label>
-          </div>
+                <h3>Choose Payment Method</h3>
+                <label className="payment-label">
+                  <input
+                    className="mx-2"
+                    type="radio"
+                    name="paymentMethod"
+                    value="COD"
+                    checked={paymentMethod === "COD"}
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                  />
+                  COD
+                </label>
+
+
+                <label className="payment-label">
+                  <input
+                    className="mx-2"
+                    type="radio"
+                    name="paymentMethod"
+                    value="RazorPay"
+                    checked={paymentMethod === "RazorPay"}
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                  />
+                  RazorPay
+                </label>
+              </div>
             </div>
           </div>
-
-
-
-          
         </div>
       </div>
     </div>

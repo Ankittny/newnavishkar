@@ -205,7 +205,7 @@ const Home = () => {
       </section>
 
       {/* ===========================================minos -title =================================== */}
-      <div className="containers">
+      <div className="container">
         <div class="frame mt-5"></div>
       </div>
 

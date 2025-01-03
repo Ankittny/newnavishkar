@@ -262,7 +262,7 @@
 
 .frame {
   width: 100%;
-  height: 400px;
+  height: 350px;
     background-position: center;
     background-size: cover;
     animation: image 5s infinite alternate;
@@ -307,7 +307,16 @@
 .toys-text {
     padding: 10px 10px;
 }
+.world-title-heading, .bg-find{
+    flex-direction: column;
 }
+.back-bg-title img{
+    width: 100%;
+    height: auto;
+}
+}
+
+
 
 @media(max-width:767px){
     .award-name{
@@ -320,6 +329,46 @@
     .meet-minos-title{
         margin-top: 20px;
     }
+}
+
+@media(max-width:991px) and (min-width:425px){
+    .drone-image img{
+        width: 100%;
+        height: auto;
+    }
+    .award-price{
+        flex-direction: column;
+    }
+    .home-learn-title{
+        flex-direction: column;
+    }
+ 
+}
+@media(max-width:1199px) and (min-width:992px){
+    .frame {
+        width: 100%;
+        height: 300px;
+}
+}
+@media(max-width:991px) and (min-width:768px){
+    .frame {
+    width:100%;
+    height: 200px;
+}
+}
+
+@media(max-width:767px) and (min-width:576px){
+    .frame {
+        width: 510px;
+        height: 140px;
+}
+}
+
+@media(max-width:575px) and (min-width:426px){
+    .frame {
+        width: 430px;
+        height: 140px;
+}
 }
 
 @media(max-width:425px){
@@ -338,8 +387,31 @@
     margin-top: 0 !important;
 }
 .Learning-title {
-    font-size: 25px;
+    font-size: 20px;
 }
+.frame {
+    width: 420px;
+    height: 130px;
+}
+.drone-image  img{
+    width: 100%;
+    height: auto !important;
+
+}
+}
+
+@media (max-width: 375px){
+    .frame {
+        width: 300px;
+        height: 90px;
+    }
+}
+
+@media (max-width:320px){
+    .frame {
+        width: 300px;
+        height: 90px;
+    }
 }
 
 .testiminoal-flower-typical strong{

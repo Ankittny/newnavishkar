@@ -354,6 +354,9 @@
         height: 225px;
         object-fit: cover;
     }
+    .all-toys {
+        flex-direction: column;
+    }
 }
 
 
@@ -366,6 +369,13 @@
     }
     
 }
+
+@media(max-width:576px) and (min-width:426px){
+    .navi-title p {
+        font-size: 15px;
+}
+}
+
 
 @media(max-width:425px){
     .shopByAge {
@@ -381,4 +391,5 @@
       .MuiGrid-container {
         display: flex !important;
     }
+    
 }

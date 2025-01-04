@@ -469,7 +469,7 @@ const Home = () => {
       <section className="shopbyintrest">
         <div className="container">
           <div className="row">
-            <div className="col-12">
+            <div className="col-lg-12">
               <div className="shop-by-title text-center">
                 <h5>
                   SHOP BY{" "}

@@ -4,7 +4,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/Reducer/Cart"; // Import the addToCart action
 
-const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id}) => {
+const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id }) => {
   const dispatch = useDispatch();
 
   // Calculate the actual price based on the discount type
@@ -21,13 +21,7 @@ const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id}) =>
   return (
     <div className="play-role-title title-access">
       <div className="play-kit-title play-cubric">
-      <Image
-        src={imageUrl} // Ensure this URL is valid
-        alt={name || "Product Image"}
-        width={300} // Adjust as needed
-        height={200} // Adjust as needed
-        className="cursor" // Ensure CSS styling for `.cursor` is defined
-      />
+        <Image src={imageUrl} alt="image" width={300} height={200} onClick={onClick} className="curser" />
       </div>
       <div className="playkit-action action-inject">
         <div className="kit-down">
@@ -53,6 +47,7 @@ const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id}) =>
         <button onClick={handleAddToCart}>ADD TO CART</button>
       </div>
     </div>
+    
   );
 };
 

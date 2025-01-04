@@ -20,15 +20,11 @@ import { useDispatch, useSelector } from "react-redux";
 // import { categories } from "@/redux/Action/category";
 import { homeProducts } from "@/redux/Action/HomeProduct";
 import { API_URL } from "../../../config/config";
-
-const buttonsData = [
-  { name: "Activity Kits" },
-  { name: "Mechanical Toys" },
-  { name: "Games" },
-  { name: "Technology Toys" },
-  { name: "Science Toys" },
-  { name: "Engineering Toys" },
-];
+import Tab from "@mui/material/Tab";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
+import Box from "@mui/material/Box";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -37,6 +33,11 @@ const Home = () => {
 
   const [productsData, setProductsData] = useState([]);
   const { loading, products, error } = useSelector((state) => state.home);
+  const [activeTab, setActiveTab] = useState(null); // To track which tab is active
+
+  const handleTabClick = (tabIndex) => {
+    setActiveTab(tabIndex);
+  };
 
   const fetchProductData = async () => {
     try {
@@ -271,18 +272,8 @@ const Home = () => {
           <h3 className="fw-bolder text-center">Featured Topics By Category</h3>
         </div>
       </div>
-      {/* <div className="mt-5">
-   <Button  buttonsData={buttonsData}/>
-   </div> */}
       <section className="shopbyintrest mt-5">
         <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <div class="list-items">
-                <Button buttonsData={buttonsData} />
-              </div>
-            </div>
-          </div>
           <div className="row mt-5">
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
               <div className="meet-minos-title mt-5">
@@ -320,7 +311,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="shopbyintrest">
+      {/* <section className="shopbyintrest">
         <div className="container">
           <div className="row">
             <div className="col-12">
@@ -334,15 +325,46 @@ const Home = () => {
                   </span>
                 </h5>
               </div>
-              <div className="list-items">
-                {productsData[0] &&
+
+              <div className="tabs-container">
+                {productsData.length > 0 &&
                 productsData[0].childes &&
                 productsData[0].childes.length > 0 ? (
-                  productsData[0].childes.map((child) => (
-                    <Button key={child.id} buttonName={child.name} />
-                  ))
+                  <TabContext value={value}>
+                    <Box className="tabs-wrapper">
+                      <TabList
+                        onChange={handleChange}
+                        aria-label="Dynamic API Tabs"
+                        className="tab-buttons"
+                      >
+                        {productsData[0].childes.map((child, index) => (
+                          <Tab
+                            key={child.id}
+                            label={child.name}
+                            value={index.toString()}
+                          />
+                        ))}
+                      </TabList>
+                    </Box>
+                    {productsData[0].childes.map((child, index) => (
+                      <TabPanel
+                        key={child.id}
+                        value={index.toString()}
+                        className="tab-content"
+                      >
+                        <Card
+                          key={child.id} // Ensure product id is unique for each Card
+                          id={child.id}
+                          imageUrl={`${API_URL}child.icon_full_url` || ""}
+                          name={child.name}
+                          onClick={() => handleCardClick(child.slug)} // Handle card click action
+                          onAddToCart={() => handleAddToCart(child.id)} // Handle add to cart action
+                        />
+                      </TabPanel>
+                    ))}
+                  </TabContext>
                 ) : (
-                  <p>No Subcategory</p>
+                  <p className="no-data-message">No Subcategory</p>
                 )}
               </div>
             </div>
@@ -381,15 +403,39 @@ const Home = () => {
                   </span>
                 </h5>
               </div>
-              <div className="list-items">
-                {productsData[1] &&
+              <div className="tabs-container">
+                {productsData.length > 0 &&
                 productsData[1].childes &&
                 productsData[1].childes.length > 0 ? (
-                  productsData[1].childes.map((child) => (
-                    <Button key={child.id} buttonName={child.name} />
-                  ))
+                  <TabContext value={value}>
+                    <Box className="tabs-wrapper">
+                      <TabList
+                        onChange={handleChange}
+                        aria-label="Dynamic API Tabs"
+                        className="tab-buttons"
+                      >
+                        {productsData[1].childes.map((child, index) => (
+                          <Tab
+                            key={child.id}
+                            label={child.name}
+                            value={index.toString()}
+                          />
+                        ))}
+                      </TabList>
+                    </Box>
+                    {productsData[1].childes.map((child, index) => (
+                      <TabPanel
+                        key={child.id}
+                        value={index.toString()}
+                        className="tab-content"
+                      >
+                        <h3>{child.name}</h3>
+                        <p>Details or content for {child.name}</p>
+                      </TabPanel>
+                    ))}
+                  </TabContext>
                 ) : (
-                  <p>No Subcategory</p>
+                  <p className="no-data-message">No Subcategory</p>
                 )}
               </div>
             </div>
@@ -414,6 +460,93 @@ const Home = () => {
                 ) : (
                   <p>No products available</p> // Show if no products found
                 )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> */}
+
+      <section className="shopbyintrest">
+        <div className="container">
+          <div className="row">
+            <div className="col-12">
+              <div className="shop-by-title text-center">
+                <h5>
+                  SHOP BY{" "}
+                  <span>
+                    {productsData[0]?.slug || "No category available"}
+                  </span>
+                </h5>
+              </div>
+              <div className="tabs-container">
+                {productsData.length > 0 &&
+                productsData[0].childes &&
+                productsData[0].childes.length > 0 ? (
+                  <TabContext value={activeTab}>
+                    <Box className="tabs-wrapper">
+                      <TabList
+                        aria-label="Dynamic API Tabs"
+                        className="tab-buttons"
+                      >
+                        {productsData[0].childes.map((child, index) => (
+                          <Tab
+                            key={child.id}
+                            label={child.name}
+                            value={index.toString()}
+                            onClick={() => handleTabClick(index.toString())}
+                          />
+                        ))}
+                      </TabList>
+                    </Box>
+                    {activeTab !== null &&
+                      productsData[0].childes?.map((child, index) => (
+                        <TabPanel
+                          key={child.id}
+                          value={index.toString()}
+                          className="tab-content"
+                        >
+                          {child.products && child.products.length > 0 ? (
+                            child.products.map((product) => (
+                              <Card
+                                key={product.id}
+                                id={product.id}
+                                imageUrl={`https://navishkar.overseaseducationlane.com/public/assets/back-end/product/thumbnail/${product.thumbnail || ""}`}
+                                name={product.name}
+                                discount={product.discount}
+                                price={product.unit_price}
+                                onClick={() => handleCardClick(product.slug)}
+                                onAddToCart={() => handleAddToCart(product.id)}
+                              />
+                            ))
+                          ) : (
+                            <p>No products available in this category</p>
+                          )}
+                        </TabPanel>
+                      ))}
+                  </TabContext>
+                ) : (
+                  <p className="no-data-message">No Subcategory</p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div className="row dr-title mt-5">
+            <div className="col-md-12">
+              <div className="card-container">
+                {activeTab === null && // Show main cards when no tab is active
+                  productsData[0]?.products?.map((product) => (
+                    <Card
+                      key={product.id}
+                      id={product.id}
+                      imageUrl={`https://navishkar.overseaseducationlane.com/public/assets/back-end/product/thumbnail/${product.thumbnail_full_url?.key || ""}`}
+                      name={product.name}
+                      price={product.unit_price}
+                      discount={product.discount}
+                      onClick={() => handleCardClick(product.slug)}
+                      onAddToCart={() => handleAddToCart(product.id)}
+                    />
+                  ))}
               </div>
             </div>
           </div>

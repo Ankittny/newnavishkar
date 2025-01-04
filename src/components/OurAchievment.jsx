@@ -1,37 +1,48 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
 import Image from "next/image";
-
+import { Banner } from "@/redux/Action/Banner";
+import { useDispatch, useSelector } from "react-redux";
 
 const OurAchievement = () => {
+  const dispatch = useDispatch();
+  const { loading, BannerImage, error } = useSelector((state) => state.banner);
+
+  useEffect(() => {
+    // Dispatch Redux action to fetch banners
+    dispatch(Banner());
+  }, [dispatch]);
+
   return (
-    <>
-      <div className=" mb-5">
-        <div className="row">
-          <div className="col-12">
-            <div className="shop-by-title text-center">
-              <h5>
-                OUR <span>ACHIEVEMENTS</span>
-              </h5>
-            </div>
+    <div className="mb-5">
+      <div className="row">
+        <div className="col-12">
+          <div className="shop-by-title text-center">
+            <h5>
+              OUR <span>ACHIEVEMENTS</span>
+            </h5>
           </div>
         </div>
-        <div className="row">
-          <div className="col-12">
-            <div className="slide-container">
+      </div>
+      <div className="row">
+        <div className="col-12">
+          <div className="slide-container">
+            {loading && <p>Loading...</p>}
+            {error && <p>Error: {error}</p>}
+            {!loading && !error && BannerImage.length > 0 && (
               <Swiper
                 navigation={false}
-                modules={[Autoplay, Navigation]} // Importing Autoplay module
+                modules={[Autoplay, Navigation]}
                 className="mySwiper"
                 autoplay={{
-                  delay: 3000, // Adjust delay as needed
+                  delay: 3000,
                   disableOnInteraction: false,
                 }}
-                loop={true} 
+                loop={true}
                 breakpoints={{
                   640: {
                     slidesPerView: 2,
@@ -46,29 +57,23 @@ const OurAchievement = () => {
                     spaceBetween: 50,
                   },
                 }}
-               
               >
-                <SwiperSlide>
-                  <Image src={'/achievement/ach1.png'} height={200} width={200} alt="Achievement 1" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Image src={'/achievement/achi2.png'} width={200} height={200} alt="Achievement 2" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Image src={'/achievement/ach3.png'} height={200} width={200} alt="Achievement 3" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Image src={'/achievement/ach4.png'} width={200} height={200} alt="Achievement 4" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Image src={'/achievement/ach5.png'} height={200} width={200} alt="Achievement 5" />
-                </SwiperSlide>
+                {BannerImage.map((banner, index) => (
+                  <SwiperSlide key={index}>
+                    <Image
+                      src={banner.photo_full_url.path} // Replace with the actual field from your API
+                      height={200}
+                      width={200}
+                      alt={`Achievement ${index + 1}`}
+                    />
+                  </SwiperSlide>
+                ))}
               </Swiper>
-            </div>
+            )}
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

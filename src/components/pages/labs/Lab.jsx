@@ -26,7 +26,7 @@ const Lab = () => {
 
   useEffect(() => {
     fetchLabData();
-  }, []);
+  }, []);   
 
   const handleClick = (id) => {
     router.push(`/labs${id}`);

@@ -49,61 +49,54 @@ const Cart = () => {
         <div className="cart-items">
           <h2>Shopping Cart</h2>
 
-
           {cartItems.length === 0 ? (
             <div className="card-process-number text-center py-5 mt-5">
               <img src="/product/empty-cart.svg" alt="Empty Cart" />
               <p className="text-center">Your cart is empty</p>
             </div>
           ) : (
-
-           <table className="process-card">
-            <thead>
-            <tr>
-                  <th>Product</th>
-                  <th>Unit Price</th>
-                  <th>Qty</th>
-                  <th>Total</th>
-                </tr>
-            </thead>
-           </table>
-           {cartItems.length === 0 ? (
-           <div className="card-process-number text-center py-5 mt-5">
-           <img src="/product/empty-cart.svg"/>
-           <p className="text-center">Your cart is empty</p>
-           </div>
-          ) 
-          : (
-            
-            <table className="cart-table">
-              <thead>
-                <tr>
-                  <th>Product</th>
-                  <th>Unit Price</th>
-                  <th>Qty</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                {cartItems.map((item) => (
-                  <tr key={item.id}>
-                    <td className="cart-item">
-                      <img src={item.imageUrl} alt={item.name} width={100} />
-                      <p>{item.name}</p>
-                    </td>
-                    <td>₹{parseFloat(item.price).toFixed(2)}</td>
-                    <td className="quantity-controls">
-                      <button onClick={() => handleDecrement(item.id)}>-</button>
-                      <span>{parseInt(item.quantity, 10)}</span>
-                      <button onClick={() => handleIncrement(item.id)}>+</button>
-                    </td>
-                    <td>
-                      ₹{(parseFloat(item.price) * parseInt(item.quantity, 10)).toFixed(2)}
-                    </td>
+            <>
+              <table className="process-card">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Unit Price</th>
+                    <th>Qty</th>
+                    <th>Total</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+              </table>
+
+              <table className="cart-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Unit Price</th>
+                    <th>Qty</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cartItems.map((item) => (
+                    <tr key={item.id}>
+                      <td className="cart-item">
+                        <img src={item.imageUrl} alt={item.name} width={100} />
+                        <p>{item.name}</p>
+                      </td>
+                      <td>₹{parseFloat(item.price).toFixed(2)}</td>
+                      <td className="quantity-controls">
+                        <button onClick={() => handleDecrement(item.id)}>-</button>
+                        <span>{parseInt(item.quantity, 10)}</span>
+                        <button onClick={() => handleIncrement(item.id)}>+</button>
+                      </td>
+                      <td>
+                        ₹{(parseFloat(item.price) * parseInt(item.quantity, 10)).toFixed(2)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
           )}
         </div>
 

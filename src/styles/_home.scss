@@ -424,3 +424,77 @@
     font-size: 25px;
     color: #030F40;
 }
+
+
+// tabs
+
+.tabs-container {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 20px;
+    
+  }
+  
+  .tabs-wrapper {
+    margin-bottom: 20px;
+    gap:20px
+  }
+  
+  .tab-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    
+  }
+  
+  .tab-buttons .MuiTab-root {
+    background-color: #fda000;
+    border-radius:30px;
+    padding: 10px 20px;
+    text-transform: none;
+    font-weight: bold;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+    
+  }
+  
+
+  
+  .tab-content {
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+
+    padding: 20px;
+    
+  }
+  
+  .tab-content h3 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .tab-content p {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .no-data-message {
+    font-size: 1.2rem;
+    color: #999;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .css-1usuzwp-MuiButtonBase-root-MuiTab-root.Mui-selected {
+    color: black !important;
+}
+.css-1qltlow-MuiTabs-indicator {
+    // background-color: #175A95 !important
+    display: none;
+}
+.css-1wxkzlj-MuiTabs-flexContainer{
+    gap: 20px;
+}

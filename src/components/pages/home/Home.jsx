@@ -311,161 +311,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* <section className="shopbyintrest">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <div className="shop-by-title text-center">
-                <h5>
-                  SHOP BY{" "}
-                  <span>
-                    {productsData && productsData[0]
-                      ? productsData[0].slug
-                      : "No category available"}
-                  </span>
-                </h5>
-              </div>
-
-              <div className="tabs-container">
-                {productsData.length > 0 &&
-                productsData[0].childes &&
-                productsData[0].childes.length > 0 ? (
-                  <TabContext value={value}>
-                    <Box className="tabs-wrapper">
-                      <TabList
-                        onChange={handleChange}
-                        aria-label="Dynamic API Tabs"
-                        className="tab-buttons"
-                      >
-                        {productsData[0].childes.map((child, index) => (
-                          <Tab
-                            key={child.id}
-                            label={child.name}
-                            value={index.toString()}
-                          />
-                        ))}
-                      </TabList>
-                    </Box>
-                    {productsData[0].childes.map((child, index) => (
-                      <TabPanel
-                        key={child.id}
-                        value={index.toString()}
-                        className="tab-content"
-                      >
-                        <Card
-                          key={child.id} // Ensure product id is unique for each Card
-                          id={child.id}
-                          imageUrl={`${API_URL}child.icon_full_url` || ""}
-                          name={child.name}
-                          onClick={() => handleCardClick(child.slug)} // Handle card click action
-                          onAddToCart={() => handleAddToCart(child.id)} // Handle add to cart action
-                        />
-                      </TabPanel>
-                    ))}
-                  </TabContext>
-                ) : (
-                  <p className="no-data-message">No Subcategory</p>
-                )}
-              </div>
-            </div>
-          </div>
-          <div class="row dr-title mt-5">
-            <div class="col-md-12">
-              <div class="card-container">
-                {productsData[0] &&
-                productsData[0].products &&
-                productsData[0].products.length > 0 ? (
-                  productsData[0].products.map((product) => (
-                    <Card
-                      key={product.id} // Ensure product id is unique for each Card
-                      id={product.id}
-                      imageUrl={`${API_URL}product.thumbnail` || ""}
-                      name={product.name}
-                      onClick={() => handleCardClick(product.slug)} // Handle card click action
-                      onAddToCart={() => handleAddToCart(product.id)} // Handle add to cart action
-                    />
-                  ))
-                ) : (
-                  <p>No products available</p> // Show if no products found
-                )}
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-12">
-              <div className="shop-by-title text-center">
-                <h5>
-                  SHOP BY{" "}
-                  <span>
-                    {productsData && productsData[1]
-                      ? productsData[1].slug
-                      : "No category available"}
-                  </span>
-                </h5>
-              </div>
-              <div className="tabs-container">
-                {productsData.length > 0 &&
-                productsData[1].childes &&
-                productsData[1].childes.length > 0 ? (
-                  <TabContext value={value}>
-                    <Box className="tabs-wrapper">
-                      <TabList
-                        onChange={handleChange}
-                        aria-label="Dynamic API Tabs"
-                        className="tab-buttons"
-                      >
-                        {productsData[1].childes.map((child, index) => (
-                          <Tab
-                            key={child.id}
-                            label={child.name}
-                            value={index.toString()}
-                          />
-                        ))}
-                      </TabList>
-                    </Box>
-                    {productsData[1].childes.map((child, index) => (
-                      <TabPanel
-                        key={child.id}
-                        value={index.toString()}
-                        className="tab-content"
-                      >
-                        <h3>{child.name}</h3>
-                        <p>Details or content for {child.name}</p>
-                      </TabPanel>
-                    ))}
-                  </TabContext>
-                ) : (
-                  <p className="no-data-message">No Subcategory</p>
-                )}
-              </div>
-            </div>
-          </div>
-
-          <div class="row dr-title mt-5">
-            <div class="col-md-12">
-              <div class="card-container">
-                {productsData[1] &&
-                productsData[1].products &&
-                productsData[1].products.length > 0 ? (
-                  productsData[1].products.map((product) => (
-                    <Card
-                      key={product.id} // Ensure product id is unique for each Card
-                      id={product.id}
-                      imageUrl={`${API_URL}product.thumbnail` || ""}
-                      name={product.name}
-                      onClick={() => handleCardClick(product.slug)} // Handle card click action
-                      onAddToCart={() => handleAddToCart(product.id)} // Handle add to cart action
-                    />
-                  ))
-                ) : (
-                  <p>No products available</p> // Show if no products found
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
+    
       <section className="shopbyintrest">
         <div className="container">
           <div className="row">
@@ -507,7 +353,8 @@ const Home = () => {
                         >
                           {child.products && child.products.length > 0 ? (
                             child.products.map((product) => (
-                              <Card
+                              
+                                <Card
                                 key={product.id}
                                 id={product.id}
                                 imageUrl={`https://navishkar.overseaseducationlane.com/public/assets/back-end/product/thumbnail/${product.thumbnail || ""}`}
@@ -517,6 +364,7 @@ const Home = () => {
                                 onClick={() => handleCardClick(product.slug)}
                                 onAddToCart={() => handleAddToCart(product.id)}
                               />
+                              
                             ))
                           ) : (
                             <p>No products available in this category</p>

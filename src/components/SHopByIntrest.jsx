@@ -240,26 +240,7 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
                 </h5>
                 <p>A whole lotta fun & learning</p>
               </div>
-              <div class="list-items">
-                
-                {/* <ul class="list-inline d-flex justify-content-center gap-5">
-                  <li class="active"><Link href="#">Activity Kits</Link></li>
-                  <li><Link href="#">Mechanical Toys</Link></li>
-                  <li><Link href="#">Games</Link></li>
-                  <li><Link href="#">Technology Toys</Link></li>
-                  <li><Link href="#">Science Toys</Link></li>
-                  <li><Link href="#">Engineering Toys</Link></li> */}
-                   <Button  buttonsData={buttonsData}/>
-                {/* <ul class="list-inline d-flex justify-content-center gap-5">
-                  <li class="active"><a href="#">Activity Kits</a></li>
-                  <li><a href="#">Mechanical Toys</a></li>
-                  <li><a href="#">Games</a></li>
-                  <li><a href="#">Technology Toys</a></li>
-                  <li><a href="#">Science Toys</a></li>
-                  <li><a href="#">Engineering Toys</a></li>
-                </ul> */}
-                {/* </ul> */}
-              </div>
+    
             </div>
           </div>
 

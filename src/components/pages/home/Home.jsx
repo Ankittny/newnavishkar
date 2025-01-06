@@ -480,8 +480,8 @@ const Home = () => {
               </div>
               <div className="tabs-container">
                 {productsData.length > 0 &&
-                productsData[0].childes &&
-                productsData[0].childes.length > 0 ? (
+                  productsData[0].childes &&
+                  productsData[0].childes.length > 0 ? (
                   <TabContext value={activeTab}>
                     <Box className="tabs-wrapper">
                       <TabList

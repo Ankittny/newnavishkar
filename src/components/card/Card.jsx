@@ -10,8 +10,8 @@ const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id }) =
   // Calculate the actual price based on the discount type
   const percentageDiscountAmount = (price * discount) / 100;
   const flatDiscountAmount = discount_type === "flat" ? discount : 0;
-  const ActualPrice = discount_type === "percent" 
-    ? price - percentageDiscountAmount 
+  const ActualPrice = discount_type === "percent"
+    ? price - percentageDiscountAmount
     : price - flatDiscountAmount;
 
   const handleAddToCart = () => {
@@ -34,7 +34,7 @@ const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id }) =
           ) : (
             <div className="save-btn">Save ₹{flatDiscountAmount}</div>
           )}
-          
+
           <div className="price-text">
             <span>₹{ActualPrice}</span>
           </div>
@@ -47,7 +47,7 @@ const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id }) =
         <button onClick={handleAddToCart}>ADD TO CART</button>
       </div>
     </div>
-    
+
   );
 };
 

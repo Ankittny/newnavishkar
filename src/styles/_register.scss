@@ -27,6 +27,16 @@
 .MuiButton-containedPrimary{
   width: 100%;
 }
+.MuiButton-contained{
+  width: 100% !important;
+}
+
+
+
+
+
+
+
 @media(max-width:991px){
   .MuiGrid-container {
     display: grid !important;

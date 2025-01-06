@@ -206,7 +206,7 @@ const Home = () => {
       </section>
 
       {/* ===========================================minos -title =================================== */}
-      <div className="containers">
+      <div className="container">
         <div class="frame mt-5"></div>
       </div>
 
@@ -315,7 +315,7 @@ const Home = () => {
       <section className="shopbyintrest">
         <div className="container">
           <div className="row">
-            <div className="col-12">
+            <div className="col-lg-12">
               <div className="shop-by-title text-center">
                 <h5>
                   SHOP BY{" "}
@@ -326,8 +326,8 @@ const Home = () => {
               </div>
               <div className="tabs-container">
                 {productsData.length > 0 &&
-                productsData[0].childes &&
-                productsData[0].childes.length > 0 ? (
+                  productsData[0].childes &&
+                  productsData[0].childes.length > 0 ? (
                   <TabContext value={activeTab}>
                     <Box className="tabs-wrapper">
                       <TabList

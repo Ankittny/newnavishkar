@@ -1,7 +1,13 @@
 .play-role-title{
     // margin-top: 30px;
-    width: 220px;
+   
+    // flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: calc(33.33% - 20px);
+    box-sizing: border-box;
+    margin-bottom: 20px;
   }
+  
   
   .title-access{
     background-color: #f5f7f8;
@@ -114,4 +120,27 @@
   }
   .overline-text p{
     text-decoration: line-through;
+  }
+  .css-13xfq8m-MuiTabPanel-root{
+    display: flex;
+    gap: 20px;
+  }
+
+  @media(max-width:767px) and (min-width:426px){
+    .play-role-title {
+      width: 100%;
+  }
+  .css-13xfq8m-MuiTabPanel-root{
+    flex-direction: column;
+  }
+  }
+
+  @media(max-width:425px){
+    .play-role-title {
+      width: 100%;
+  }
+  .css-13xfq8m-MuiTabPanel-root{
+     flex-direction: column;
+  }
+
   }

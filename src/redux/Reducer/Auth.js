@@ -8,53 +8,94 @@ const initialState = {
   successMessage: null,
   isLoggedIn: false,
   isError: false,
-  isSuccess: false, // Add this to the initial state
+  isSuccess: false, // Tracks successful operations
+  profile_status: false, // Add profile status
 };
 
 export const authReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase("registerRequest", (state) => {
+    .addCase("profileRequest", (state) => {
       state.loading = true;
       state.isAuthenticated = false;
       state.error = null;
       state.isError = false;
     })
-    .addCase("registerSuccess", (state, action) => {
+    .addCase("profileSuccess", (state, action) => {
       state.loading = false;
       state.isAuthenticated = true;
       state.user = action.payload;
       state.isLoggedIn = true;
-      state.successMessage = "Registration successful!";
+      state.successMessage = "Profile update successful!";
       state.isError = false;
     })
-    .addCase("registerFail", (state, action) => {
+    .addCase("profileFail", (state, action) => {
       state.loading = false;
       state.error = action.payload;
       state.isError = true;
     })
+
+    // .addCase("loginRequest", (state) => {
+    //   state.loading = true;
+    //   state.isAuthenticated = false;
+    //   state.error = null;
+    //   state.isSuccess = false; // Reset success state
+    // })
+    // .addCase("loginSuccess", (state, action) => {
+    //   state.loading = false;
+    //   state.isAuthenticated = true;
+    //   state.user = action.payload;
+    //   state.isLoggedIn = true;
+    //   state.successMessage = "Login successful!";
+    //   state.isError = false;
+    //   state.isSuccess = true; // Set success state
+    // })
+    // .addCase("loginFail", (state, action) => {
+    //   state.loading = false;
+    //   state.isAuthenticated = false;
+    //   state.error = action.payload;
+    //   state.isError = true;
+    //   state.isSuccess = false; // Reset success state
+    // })
+
+    .addCase("sendOtpRequest", (state) => {
+      state.loading = true;
+      state.successMessage = null;
+      state.error = null;
+    })
+    .addCase("sendOtpSuccess", (state, action) => {
+      state.loading = false;
+      state.successMessage = action.payload;
+      state.error = null;
+    })
+    .addCase("sendOtpFail", (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    })
+
+    .addCase("verifyOtpRequest", (state) => {
+      state.loading = true;
+      state.isAuthenticated = false;
+      state.error = null;
+    })
+
+    .addCase("verifyOtpSuccess", (state, action) => {
+      state.loading = false;
+      state.isAuthenticated = true;
+      state.user = action.payload.user;
+      state.isLoggedIn = true;
+      state.profile_status = action.payload.profile_status; // Set profile status from response
+      state.successMessage = "OTP verified successfully!";
+      state.isError = false;
+      state.isSuccess = true;
+    })
+    .addCase("verifyOtpFail", (state, action) => {
+      state.loading = false;
+      state.error = action.payload;  // Store the error message
+      state.isError = true;
+      state.isSuccess = false;
+    })
+
     
-    .addCase("loginRequest", (state) => {
-      state.loading = true;
-      state.isAuthenticated = false;
-      state.error = null;
-      state.isSuccess = false; // Reset isSuccess
-    })
-    .addCase("loginSuccess", (state, action) => {
-      state.loading = false;
-      state.isAuthenticated = true;
-      state.user = action.payload;
-      state.isLoggedIn = true;
-      state.successMessage = "Login successful!";
-      state.isError = false;
-      state.isSuccess = true; // Set isSuccess to true
-    })
-    .addCase("loginFail", (state, action) => {
-      state.loading = false;
-      state.isAuthenticated = false;
-      state.error = action.payload;
-      state.isError = true;
-      state.isSuccess = false; // Reset isSuccess
-    })
     .addCase("logoutRequest", (state) => {
       state.loading = true;
     })
@@ -63,9 +104,11 @@ export const authReducer = createReducer(initialState, (builder) => {
       state.isAuthenticated = false;
       state.user = null;
       state.isLoggedIn = false;
+      state.successMessage = "Logout successful!"; // Added success message for logout
     })
     .addCase("logoutFail", (state, action) => {
       state.loading = false;
       state.error = action.payload;
+      state.isError = true; // Mark error state for logout failure
     });
 });

@@ -20,9 +20,10 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "../../styles/_register.scss";
 import { Facebook as FacebookIcon, Google as GoogleIcon } from "@mui/icons-material";
-import { register } from "@/redux/Action/Auth";
+// import { register } from "@/redux/Action/Auth";
 import { useSelector, useDispatch } from "react-redux";
 import Image from "next/image";
+import { profile } from "@/redux/Action/Auth";
 
 // Styles for the component
 const useStyles = makeStyles((theme) => ({
@@ -82,7 +83,7 @@ const validationSchema = Yup.object({
   termsAccepted: Yup.bool().oneOf([true], "You must accept the terms"),
 });
 
-export default function Register() {
+export default function Profile() {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const [showCPassword, setShowCPassword] = useState(false);
@@ -95,7 +96,7 @@ export default function Register() {
     try {
       const { cpassword, termsAccepted, ...registerValues } = values;
       console.log("Register Values:", registerValues);
-      const response = await dispatch(register(registerValues));
+      const response = await dispatch(profile(registerValues));
 
       if (response) {
         console.log("Response", response);

@@ -2,24 +2,18 @@
 import React, { useEffect, useState } from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
+import TextField from '@mui/material/TextField';
 import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import { login, register } from "@/redux/Action/Auth";
 import "../../styles/_login.scss";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GoogleIcon from "@mui/icons-material/Google";
 import Divider from "@mui/material/Divider";
 import Image from "next/image";
-import { InputAdornment, IconButton } from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
 import { useSelector, useDispatch } from "react-redux";
-import Swal from "sweetalert2"; // Import SweetAlert2
+import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import { sendOtp, verifyOtp } from "@/redux/Action/Auth";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,10 +30,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "left",
   },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
   form: {
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
@@ -49,61 +39,117 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const validationSchema = Yup.object({
-  email: Yup.string()
-    .email("Invalid email address")
-    .matches(
-      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-      "Please enter a valid email"
-    )
-    .required("Email is required"),
-  password: Yup.string()
-    .min(6, "Password must be at least 6 characters")
-    .required("Password is required"),
-});
-
 export default function Login() {
-  const guest_id = 1;
-  const [showPassword, setShowPassword] = useState(false);
   const classes = useStyles();
   const dispatch = useDispatch();
-  const router = useRouter(); // Initialize useRouter for redirection
-  const { loading: isLoading, isSuccess, error: authError } = useSelector((state) => state.auth);
+  const router = useRouter();
+  const { isSuccess, profile_status, isLoading, isError, error } = useSelector((state) => state.auth);
 
+  const [phone, setPhone] = useState("+91");
+  const [otp, setOtp] = useState(Array(6).fill(""));
+  const [isOtpSent, setIsOtpSent] = useState(false);
+  const [isVerifying, setIsVerifying] = useState(false);  // Flag to prevent multiple clicks
 
   useEffect(() => {
-  // console.log("Redux auth state:", { isLoading, isSuccess, authError });
-  if (isSuccess) {
-    // console.log("Redirecting to /products...");
-    router.push("/");
-  } else if (authError) {
-    Swal.fire({
-      icon: "error",
-      title: "Login Failed",
-      text: authError || "Invalid credentials. Please try again.",
-    });
-  }
-}, [isSuccess, authError, router]);// Make sure to include router in the dependency array
+    if (isSuccess) {
+      if (profile_status === false) {
+        router.push("/profile");
+      } else {
+        router.push("/");
+      }
+    }
+  }, [isSuccess, profile_status, router]);
 
-  const handleSubmit = (values) => {
-    const updatedValues = { ...values, guest_id };
-    dispatch(login(updatedValues));
+  const handleSendOtp = () => {
+    if (phone.length === 13) {
+      dispatch(sendOtp(phone));
+      setIsOtpSent(true);
+    } else {
+      Swal.fire({
+        icon: "warning",
+        title: "Invalid Mobile Number",
+        text: "Please enter a valid 10-digit mobile number.",
+      });
+    }
   };
 
+  const handlePhoneChange = (e) => {
+    let value = e.target.value;
+
+    if (/[^0-9+]/.test(value)) {
+      return; // Prevent invalid characters
+    }
+
+    if (value.length <= 13 && value.startsWith('+91')) {
+      setPhone(value);
+    }
+  };
+
+  const handleOtpChange = (value, index) => {
+    // Only allow numeric input or an empty string (for deleting digits)
+    if (/^[0-9]$/.test(value) || value === "") {
+      const updatedOtp = [...otp];
+      updatedOtp[index] = value;
+      setOtp(updatedOtp);
+
+      // Automatically focus on the next input if the current input is filled
+      if (value !== "" && index < 5) {
+        const nextInput = document.getElementById(`otp-input-${index + 1}`);
+        if (nextInput) {
+          nextInput.focus();
+        }
+      }
+    }
+  };
+
+  const handleVerifyOtp = () => {
+    const otpCode = otp.join("");
+    if (otpCode.length === 6) {
+      if (!isVerifying) {
+        setIsVerifying(true); // Set verifying flag to true to prevent multiple clicks
+        const firebaseToken = "default-firebase-token"; 
+        dispatch(verifyOtp({
+          phone,
+          otp: otpCode,
+          cm_firebase_token: firebaseToken,
+        }));
+      }
+    } else {
+      Swal.fire({
+        icon: "warning",
+        title: "Incomplete OTP",
+        text: "Please enter all 6 digits of the OTP.",
+      });
+    }
+  };
+
+  // Check for OTP verification result and handle alerts
+  useEffect(() => {
+    if (isError && error) {
+      Swal.fire({
+        icon: "error",
+        title: "Incorrect OTP",
+        text: error,
+      }).then(() => {
+        setIsVerifying(false);  // Reset verifying flag after alert
+      });
+    } else if (isSuccess) {
+      setIsVerifying(false);  // Reset verifying flag on success
+    }
+  }, [isError, error, isSuccess]);
+
   return (
-    <Grid
-      container
-      component="main"
-      className={`${classes.root} login-wrapper-page`}
-    >
+    <Grid container component="main" className={`${classes.root} login-wrapper-page`}>
       <CssBaseline />
       <Grid item xs={false} sm={6} md={6} className={classes.image}>
-        <Image src="/log.png" width={700} height={650} alt="sjsjs" />
+        <Image src="/log.png" width={700} height={650} alt="Login Image" />
+      </Grid>
+      <Grid>
+        
       </Grid>
       <Grid item xs={12} sm={6} md={6} component={Paper} elevation={6} square>
-        <div className={classes.paper}>
-          <Grid container>
-            <Grid item xs={12} sm={12}>
+      <div>
+      <Grid item xs={12} sm={12}>
               <div className="loginwithother ">
                 <Image src="/icons/google.png" width={30} height={30} />
                 <p className="m-0">Login with Google</p>
@@ -115,109 +161,66 @@ export default function Login() {
                 <p className="m-0">Login with Facebook</p>
               </div>
             </Grid>
-          </Grid>
+      </div>
+        <div className={classes.paper}>
           <div className="mt-4">
-            <Divider>OR</Divider>
+            <Divider>Login with Mobile OTP</Divider>
           </div>
-          <Formik
-            initialValues={{
-              email: "",
-              password: "",
-            }}
-            validationSchema={validationSchema}
-            onSubmit={(values) => {
-              handleSubmit(values);
-            }}
-          >
-            {({ values, handleChange, handleSubmit }) => (
-              <Form className={classes.form} onSubmit={handleSubmit} noValidate>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={12}>
-                    <Field
-                      as={TextField}
+
+          {!isOtpSent ? (
+            <form className={classes.form} noValidate>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="phone"
+                label="Enter Your Mobile Number"
+                name="phone"
+                value={phone}
+                onChange={handlePhoneChange} // Phone number change handler
+                inputProps={{ maxLength: 13 }}
+                placeholder="Enter 10-digit mobile number"
+              />
+              <Button
+                type="button"
+                variant="contained"
+                className="loginButton"
+                disabled={isLoading}
+                onClick={handleSendOtp}
+              >
+                {isLoading ? "Sending OTP..." : "Send OTP"}
+              </Button>
+            </form>
+          ) : (
+            <form className={classes.form} noValidate>
+              <Grid container spacing={2} justifyContent="center">
+                {otp.map((digit, index) => (
+                  <Grid item key={index} xs={2} sm={2} md={1}>
+                    <TextField
                       variant="outlined"
-                      margin="normal"
-                      required
-                      fullWidth
-                      id="email"
-                      label="Email Address"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
-                      value={values.email}
-                      onChange={handleChange}
-                      //  placeholder="Email Address"
-                      helperText={
-                        <ErrorMessage
-                          name="email"
-                          component="div"
-                          className="error"
-                        />
-                      }
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={12}>
-                    <Field
-                      as={TextField}
-                      variant="outlined"
-                      margin="normal"
-                      required
-                      fullWidth
-                      id="password"
-                      label="Password"
-                      name="password"
-                      type={showPassword ? "text" : "password"}
-                      value={values.password}
-                      onChange={handleChange}
-                      InputProps={{
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <IconButton
-                              aria-label="toggle password visibility"
-                              onClick={() => setShowPassword(!showPassword)}
-                            >
-                              {showPassword ? (
-                                <VisibilityOff />
-                              ) : (
-                                <Visibility />
-                              )}
-                            </IconButton>
-                          </InputAdornment>
-                        ),
+                      id={`otp-input-${index}`}
+                      inputProps={{
+                        maxLength: 1,
+                        style: { textAlign: "center" },
                       }}
-                      helperText={
-                        <ErrorMessage
-                          name="password"
-                          component="div"
-                          className="error"
-                        />
-                      }
+                      value={digit}
+                      onChange={(e) => handleOtpChange(e.target.value, index)} // Handling OTP input
                     />
                   </Grid>
-                  <Grid item xs className="text-end">
-                    <Link href="/forget-password">Forget Password</Link>
-                  </Grid>
-                </Grid>
-                <Grid item xs className="text-center mt-2 mb--2">
-                <Button type="submit" variant="contained" className="loginButton" disabled={isLoading}>
-          {isLoading ? "Logging in..." : "Login"}
-        </Button>
-                </Grid>
-              </Form>
-            )}
-          </Formik>
-          <Grid container>
-            <Grid item xs>
-              <p className="mt-4 text-center">
-                Dont have an account?{" "}
-                <span>
-                  <Link href="/register" className="curser">
-                    Register
-                  </Link>
-                </span>
-              </p>
-            </Grid>
-          </Grid>
+                ))}
+              </Grid>
+              <Button
+                type="button"
+                variant="contained"
+                className="loginButton mt-3"
+                disabled={isLoading || isVerifying}
+                onClick={handleVerifyOtp}
+              >
+                {isLoading || isVerifying ? "Verifying..." : "Verify OTP"}
+              </Button>
+            </form>
+          )}
         </div>
       </Grid>
     </Grid>

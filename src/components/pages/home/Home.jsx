@@ -33,10 +33,13 @@ const Home = () => {
 
   const [productsData, setProductsData] = useState([]);
   const { loading, products, error } = useSelector((state) => state.home);
-  const [activeTab, setActiveTab] = useState(null); // To track which tab is active
+  const [activeTab, setActiveTab] = useState({});// To track which tab is active
 
-  const handleTabClick = (tabIndex) => {
-    setActiveTab(tabIndex);
+  const handleTabClick = (tabIndex, categoryIndex) => {
+    setActiveTab((prevState) => ({
+      ...prevState,
+      [categoryIndex]: tabIndex,
+    }));
   };
 
   const fetchProductData = async () => {
@@ -312,7 +315,7 @@ const Home = () => {
       </section>
 
     
-      <section className="shopbyintrest">
+      {/* <section className="shopbyintrest">
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -399,7 +402,106 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+
+<section className="shopbyintrest">
+  <div className="container">
+    <div className="row">
+      <div className="col-lg-12">
+        {productsData && productsData.length > 0 ? (
+          productsData.map((category, categoryIndex) => (
+            <div key={category.id} className="shop-by-category">
+              {/* Category title */}
+              <div className="shop-by-title text-center">
+                <h5>
+                  SHOP BY{" "}
+                  <span>{category.slug || "No category available"}</span>
+                </h5>
+              </div>
+
+              {/* Tabs and Tab Panels */}
+              <div className="tabs-container">
+                {category.childes && category.childes.length > 0 ? (
+                  <TabContext value={activeTab[categoryIndex] || null}>
+                    <Box className="tabs-wrapper">
+                      <TabList
+                        aria-label={`Tabs for ${category.slug}`}
+                        className="tab-buttons"
+                      >
+                        {category.childes.map((child, index) => (
+                          <Tab
+                            key={child.id}
+                            label={child.name}
+                            value={index.toString()}
+                            onClick={() => handleTabClick(index.toString(), categoryIndex)}
+                          />
+                        ))}
+                      </TabList>
+                    </Box>
+
+                    {/* Tab Panels */}
+                    {category.childes.map((child, index) => (
+                      <TabPanel
+                        key={child.id}
+                        value={index.toString()}
+                        className="tab-content"
+                      >
+                        {child.products && child.products.length > 0 ? (
+                          child.products.map((product) => (
+                            <Card
+                              key={product.id}
+                              id={product.id}
+                              imageUrl={`https://navishkar.overseaseducationlane.com/public/assets/back-end/product/thumbnail/${product.thumbnail || ""}`}
+                              name={product.name}
+                              discount={product.discount}
+                              price={product.unit_price}
+                              onClick={() => handleCardClick(product.slug)}
+                              onAddToCart={() => handleAddToCart(product.id)}
+                            />
+                          ))
+                        ) : (
+                          <p>No products available in this subcategory</p>
+                        )}
+                      </TabPanel>
+                    ))}
+                  </TabContext>
+                ) : (
+                  <p className="no-data-message">No Subcategories</p>
+                )}
+              </div>
+
+              {/* Main products display */}
+              <div className="row dr-title mt-5">
+                <div className="col-md-12">
+                  <div className="card-container">
+                    {!activeTab[categoryIndex] &&
+                      category.products?.map((product) => (
+                        <Card
+                          key={product.id}
+                          id={product.id}
+                          imageUrl={`https://navishkar.overseaseducationlane.com/public/assets/back-end/product/thumbnail/${product.thumbnail || ""}`}
+                          name={product.name}
+                          price={product.unit_price}
+                          discount={product.discount}
+                          onClick={() => handleCardClick(product.slug)}
+                          onAddToCart={() => handleAddToCart(product.id)}
+                        />
+                      ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p>No products available</p>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
 
       {/* ==================================================drone========================================= */}
       <section>

@@ -107,7 +107,7 @@ export default function Login() {
     if (otpCode.length === 6) {
       if (!isVerifying) {
         setIsVerifying(true); // Set verifying flag to true to prevent multiple clicks
-        const firebaseToken = "default-firebase-token"; 
+        const firebaseToken = "default-firebase-token";
         dispatch(verifyOtp({
           phone,
           otp: otpCode,
@@ -145,23 +145,23 @@ export default function Login() {
         <Image src="/log.png" width={700} height={650} alt="Login Image" />
       </Grid>
       <Grid>
-        
+
       </Grid>
       <Grid item xs={12} sm={6} md={6} component={Paper} elevation={6} square>
-      <div>
-      <Grid item xs={12} sm={12}>
-              <div className="loginwithother ">
-                <Image src="/icons/google.png" width={30} height={30} />
-                <p className="m-0">Login with Google</p>
-              </div>
-            </Grid>
-            <Grid item xs={12} sm={12} className="mt-2">
-              <div className="loginwithother">
-                <Image src="/icons/facebook.png" width={30} height={30} />
-                <p className="m-0">Login with Facebook</p>
-              </div>
-            </Grid>
-      </div>
+        <div className="fresh-login">
+          <Grid item xs={12} sm={12}>
+            <div className="loginwithother ">
+              <Image src="/icons/google.png" width={30} height={30} />
+              <p className="m-0">Login with Google</p>
+            </div>
+          </Grid>
+          <Grid item xs={12} sm={12} className="mt-2">
+            <div className="loginwithother">
+              <Image src="/icons/facebook.png" width={30} height={30} />
+              <p className="m-0">Login with Facebook</p>
+            </div>
+          </Grid>
+        </div>
         <div className={classes.paper}>
           <div className="mt-4">
             <Divider>Login with Mobile OTP</Divider>

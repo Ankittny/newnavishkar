@@ -6,6 +6,7 @@
   }
 }
 
+
 .loginwithother {
   display: flex;
   align-items: center;
@@ -21,7 +22,7 @@
   // padding: 70px 0px;
 }
 .loginButton{
-  background-color:#1096A4 !important;
+  background-color:#203d6a !important;
   text-align: center;
   width: 200px;
   padding: 5px;
@@ -36,9 +37,9 @@
 .MuiButton-label{
   color: #FFF;
 }
-.makeStyles-paper-3 {
-  margin: 125px 40px 30px 40px !important;
-}
+// .makeStyles-paper-3 {
+//   margin: 125px 40px 30px 40px !important;
+// }
 .PrivateNotchedOutline-root-7{
   border-radius: 6px !important;
 }
@@ -62,3 +63,9 @@
 }
 
 
+.fresh-login{
+  padding: 100px 30px 0 ;
+}
+.css-1134oje-MuiDivider-wrapper{
+   font-weight: 600;
+}

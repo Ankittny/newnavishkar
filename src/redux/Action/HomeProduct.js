@@ -7,10 +7,10 @@ export const homeProducts = () => async (dispatch) => {
   try {
     console.log("Hello Home Products");
     dispatch({ type: "homeProductRequest" });
-    
+
     // Fetch data from API
     const { data } = await axios.get("/products/home-categories");
-    
+
     console.log("Home Product Data:", data);
     dispatch({ type: "homeProductSuccess", payload: data });
   } catch (error) {
@@ -18,7 +18,7 @@ export const homeProducts = () => async (dispatch) => {
     dispatch({
       type: "homeProductFail",
       payload:
-        error.response && error.response.data.message
+        error.response && error.response.data.message                    
           ? error.response.data.message
           : error.message,
     });

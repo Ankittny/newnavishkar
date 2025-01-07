@@ -12,7 +12,8 @@ export const Banner = () => async (dispatch) => {
     console.log("Banner Data:", data);
     // Dispatch bannerSuccess with the fetched data
     dispatch({ type: "bannerSuccess", payload: data });
-  } catch (error) {
+  }
+   catch (error) {
     console.error("Error fetching banners:", error);
 
     // Dispatch bannerFail with the error message

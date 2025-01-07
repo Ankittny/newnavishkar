@@ -1,6 +1,6 @@
 "use client";
 import ProductBanner from "@/components/ProductBanner";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { Divider } from "@mui/material";
 import Certificate from "@/components/Certificate";
@@ -10,29 +10,24 @@ import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
 import RelatedProduct from "@/components/RelatedProduct";
 import Link from "next/link";
-import Filter from "@/components/Filter";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import BoysToys from "@/components/BoysToys";
+import { WorkshopData } from "@/redux/Action/Workshop";
 
 const Workshop = () => {
-  const [labData, setLabData] = useState([]);
   const router = useRouter();
   const dispatch = useDispatch();
 
-  // here redux logic implement
-
-  const fetchLabData = async () => { };
+  const { loading, workshop, error } = useSelector((state) => state.workshop);
 
   useEffect(() => {
-    fetchLabData();
-  }, []);
+    dispatch(WorkshopData());
+  }, [dispatch]);
 
-  const handleClick = (id) => {
-    router.push(`/labs${id}`);
+  const handleClick = (slug) => {
+    router.push(`/workshop/${slug}`);
   };
-
-
 
   return (
     <>
@@ -56,97 +51,35 @@ const Workshop = () => {
             </div>
 
             <div className="row">
-              <div className="col-lg-6">
-                <div class="toddler-title d-flex gap-4">
-                  <div class="imag-toddler">
-                    <Image
-                      src={"/labs/lab1.png"}
-                      alt="lab"
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                  <div class="labs-toddler">
-                    <p>Toddler Labs</p>
-                    <span>
-                      Safe, stimulating, and fun learning space for young
-                      children. Focus on all-round development through play.
-                    </span>
-                    <div class="an-int">
-                      <Link href="">Read more</Link>
+              {loading && <p>Loading workshops...</p>}
+              {error && <p>Error: {error}</p>}
+              {!loading &&
+                workshop?.workshopcategories?.map((category, index) => (
+                  <div className="col-lg-6" key={index}>
+                    <div className="toddler-title d-flex gap-4">
+                      <div className="imag-toddler">
+                        <Image
+                          src={"/labs/lab1.png"}
+                          alt={category.name}
+                          width={100}
+                          height={100}
+                        />
+                      </div>
+                      <div className="labs-toddler">
+                        <p>{category.name}</p>
+                        <span>{category.description}</span>
+                        <div className="an-int">
+                        <button
+                          onClick={() => handleClick(category.slug)}
+                          className="btn btn-link"
+                        >
+                          Read More
+                        </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-
-              <div className="col-lg-6">
-                <div class="toddler-title d-flex gap-4">
-                  <div class="imag-toddler">
-                    <Image
-                      src={"/labs/lab1.png"}
-                      alt="lab"
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                  <div class="labs-toddler">
-                    <p>Toddler Labs</p>
-                    <span>
-                      Safe, stimulating, and fun learning space for young
-                      children. Focus on all-round development through play.
-                    </span>
-                    <div class="an-int">
-                      <Link href="">Read more</Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-lg-6">
-                <div class="toddler-title d-flex gap-4">
-                  <div class="imag-toddler">
-                    <Image
-                      src={"/labs/lab1.png"}
-                      alt="lab"
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                  <div class="labs-toddler">
-                    <p>Toddler Labs</p>
-                    <span>
-                      Safe, stimulating, and fun learning space for young
-                      children. Focus on all-round development through play.
-                    </span>
-                    <div class="an-int">
-                      <Link href="">Read more</Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-lg-6">
-                <div class="toddler-title d-flex gap-4">
-                  <div class="imag-toddler">
-                    <Image
-                      src={"/labs/lab1.png"}
-                      alt="lab"
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                  <div class="labs-toddler">
-                    <p>Toddler Labs</p>
-                    <span>
-                      Safe, stimulating, and fun learning space for young
-                      children. Focus on all-round development through play.
-                    </span>
-                    <div class="an-int">
-                      <Link href="">Read more</Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                ))}
             </div>
 
             <Divider
@@ -155,9 +88,9 @@ const Workshop = () => {
                 borderColor: "#175A95", // Custom color
                 borderBottomWidth: 2, // Custom width
               }}
-            >
-            </Divider>
-            <div class="all-details-age mt-3">
+            ></Divider>
+
+            <div className="all-details-age mt-3">
               <p>Battery and Non battery operated</p>
               <span>Battery Operated | Non-Battery Operated</span>
               <p>Subjects</p>
@@ -165,14 +98,12 @@ const Workshop = () => {
               <p>Class</p>
               <span>
                 Nursery | LKG | UKG | 1st Standard | 2nd Standard | 3rd Standard
-                | 4rd Standard |5rd Standard |6rd Standard |7rd Standard |8rd
-                Standard |9rd Standard |10th Standard |11th Standard |12th
-                Standard |
+                | 4th Standard | 5th Standard | 6th Standard | 7th Standard |
+                8th Standard | 9th Standard | 10th Standard | 11th Standard |
+                12th Standard
               </span>
               <p>Age</p>
-              <span>
-                1 to 3 Years | 4 to 8 Years | 15 to 17 Years | 18 Years Above{" "}
-              </span>
+              <span>1 to 3 Years | 4 to 8 Years | 15 to 17 Years | 18 Years Above</span>
             </div>
           </div>
         </div>
@@ -180,7 +111,7 @@ const Workshop = () => {
         <div className="row">
           <div className="col-lg-4">
             <Certificate
-              title={"Intoducing MINOS"}
+              title={"Introducing MINOS"}
               imageUrl={"/product/minoscer.png"}
               linkText="Buy Now"
               linkUrl="/demo"
@@ -198,17 +129,19 @@ const Workshop = () => {
                 <div className="all-toys d-flex justify-content-between align-items-center">
                   <div className="toys-text">
                     <h4>Navishkar - Kids Toy Store</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing <br /> elit, sed do eiusmod tempor
-                      incididunt ut labore et <br /> dolore magna aliqua. Ut enim ad minim veniam, quis <br />
-                      nostrud exercitation ullamco laboris nisi ut aliquip <br /> ex ea commodo consequat.
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore
+                      magna aliqua. Ut enim ad minim veniam, quis nostrud
+                      exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                      consequat.
                     </p>
-                    {/* <a href="">Shop More </a> */}
                   </div>
                   <div className="img-toys-titles">
-                    <img src="./product/Group 77.png" alt="77" />
+                    <img src="./product/Group 77.png" alt="Group 77" />
                   </div>
                   <div className="img-toys-title">
-                    <img src="./product/pngtree-cheerful.png" alt="77" />
+                    <img src="./product/pngtree-cheerful.png" alt="Cheerful" />
                   </div>
                 </div>
               </div>
@@ -216,6 +149,7 @@ const Workshop = () => {
           </div>
         </div>
       </section>
+
 
 
       <div className="camp-activity-title" id="camp-activity-title">
@@ -255,20 +189,19 @@ const Workshop = () => {
         </div>
       </div>
 
-
       <div className="row">
         <div className="col-lg-12 mt-3 mb-3">
-          <div className="text-center ">
+          <div className="text-center">
             <h1 className="reletedHead">Related Products</h1>
           </div>
         </div>
         <div className="col-lg-12">
           <Swiper
             navigation={false}
-            modules={[Autoplay, Navigation]} // Importing Autoplay module
+            modules={[Autoplay, Navigation]}
             className="mySwiper"
             autoplay={{
-              delay: 3000, // Adjust delay as needed
+              delay: 3000,
               disableOnInteraction: false,
             }}
             loop={true}
@@ -287,12 +220,6 @@ const Workshop = () => {
               },
             }}
           >
-            <SwiperSlide>
-              <RelatedProduct />
-            </SwiperSlide>
-            <SwiperSlide>
-              <RelatedProduct />
-            </SwiperSlide>
             <SwiperSlide>
               <RelatedProduct />
             </SwiperSlide>

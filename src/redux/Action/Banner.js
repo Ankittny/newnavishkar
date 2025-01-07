@@ -4,14 +4,12 @@ const axios = axiosInstance;
 export const Banner = () => async (dispatch) => {
   try {
     console.log("Hello Banner");
-
     // Dispatch bannerRequest to set loading state
     dispatch({ type: "bannerRequest" });
 
     // Fetch banner data
     const { data } = await axios.get("/banners");
     console.log("Banner Data:", data);
-
     // Dispatch bannerSuccess with the fetched data
     dispatch({ type: "bannerSuccess", payload: data });
   }

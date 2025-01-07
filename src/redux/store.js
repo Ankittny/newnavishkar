@@ -6,6 +6,7 @@ import { labReducer } from "./Reducer/lab";
 import cartReducer from "./Reducer/Cart"; // Import the cart reducer
 import { homeReducer } from "./Reducer/HomeProduct";
 import { bannerReducer } from "./Reducer/Banner";
+import { workshopReducer } from "./Reducer/Workshop";
 
 
 const store = configureStore({
@@ -15,8 +16,9 @@ const store = configureStore({
     lab: labReducer,
     cart: cartReducer, // Add cart reducer
     home: homeReducer,
-    banner: bannerReducer,
- 
+    banner:bannerReducer,
+    workshop:workshopReducer,
+
   },
 });
 

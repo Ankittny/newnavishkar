@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/navigation"; // Import useRouter from Next.js
 import Image from "next/image";
 import { profile } from "@/redux/Action/Auth";
 import { styled } from '@mui/material/styles';
@@ -47,10 +48,10 @@ const useStyles = makeStyles((theme) => ({
   previewImage: {
     marginTop: theme.spacing(2),
     maxHeight: 200,
-    width:"300px",
-    margin:"auto",
-    borderRadius:"15px",
-    marginBottom:"30px",
+    width: "300px",
+    margin: "auto",
+    borderRadius: "15px",
+    marginBottom: "30px",
   },
 }));
 
@@ -87,15 +88,16 @@ const validationSchema = Yup.object({
 export default function Profile() {
   const classes = useStyles();
   const [preview, setPreview] = useState(null);
-  const [file, setFile] = useState(null);
+  const [image, setImage] = useState(null);
   const dispatch = useDispatch();
+  const router = useRouter(); // Initialize the router
   const { loading: isLoading, success: isSuccess, error } = useSelector((state) => state.auth);
 
   const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setFile(file);
-      setPreview(URL.createObjectURL(file));
+    const image = event.target.files[0];
+    if (image) {
+      setImage(image);
+      setPreview(URL.createObjectURL(image));
     }
   };
 
@@ -105,22 +107,23 @@ export default function Profile() {
       formData.append("f_name", values.f_name);
       formData.append("l_name", values.l_name);
       formData.append("email", values.email);
-      if (file) {
-        formData.append("file", file);
+      if (image) {
+        formData.append("image", image);
       }
-
-      console.log("Form Data:", formData);
-      const response = await dispatch(profile(formData));
-
-      if (response) {
-        console.log("Response", response);
-        alert("profile Successfully");
+  
+      const response = await dispatch(profile(formData)); // Await the returned response
+  
+      console.log("API Response:", response);
+  
+      if (response?.message === "Successfully updated!") {
+        alert("Profile successfully updated!");
+        router.push("/"); // Redirect to the home page on success
       } else {
-        alert("Failed to create account");
+        alert("Failed to update profile");
       }
     } catch (error) {
-      console.error("Error:", error);
-      alert("Failed to create account");
+      console.error("Error:", error.message);
+      alert("Failed to update profile");
     }
   };
 

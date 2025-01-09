@@ -6,7 +6,9 @@ import { labReducer } from "./Reducer/lab";
 import cartReducer from "./Reducer/Cart"; // Import the cart reducer
 import { homeReducer } from "./Reducer/HomeProduct";
 import { bannerReducer } from "./Reducer/Banner";
-import { workshopReducer } from "./Reducer/Workshop";
+import { navbarCategoriesReducer } from "./Reducer/NavbarCategories";
+import { wokrshopReducer } from "./Reducer/Workshop";
+
 
 
 const store = configureStore({
@@ -17,8 +19,9 @@ const store = configureStore({
     cart: cartReducer, // Add cart reducer
     home: homeReducer,
     banner:bannerReducer,
-    workshop:workshopReducer,
-
+    navbarCategories :navbarCategoriesReducer,
+    workshop:wokrshopReducer
+  
   },
 });
 

@@ -315,94 +315,7 @@ const Home = () => {
       </section>
 
     
-      {/* <section className="shopbyintrest">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="shop-by-title text-center">
-                <h5>
-                  SHOP BY{" "}
-                  <span>
-                    {productsData[0]?.slug || "No category available"}
-                  </span>
-                </h5>
-              </div>
-              <div className="tabs-container">
-                {productsData.length > 0 &&
-                  productsData[0].childes &&
-                  productsData[0].childes.length > 0 ? (
-                  <TabContext value={activeTab}>
-                    <Box className="tabs-wrapper">
-                      <TabList
-                        aria-label="Dynamic API Tabs"
-                        className="tab-buttons"
-                      >
-                        {productsData[0].childes.map((child, index) => (
-                          <Tab
-                            key={child.id}
-                            label={child.name}
-                            value={index.toString()}
-                            onClick={() => handleTabClick(index.toString())}
-                          />
-                        ))}
-                      </TabList>
-                    </Box>
-                    {activeTab !== null &&
-                      productsData[0].childes?.map((child, index) => (
-                        <TabPanel
-                          key={child.id}
-                          value={index.toString()}
-                          className="tab-content"
-                        >
-                          {child.products && child.products.length > 0 ? (
-                            child.products.map((product) => (
-                              
-                                <Card
-                                key={product.id}
-                                id={product.id}
-                                imageUrl={`https://navishkar.overseaseducationlane.com/public/assets/back-end/product/thumbnail/${product.thumbnail || ""}`}
-                                name={product.name}
-                                discount={product.discount}
-                                price={product.unit_price}
-                                onClick={() => handleCardClick(product.slug)}
-                                onAddToCart={() => handleAddToCart(product.id)}
-                              />
-                              
-                            ))
-                          ) : (
-                            <p>No products available in this category</p>
-                          )}
-                        </TabPanel>
-                      ))}
-                  </TabContext>
-                ) : (
-                  <p className="no-data-message">No Subcategory</p>
-                )}
-              </div>
-            </div>
-          </div>
-
-          <div className="row dr-title mt-5">
-            <div className="col-md-12">
-              <div className="card-container">
-                {activeTab === null && // Show main cards when no tab is active
-                  productsData[0]?.products?.map((product) => (
-                    <Card
-                      key={product.id}
-                      id={product.id}
-                      imageUrl={`https://navishkar.overseaseducationlane.com/public/assets/back-end/product/thumbnail/${product.thumbnail_full_url?.key || ""}`}
-                      name={product.name}
-                      price={product.unit_price}
-                      discount={product.discount}
-                      onClick={() => handleCardClick(product.slug)}
-                      onAddToCart={() => handleAddToCart(product.id)}
-                    />
-                  ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
+      
 
 <section className="shopbyintrest">
   <div className="container">
@@ -422,7 +335,7 @@ const Home = () => {
               {/* Tabs and Tab Panels */}
               <div className="tabs-container">
                 {category.childes && category.childes.length > 0 ? (
-                  <TabContext value={activeTab[categoryIndex] || null}>
+                  <TabContext value={activeTab[categoryIndex] || "0"}>
                     <Box className="tabs-wrapper">
                       <TabList
                         aria-label={`Tabs for ${category.slug}`}

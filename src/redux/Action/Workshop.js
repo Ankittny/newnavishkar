@@ -13,7 +13,7 @@ export const WorkshopData = () => async (dispatch) => {
 
     dispatch({
       type: "workshopFail",
-      payload:
+      payload: 
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,

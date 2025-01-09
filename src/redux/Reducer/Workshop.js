@@ -7,7 +7,7 @@ const initialState = {
     workshop:[]
 }
 
-export const workshopReducer = createReducer(initialState ,(builder) =>{
+export const wokrshopReducer = createReducer(initialState ,(builder) =>{
     builder
     .addCase("workshopRequest",(state)=>{
         state.loading =true;

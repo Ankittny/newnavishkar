@@ -5,15 +5,13 @@ import {
   categoryByAgeGroups,
   FilterCategory,
   FilterSubCategory,
-}
-  from "@/redux/Action/category";
+} from "@/redux/Action/category";
 import { useRouter } from "next/navigation";
 
 import Link from "next/link";
 import Filter from "./Filter";
 
 import Button from "./Button";
-
 
 const SHopByIntrest = ({ selectedAgeGroup }) => {
   const [filteredCategories, setFilteredCategories] = useState([
@@ -30,7 +28,6 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
     categoryByAgeGroup,
     filterCategory,
   } = useSelector((state) => state.category);
-
 
   useEffect(() => {
     if (selectedAgeGroup) {
@@ -49,7 +46,6 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
     router.push(`/products/${slug}`);
   };
 
-
   const fetchCategoryFilterData = async () => {
     try {
       console.log("Dispatching FilterCategory action");
@@ -63,7 +59,6 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
     fetchCategoryFilterData();
   }, []);
 
-
   useEffect(() => {
     if (filterCategory && filterCategory.length > 0) {
       setCategories(filterCategory); // Correctly set the fetched data
@@ -71,31 +66,18 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
     }
   }, [filterCategory]);
 
-
-  console.log("Fffffffffffffffffff", filterCategory)
+  console.log("Fffffffffffffffffff", filterCategory);
 
   const handleFilterChange = (type, name, checked) => {
     console.log(`Filter ${type} changed: ${name}, checked: ${checked}`);
-
   };
 
   const handleAddToCart = (item) => {
     console.log("Added to cart: ", item);
   };
 
-
-  const buttonsData = [
-    { name: "Activity Kits" },
-    { name: "Mechanical Toys" },
-    { name: "Games" },
-    { name: "Technology Toys" },
-    { name: "Science Toys" },
-    { name: "Engineering Toys" }
-];
-
   return (
     <>
-
       {/* ============================================Best-Seller======================================== */}
       <section>
         <div className="seller-top">
@@ -108,7 +90,6 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
                   </h5>
                   <p>Crowd-pleasers for every age</p>
                 </div>
-
               </div>
 
               <div className="col-lg-3">
@@ -117,8 +98,8 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
                     <img src="product/motor.png" />
                   </div>
                   <div className="playkit-action action-inject">
-                    <div className="kit-down"><p>Play and Learn Kit | 3-6 years | DIY
-                      Activity Kit</p>
+                    <div className="kit-down">
+                      <p>Play and Learn Kit | 3-6 years | DIY Activity Kit</p>
                     </div>
                     <div className="button mt-4 d-flex gap-3 align-items-center">
                       <div className="ex-btn">-15%</div>
@@ -138,8 +119,8 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
                     <img src="product/motor.png" />
                   </div>
                   <div className="playkit-action action-inject">
-                    <div className="kit-down"><p>Play and Learn Kit | 3-6 years | DIY
-                      Activity Kit</p>
+                    <div className="kit-down">
+                      <p>Play and Learn Kit | 3-6 years | DIY Activity Kit</p>
                     </div>
                     <div className="button mt-4 d-flex gap-3 align-items-center">
                       <div className="ex-btn">-15%</div>
@@ -159,8 +140,8 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
                     <img src="product/motor.png" />
                   </div>
                   <div className="playkit-action action-inject">
-                    <div className="kit-down"><p>Play and Learn Kit | 3-6 years | DIY
-                      Activity Kit</p>
+                    <div className="kit-down">
+                      <p>Play and Learn Kit | 3-6 years | DIY Activity Kit</p>
                     </div>
                     <div className="button mt-4 d-flex gap-3 align-items-center">
                       <div className="ex-btn">-15%</div>
@@ -180,8 +161,8 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
                     <img src="product/motor.png" />
                   </div>
                   <div className="playkit-action action-inject">
-                    <div className="kit-down"><p>Play and Learn Kit | 3-6 years | DIY
-                      Activity Kit</p>
+                    <div className="kit-down">
+                      <p>Play and Learn Kit | 3-6 years | DIY Activity Kit</p>
                     </div>
                     <div className="button mt-4 d-flex gap-3 align-items-center">
                       <div className="ex-btn">-15%</div>
@@ -209,9 +190,12 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
                 <div className="all-toys d-flex justify-content-between align-items-center">
                   <div className="toys-text">
                     <h4>Navishkar - Kids Toy Store</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing <br /> elit, sed do eiusmod tempor
-                      incididunt ut labore et <br /> dolore magna aliqua. Ut enim ad minim veniam, quis <br />
-                      nostrud exercitation ullamco laboris nisi ut aliquip <br /> ex ea commodo consequat.
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing <br />{" "}
+                      elit, sed do eiusmod tempor incididunt ut labore et <br />{" "}
+                      dolore magna aliqua. Ut enim ad minim veniam, quis <br />
+                      nostrud exercitation ullamco laboris nisi ut aliquip{" "}
+                      <br /> ex ea commodo consequat.
                     </p>
                     {/* <a href="">Shop More </a> */}
                   </div>
@@ -228,8 +212,6 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
         </div>
       </section>
 
-
-
       <section className="shopbyintrest">
         <div className="container">
           <div className="row">
@@ -240,7 +222,6 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
                 </h5>
                 <p>A whole lotta fun & learning</p>
               </div>
-    
             </div>
           </div>
 
@@ -249,33 +230,27 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
               <Filter />
             </div>
             <div className="col-md-9">
-              <div className="card-container">
-                {/* {isLoading && <div>Loading...</div>}
-                {error && <div>Error: {error}</div>}
-                {!isLoading && !error && filteredCategories?.length === 0 && (
-                  <div>No products found for this age group.</div>
-                )} */}
-                {filteredCategories?.map((category) => (
-                  <Card
-                    key={category.id}
-                    id={category.id}
-                    imageUrl={category.thumbnail_full_url?.path}
-                    name={category?.name}
-                    discount={category?.discount}
-                    in
-                    the
-                    response
-                    price={category?.unit_price}
-                    oldPrice={category?.purchase_price}
-                    applicable
-                    discount_type={category?.discount_type}
-                    onClick={() => handleCardClick(category.slug)}
-                    onAddToCart={handleAddToCart}
-                  />
-                ))}
-              </div>
+            <div className="card-container">
+  {filteredCategories?.length > 0 ? (
+    filteredCategories.map((category) => (
+      <Card
+        key={category.id || category.slug}
+        id={category.id}
+        imageUrl={category.thumbnail_full_url?.path || null}
+        name={category?.name}
+        discount={category?.discount}
+        price={category?.unit_price}
+        oldPrice={category?.purchase_price}
+        discount_type={category?.discount_type}
+        onClick={() => handleCardClick(category.slug)}
+        onAddToCart={handleAddToCart}
+      />
+    ))
+  ) : (
+    <p>No categories available.</p>
+  )}
+</div>
             </div>
-            
           </div>
         </div>
       </section>
@@ -284,5 +259,3 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
 };
 
 export default SHopByIntrest;
-
-

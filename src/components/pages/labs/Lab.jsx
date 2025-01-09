@@ -14,33 +14,45 @@ import Filter from "@/components/Filter";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import BoysToys from "@/components/BoysToys";
+import { WorkshopData } from "@/redux/Action/Workshop";
 
 const Lab = () => {
   const [labData, setLabData] = useState([]);
   const router = useRouter();
   const dispatch = useDispatch();
 
-  // here redux logic implement
+  const { loading, workshop, error } = useSelector((state) => state.workshop);
 
-  const fetchLabData = async () => {};
+  // here redux logic implement
+  const navbarCategories = useSelector(
+    (state) => state.navbarCategories.navbarCategories
+  );
+
+  const nlabsCategories = navbarCategories.filter(
+    (category) =>
+      category.type === "K-12 Offering" &&
+      category.name.toLowerCase().includes("n-labs")
+  );
+
+  const firstWorkshop = nlabsCategories[0];
 
   useEffect(() => {
-    fetchLabData();
-  }, []);   
-
-  const handleClick = (id) => {
-    router.push(`/labs${id}`);
-  };
+    if (firstWorkshop && firstWorkshop.slug) {
+      dispatch(WorkshopData(firstWorkshop.slug));
+    }
+  }, [dispatch, firstWorkshop]);
 
   return (
     <>
-      <ProductBanner
-        title="Navishkar - Kids Toy Store"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elitvashcb biiwuhiwq uidh ih uhi iui "
-        linkText="Live Demo"
-        linkUrl="/demo"
-        imageUrl={"/labs/labBanner.png"}
-      />
+      {firstWorkshop && (
+        <ProductBanner
+          title={firstWorkshop.name} // Use the category name for the title
+          description={firstWorkshop.description} // Use the category description
+          linkText="Live Demo"
+          linkUrl="/demo"
+          imageUrl={firstWorkshop.cover_pic_path || "/labs/labBanner.png"} // Default to a placeholder if imageUrl is missing
+        />
+      )}
 
       <div className="container mt-5">
         <div className="row detail-nav">
@@ -54,97 +66,27 @@ const Lab = () => {
             </div>
 
             <div className="row">
-              <div className="col-lg-6">
-                <div class="toddler-title d-flex gap-4">
-                  <div class="imag-toddler">
-                    <Image
-                      src={"/labs/lab1.png"}
-                      alt="lab"
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                  <div class="labs-toddler">
-                    <p>Toddler Labs</p>
-                    <span>
-                      Safe, stimulating, and fun learning space for young
-                      children. Focus on all-round development through play.
-                    </span>
-                    <div class="an-int">
-                      <Link href="">Read more</Link>
+              {workshop.map((item, index) => (
+                <div key={index} className="col-lg-6">
+                  <div className="toddler-title d-flex gap-4">
+                    <div className="imag-toddler">
+                      <Image
+                        src={item.image_path}
+                        alt={item.title}
+                        width={100}
+                        height={100}
+                      />
+                    </div>
+                    <div className="labs-toddler">
+                      <p>{item.title}</p>
+                      <span>{item.description}</span>
+                      <div className="an-int">
+                        <Link href="#">Read more</Link>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <div className="col-lg-6">
-                <div class="toddler-title d-flex gap-4">
-                  <div class="imag-toddler">
-                    <Image
-                      src={"/labs/lab1.png"}
-                      alt="lab"
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                  <div class="labs-toddler">
-                    <p>Toddler Labs</p>
-                    <span>
-                      Safe, stimulating, and fun learning space for young
-                      children. Focus on all-round development through play.
-                    </span>
-                    <div class="an-int">
-                      <Link href="">Read more</Link>
-                    </div>
-                  </div>
-                </div>
-            </div>
-
-            <div className="col-lg-6">
-                <div class="toddler-title d-flex gap-4">
-                  <div class="imag-toddler">
-                    <Image
-                      src={"/labs/lab1.png"}
-                      alt="lab"
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                  <div class="labs-toddler">
-                    <p>Toddler Labs</p>
-                    <span>
-                      Safe, stimulating, and fun learning space for young
-                      children. Focus on all-round development through play.
-                    </span>
-                    <div class="an-int">
-                      <Link href="">Read more</Link>
-                    </div>
-                  </div>
-                </div>
-            </div>
-
-            <div className="col-lg-6">
-                <div class="toddler-title d-flex gap-4">
-                  <div class="imag-toddler">
-                    <Image
-                      src={"/labs/lab1.png"}
-                      alt="lab"
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                  <div class="labs-toddler">
-                    <p>Toddler Labs</p>
-                    <span>
-                      Safe, stimulating, and fun learning space for young
-                      children. Focus on all-round development through play.
-                    </span>
-                    <div class="an-int">
-                      <Link href="">Read more</Link>
-                    </div>
-                  </div>
-                </div>
-            </div>
+              ))}
             </div>
 
             <Divider
@@ -184,10 +126,10 @@ const Lab = () => {
             />
           </div>
         </div>
-</div>
+      </div>
 
-{/* Kids Toy */}
-        <section>
+      {/* Kids Toy */}
+      <section>
         <div className="nami-toys-toys-store">
           <div className="container">
             <div className="row">
@@ -195,9 +137,12 @@ const Lab = () => {
                 <div className="all-toys d-flex justify-content-between align-items-center">
                   <div className="toys-text">
                     <h4>Navishkar - Kids Toy Store</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing <br /> elit, sed do eiusmod tempor
-                      incididunt ut labore et <br /> dolore magna aliqua. Ut enim ad minim veniam, quis <br />
-                      nostrud exercitation ullamco laboris nisi ut aliquip <br /> ex ea commodo consequat.
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing <br />{" "}
+                      elit, sed do eiusmod tempor incididunt ut labore et <br />{" "}
+                      dolore magna aliqua. Ut enim ad minim veniam, quis <br />
+                      nostrud exercitation ullamco laboris nisi ut aliquip{" "}
+                      <br /> ex ea commodo consequat.
                     </p>
                     {/* <a href="">Shop More </a> */}
                   </div>
@@ -214,43 +159,42 @@ const Lab = () => {
         </div>
       </section>
 
-        <div className="camp-activity-title" id="camp-activity-title">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="camp-title-act text-center">
-                  <h2>
-                    Our summer camp <span>activity</span>{" "}
-                  </h2>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  </p>
-                </div>
-                <div className="row">
-                  <div className="col-lg-6">
-                    <div className="summer-activity">
-                      <Image
-                        src={"/labs/summer1.png"}
-                        alt="img2"
-                        width={100}
-                        height={100}
-                      />
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et{" "}
-                      </p>
-                    </div>
+      <div className="camp-activity-title" id="camp-activity-title">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="camp-title-act text-center">
+                <h2>
+                  Our summer camp <span>activity</span>{" "}
+                </h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+              </div>
+              <div className="row">
+                <div className="col-lg-6">
+                  <div className="summer-activity">
+                    <Image
+                      src={"/labs/summer1.png"}
+                      alt="img2"
+                      width={100}
+                      height={100}
+                    />
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et{" "}
+                    </p>
                   </div>
-                  <div class="col-lg-6"></div>
                 </div>
+                <div class="col-lg-6"></div>
               </div>
             </div>
           </div>
         </div>
-      
+      </div>
 
       <div className="row">
         <div className="col-lg-12 mt-3 mb-3">

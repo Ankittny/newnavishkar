@@ -21,10 +21,12 @@ import Certificate from "@/components/Certificate";
 import { useDispatch, useSelector } from "react-redux";
 import { CategoryDetail } from "@/redux/Action/category";
 import BoysToys from "@/components/BoysToys";
+import { useParams } from "next/navigation";
 
-const ProductDetails = ({ params }) => {
-  const categorySlug = params.productid;
-  console.log("params slug product details", categorySlug);
+const ProductDetails = () => {
+
+ const { productid } = useParams(); 
+  console.log("Product slug ID:", productid);
 
   const dispatch = useDispatch();
   const {
@@ -52,7 +54,7 @@ const ProductDetails = ({ params }) => {
 
   const fetchDataById = async () => {
     try {
-      dispatch(CategoryDetail(categorySlug));
+      dispatch(CategoryDetail(productid));
     } catch (error) {
       console.error("Error fetching categories:", error);
     }
@@ -60,7 +62,7 @@ const ProductDetails = ({ params }) => {
 
   useEffect(() => {
     fetchDataById();
-  }, [categorySlug]);
+  }, [productid]);
 
   useEffect(() => {
     if (categoryDetail) {
@@ -69,12 +71,12 @@ const ProductDetails = ({ params }) => {
     }
   }, [categoryDetail]);
 
-  console.log("Categories Detail Data:", categryDetailData);
+  console.log("Categories ssssssss Detail Data:", categryDetailData);
 
   return (
     <>
       <div className="">
-        <ProductBanner imageUrl={"/product/productDetailBanner.png"} />
+        <ProductBanner imageUrl={categryDetailData?.thumbnail_full_url?.path || "/product/productDetailBanner.png"} />
       </div>
       <div className="container">
         <div className="row">
@@ -127,7 +129,7 @@ const ProductDetails = ({ params }) => {
                   <div className="col-md-7">
                     <div class="motonove-right-title">
                       <div className="d-flex gap-5">
-                        <h3>Motonova</h3>{" "}
+                        <h3>{categryDetailData ?categryDetailData.name : 'hello'}</h3>{" "}
                         {/* <span>
                           <FavoriteIcon sx={{ fontSize: 35, color: "red" }} />
                         </span> */}

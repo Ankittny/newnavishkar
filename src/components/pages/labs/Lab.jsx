@@ -81,7 +81,7 @@ const Lab = () => {
                       <p>{item.title}</p>
                       <span>{item.description}</span>
                       <div className="an-int">
-                        <Link href="#">Read more</Link>
+                      <Link href={`/labs/${item.slug}`}>Read more</Link>
                       </div>
                     </div>
                   </div>

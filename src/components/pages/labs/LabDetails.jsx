@@ -1,26 +1,37 @@
 "use client"
 import ProductBanner from "@/components/ProductBanner";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Filter from "@/components/Filter";
 import RelatedProduct from "@/components/RelatedProduct";
 import OurAchievement from "@/components/OurAchievment";
 import { useDispatch,useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import BoysToys from "@/components/BoysToys";
+import { WorkshopDataDetails } from "@/redux/Action/Workshop";
 
 
 
 const LabDetails = () => {
-
   const dispatch = useDispatch()
   const router = useRouter();
+
+  const { labsid } = useParams(); 
+   console.log("labsid ID:", labsid);
+
+  const { loading, worskDetails, error } = useSelector((state) => state.workshop);
+
+   useEffect(() => {
+      dispatch(WorkshopDataDetails(labsid)); // Pass the slug to the action
+    }, [dispatch, labsid]);
+
+  console.log("DIHBSCKJASKCNJS",worskDetails)
 
   
   return (
     <>
-      <ProductBanner imageUrl={"/labs/labDetailBanner.png"} />
+      <ProductBanner imageUrl={worskDetails.image_path} />
 
       <div className="container mb-3 mt-5">
         <div className="row">
@@ -33,7 +44,7 @@ const LabDetails = () => {
               <h3>Navishkar The Leading Brand</h3>
               <div class="mt-3">
                 <Image
-                  src={"/labs/tadlarlabs.png"}
+                  src={worskDetails.image_path}
                   width={100}
                   height={100}
                   className="toddlet-tab-img"
@@ -43,22 +54,9 @@ const LabDetails = () => {
             </div>
             <div class="role-ai-title">
               <div class="artical-tag-role">
-                <h4>Role of Artificial Intelligence (AI) in STEAM education</h4>
+                <h4>{worskDetails.title}</h4>
                 <p>
-                  {" "}
-                  Let us delve into the enthralling realm of STEAM education. In
-                  today's fast-paced world, education is a critical tool for
-                  success. But what if we could unlock education's true
-                  potential by mixing art and STEAM? STEAM is an acronym for
-                  Science, Technology, Engineering, Arts, and Mathematics. It
-                  provides unlimited options and a dynamic learning experience
-                  by using art. Students gain a broad view of the world while
-                  also developing creativity and critical thinking skills. STEAM
-                  goes above and beyond STEM in terms of developing a
-                  well-rounded personality. Art influences students' educational
-                  experiences through fostering creativity, problem-solving, and
-                  the exploration of diverse views. So, let’s delve into
-                  additional benefits of STEAM Education.
+                  {worskDetails.description}
                 </p>
               </div>
               <div class="artical-tag-role">

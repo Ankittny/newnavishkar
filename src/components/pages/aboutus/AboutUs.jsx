@@ -1,6 +1,5 @@
 "use client";
-
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../../styles/_about.scss";
 import OurAchievement from "@/components/OurAchievment";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -16,11 +15,30 @@ import 'swiper/css/pagination';
 
 // import required modules
 import { EffectCoverflow, Pagination } from 'swiper/modules';
-
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { configData } from "@/redux/Action/Config";
 
 const AboutUs = () => {
+
+    const dispatch = useDispatch();
+    const [aboutUs,setAboutUs]=useState([])
+
+    const { loading, error, config } = useSelector((state) => state.config);
+
+    useEffect(() => {
+        dispatch(configData());
+      }, [dispatch]);
+
+
+       useEffect(()=>{
+          if(config && config.about_us){
+            setAboutUs(config.about_us)
+          }
+        },[config])
+
+        console.log("About Us",aboutUs)
+
+
     return (
         <>
             <section>

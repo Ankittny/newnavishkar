@@ -4,11 +4,12 @@ import Image from "next/image";
 import SHopByIntrest from "./SHopByIntrest";
 
 const ShopByAge = ({ categoryData }) => {
+
   const [selectedAgeGroup, setSelectedAgeGroup] = useState("");
 
   useEffect(() => {
     if (categoryData && categoryData.length > 0) {
-      setSelectedAgeGroup(categoryData[0]?.id || "");
+      setSelectedAgeGroup(categoryData[0]?.slug || "");
     }
   }, [categoryData]);
 
@@ -42,7 +43,7 @@ const ShopByAge = ({ categoryData }) => {
               className="col-lg-6"
               style={{ cursor: "pointer" }}
               key={group?.id || index}
-              onClick={() => handleAgeGroupClick(group?.id)}
+              onClick={() => handleAgeGroupClick(group?.slug)}
             >
               <div className="group">
                 <div className="row">

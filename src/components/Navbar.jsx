@@ -193,7 +193,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href="/contactus" passHref className="nav-link">
+                <Link href="/innovation" passHref className="nav-link">
                   Innovation
                 </Link>
               </li>

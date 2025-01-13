@@ -8,6 +8,7 @@ import { homeReducer } from "./Reducer/HomeProduct";
 import { bannerReducer } from "./Reducer/Banner";
 import { navbarCategoriesReducer } from "./Reducer/NavbarCategories";
 import { wokrshopReducer } from "./Reducer/Workshop";
+import { completeProjectReducer } from "./Reducer/CompleteProject";
 
 
 
@@ -20,8 +21,9 @@ const store = configureStore({
     home: homeReducer,
     banner:bannerReducer,
     navbarCategories :navbarCategoriesReducer,
-    workshop:wokrshopReducer
-  
+    workshop:wokrshopReducer,
+    completeProject:completeProjectReducer,
+    
   },
 });
 

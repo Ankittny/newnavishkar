@@ -11,22 +11,31 @@ import { Navigation, Autoplay } from "swiper/modules";
 import RelatedProduct from "@/components/RelatedProduct";
 import Link from "next/link";
 import Filter from "@/components/Filter";
-import { useRouter } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import BoysToys from "@/components/BoysToys";
 import OurAchievement from "@/components/OurAchievment";
+import { completeProjectData } from "@/redux/Action/CompleteProject";
 
 const CompleteProject = () => {
-  const [labData, setLabData] = useState([]);
   const router = useRouter();
   const dispatch = useDispatch();
 
+  const pathname = usePathname(); // Get the full pathname
+  const cleanPathname = pathname.startsWith("/") ? pathname.slice(1) : pathname;
+
+  console.log(cleanPathname); // Logs the pathname without the leading "/"
+
   // here redux logic implement
 
-  const fetchLabData = async () => {};
+  const { loading, error, cmlproject } = useSelector(
+    (state) => state.completeProject
+  );
+
+  console.log("complete data ankit", cmlproject);
 
   useEffect(() => {
-    fetchLabData();
+    dispatch(completeProjectData(cleanPathname));
   }, []);
 
   const handleClick = (id) => {
@@ -55,177 +64,98 @@ const CompleteProject = () => {
             </div>
 
             <div className="row">
-              <div className="col-lg-6">
-                <div class="complete-project  gap-4">
-                  <div class="imag-complete">
-                    <Image
-                      src={"/labs/lab1.png"}
-                      alt="lab"
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                  <div class="project-name mt-3">
-                    <h5>Simon Memory Game</h5>
-                  </div>
+              {cmlproject.map((item, index) => (
+                <div className="col-lg-6" key={item.id}>
+                  <div className="complete-project gap-4">
+                    <div className="imag-complete">
+                      <Image
+                        src={item.thumbnail_full_url?.path || "/labs/lab1.png"} // Use project.image if available
+                        alt={item.name}
+                        width={100}
+                        height={100}
+                      />
+                    </div>
+                    <div className="project-name mt-3">
+                      <h5>{item.name}</h5> {/* Render project name */}
+                    </div>
 
-                  <div className="d-flex flex-row gap-3">
-                    <div className="complete-discount">
-                      <p>-13%</p>
-                    </div>
-                    <div className="complete-price">
-                      <h4>699</h4>
-                    </div>
-                    <div>
-                      <p><s>$799</s></p>
+                    <div className="d-flex flex-row gap-3">
+                      <div className="complete-discount">
+                        <p>{item.discount ? `-${item.discount}%` : "-13%"}</p>{" "}
+                      </div>
+                      <div className="complete-price">
+                        <h4>{item.price || "699"}</h4> {/* Render price */}
+                      </div>
+
+                      <div>
+                        <p>
+                          <s>${item.original_price || "799"}</s>{" "}
+                          {/* Render original price */}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <div className="col-lg-6">
-                <div class="complete-project  gap-4">
-                  <div class="imag-complete">
-                    <Image
-                      src={"/labs/lab1.png"}
-                      alt="lab"
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                  <div class="project-name mt-3">
-                    <h5>Simon Memory Game</h5>
-                  </div>
-
-                  <div className="d-flex flex-row gap-3">
-                    <div className="complete-discount">
-                      <p>-13%</p>
-                    </div>
-                    <div className="complete-price">
-                      <h4>699</h4>
-                    </div>
-                    <div>
-                      <p><s>$799</s></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-lg-6">
-                <div class="complete-project  gap-4">
-                  <div class="imag-complete">
-                    <Image
-                      src={"/labs/lab1.png"}
-                      alt="lab"
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                  <div class="project-name mt-3">
-                    <h5>Simon Memory Game</h5>
-                  </div>
-
-                  <div className="d-flex flex-row gap-3">
-                    <div className="complete-discount">
-                      <p>-13%</p>
-                    </div>
-                    <div className="complete-price">
-                      <h4>699</h4>
-                    </div>
-                    <div>
-                      <p><s>$799</s></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-lg-6">
-                <div class="complete-project  gap-4">
-                  <div class="imag-complete">
-                    <Image
-                      src={"/labs/lab1.png"}
-                      alt="lab"
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                  <div class="project-name mt-3">
-                    <h5>Simon Memory Game</h5>
-                  </div>
-
-                  <div className="d-flex flex-row gap-3">
-                    <div className="complete-discount">
-                      <p>-13%</p>
-                    </div>
-                    <div className="complete-price">
-                      <h4>699</h4>
-                    </div>
-                    <div>
-                      <p><s>$799</s></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
+              ))}
             </div>
           </div>
         </div>
       </div>
 
       <div className="row">
-          <div className="col-lg-12 mt-3 mb-3">
-            <div className="text-center ">
-              <h1 className="reletedHead">Related Products</h1>
-            </div>
-          </div>
-          <div className="col-lg-12">
-            <Swiper
-              navigation={false}
-              modules={[Autoplay, Navigation]} // Importing Autoplay module
-              className="mySwiper"
-              autoplay={{
-                delay: 3000, // Adjust delay as needed
-                disableOnInteraction: false,
-              }}
-              loop={true}
-              breakpoints={{
-                640: {
-                  slidesPerView: 2,
-                  spaceBetween: 20,
-                },
-                768: {
-                  slidesPerView: 4,
-                  spaceBetween: 40,
-                },
-                1024: {
-                  slidesPerView: 4,
-                  spaceBetween: 50,
-                },
-              }}
-            >
-              <SwiperSlide>
-                <RelatedProduct />
-              </SwiperSlide>
-              <SwiperSlide>
-                <RelatedProduct />
-              </SwiperSlide>
-              <SwiperSlide>
-                <RelatedProduct />
-              </SwiperSlide>
-              <SwiperSlide>
-                <RelatedProduct />
-              </SwiperSlide>
-              <SwiperSlide>
-                <RelatedProduct />
-              </SwiperSlide>
-              <SwiperSlide>
-                <RelatedProduct />
-              </SwiperSlide>
-            </Swiper>
+        <div className="col-lg-12 mt-3 mb-3">
+          <div className="text-center ">
+            <h1 className="reletedHead">Related Products</h1>
           </div>
         </div>
+        <div className="col-lg-12">
+          <Swiper
+            navigation={false}
+            modules={[Autoplay, Navigation]} // Importing Autoplay module
+            className="mySwiper"
+            autoplay={{
+              delay: 3000, // Adjust delay as needed
+              disableOnInteraction: false,
+            }}
+            loop={true}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 4,
+                spaceBetween: 40,
+              },
+              1024: {
+                slidesPerView: 4,
+                spaceBetween: 50,
+              },
+            }}
+          >
+            <SwiperSlide>
+              <RelatedProduct />
+            </SwiperSlide>
+            <SwiperSlide>
+              <RelatedProduct />
+            </SwiperSlide>
+            <SwiperSlide>
+              <RelatedProduct />
+            </SwiperSlide>
+            <SwiperSlide>
+              <RelatedProduct />
+            </SwiperSlide>
+            <SwiperSlide>
+              <RelatedProduct />
+            </SwiperSlide>
+            <SwiperSlide>
+              <RelatedProduct />
+            </SwiperSlide>
+          </Swiper>
+        </div>
+      </div>
 
-        <OurAchievement />
+      <OurAchievement />
     </>
   );
 };

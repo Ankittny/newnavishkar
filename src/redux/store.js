@@ -9,8 +9,7 @@ import { bannerReducer } from "./Reducer/Banner";
 import { navbarCategoriesReducer } from "./Reducer/NavbarCategories";
 import { wokrshopReducer } from "./Reducer/Workshop";
 import { completeProjectReducer } from "./Reducer/CompleteProject";
-
-
+import { configReducer } from "./Reducer/Config";
 
 const store = configureStore({
   reducer: {
@@ -19,11 +18,11 @@ const store = configureStore({
     lab: labReducer,
     cart: cartReducer, // Add cart reducer
     home: homeReducer,
-    banner:bannerReducer,
-    navbarCategories :navbarCategoriesReducer,
-    workshop:wokrshopReducer,
-    completeProject:completeProjectReducer,
-    
+    banner: bannerReducer,
+    navbarCategories: navbarCategoriesReducer,
+    workshop: wokrshopReducer,
+    completeProject: completeProjectReducer,
+    config: configReducer,
   },
 });
 

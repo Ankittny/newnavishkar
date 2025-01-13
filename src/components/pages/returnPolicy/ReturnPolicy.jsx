@@ -1,6 +1,26 @@
-import React from "react";
+"use client"
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { configData } from "@/redux/Action/Config";
 
 const ReturnPolicy = () => {
+  const [returnPolicy, setReturnPolicy] = useState([]);
+  const dispatch = useDispatch();
+
+  const { loading, error, config } = useSelector((state) => state.config);
+
+  useEffect(() => {
+    dispatch(configData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (config && config.return_policy) {
+      setReturnPolicy(config.return_policy);
+    }
+  }, [config]);
+
+  console.log("Return Policy",returnPolicy)
+
   return (
     <div className="return-policy-container container">
       <div className="return-policy-wrapper">

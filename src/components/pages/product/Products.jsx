@@ -10,12 +10,9 @@ const Product = () => {
   const [categoryData, setCategoryData] = useState([]);
   const dispatch = useDispatch();
 
-  const {
-    loading: isLoading,
-    success: isSuccess,
-    error,
-    category,
-  } = useSelector((state) => state.category);
+  const { loading: isLoading, success: isSuccess, error, category } = useSelector(
+    (state) => state.category
+  );
 
   const fetchData = async () => {
     try {
@@ -39,14 +36,11 @@ const Product = () => {
     <>
       <ProductBanner
         title="Navishkar - Kids Toy Store"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elitvashcb biiwuhiwq uidh ih uhi iui"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Experience the joy of learning with our curated toys."
         linkText="Live Demo"
         linkUrl="/demo"
         imageUrl={"/product/productbanner.png"}
       />
-      {/* ==================================================BEST_SELLER======================================= */}
-    
-
       <ShopByAge categoryData={categoryData} />
       <OurAchievment />
     </>

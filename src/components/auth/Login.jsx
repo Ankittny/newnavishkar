@@ -151,13 +151,13 @@ export default function Login() {
         <div className="fresh-login">
           <Grid item xs={12} sm={12}>
             <div className="loginwithother ">
-              <Image src="/icons/google.png" width={30} height={30} />
+              <Image src="/icons/google.png" width={30} height={30} alt='google' />
               <p className="m-0">Login with Google</p>
             </div>
           </Grid>
           <Grid item xs={12} sm={12} className="mt-2">
             <div className="loginwithother">
-              <Image src="/icons/facebook.png" width={30} height={30} />
+              <Image src="/icons/facebook.png" width={30} height={30} alt="facebook" />
               <p className="m-0">Login with Facebook</p>
             </div>
           </Grid>

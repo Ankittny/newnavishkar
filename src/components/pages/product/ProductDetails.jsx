@@ -21,10 +21,11 @@ import Certificate from "@/components/Certificate";
 import { useDispatch, useSelector } from "react-redux";
 import { CategoryDetail } from "@/redux/Action/category";
 import BoysToys from "@/components/BoysToys";
+import { useParams } from "next/navigation";
 
-const ProductDetails = ({ params }) => {
-  const categorySlug = params.productid;
-  console.log("params slug product details", categorySlug);
+const ProductDetails = () => {
+  const { productid } = useParams();
+  console.log("Product slug ID:", productid);
 
   const dispatch = useDispatch();
   const {
@@ -36,23 +37,15 @@ const ProductDetails = ({ params }) => {
 
   const [categryDetailData, setCategoryDetailData] = useState(null);
 
-  const [mainImage, setMainImage] = useState(
-    "https://www.w3schools.com/html/img_chania.jpg"
-  );
-
-  const thumbnails = [
-    "https://www.w3schools.com/html/pic_trulli.jpg",
-    "https://www.w3schools.com/html/html5.gif",
-    "https://www.w3schools.com/html/img_chania.jpg",
-  ];
+  const [mainImage, setMainImage] = useState(null);
 
   const handleImageError = (e) => {
-    e.target.src = "https://via.placeholder.com/340";
+    e.target.src = "https://via.placeholder.com/340"; // Fallback image
   };
 
   const fetchDataById = async () => {
     try {
-      dispatch(CategoryDetail(categorySlug));
+      dispatch(CategoryDetail(productid));
     } catch (error) {
       console.error("Error fetching categories:", error);
     }
@@ -60,91 +53,92 @@ const ProductDetails = ({ params }) => {
 
   useEffect(() => {
     fetchDataById();
-  }, [categorySlug]);
+  }, [productid]);
 
   useEffect(() => {
     if (categoryDetail) {
       console.log("categoryDetail shalu", categoryDetail);
       setCategoryDetailData(categoryDetail);
+
+      // Set the first image from images_full_url as the main image
+      if (categoryDetail.images_full_url?.length > 0) {
+        setMainImage(categoryDetail.images_full_url[0].path);
+      }
     }
   }, [categoryDetail]);
 
-  console.log("Categories Detail Data:", categryDetailData);
+  console.log("Categories ssssssss Detail Data:", categryDetailData);
+  console.log("rahul", categoryDetail);
 
   return (
     <>
       <div className="">
-        <ProductBanner imageUrl={"/product/productDetailBanner.png"} />
+        <ProductBanner
+          imageUrl={
+            categryDetailData?.thumbnail_full_url?.path ||
+            "/product/productDetailBanner.png"
+          }
+        />
       </div>
       <div className="container">
         <div className="row">
-      
           <div className="col-lg-12">
             <div className="container mt-5">
               <div className="row">
                 <div className="col-md-12 text-center proudctDetailHeading">
                   <h1 className="">Navishkar The Leading Brand</h1>
                 </div>
-                {/* <div className="d-flex gap-2">
-            <p className="productCategory">Category</p> /
-            <span>
-              <p className="productCategory">SubCategory</p>
-            </span>
-          </div> */}
 
                 <div className="row mt-3">
                   <div className="col-md-5">
                     <Box sx={{ padding: "20px" }}>
                       {/* Main Product Card */}
-                      <Card sx={{ position: "relative" }}>
-                        <CardMedia
-                          component="img"
-                          // height="340"
-                          image={mainImage} // Display the selected image
-                          alt="Products"
-                          onError={handleImageError}
-                        />
-                      </Card>
+                      <CardMedia
+                        component="img"
+                        image={mainImage} // Display the selected image
+                        alt="Products"
+                        onError={handleImageError}
+                      />
 
                       {/* Thumbnails */}
                       <Grid container spacing={2} sx={{ marginTop: "20px" }}>
-                        {thumbnails.map((thumb, index) => (
-                          <Grid item xs={3} key={index}>
-                            <CardMedia
-                              component="img"
-                              height="100"
-                              image={thumb}
-                              alt={`Thumbnail ${index + 1}`}
-                              onClick={() => setMainImage(thumb)}
-                              style={{ cursor: "pointer" }}
-                              onError={handleImageError}
-                            />
-                          </Grid>
-                        ))}
+                        {categryDetailData?.images_full_url?.map(
+                          (thumb, index) => (
+                            <Grid item xs={3} key={index}>
+                              <CardMedia
+                                component="img"
+                                height="100"
+                                image={thumb.path}
+                                alt={`Thumbnail ${index + 1}`}
+                                onClick={() => setMainImage(thumb.path)}
+                                style={{ cursor: "pointer" }}
+                                onError={handleImageError}
+                              />
+                            </Grid>
+                          )
+                        )}
                       </Grid>
                     </Box>
                   </div>
                   <div className="col-md-7">
-                    <div class="motonove-right-title">
+                    <div className="motonove-right-title">
                       <div className="d-flex gap-5">
-                        <h3>Motonova</h3>{" "}
-                        {/* <span>
-                          <FavoriteIcon sx={{ fontSize: 35, color: "red" }} />
-                        </span> */}
+                        <h3>
+                          {categryDetailData
+                            ? categryDetailData.name
+                            : "Loading..."}
+                        </h3>
                       </div>
-                      <p className="">
+                      <p>
                         A green energy product that generates energy by the
                         inertia of the flywheel.
                       </p>
-                      <div class="motonova-highlight">
+                      <div className="motonova-highlight">
                         <span>Highlights</span>
-                        <div class="wheel-balance d-flex gap-3 mt-3">
+                        <div className="wheel-balance d-flex gap-3 mt-3">
                           <ul>
                             <li>
                               <Link href="">Monowheel Balance</Link>
-                            </li>
-                            <li>
-                              <Link href="">Green Energy</Link>
                             </li>
                             <li>
                               <Link href="">Green Energy</Link>
@@ -155,36 +149,25 @@ const ProductDetails = ({ params }) => {
                           </ul>
                           <Image
                             src={"/product/Mark1.png"}
-                            alt="ddd"
+                            alt="Mark1"
                             width={80}
                             height={80}
                           />
                         </div>
-                        <div class="rating-title mt-3">
-                          <span>Rating</span>
-                          <p>50+ bought in past month</p>
-                        </div>
                       </div>
 
-                      <div class="full-rating">
-                        <div class="reting-create-price">
-                          <h3>₹ 1999</h3>
-                          <span>M.R.P.: ₹2,654</span> <br />
-                          <StarIcon />
+                      <div className="full-rating">
+                        <div className="reting-create-price">
+                          <h3>₹ {categryDetailData?.price || "1999"}</h3>
+                          <span>
+                            M.R.P.: ₹{categryDetailData?.mrp || "2,654"}
+                          </span>
                         </div>
-                        <div class="rating-star">
+                        <div className="rating-star">
                           <span>Navishkar</span>
                           <p>Inclusive of all taxes</p>
                         </div>
-                        <div class="free-delivery-date d-flex">
-                          <div>
-                            <LocalShippingIcon
-                              sx={{ fontSize: 40, color: "#175A95" }}
-                            />
-                            <p style={{ fontSize: "15px" }} className="m-0">
-                              Free Delivery
-                            </p>
-                          </div>
+                        <div className="free-delivery-date d-flex">
                           <div>
                             <LocalShippingIcon
                               sx={{ fontSize: 40, color: "#175A95" }}
@@ -194,31 +177,17 @@ const ProductDetails = ({ params }) => {
                             </p>
                           </div>
                         </div>
-                        <div class="ic0n-about-trust">
+                        <div className="ic0n-about-trust">
                           <h3>About this item</h3>
-                          <h4 className="mt-4">
-                            Let it go and try how far and how stable your
-                            MOTONOVA can run!
-                          </h4>
-                          <p>
-                            A green energy product that generates energy by the
-                            inertia of the flywheel. After the force is applied,
-                            the magic flywheel acts to stand up, and releases
-                            the power with rotational kinetic energy to drive
-                            the gearbox. It can drive stably and lastingly on a
-                            flat surface and roll forward 15 meters with
-                            balance! Through assembling by yourself, you can
-                            better understand the mechanism of the gearbox. The
-                            transparent gearbox can be clearly seen how the
-                            internal mechanism works so as to learn interesting
-                            scientific principles while playing.
-                          </p>
-                          <h3>Additional Tools Required</h3>
-                          <ul>
-                            <li>Screwdriver (PH1 size)</li>
-                            <li>Diagonal Pliers</li>
-                          </ul>
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html:
+                                categryDetailData?.details ||
+                                "<p>Loading description...</p>",
+                            }}
+                          />
                         </div>
+
                         <div class="ic0n-about-trust">
                           <h3>What is inside the box?</h3>
                           <ul>

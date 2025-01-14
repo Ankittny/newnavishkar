@@ -4,15 +4,12 @@ import Image from "next/image";
 import SHopByIntrest from "./SHopByIntrest";
 
 const ShopByAge = ({ categoryData }) => {
-  // console.log("CategoryData", categoryData[0]?.name);
 
-  const [selectedAgeGroup, setSelectedAgeGroup] = useState(
-    categoryData[0]?.id || ""
-  );
+  const [selectedAgeGroup, setSelectedAgeGroup] = useState("");
 
   useEffect(() => {
     if (categoryData && categoryData.length > 0) {
-      setSelectedAgeGroup(categoryData[0].id);
+      setSelectedAgeGroup(categoryData[0]?.slug || "");
     }
   }, [categoryData]);
 
@@ -20,6 +17,9 @@ const ShopByAge = ({ categoryData }) => {
     setSelectedAgeGroup(ageGroupId);
   };
 
+  if (!categoryData || categoryData.length === 0) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -38,44 +38,34 @@ const ShopByAge = ({ categoryData }) => {
         </div>
 
         <div className="row shopByAge">
-          <div className="col-lg-6  curser">
-          <div className="group" onClick={() => handleAgeGroupClick(categoryData[0]?.id)}>
-              <div className="row">
-                <div className="col-lg-6">
-                <h2 className="ageLabel">{categoryData[0]?.name}</h2>
-                </div>
-
-                <div className="imageWrapper col-6">
-                  <Image
-                    src={categoryData[0]?.icon_full_url?.path} 
-                    width={200}
-                    height={175}
-                    alt="Child holding a robot"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-lg-6" style={{ cursor: "pointer" }}>
-          <div className="group" onClick={() => handleAgeGroupClick(categoryData[1]?.id)}>
-              <div className="row">
-                <div className="col-lg-6">
-                <h2 className="ageLabel">{categoryData[1]?.name}</h2>
-                  {/* <h2 className="ageLabel">Years</h2> */}
-                </div>
-
-                <div className="imageWrapper col-lg-6">
-                  <Image
-                  src={categoryData[1]?.icon_full_url?.path} 
-                    width={200}
-                    height={176}
-                    alt="Child holding a robot"
-                  />
+          {categoryData.slice(0, 2).map((group, index) => (
+            <div
+              className="col-lg-6"
+              style={{ cursor: "pointer" }}
+              key={group?.id || index}
+              onClick={() => handleAgeGroupClick(group?.slug)}
+            >
+              <div className="group">
+                <div className="row">
+                  <div className="col-lg-6">
+                    <h2 className="ageLabel">{group?.name}</h2>
+                  </div>
+                  <div className="imageWrapper col-lg-6">
+                  {group?.icon_full_url?.path ? (
+                      <Image
+                        src={group.icon_full_url.path}
+                        width={200}
+                        height={175}
+                        alt={group?.name || "Age Group"}
+                      />
+                    ) : (
+                      <div>No Image Available</div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </section>
 
@@ -85,4 +75,3 @@ const ShopByAge = ({ categoryData }) => {
 };
 
 export default ShopByAge;
-

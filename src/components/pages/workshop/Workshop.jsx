@@ -16,27 +16,23 @@ import { useDispatch, useSelector } from "react-redux";
 import BoysToys from "@/components/BoysToys";
 import { WorkshopData } from "@/redux/Action/Workshop";
 
-
 const Workshop = () => {
-
-
   const router = useRouter();
   const dispatch = useDispatch();
 
-
-  const {loading,workshop,error} = useSelector((state)=> state.workshop)
+  const { loading, workshop, error } = useSelector((state) => state.workshop);
 
   const navbarCategories = useSelector(
     (state) => state.navbarCategories.navbarCategories
   );
-  
+
   // Filter categories where type is "K-12 Offering" and the name includes "Workshops"
   const workshopCategories = navbarCategories.filter(
     (category) =>
-      category.type === "K-12 Offering" && category.name.toLowerCase().includes("workshop")
+      category.type === "K-12 Offering" &&
+      category.name.toLowerCase().includes("workshop")
   );
   const firstWorkshop = workshopCategories[0];
-
 
   // workshop data
   useEffect(() => {
@@ -45,10 +41,9 @@ const Workshop = () => {
     }
   }, [dispatch, firstWorkshop]);
 
-
   return (
     <>
-       {firstWorkshop && (
+      {firstWorkshop && (
         <ProductBanner
           title={firstWorkshop.name} // Use the category name for the title
           description={firstWorkshop.description} // Use the category description
@@ -57,8 +52,7 @@ const Workshop = () => {
           imageUrl={firstWorkshop.cover_pic_path || "/labs/labBanner.png"} // Default to a placeholder if imageUrl is missing
         />
       )}
-    
-      
+
       <div className="container mt-5">
         <div className="row detail-nav">
           <div className="col-lg-3">
@@ -71,27 +65,27 @@ const Workshop = () => {
             </div>
 
             <div className="row">
-            {workshop.map((item, index) => (
-        <div key={index} className="col-lg-6">
-          <div className="toddler-title d-flex gap-4">
-            <div className="imag-toddler">
-              <Image
-                src={item.image_path}
-                alt={item.title}
-                width={100}
-                height={100}
-              />
-            </div>
-            <div className="labs-toddler">
-              <p>{item.title}</p>
-              <span>{item.description}</span>
-              <div className="an-int">
-                <Link href="#">Read more</Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
+              {workshop.map((item, index) => (
+                <div key={index} className="col-lg-6">
+                  <div className="toddler-title d-flex gap-4">
+                    <div className="imag-toddler">
+                      <Image
+                        src={item.image_path}
+                        alt={item.title}
+                        width={100}
+                        height={100}
+                      />
+                    </div>
+                    <div className="labs-toddler">
+                      <p>{item.title}</p>
+                      <span>{item.description}</span>
+                      <div className="an-int">
+                        <Link href={`/workshop/${item.slug}`}>Read more</Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
 
             <Divider
@@ -100,8 +94,7 @@ const Workshop = () => {
                 borderColor: "#175A95", // Custom color
                 borderBottomWidth: 2, // Custom width
               }}
-            >
-            </Divider>
+            ></Divider>
             <div className="all-details-age mt-3">
               <p>Battery and Non battery operated</p>
               <span>Battery Operated | Non-Battery Operated</span>
@@ -143,9 +136,12 @@ const Workshop = () => {
                 <div className="all-toys d-flex justify-content-between align-items-center">
                   <div className="toys-text">
                     <h4>Navishkar - Kids Toy Store</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing <br /> elit, sed do eiusmod tempor
-                      incididunt ut labore et <br /> dolore magna aliqua. Ut enim ad minim veniam, quis <br />
-                      nostrud exercitation ullamco laboris nisi ut aliquip <br /> ex ea commodo consequat.
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing <br />{" "}
+                      elit, sed do eiusmod tempor incididunt ut labore et <br />{" "}
+                      dolore magna aliqua. Ut enim ad minim veniam, quis <br />
+                      nostrud exercitation ullamco laboris nisi ut aliquip{" "}
+                      <br /> ex ea commodo consequat.
                     </p>
                     {/* <a href="">Shop More </a> */}
                   </div>
@@ -162,7 +158,6 @@ const Workshop = () => {
         </div>
       </section>
 
-
       <div className="camp-activity-title" id="camp-activity-title">
         <div className="container">
           <div className="row">
@@ -173,9 +168,9 @@ const Workshop = () => {
                 </h2>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna
-                  aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                  ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
                 </p>
               </div>
               <div className="row">
@@ -199,7 +194,6 @@ const Workshop = () => {
           </div>
         </div>
       </div>
-
 
       <div className="row">
         <div className="col-lg-12 mt-3 mb-3">

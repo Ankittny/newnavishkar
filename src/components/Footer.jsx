@@ -45,16 +45,18 @@ const Footer = () => {
                 <div className="ct_contact_us">
                   <h3>Quick Links</h3>
                   <ul className="list-unstyled">
-                    <li>Compiler</li>
+                    <li>
+                      <Link href="https://skycompiler.skylabsapp.com/py/" target="_blank">Compiler</Link>
+                    </li>
                     <li>
                       <Link href="/aboutus">About Us</Link>
                     </li>
                     <li>
                       <Link href={"/contactus"}>Contact Us</Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link href={"/aboutus"}>Our Team</Link>
-                    </li>
+                    </li> */}
                     <li>
                       <Link href={"/labs"}>Labs</Link>
                     </li>
@@ -73,13 +75,20 @@ const Footer = () => {
                 <div className="ct_contact_us">
                   <h3>Follow Us</h3>
                   <ul className="list-unstyled">
-                    <li>Return Policy Page</li>
-                    <li>Shipping and Delivery</li>
-                    <li>Terms & Conditions</li>
+                    <li>
+                      <Link href={"/return-policy"}>Return Policy Page</Link>
+                    </li>
+                    <li>
+                      <Link href={"/privacy-policy"}>Privacy Policy Page</Link>
+                    </li>
+                    {/* <li>Shipping and Delivery</li> */}
+                    <li>
+                      <Link href={"/terms-condition"}>Terms & Conditions</Link>
+                    </li>
                     <li>Customized Solution</li>
-                    <li>Equipment</li>
+                    {/* <li>Equipment</li>
                     <li>Comprehensive Curriculum</li>
-                    <li>Expertise and Experience</li>
+                    <li>Expertise and Experience</li> */}
                   </ul>
                 </div>
               </div>

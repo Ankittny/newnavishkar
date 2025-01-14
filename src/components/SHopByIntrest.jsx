@@ -78,7 +78,48 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
 
   return (
     <>
-      {/* ============================================Best-Seller======================================== */}
+      <section className="shopbyintrest">
+        <div className="container">
+          <div className="row">
+            <div className="col-12">
+              <div className="shop-by-title text-center">
+                <h5>
+                  SHOP BY <span>INTEREST</span>
+                </h5>
+                <p>A whole lotta fun & learning</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="row dr-title mt-4">
+            <div className="col-md-3">
+              <Filter />
+            </div>
+            <div className="col-md-9">
+              <div className="card-container">
+                {filteredCategories?.length > 0 ? (
+                  filteredCategories.map((category) => (
+                    <Card
+                      key={category.id || category.slug}
+                      id={category.id}
+                      imageUrl={category.thumbnail_full_url?.path || null}
+                      name={category?.name}
+                      discount={category?.discount}
+                      price={category?.unit_price}
+                      oldPrice={category?.purchase_price}
+                      discount_type={category?.discount_type}
+                      onClick={() => handleCardClick(category.slug)}
+                      onAddToCart={handleAddToCart}
+                    />
+                  ))
+                ) : (
+                  <p>No categories available.</p>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <section>
         <div className="seller-top">
           <div className="container">
@@ -207,49 +248,6 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="shopbyintrest">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <div className="shop-by-title text-center">
-                <h5>
-                  SHOP BY <span>INTEREST</span>
-                </h5>
-                <p>A whole lotta fun & learning</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="row dr-title mt-4">
-            <div className="col-md-3">
-              <Filter />
-            </div>
-            <div className="col-md-9">
-            <div className="card-container">
-  {filteredCategories?.length > 0 ? (
-    filteredCategories.map((category) => (
-      <Card
-        key={category.id || category.slug}
-        id={category.id}
-        imageUrl={category.thumbnail_full_url?.path || null}
-        name={category?.name}
-        discount={category?.discount}
-        price={category?.unit_price}
-        oldPrice={category?.purchase_price}
-        discount_type={category?.discount_type}
-        onClick={() => handleCardClick(category.slug)}
-        onAddToCart={handleAddToCart}
-      />
-    ))
-  ) : (
-    <p>No categories available.</p>
-  )}
-</div>
             </div>
           </div>
         </div>

@@ -20,3 +20,26 @@ export const WorkshopData = (slug) => async (dispatch) => {
     });
   }
 };
+
+
+export const WorkshopDataDetails = (slug) => async(dispatch)=>{
+  try {
+    dispatch({ type: "workshopDetailsRequest" });
+
+    const { data } = await axios.get(`/categories/work-shop-details/${slug}`);
+    console.log("WorkshopDetail Data: Ankit Details", data);
+
+    dispatch({ type: "workshopDetailsSuccess", payload: data.workshopproductsdetails || [] });
+
+  } catch (error) {
+    console.error("Error fetching workshop:", error);
+
+    dispatch({
+      type: "workshopDetailsError",
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+}

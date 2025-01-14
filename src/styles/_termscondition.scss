@@ -1,0 +1,79 @@
+.terms-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    // background-color: #f9f9f9;
+  }
+  
+  .terms-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .terms-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+  }
+  
+  .terms-description {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 10px;
+    line-height: 1.6;
+  }
+  
+  .divider {
+    margin: 20px 0;
+    border: none;
+    border-top: 1px solid #ddd;
+  }
+  
+  .terms-section {
+    margin-bottom: 20px;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    color: #222;
+    margin-bottom: 10px;
+  }
+  
+  .section-list {
+    padding-left: 20px;
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .section-paragraph {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .terms-footer {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .support-button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+  }
+  
+  .support-button:hover {
+    background-color: #218838;
+  }
+  

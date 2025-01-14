@@ -6,6 +6,7 @@ export const lab = () => async (dispatch) => {
   try {
     console.log("Hello Lab");
     dispatch({ type: "labRequest" });
+    
     const { data } = await axios.get("");
     console.log("Lab Data:", data);
     dispatch({ type: "labSuccess" });

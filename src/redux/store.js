@@ -10,6 +10,7 @@ import { navbarCategoriesReducer } from "./Reducer/NavbarCategories";
 import { wokrshopReducer } from "./Reducer/Workshop";
 import { completeProjectReducer } from "./Reducer/CompleteProject";
 import { configReducer } from "./Reducer/Config";
+import { innovationEnqueryReducer } from "./Reducer/InnovationEnquery";
 
 const store = configureStore({
   reducer: {
@@ -23,6 +24,7 @@ const store = configureStore({
     workshop: wokrshopReducer,
     completeProject: completeProjectReducer,
     config: configReducer,
+    innovation:innovationEnqueryReducer,
   },
 });
 

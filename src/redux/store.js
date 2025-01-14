@@ -11,6 +11,10 @@ import { wokrshopReducer } from "./Reducer/Workshop";
 import { completeProjectReducer } from "./Reducer/CompleteProject";
 import { configReducer } from "./Reducer/Config";
 import { innovationEnqueryReducer } from "./Reducer/InnovationEnquery";
+import { contactReducer } from "./Reducer/ContactUs";
+import { parterBeReducer } from "./Reducer/PartnerBe";
+
+
 
 const store = configureStore({
   reducer: {
@@ -25,6 +29,8 @@ const store = configureStore({
     completeProject: completeProjectReducer,
     config: configReducer,
     innovation:innovationEnqueryReducer,
+    contact:contactReducer,
+    partner:parterBeReducer,
   },
 });
 

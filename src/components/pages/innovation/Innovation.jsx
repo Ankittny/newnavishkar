@@ -57,7 +57,7 @@ function Innovation() {
       <div className="container mt-5">
         <div className="row">
           <div className="col-md-6">
-            <div>
+            <div className="innovation-title-text">
               <Image
                 src="/innovation/inno.png"
                 alt="innovation"

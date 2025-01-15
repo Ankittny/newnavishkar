@@ -291,7 +291,7 @@ const LiveProjects = () => {
 
       <div className="row">
         <div className="col-lg-12 mt-3 mb-3">
-          <div className="text-center">
+          <div className="text-center ">
             <h1 className="reletedHead">Related Products</h1>
           </div>
         </div>
@@ -299,10 +299,10 @@ const LiveProjects = () => {
           <Swiper
           centeredSlides={true}
             navigation={false}
-            modules={[Autoplay, Navigation]}
+            modules={[Autoplay, Navigation]} // Importing Autoplay module
             className="mySwiper"
             autoplay={{
-              delay: 3000,
+              delay: 3000, // Adjust delay as needed
               disableOnInteraction: false,
             }}
             loop={true}
@@ -336,7 +336,9 @@ const LiveProjects = () => {
             <SwiperSlide>
               <RelatedProduct />
             </SwiperSlide>
-            {/* Add more SwiperSlides as needed */}
+            <SwiperSlide>
+              <RelatedProduct />
+            </SwiperSlide>
           </Swiper>
         </div>
       </div>

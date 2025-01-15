@@ -144,7 +144,9 @@ table tr{
   margin-top: 20px;
   font-size: 12px;
 }
-
+.cart-item p{
+  margin-bottom: 0px;
+}
 
 // ==============================================media-query-start==============================================
 @media(max-width:1199px) and (min-width:992px){

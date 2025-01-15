@@ -164,7 +164,7 @@ const LiveProjects = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Enroll for {selectedProject?.name}</Modal.Title>
+          <Modal.Title> <h1 className="text-center">Enroll for {selectedProject?.name}</h1></Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -177,7 +177,7 @@ const LiveProjects = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Enter your first name"
+                    // placeholder="Enter your first name"
                   />
                 </Form.Group>
               </Col>
@@ -189,13 +189,13 @@ const LiveProjects = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="name@example.com"
+                    // placeholder="name@example.com"
                   />
                 </Form.Group>
               </Col>
             </Row>
             <Row>
-              <Col md={6}>
+              <Col md={12}>
                 <Form.Group className="mb-3" controlId="formContact">
                   <Form.Label>Contact Number</Form.Label>
                   <Form.Control
@@ -203,7 +203,7 @@ const LiveProjects = () => {
                     name="contact_no"
                     value={formData.contact_no}
                     onChange={handleChange}
-                    placeholder="Enter your contact number"
+                    // placeholder="Enter your contact number"
                   />
                 </Form.Group>
               </Col>
@@ -215,12 +215,10 @@ const LiveProjects = () => {
                     name="class_branch"
                     value={formData.class_branch}
                     onChange={handleChange}
-                    placeholder="Enter your class or branch name"
+                    // placeholder="Enter your class or branch name"
                   />
                 </Form.Group>
               </Col>
-            </Row>
-            <Row>
               <Col md={6}>
                 <Form.Group className="mb-3" controlId="formParentName">
                   <Form.Label>Parent Name</Form.Label>
@@ -229,10 +227,13 @@ const LiveProjects = () => {
                     name="parent_name"
                     value={formData.parent_name}
                     onChange={handleChange}
-                    placeholder="Enter your parent name"
+                    // placeholder="Enter your parent name"
                   />
                 </Form.Group>
               </Col>
+            </Row>
+            <Row>
+              
               <Col md={6}>
                 <Form.Group className="mb-3" controlId="formParentNum">
                   <Form.Label>Parent Number</Form.Label>
@@ -241,12 +242,10 @@ const LiveProjects = () => {
                     name="parent_contact_no"
                     value={formData.parent_contact_no}
                     onChange={handleChange}
-                    placeholder="Enter your parent number"
+                    // placeholder="Enter your parent number"
                   />
                 </Form.Group>
               </Col>
-            </Row>
-            <Row>
               <Col md={6}>
                 <Form.Group className="mb-3" controlId="formSchool">
                   <Form.Label>School/College</Form.Label>
@@ -255,11 +254,14 @@ const LiveProjects = () => {
                     name="school_college_name"
                     value={formData.school_college_name}
                     onChange={handleChange}
-                    placeholder="Enter your school or college name"
+                    // placeholder="Enter your school or college name"
                   />
                 </Form.Group>
               </Col>
-              <Col md={6}>
+            </Row>
+            <Row>
+             
+              <Col md={12}>
                 <Form.Group className="mb-3" controlId="formEnquiry">
                   <Form.Label>Enquiry</Form.Label>
                   <Form.Select
@@ -275,18 +277,14 @@ const LiveProjects = () => {
                     <option value="labs">Activity Labs</option>
                   </Form.Select>
                 </Form.Group>
+                <Button variant="primary " className="varient-btn btn btn-primary text-white" onClick={handleSubmit}>
+            Submit
+          </Button>
               </Col>
             </Row>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleSubmit}>
-            Submit
-          </Button>
-        </Modal.Footer>
+      
       </Modal>
 
       <div className="row">

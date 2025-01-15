@@ -439,7 +439,7 @@ const Home = () => {
                   <Swiper
                     effect={"coverflow"}
                     grabCursor={"true"}
-                    conteredSlides={"true"}
+                    conteredslides={"true"}
                     loop={"true"}
                     slidesPerView={"auto"}
                     coverflowEffect={{
@@ -527,7 +527,7 @@ const Home = () => {
                   centeredSlides={true}
                     effect={"coverflow"}
                     grabCursor={"true"}
-                    conteredSlides={"true"}
+                    conteredslides={"true"}
                     loop={"true"}
                     slidesPerView={"auto"}
                     coverflowEffect={{

@@ -239,9 +239,9 @@
     margin-bottom: 5px;
 }
 .get-set-btn{
-    background-color: #34394D;
+    background-color: #fff;
     border-radius: 30px;
-    color: #fff;
+    color: #203d6a;
     font-size: 12px;
     padding: 10px 20px ;
     border: none;
@@ -449,7 +449,7 @@
   }
   
   .tab-buttons .MuiTab-root {
-    background-color: #fda000;
+    background-color: #203d6a;
     border-radius:30px;
     padding: 10px 20px;
     text-transform: none;
@@ -489,7 +489,7 @@
     margin-top: 20px;
   }
   .css-1usuzwp-MuiButtonBase-root-MuiTab-root.Mui-selected {
-    color: black !important;
+    color: #fff !important;
 }
 .css-1qltlow-MuiTabs-indicator {
     // background-color: #175A95 !important
@@ -497,4 +497,8 @@
 }
 .css-1wxkzlj-MuiTabs-flexContainer{
     gap: 20px;
+}
+.listing-upper-title{
+    padding: 0;
+    list-style: none;
 }

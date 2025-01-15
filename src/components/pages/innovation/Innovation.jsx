@@ -93,156 +93,165 @@ function Innovation() {
             <Image
               src="/innovation/inno.png"
               alt="innovation"
-              width={500}
-              height={500}
-              className=""
+              width={550}
+              height={520}
+              className="inno-nectonical"
             />
           </div>
           <div className="col-md-6">
-            <h1>Live Project Enroll</h1>
-            <form onSubmit={handleSubmit}>
-              <div className="row mb-3">
-                <div className="col-md-6">
-                  <label htmlFor="name" className="form-label">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                  />
+            <div className="project-enroll">
+              <h1>Live Project Enroll</h1>
+              <form onSubmit={handleSubmit}>
+                <div className="row mb-3">
+                  <div className="col-md-6">
+                    <label htmlFor="name" className="form-label">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      // placeholder="Name"
+                      className="form-control"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+
+
+                  <div className="col-md-6">
+                    <label htmlFor="email" className="form-label">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      // placeholder="Email"
+                      className="form-control"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
                 </div>
 
-                <div className="col-md-6">
-                  <label htmlFor="email" className="form-label">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
+                <div className="row mb-3">
+                  <div className="col-md-12">
+                    <label htmlFor="contact_no" className="form-label">
+                      Contact No
+                    </label>
+                    <input
+                      type="number"
+                      // placeholder="Contact Number"
+                      className="form-control"
+                      id="contact_no"
+                      name="contact_no"
+                      value={formData.contact_no}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
                 </div>
-              </div>
+                <div className="row mb-3">
+                  <div className="col-md-6">
+                    <label htmlFor="class_branch" className="form-label">
+                      Class / Branch
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      // placeholder="Enter Class or Branch"
+                      id="class_branch"
+                      name="class_branch"
+                      value={formData.class_branch}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="col-md-6">
+                    <label htmlFor="parent_name" className="form-label">
+                      Parent Name
+                    </label>
+                    <input
+                      type="text"
+                      // placeholder="Enter Parent Name"
+                      className="form-control"
+                      id="parent_name"
+                      name="parent_name"
+                      value={formData.parent_name}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
 
-              <div className="row mb-3">
-                <div className="col-md-6">
-                  <label htmlFor="contact_no" className="form-label">
-                    Contact No
-                  </label>
-                  <input
-                    type="number"
-                    placeholder="Contact Number"
-                    className="form-control"
-                    id="contact_no"
-                    name="contact_no"
-                    value={formData.contact_no}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="col-md-6">
-                  <label htmlFor="class_branch" className="form-label">
-                    Class / Branch
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter Class or Branch"
-                    id="class_branch"
-                    name="class_branch"
-                    value={formData.class_branch}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
+                <div className="row mb-3">
 
-              <div className="row mb-3">
-                <div className="col-md-6">
-                  <label htmlFor="parent_name" className="form-label">
-                    Parent Name
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter Parent Name"
-                    className="form-control"
-                    id="parent_name"
-                    name="parent_name"
-                    value={formData.parent_name}
-                    onChange={handleChange}
-                  />
+                  <div className="col-md-6">
+                    <label htmlFor="parent_contact_no" className="form-label">
+                      Parent Contact No
+                    </label>
+                    <input
+                      type="number"
+                      // placeholder="Enter Parent Number"
+                      className="form-control"
+                      id="parent_contact_no"
+                      name="parent_contact_no"
+                      value={formData.parent_contact_no}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="col-md-6">
+                    <label htmlFor="school_college_name" className="form-label">
+                      School / College
+                    </label>
+                    <input
+                      type="text"
+                      // placeholder="Enter School or College name"
+                      className="form-control"
+                      id="school_college_name"
+                      name="school_college_name"
+                      value={formData.school_college_name}
+                      onChange={handleChange}
+                    />
+                  </div>
                 </div>
-                <div className="col-md-6">
-                  <label htmlFor="parent_contact_no" className="form-label">
-                    Parent Contact No
-                  </label>
-                  <input
-                    type="number"
-                    placeholder="Enter Parent Number"
-                    className="form-control"
-                    id="parent_contact_no"
-                    name="parent_contact_no"
-                    value={formData.parent_contact_no}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
 
-              <div className="row mb-3">
-                <div className="col-md-6">
-                  <label htmlFor="school_college_name" className="form-label">
-                    School / College
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter School or College name"
-                    className="form-control"
-                    id="school_college_name"
-                    name="school_college_name"
-                    value={formData.school_college_name}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="col-md-6">
-                  <label htmlFor="enquiry" className="form-label">
-                    Enquiry
-                  </label>
-                  <select
-                    className="form-select"
-                    id="enquiry"
-                    name="enquiry"
-                    value={formData.enquiry}
-                    onChange={handleChange}
-                    required
-                  >
-                    <option value="" disabled>
-                      Select Status
-                    </option>
-                    <option value="live">Live Project</option>
-                    <option value="complete">Complete Project</option>
-                    <option value="toy">Toy</option>
-                    <option value="workshop">Workshop</option>
-                    <option value="labs">Activity Labs</option>
-                  </select>
-                </div>
-              </div>
+                <div className="row mb-3">
 
-              <button
-                type="submit"
-                className="btn btn-primary w-100 mt-3"
-                disabled={loading}
-              >
-                {loading ? "Submitting..." : "Submit"}
-              </button>
-            </form>
+                  <div className="col-md-12">
+                    <label htmlFor="enquiry" className="form-label">
+                      Enquiry
+                    </label>
+                    <select
+                      className="form-select"
+                      id="enquiry"
+                      name="enquiry"
+                      value={formData.enquiry}
+                      onChange={handleChange}
+                      required
+                    >
+                      <option value="" >
+                        Select Status
+                      </option>
+                      <option value="live">Live Project</option>
+                      <option value="complete">Complete Project</option>
+                      <option value="toy">Toy</option>
+                      <option value="workshop">Workshop</option>
+                      <option value="labs">Activity Labs</option>
+                    </select>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  className="btn btn-primary w-100 mt-3"
+                  disabled={loading}
+                >
+                  {loading ? "Submitting..." : "Submit"}
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

@@ -41,6 +41,23 @@
     bottom: 0;
     right: 0;
 } 
+.partners{
+    position: absolute;
+    left: 0;
+    top: 0px;
+    bottom: 0;
+    right: 0;
+    top: -10px;
+}
+.partners img {
+    width: 280px;
+    background: #fff;
+    padding: 10px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 100%;
+    border: 10px solid #D9D9D9;
+}
 .partners-title{
     margin-top: 20px;
 }
@@ -59,6 +76,30 @@
    left: inherit;
    bottom: inherit;
    top: inherit;
+}
+.partner-others-int {
+    background-image: url(/PWS/pwsbackend.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 40px 21px 20px 40px;
+    border: 15px solid #dfdfdf;
+    border-radius: 15px;
+    height: 267px;
+    margin-top: 10px;
+    margin-right: 174px;
+}
+.partner-others-int h2 {
+    font-size: 1.8rem;
+    color: #222;
+    font-weight: 600;
+}
+.partner-others-int p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    font-weight: 400;
+    font-family: "Poppins";
 }
 .partner-int-right{
     background-repeat: no-repeat;
@@ -84,7 +125,7 @@
 
 
 @media(max-width:991px){
-    .partner{
+    .partner, .partners{
         position: inherit;
         justify-content: center;
     }
@@ -92,24 +133,33 @@
         margin-left:0px;
         padding: 20px;
     }
+    .partner-others-int{
+        margin-right: 0px;
+    }
+}
+@media(max-width:991px) and (min-width:769px){
+.partner-other-int h2 ,.partner-others-int h2 {
+    font-size: 1.5rem !important;
+    margin-top: -20px;
+}
 }
 @media(max-width:768px) and (min-width:426px){
-    .partner-other-int{
-        height: 300px;
+    .partner-other-int, .partner-others-int{
+        height: 485px;
     }
 }
 
 @media(max-width:676px) and (min-width:426px){
     .productBanner img {
-        width: 100%;
-        // height: 130px;
+        // width: 608px;
         object-fit: cover;
+        height: 160px;
     }
 }
 
 @media(max-width:425px){
-    .partner-other-int{
-        height: 470px;
+    .partner-other-int, .partner-others-int{
+        height: 550px;
     }
     .productBanner img {
         width: 100%;
@@ -125,14 +175,15 @@
   }
   
   .partner-heading h1 {
-    font-size: 2.5rem;
+    font-size: 35px;
     color: #333;
   }
   
   .partner-other-int h2 {
     font-size: 1.8rem;
     color: #222;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
+    margin-top: -18px;
   }
   
   .partner-other-int p {
@@ -156,4 +207,6 @@
   .partner-button:hover {
     background-color: #0056b3;
   }
-  
+  .varient-btn{
+    width: 100%;
+  }

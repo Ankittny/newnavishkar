@@ -27,7 +27,7 @@ const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id }) =
         <div className="kit-down">
           <p>{name}</p>
         </div>
-        <div className="button mt-4 d-flex gap-3 align-items-center">
+        <div className="button mt-4 d-flex gap-3 align-items-center justify-content-center">
           {/* Display discount for percentage and flat types */}
           {discount_type === "percent" ? (
             <div className="ex-btn">-{discount}%</div>

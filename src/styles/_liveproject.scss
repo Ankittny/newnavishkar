@@ -6,9 +6,10 @@
 }
 
 .live-project-heading h3{
-    font-size: 25px;
+    font-size: 35px;
     color: #185695;
     font-weight: 800;
+    text-align: center;
 }
 
 .imag-complete img{
@@ -44,4 +45,31 @@
     font-weight: 600;
     color: #062830;
     
+}
+.form-control, .form-select{
+    font-size: 13px  !important;
+    color: #000  !important;
+    font-weight: 700 !important;
+}
+.form-label{
+    font-size: 14px;
+    color: #000;
+    font-weight: 500;
+}
+.modal-footer button{
+    background-color: #203d6a;
+    color: #fff;
+}
+.modal-footer{
+    display: flex;
+    gap: 10px;
+}
+.modal-dialog{
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+}
+.modal-title h1{
+    font-size: 25px;
+}
+.varient-btn{
+    width: 100% !important;
 }

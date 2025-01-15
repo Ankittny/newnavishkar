@@ -297,6 +297,7 @@ const LiveProjects = () => {
         </div>
         <div className="col-lg-12">
           <Swiper
+          centeredSlides={true}
             navigation={false}
             modules={[Autoplay, Navigation]}
             className="mySwiper"

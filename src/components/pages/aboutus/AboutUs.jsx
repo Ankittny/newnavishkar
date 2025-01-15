@@ -42,14 +42,14 @@ const AboutUs = () => {
     return (
         <>
             <section>
-                <div class="productBanner">
+                <div className="productBanner">
                     <img
                         src="product/about.png"
                         alt="Product Image"
                         loading="lazy"
                         width="100%"
                     />
-                    <div class="navi-title"></div>
+                    <div className="navi-title"></div>
                 </div>
             </section>
 

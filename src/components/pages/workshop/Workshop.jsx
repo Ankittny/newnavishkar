@@ -203,6 +203,7 @@ const Workshop = () => {
         </div>
         <div className="col-lg-12">
           <Swiper
+          centeredSlides={true}
             navigation={false}
             modules={[Autoplay, Navigation]} // Importing Autoplay module
             className="mySwiper"

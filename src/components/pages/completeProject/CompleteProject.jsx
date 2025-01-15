@@ -17,6 +17,7 @@ import BoysToys from "@/components/BoysToys";
 import OurAchievement from "@/components/OurAchievment";
 import { completeProjectData } from "@/redux/Action/CompleteProject";
 
+
 const CompleteProject = () => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -110,6 +111,7 @@ const CompleteProject = () => {
         </div>
         <div className="col-lg-12">
           <Swiper
+          centeredSlides={true}
             navigation={false}
             modules={[Autoplay, Navigation]} // Importing Autoplay module
             className="mySwiper"

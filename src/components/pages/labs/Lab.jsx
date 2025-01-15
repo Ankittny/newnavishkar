@@ -96,7 +96,7 @@ const Lab = () => {
                 borderBottomWidth: 2, // Custom width
               }}
             ></Divider>
-            <div class="all-details-age mt-3">
+            <div className="all-details-age mt-3">
               <p>Battery and Non battery operated</p>
               <span>Battery Operated | Non-Battery Operated</span>
               <p>Subjects</p>
@@ -189,7 +189,7 @@ const Lab = () => {
                     </p>
                   </div>
                 </div>
-                <div class="col-lg-6"></div>
+                <div className="col-lg-6"></div>
               </div>
             </div>
           </div>
@@ -204,6 +204,7 @@ const Lab = () => {
         </div>
         <div className="col-lg-12">
           <Swiper
+          centeredSlides={true}
             navigation={false}
             modules={[Autoplay, Navigation]} // Importing Autoplay module
             className="mySwiper"

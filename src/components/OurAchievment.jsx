@@ -35,6 +35,7 @@ const OurAchievement = () => {
             {error && <p>Error: {error}</p>}
             {!loading && !error && BannerImage.length > 0 && (
               <Swiper
+              centeredSlides={true}
                 navigation={true}
                 modules={[Autoplay, Navigation]}
                 className="mySwiper"

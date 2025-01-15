@@ -4,7 +4,6 @@ import Image from "next/image";
 import SHopByIntrest from "./SHopByIntrest";
 
 const ShopByAge = ({ categoryData }) => {
-
   const [selectedAgeGroup, setSelectedAgeGroup] = useState("");
 
   useEffect(() => {
@@ -13,8 +12,8 @@ const ShopByAge = ({ categoryData }) => {
     }
   }, [categoryData]);
 
-  const handleAgeGroupClick = (ageGroupId) => {
-    setSelectedAgeGroup(ageGroupId);
+  const handleAgeGroupClick = (ageGroupSlug) => {
+    setSelectedAgeGroup(ageGroupSlug);
   };
 
   if (!categoryData || categoryData.length === 0) {
@@ -41,22 +40,23 @@ const ShopByAge = ({ categoryData }) => {
           {categoryData.slice(0, 2).map((group, index) => (
             <div
               className="col-lg-6"
-              style={{ cursor: "pointer" }}
               key={group?.id || index}
+              style={{ cursor: "pointer" }}
               onClick={() => handleAgeGroupClick(group?.slug)}
             >
               <div className="group">
-                <div className="row">
+                <div className="row align-items-center">
                   <div className="col-lg-6">
                     <h2 className="ageLabel">{group?.name}</h2>
                   </div>
-                  <div className="imageWrapper col-lg-6">
-                  {group?.icon_full_url?.path ? (
+                  <div className="col-lg-6 imageWrapper">
+                    {group?.icon_full_url?.path ? (
                       <Image
                         src={group.icon_full_url.path}
                         width={200}
                         height={175}
                         alt={group?.name || "Age Group"}
+                        className="img-fluid"
                       />
                     ) : (
                       <div>No Image Available</div>

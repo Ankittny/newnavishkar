@@ -210,7 +210,7 @@ const Home = () => {
 
       {/* ===========================================minos -title =================================== */}
       <div className="container">
-        <div class="frame mt-5"></div>
+        <div className="frame mt-5"></div>
       </div>
 
       {/* ===============================================drone-services =================================== */}
@@ -524,6 +524,7 @@ const Home = () => {
               <div className="col-lg-6">
                 <div className="swiper-galley">
                   <Swiper
+                  centeredSlides={true}
                     effect={"coverflow"}
                     grabCursor={"true"}
                     conteredSlides={"true"}

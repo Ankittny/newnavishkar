@@ -90,6 +90,17 @@ function Innovation() {
       <div className="container mt-5">
         <div className="row">
           <div className="col-md-6">
+<<<<<<< HEAD
+            <div className="innovation-title-text">
+              <Image
+                src="/innovation/inno.png"
+                alt="innovation"
+                width={500}
+                height={500}
+                className=""
+              />
+            </div>
+=======
             <Image
               src="/innovation/inno.png"
               alt="innovation"
@@ -97,6 +108,7 @@ function Innovation() {
               height={500}
               className=""
             />
+>>>>>>> 78ee896d39d28e069c37291cd28a64a06a569b9a
           </div>
           <div className="col-md-6">
             <h1>Live Project Enroll</h1>

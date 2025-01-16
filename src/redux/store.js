@@ -13,6 +13,7 @@ import { configReducer } from "./Reducer/Config";
 import { innovationEnqueryReducer } from "./Reducer/InnovationEnquery";
 import { contactReducer } from "./Reducer/ContactUs";
 import { parterBeReducer } from "./Reducer/PartnerBe";
+import { relatedProductReducer } from "./Reducer/RelatedProduct";
 
 
 
@@ -31,6 +32,7 @@ const store = configureStore({
     innovation:innovationEnqueryReducer,
     contact:contactReducer,
     partner:parterBeReducer,
+    relatedProduct:relatedProductReducer,
   },
 });
 

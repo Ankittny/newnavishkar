@@ -22,6 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CategoryDetail } from "@/redux/Action/category";
 import BoysToys from "@/components/BoysToys";
 import { useParams } from "next/navigation";
+import RelatedProduct from "@/components/RelatedProduct";
 
 const ProductDetails = () => {
   const { productid } = useParams();
@@ -230,6 +231,11 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
+
+      {/* Related Products */}
+  
+      <RelatedProduct productId={categryDetailData?.id} />
+
       <OurAchievement />
     </>
   );

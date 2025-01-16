@@ -324,6 +324,9 @@
 .card-body{
     margin-top: 10px;
 }
+.approvel-grand h1{
+    font-size: 35px;
+}
 
 //========================================== media query start========================================
 @media(max-width:991px){
@@ -337,7 +340,7 @@
         position: absolute;
         transform: translate(-50%, -50%);
         top: 42%;
-        left: 54%;
+        left: 50%;
         width: 100%;
     }
     .shopByAge{

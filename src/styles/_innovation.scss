@@ -13,3 +13,11 @@
 .btn-primary {
     background-color:#203d6a !important ;
 }
+
+
+// ========================================================media-query============================================
+@media(max-width:425px){
+    .inno-nectonical{
+        width: 100%;
+    }
+}

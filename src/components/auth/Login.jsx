@@ -131,7 +131,7 @@ const Login = () => {
         </div>
 
         {!isOtpSent ? (
-          <form noValidate>
+          <form noValidate className="outline-form">
             <TextField
               variant="outlined"
               margin="normal"

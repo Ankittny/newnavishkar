@@ -1,22 +1,30 @@
 // src/app/components/Product.js
 "use client";
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import OurAchievment from "@/components/OurAchievment";
 import ProductBanner from "@/components/ProductBanner";
 import ShopByAge from "@/components/ShopByAge";
-import OurAchievment from "@/components/OurAchievment";
 import { categories } from "@/redux/Action/category";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const Product = () => {
   const [categoryData, setCategoryData] = useState([]);
   const dispatch = useDispatch();
 
-  const { loading, success, error, category } = useSelector(
+  const { loading: isLoading, success: isSuccess, error, category } = useSelector(
     (state) => state.category
   );
 
+  const fetchData = async () => {
+    try {
+      dispatch(categories());
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
+
   useEffect(() => {
-    dispatch(categories());
+    fetchData();
   }, [dispatch]);
 
   useEffect(() => {

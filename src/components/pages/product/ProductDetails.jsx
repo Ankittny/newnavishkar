@@ -188,7 +188,7 @@ const ProductDetails = () => {
                           />
                         </div>
 
-                        <div class="ic0n-about-trust">
+                        <div className="ic0n-about-trust">
                           <h3>What is inside the box?</h3>
                           <ul>
                             <li>Plastic Parts (2 stencils)</li>
@@ -197,7 +197,7 @@ const ProductDetails = () => {
                             <li>Mechanical and Electronic Parts</li>
                           </ul>
                         </div>
-                        <div class="mt-gera-title">
+                        <div className="mt-gera-title">
                           <span>M1</span>
                           <p>White gear</p>
                         </div>

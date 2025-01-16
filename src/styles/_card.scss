@@ -53,6 +53,9 @@
     font-family: "Nunito";
     font-weight: 500;
   }
+  .kit-down{
+    text-align: center;
+  }
   
    .ex-btn{
     background: #CC0C39;
@@ -100,6 +103,11 @@
   }
   .add-btn {
     margin-top: 20px;
+  }
+  .add-btn button{
+    background: #203d6a;
+    color: #fff;
+    border-radius: 30px;
   }
   
   .card-container {

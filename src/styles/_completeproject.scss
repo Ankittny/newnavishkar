@@ -30,13 +30,13 @@
     font-weight: 700;
 }
 .font-complete{
-    font-size: 40px !important;
+    font-size: 35px !important;
 }
 .right-sight-title-brand{
     margin-bottom: 0px !important;
 }
 .reletedHead{
-    font-size: 40px !important;
+    font-size: 35px !important;
 }
 .process-card{
     width: 100%;
@@ -57,3 +57,17 @@ padding: 5px 10px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     border-radius: 6px;
 }
+
+// ======================================================media-query====================================================
+ @media(max-width:425px){
+.navi-title p{
+    color:#fff;
+}
+.navi-title h1{
+    margin-top: 15px;
+    color: #fff;
+}
+.card{
+    width: 100%;
+}
+ }

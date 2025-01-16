@@ -3,9 +3,10 @@
 }
 
 .right-sight-title-brand h1{
-    font-size: 45px;
+    font-size: 35px;
     color: #185695;
     font-weight: 800;
+    text-align: center;
 }
 .toddler-title {
     background-color: #fff;
@@ -50,7 +51,7 @@
     margin-top: 50px;
 }
 .camp-title-act h2{
-    font-size: 40px;
+    font-size: 35px;
     font-weight: 700;
     color: #000000;
 }
@@ -95,11 +96,7 @@
     font-weight: 500;
 }
 
-.right-sight-title-brand h1{
-    font-size: 45px;
-    color: #185695;
-    font-weight: 800;
-}
+
 .right-sight-title-brand{
     margin-bottom: 50px;
 }
@@ -124,11 +121,17 @@
     color: #000000;
 }
 .an-int a{
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 500;
     color: #00528d;
     text-decoration: none;
 }
+.an-int{
+    border: 1px solid #203d6a !important;
+    text-align: center;
+    padding: 5px 30px;
+} 
+
 .toddlet-tab-img{
     width: 100%;
     height: auto;

@@ -35,7 +35,7 @@ const PrivacyPolicy = () => {
         <hr className="divider" />
 
         <section className="privacy-policy-section">
-          <h2 className="section-title"> 1. Information We Collect</h2>
+          <h2 className="section-title"> Information We Collect</h2>
           <ul className="section-list">
             <li>
               Personal information such as name, email, phone number, and
@@ -47,7 +47,7 @@ const PrivacyPolicy = () => {
         </section>
 
         <section className="privacy-policy-section">
-          <h2 className="section-title"> 2. How We Use Your Information</h2>
+          <h2 className="section-title"> How We Use Your Information</h2>
           <p className="section-paragraph">
             We use the information collected to provide better services,
             including:
@@ -60,7 +60,7 @@ const PrivacyPolicy = () => {
         </section>
 
         <section className="privacy-policy-section">
-          <h2 className="section-title"> 3. Sharing Your Information</h2>
+          <h2 className="section-title"> Sharing Your Information</h2>
           <p className="section-paragraph">
             We do not sell your personal information to third parties. However,
             we may share your data with trusted partners for purposes such as:
@@ -73,7 +73,7 @@ const PrivacyPolicy = () => {
         </section>
 
         <section className="privacy-policy-section">
-          <h2 className="section-title"> 4. Your Privacy Choices</h2>
+          <h2 className="section-title"> Your Privacy Choices</h2>
           <p className="section-paragraph">
             You have the right to access, modify, or delete your personal
             information. To exercise these rights, contact us at

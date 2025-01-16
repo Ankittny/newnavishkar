@@ -84,9 +84,8 @@ const ProductDetails = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <div className="container mt-5">
-              <div className="row">
-                <div className="col-md-12 text-center proudctDetailHeading">
+            <div className="mt-5">
+                <div className="col-md-12 text-center approvel-grand proudctDetailHeading">
                   <h1 className="">Navishkar The Leading Brand</h1>
                 </div>
 
@@ -218,7 +217,7 @@ const ProductDetails = () => {
               </div>
             </div>
           </div>
-        </div>
+      
 
         <div className="row mt-2 ">
           <div className="col-md-4">

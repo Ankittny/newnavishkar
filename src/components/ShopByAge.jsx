@@ -26,7 +26,7 @@ const ShopByAge = ({ categoryData }) => {
       <section>
         <div className="container">
           <div className="row text-center">
-            <div className="col-12">
+            <div className="col-lg-12">
               <div className="shop-by-title text-center">
                 <h5>
                   SHOP BY <span>AGE</span>

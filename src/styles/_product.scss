@@ -76,7 +76,7 @@
     border-start-end-radius: 50px;
     border-start-start-radius: 50px;
     padding: 20px;
-    width: 280px;
+    // width: 280px;
     height: 115px;
     position: relative;
   }
@@ -87,7 +87,7 @@
     position: absolute;
     width: 100%;
     top: -60px;
-    right: -75px;
+    right: -170px;
     color: transparent;
 
   }
@@ -348,8 +348,8 @@
         // text-align: -webkit-center;
     }
     .shopByAge {
-        width: inherit; 
-        margin: auto; 
+        width: 320px;
+        margin: auto;
        }
     .group{
         margin-top: 70px;
@@ -400,6 +400,17 @@
     
 }
 
+@media(max-width:991px) and (min-width:426px){
+    .imageWrapper img{
+        right: 0px;
+        position: absolute;
+    }
+    .imageWrapper{
+        right: 0px;
+   
+    }
+}
+
 @media(max-width:576px) and (min-width:426px){
     .navi-title p {
         font-size: 15px;
@@ -421,5 +432,24 @@
       .MuiGrid-container {
         display: flex !important;
     }
-    
+    .imageWrapper img{
+        right: 0px;
+        position: absolute;
+    }
+    .imageWrapper{
+        right: 0px;
+   
+    }
+    .navi-title{
+        padding: 10px;
+    }
+}
+
+@media(max-width:375px){
+    .MuiTabs-flexContainer{
+        flex-direction: column;
+    }
+    .tab-content, .css-13xfq8m-MuiTabPanel-root, .tabs-container{
+        padding: 0 !important;
+    }
 }

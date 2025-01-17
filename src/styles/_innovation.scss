@@ -16,8 +16,45 @@
 
 
 // ========================================================media-query============================================
+@media(max-width:1199px) and (min-width:992px){
+        .inno-nectonical {
+            width: 100%;
+            height: 87%;
+        }
+    }
+
+@media(max-width:991px) and (min-width:768px){
+    .inno-nectonical{
+        width: 100%;
+        height: auto;
+    }
+    .project-enroll{
+        margin-top: 20px;
+    }
+}
+
+@media(max-width:767px) and (min-width:426px){
+    .inno-nectonical{
+        width: 100%;
+        height: auto;
+    }
+    .navi-title h1, .navi-title p{
+      color: #fff;
+    }
+   .navi-title{
+     padding: 0px 10px;
+   }
+   .project-enroll{
+    margin-top: 20px;
+}
+}
+
 @media(max-width:425px){
     .inno-nectonical{
         width: 100%;
+        height: auto;
+    }
+    .project-enroll{
+        margin-top: 20px;
     }
 }

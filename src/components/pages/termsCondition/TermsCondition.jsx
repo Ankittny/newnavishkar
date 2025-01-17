@@ -33,6 +33,11 @@ const TermsCondition = () => {
         </p>
 
         <hr className="divider" />
+        
+        {/* this is dynamic data coming from api */}
+        <section className="terms-section">
+        <div className="terms-conditions-dynamic-content" dangerouslySetInnerHTML={{__html: terms}}  />
+        </section>
 
         <section className="terms-section">
           <h2 className="section-title">Use of Our Website</h2>

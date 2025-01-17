@@ -3,10 +3,15 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { incrementQuantity, decrementQuantity } from "../../../redux/Reducer/Cart";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+
+
 const Cart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
+  
   const router = useRouter();
+
   const handleDecrement = (id) => {
     dispatch(decrementQuantity(id));
   };
@@ -27,12 +32,57 @@ const Cart = () => {
   const shippingCost = 100;
   const discount = 50;
   const grandTotal = subTotal + shippingCost - discount;
-  const handleProceedToCheckout = () => {
-    router.push("/cart/payments");
+  const handleProceedToCheckout = async () => {
+    // Get the token from localStorage or Redux (depending on where it's stored)
+    const token = localStorage.getItem("authToken") || ""; // Replace with your token storage logic
+  
+    try {
+      // Iterate over each cart item and send a separate API request for each item
+      for (let item of cartItems) {
+        const itemData = {
+          [String('id')]: item.id, // Explicitly make the key 'id' a string
+          [String('quantity')]: item.quantity // Explicitly make the key 'quantity' a string
+        };
+  
+        // Send each item data to the API using axios
+        const response = await axios.post(
+          "https://navishkar.overseaseducationlane.com/api/v1/cart/add", 
+          { 
+            itemData // Send only the item id and quantity
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`, // Include token in the Authorization header
+            }
+          }
+        );
+  
+        if (response.status === 200) {
+          // Log success for this item (optional)
+          console.log("Item added successfully:", item.id);
+        } else {
+          // Handle errors here (show a message, etc.)
+          console.error("Error with item", item.id, response.data.message || "Error sending data");
+        }
+      }
+  
+      // Once all items have been processed, navigate to the payment page
+      router.push("/cart/payments");
+  
+    } catch (error) {
+      console.error("Error sending cart data:", error);
+    }
   };
+  
+
   const handleContinueShopping = () => {
     router.push("/");
   };
+
+
+
+
   return (
     <div className="container">
       <div className="cart-container">

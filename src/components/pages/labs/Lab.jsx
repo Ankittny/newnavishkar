@@ -110,7 +110,7 @@ const Lab = () => {
               </span>
               <p>Age</p>
               <span>
-                1 to 3 Years | 4 to 8 Years | 15 to 17 Years | 18 Years Above{" "}
+                1 to 3 Years | 4 to 8 Years | 15 to 17 Years | 18 Years Above.
               </span>
             </div>
           </div>
@@ -138,10 +138,10 @@ const Lab = () => {
                   <div className="toys-text">
                     <h4>Navishkar - Kids Toy Store</h4>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing <br />{" "}
-                      elit, sed do eiusmod tempor incididunt ut labore et <br />{" "}
+                      Lorem ipsum dolor sit amet, consectetur adipiscing <br />
+                      elit, sed do eiusmod tempor incididunt ut labore et <br />
                       dolore magna aliqua. Ut enim ad minim veniam, quis <br />
-                      nostrud exercitation ullamco laboris nisi ut aliquip{" "}
+                      nostrud exercitation ullamco laboris nisi ut aliquip
                       <br /> ex ea commodo consequat.
                     </p>
                     {/* <a href="">Shop More </a> */}
@@ -165,7 +165,7 @@ const Lab = () => {
             <div className="col-lg-12">
               <div className="camp-title-act text-center">
                 <h2>
-                  Our summer camp <span>activity</span>{" "}
+                  Our summer camp <span>activity</span>
                 </h2>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -185,7 +185,7 @@ const Lab = () => {
                     />
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et{" "}
+                      sed do eiusmod tempor incididunt ut labore et.
                     </p>
                   </div>
                 </div>

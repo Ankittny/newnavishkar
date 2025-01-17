@@ -75,3 +75,27 @@
 .css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root{
   border-radius: 4px !important;
 }
+
+.css-1jrn2fe-MuiGrid-root{
+  height:inherit !important;
+}
+.fully-image-redius{
+  width: 100%;
+}
+// .MuiGrid-item{
+//   margin-left: -110px !important;
+//     border-radius: 30px;
+//     margin-top: 50px !important;
+//     margin-bottom: 50px !important;
+// }
+.form button{
+  margin: 30px;
+}
+
+// =======================================================media-query================================================
+ 
+@media(max-width:991px){
+  .outline-form{
+    margin-bottom: 30px;
+  }
+}

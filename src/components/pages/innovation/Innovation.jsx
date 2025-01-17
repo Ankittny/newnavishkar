@@ -89,7 +89,7 @@ function Innovation() {
 
       <div className="container mt-5">
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-lg-6">
             <Image
               src="/innovation/inno.png"
               alt="innovation"
@@ -98,7 +98,7 @@ function Innovation() {
               className="inno-nectonical"
             />
           </div>
-          <div className="col-md-6">
+          <div className="col-lg-6">
             <div className="project-enroll">
               <h1>Live Project Enroll</h1>
               <form onSubmit={handleSubmit}>

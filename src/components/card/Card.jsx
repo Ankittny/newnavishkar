@@ -3,6 +3,8 @@ import Image from "next/image";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/Reducer/Cart"; // Import the addToCart action
+import axios from "axios";
+
 
 const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id }) => {
   const dispatch = useDispatch();
@@ -14,9 +16,36 @@ const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id }) =
     ? price - percentageDiscountAmount
     : price - flatDiscountAmount;
 
-  const handleAddToCart = () => {
-    dispatch(addToCart({ name, price: ActualPrice, imageUrl, id }));
-  };
+  const handleAddToCart = async () => {
+  const token = localStorage.getItem("authToken") || "";
+  try {
+    const response = await axios.post(
+      "https://navishkar.overseaseducationlane.com/api/v1/cart/add",
+      {
+        id: id,
+        quantity: 1,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Include token in the Authorization header
+        },
+      }
+    );
+
+    if (response.status === 200) {
+      // Log success for this item (optional)
+      console.log("Item added successfully:", id);
+    } else {
+      // Handle errors here (show a message, etc.)
+      console.error("Error with item", id, response.data.message || "Error sending data");
+    }
+  } catch (error) {
+    console.error("Error sending cart data:", error);
+  }
+
+  dispatch(addToCart({ name, price: ActualPrice, imageUrl, id }));
+};
 
   return (
     <div className="play-role-title title-access">
@@ -44,7 +73,7 @@ const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id }) =
         </div>
       </div>
       <div className="add-btn text-center">
-        <button onClick={handleAddToCart}>ADD TO CART</button>
+        <button onClick={() => handleAddToCart({ id, quantity: 1 })}>ADD TO CART</button>
       </div>
     </div>
 

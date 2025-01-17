@@ -32,10 +32,12 @@ const Cart = () => {
   const shippingCost = 100;
   const discount = 50;
   const grandTotal = subTotal + shippingCost - discount;
-  const handleProceedToCheckout = async () => {
-    // Get the token from localStorage or Redux (depending on where it's stored)
-   
-  };
+
+
+    const handleProceedToCheckout = () => {
+      router.push("/cart/payments");
+    };
+  
   
 
   const handleContinueShopping = () => {

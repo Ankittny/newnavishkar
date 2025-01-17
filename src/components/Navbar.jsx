@@ -13,36 +13,25 @@ import { navbarCategoriesData } from "@/redux/Action/NavbarCategories";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);  // Local state for login status
   const router = useRouter();
   const dispatch = useDispatch();
-  // const [navbarData, setNavbarData] = useState(null);
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!isMobileMenuOpen);
-  };
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const cartCount = useSelector((state) => state.cart.cartCount) || 0;
-  
 
+  const cartCount = useSelector((state) => state.cart.cartCount) || 0;
   const { loading, navbarCategories, error } = useSelector((state) => state.navbarCategories);
 
-
   useEffect(() => {
+    // Check if token exists in localStorage on page load
+    const token = localStorage.getItem("authAdminToken");
+    setIsLoggedIn(!!token);  // Set login status based on token presence
+
+    // Fetch navbar categories data
     dispatch(navbarCategoriesData());
   }, [dispatch]);
 
- // Fetch Workshop Data
-//  useEffect(() => {
-//   if (navbarCategories?.length) {
-//     const workshopCategories = navbarCategories.filter(
-//       (category) => category.type === "workshop"
-//     );
-//     setNavbarData(workshopCategories);
-//   }
-// }, [navbarCategories]);
-
-
-// console.log("WORKSHOPDATA",navbarData)
-
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   const handleCartClick = () => {
     if (isLoggedIn) {
@@ -52,13 +41,11 @@ const Navbar = () => {
     }
   };
 
-
-  const logout =() => {
-    localStorage.removeItem("authAdminToken");
-    // router.push("/");
-    window.location.href = "/";
-  }
-
+  const logout = () => {
+    localStorage.clear("authAdminToken");
+    setIsLoggedIn(false);  // Update login status when logging out
+    router.push("/");  // Redirect to home or login page
+  };
 
   
   return (

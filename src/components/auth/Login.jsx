@@ -14,7 +14,7 @@ const Login = () => {
   const { isSuccess, profile_status, isLoading, isError, error } = useSelector((state) => state.auth);
 
   const [phone, setPhone] = useState("+91");
-  const [otp, setOtp] = useState(Array(6).fill());
+  const [otp, setOtp] = useState(Array(6).fill(""));
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false); // Flag to prevent multiple clicks
 
@@ -69,7 +69,7 @@ const Login = () => {
   };
 
   const handleVerifyOtp = () => {
-    const otpCode = otp.join();
+    const otpCode = otp.join("");
     if (otpCode.length === 6) {
       if (!isVerifying) {
         setIsVerifying(true);
@@ -109,7 +109,7 @@ const Login = () => {
     <Grid container component="main" className="login-wrapper-page" sx={{ height: "100vh" }}>
       <CssBaseline />
       <Grid item xs={false} sm={6} md={6} sx={{ backgroundImage: 'url("/log.png")', backgroundSize: "cover" }}>
-        <Image src="/log.png" width={700} height={650} alt="Login Image" className="fully-image-redius" />
+        <Image src="/log.png" width={700} height={650} alt="Login Image" />
       </Grid>
       <Grid item xs={12} sm={6} md={6} component={Paper} elevation={6} square>
         <div className="fresh-login">

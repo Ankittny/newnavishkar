@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const PrivacyPolicy = () => {
   const dispatch = useDispatch();
-  const [privacyPolicy, setPrivacyPolicy] = useState([]);
+  const [PolicyContent, setPolicyContent] = useState(""); // State to hold the API content
 
   const { loading, error, config } = useSelector((state) => state.config);
 
@@ -15,11 +15,11 @@ const PrivacyPolicy = () => {
 
   useEffect(()=>{
     if(config && config.privacy_policy){
-      setPrivacyPolicy(config.privacy_policy)
+      setPolicyContent(config.privacy_policy)
     }
   },[config])
 
-  console.log("Privacy Policy",privacyPolicy)
+  // console.log("Privacy Policy",privacyPolicy)
 
 
   return (
@@ -33,6 +33,13 @@ const PrivacyPolicy = () => {
         </p>
 
         <hr className="divider" />
+
+
+       {/* Injecting content fetched from the API dynamically */}
+        <section className="privacy_policy_section">
+          <div className="privacy-policy-dynamic-content" dangerouslySetInnerHTML={{__html: PolicyContent}}/>
+
+        </section>
 
         <section className="privacy-policy-section">
           <h2 className="section-title"> Information We Collect</h2>

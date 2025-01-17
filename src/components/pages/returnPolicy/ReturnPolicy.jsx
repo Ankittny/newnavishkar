@@ -1,10 +1,10 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { configData } from "@/redux/Action/Config";
 
 const ReturnPolicy = () => {
-  const [returnPolicy, setReturnPolicy] = useState([]);
+  const [returnPolicyContent, setReturnPolicyContent] = useState(""); // State to hold the API content
   const dispatch = useDispatch();
 
   const { loading, error, config } = useSelector((state) => state.config);
@@ -15,11 +15,12 @@ const ReturnPolicy = () => {
 
   useEffect(() => {
     if (config && config.return_policy) {
-      setReturnPolicy(config.return_policy);
+      // Assuming the content is available in `config.return_policy.content` from API response
+      setReturnPolicyContent(config.return_policy.content);
     }
   }, [config]);
 
-  console.log("Return Policy",returnPolicy)
+  // console.log("Return Policy Content:", returnPolicyContent);/
 
   return (
     <div className="return-policy-container container">
@@ -31,6 +32,15 @@ const ReturnPolicy = () => {
 
         <hr className="divider" />
 
+        {/* Injecting content fetched from the API dynamically */}
+        <section className="return-policy-section">
+          <div
+            className="return-policy-dynamic-content"
+            dangerouslySetInnerHTML={{ __html: returnPolicyContent }} // Set HTML content safely
+          />
+        </section>
+
+        {/* You can keep the other static sections or update them as needed */}
         <section className="return-policy-section">
           <h2 className="section-title">Eligibility for Returns</h2>
           <ul className="section-list">
@@ -49,13 +59,6 @@ const ReturnPolicy = () => {
           </ol>
         </section>
 
-        {/* <section className="return-policy-section">
-          <h2 className="section-title">Refund Process</h2>
-          <p className="section-paragraph">
-            Once we receive your returned item, it will be inspected within 3-5 business days. If approved, your refund will be processed to your original payment method within 7-10 business days.
-          </p>
-        </section> */}
-
         <section className="return-policy-section">
           <h2 className="section-title">Exceptions to Returns</h2>
           <p className="section-paragraph">
@@ -67,10 +70,6 @@ const ReturnPolicy = () => {
             <li>Perishable goods.</li>
           </ul>
         </section>
-
-        {/* <div className="return-policy-footer">
-          <button className="support-button">Contact Support</button>
-        </div> */}
       </div>
     </div>
   );

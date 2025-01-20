@@ -56,7 +56,7 @@ const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id }) =
         <div className="kit-down">
           <p>{name}</p>
         </div>
-        <div className="button mt-4 d-flex gap-3 align-items-center justify-content-center">
+        <div className="button mt-3 d-flex gap-3 justify-content-center">
           {/* Display discount for percentage and flat types */}
           {discount_type === "percent" ? (
             <div className="ex-btn">-{discount}%</div>
@@ -72,7 +72,7 @@ const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id }) =
           </div>
         </div>
       </div>
-      <div className="add-btn text-center">
+      <div className="add-btn text-center mb-2">
         <button onClick={() => handleAddToCart({ id, quantity: 1 })}>ADD TO CART</button>
       </div>
     </div>

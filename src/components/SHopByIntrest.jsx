@@ -145,7 +145,7 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
                     <div className="kit-down">
                       <p>Play and Learn Kit | 3-6 years | DIY Activity Kit</p>
                     </div>
-                    <div className="button mt-4 d-flex gap-3 align-items-center">
+                    <div className="button mt-3 d-flex gap-3 align-items-center">
                       <div className="ex-btn">-15%</div>
                       <div className="price-text">
                         <span>₹699</span>
@@ -166,7 +166,30 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
                     <div className="kit-down">
                       <p>Play and Learn Kit | 3-6 years | DIY Activity Kit</p>
                     </div>
-                    <div className="button mt-4 d-flex gap-3 align-items-center">
+                    <div className="button mt-3 d-flex gap-3 align-items-center">
+                      <div className="ex-btn">-15%</div>
+
+
+                      <div className="price-text">
+                        <span>₹699</span>
+                      </div>
+                      <div className="overline-text">
+                        <p>₹799</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-3">
+                <div className="seller-offer">
+                  <div className="seller-sell">
+                    <img src="product/motor.png" />
+                  </div>
+                  <div className="playkit-action action-inject">
+                    <div className="kit-down">
+                      <p>Play and Learn Kit | 3-6 years | DIY Activity Kit</p>
+                    </div>
+                    <div className="button mt-3 d-flex gap-3 align-items-center">
                       <div className="ex-btn">-15%</div>
                       <div className="price-text">
                         <span>₹699</span>
@@ -187,28 +210,7 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
                     <div className="kit-down">
                       <p>Play and Learn Kit | 3-6 years | DIY Activity Kit</p>
                     </div>
-                    <div className="button mt-4 d-flex gap-3 align-items-center">
-                      <div className="ex-btn">-15%</div>
-                      <div className="price-text">
-                        <span>₹699</span>
-                      </div>
-                      <div className="overline-text">
-                        <p>₹799</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3">
-                <div className="seller-offer">
-                  <div className="seller-sell">
-                    <img src="product/motor.png" />
-                  </div>
-                  <div className="playkit-action action-inject">
-                    <div className="kit-down">
-                      <p>Play and Learn Kit | 3-6 years | DIY Activity Kit</p>
-                    </div>
-                    <div className="button mt-4 d-flex gap-3 align-items-center">
+                    <div className="button mt-3 d-flex gap-3 align-items-center">
                       <div className="ex-btn">-15%</div>
                       <div className="price-text">
                         <span>₹699</span>

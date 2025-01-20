@@ -477,9 +477,9 @@
   }
   
   .tab-content p {
-    margin-top: 10px;
     font-size: 1rem;
     color: #555;
+    margin-bottom: 0px;
   }
   
   .no-data-message {
@@ -497,8 +497,16 @@
 }
 .css-1wxkzlj-MuiTabs-flexContainer{
     gap: 20px;
+    display: flex;
+    justify-content: center;
 }
 .listing-upper-title{
     padding: 0;
     list-style: none;
 }
+
+
+
+
+
+

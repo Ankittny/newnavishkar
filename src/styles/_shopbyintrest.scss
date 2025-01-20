@@ -154,6 +154,33 @@
     border-radius: 0 5px 5px 0;
 }
 
+.css-1usuzwp-MuiButtonBase-root-MuiTab-root{
+   color: #006ED3 !important;
+}
+.title-access{
+    position: relative;
+}
+.save-btn, .ex-btn{
+    position: absolute;
+    top: 20px;
+    left: -5px;
+    background: #203d6a;
+    color: #fff !important;
+    padding: 5px 15px;
+    text-align: center;
+    transform: rotate(315deg);
+    border-radius: 5px;
+}
+.curser{
+    border-radius: 20px;
+}
+.play-role-title{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+
+
+
 // ================================================media -query ================================================
 @media(max-width:991px){
     .seller-offer{

@@ -1,17 +1,15 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { incrementQuantity, decrementQuantity } from "../../../redux/Reducer/Cart";
+import { incrementQuantity, decrementQuantity, fetchCartData } from "../../../redux/Reducer/Cart";
 import { useRouter } from "next/navigation";
-import axios from "axios";
 
 
 const Cart = () => {
+  const token = localStorage.getItem("authAdminToken");
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
-  
   const router = useRouter();
-
   const handleDecrement = (id) => {
     dispatch(decrementQuantity(id));
   };
@@ -32,16 +30,19 @@ const Cart = () => {
   const shippingCost = 100;
   const discount = 50;
   const grandTotal = subTotal + shippingCost - discount;
-  const handleProceedToCheckout = async () => {
-    // Get the token from localStorage or Redux (depending on where it's stored)
-   
+  const handleProceedToCheckout = () => {
+    router.push("/cart/payments");
   };
-  
-
   const handleContinueShopping = () => {
     router.push("/");
   };
 
+
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchCartData(token));
+    }
+  }, [dispatch, token]);
 
 
 

@@ -8,41 +8,37 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { move } from "formik";
 import { navbarCategoriesData } from "@/redux/Action/NavbarCategories";
+import { fetchCartData } from "@/redux/Reducer/Cart";
+
+
 
 
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);  // Local state for login status
   const router = useRouter();
   const dispatch = useDispatch();
-  // const [navbarData, setNavbarData] = useState(null);
+
+  const cartCount = useSelector((state) => state.cart.cartCount) || 0;
+  const { loading, navbarCategories, error } = useSelector((state) => state.navbarCategories);
+
+  useEffect(() => {
+    const token = localStorage.getItem("authAdminToken");
+    setIsLoggedIn(!!token);
+
+    // Fetch navbar categories
+    dispatch(navbarCategoriesData());
+
+    // Fetch cart data if user is logged in
+    if (token) {
+      dispatch(fetchCartData(token));
+    }
+  }, [dispatch]);
+
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const cartCount = useSelector((state) => state.cart.cartCount) || 0;
-  
-
-  const { loading, navbarCategories, error } = useSelector((state) => state.navbarCategories);
-
-
-  useEffect(() => {
-    dispatch(navbarCategoriesData());
-  }, [dispatch]);
-
- // Fetch Workshop Data
-//  useEffect(() => {
-//   if (navbarCategories?.length) {
-//     const workshopCategories = navbarCategories.filter(
-//       (category) => category.type === "workshop"
-//     );
-//     setNavbarData(workshopCategories);
-//   }
-// }, [navbarCategories]);
-
-
-// console.log("WORKSHOPDATA",navbarData)
-
 
   const handleCartClick = () => {
     if (isLoggedIn) {
@@ -52,13 +48,11 @@ const Navbar = () => {
     }
   };
 
-
-  const logout =() => {
-    localStorage.removeItem("authAdminToken");
-    // router.push("/");
-    window.location.href = "/";
-  }
-
+  const logout = () => {
+    localStorage.clear("authAdminToken");
+    setIsLoggedIn(false);  // Update login status when logging out
+    router.push("/");  // Redirect to home or login page
+  };
 
   
   return (

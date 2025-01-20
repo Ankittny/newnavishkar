@@ -1,5 +1,7 @@
 
 import { createSlice } from "@reduxjs/toolkit";
+import axiosInstance from "@/utils/axios";
+const axios = axiosInstance
 
 const loadCartFromLocalStorage = () => {
   try {
@@ -122,18 +124,53 @@ const cartSlice = createSlice({
 
     
 
+
     clearCart: (state) => {
       state.cartItems = [];
       state.cartCount = 0;
       saveCartToLocalStorage(state); // Clear cart in localStorage
     },
 
+    fetchDataFromApi: (state, action) => {
+      const apiCartItems = action.payload; // Data fetched from API
+      const localCartItems = state.cartItems; // Data from localStorage
+
+      const mergedCart = [...localCartItems];
+
+      apiCartItems.forEach((apiItem) => {
+        const existingItem = mergedCart.find((localItem) => localItem.id === apiItem.id);
+
+        if (existingItem) {
+          existingItem.quantity = Math.max(existingItem.quantity, apiItem.quantity);
+          existingItem.totalPrice = existingItem.quantity * existingItem.price;
+        } else {
+          mergedCart.push(apiItem);
+        }
+      });
+
+      state.cartItems = mergedCart;
+      state.cartCount = mergedCart.reduce((count, item) => count + item.quantity, 0);
+      saveCartToLocalStorage(state);
+    },
+
   },
 });
 
-export const { addToCart, incrementQuantity, decrementQuantity, removeFromCart, clearCart } = cartSlice.actions;
+export const { addToCart, incrementQuantity, decrementQuantity, removeFromCart, clearCart, fetchDataFromApi } = cartSlice.actions;
+
+
+export const fetchCartData = (token) => async (dispatch) => {
+  try {
+    const response = await axios.get("/cart", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    if (response.data) {
+      dispatch(fetchDataFromApi(response.data));
+    }
+  } catch (error) {
+    console.error("Failed to fetch cart data from API", error);
+  }
+};
+
 export default cartSlice.reducer;
-
-
-
-

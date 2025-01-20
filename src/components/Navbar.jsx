@@ -8,6 +8,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { move } from "formik";
 import { navbarCategoriesData } from "@/redux/Action/NavbarCategories";
+import { fetchCartData } from "@/redux/Reducer/Cart";
+
+
 
 
 
@@ -21,12 +24,16 @@ const Navbar = () => {
   const { loading, navbarCategories, error } = useSelector((state) => state.navbarCategories);
 
   useEffect(() => {
-    // Check if token exists in localStorage on page load
     const token = localStorage.getItem("authAdminToken");
-    setIsLoggedIn(!!token);  // Set login status based on token presence
+    setIsLoggedIn(!!token);
 
-    // Fetch navbar categories data
+    // Fetch navbar categories
     dispatch(navbarCategoriesData());
+
+    // Fetch cart data if user is logged in
+    if (token) {
+      dispatch(fetchCartData(token));
+    }
   }, [dispatch]);
 
   const toggleMobileMenu = () => {

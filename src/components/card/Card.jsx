@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import React from "react";
 import { useDispatch } from "react-redux";
@@ -17,40 +16,41 @@ const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id }) =
     : price - flatDiscountAmount;
 
   const handleAddToCart = async () => {
-  const token = localStorage.getItem("authToken") || "";
-  try {
-    const response = await axios.post(
-      "https://navishkar.overseaseducationlane.com/api/v1/cart/add",
-      {
-        id: id,
-        quantity: 1,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // Include token in the Authorization header
+    const token = localStorage.getItem("authAdminToken");
+    console.log("tiokeN", token)
+    try {
+      const response = await axios.post(
+        "https://navishkar.overseaseducationlane.com/api/v1/cart/add",
+        {
+          id: id,
+          quantity: 1,
         },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // Include token in the Authorization header
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        // Log success for this item (optional)
+        console.log("Item added successfully:", id);
+      } else {
+        // Handle errors here (show a message, etc.)
+        console.error("Error with item", id, response.data.message || "Error sending data");
       }
-    );
-
-    if (response.status === 200) {
-      // Log success for this item (optional)
-      console.log("Item added successfully:", id);
-    } else {
-      // Handle errors here (show a message, etc.)
-      console.error("Error with item", id, response.data.message || "Error sending data");
+    } catch (error) {
+      console.error("Error sending cart data:", error);
     }
-  } catch (error) {
-    console.error("Error sending cart data:", error);
-  }
 
-  dispatch(addToCart({ name, price: ActualPrice, imageUrl, id }));
-};
+    dispatch(addToCart({ name, price: ActualPrice, imageUrl, id }));
+  };
 
   return (
     <div className="play-role-title title-access">
       <div className="play-kit-title play-cubric">
-        <Image src={imageUrl} alt={"Product"}  width={300} height={200} onClick={onClick} className="curser" />
+        <Image src={imageUrl} alt={"Product"} width={300} height={200} onClick={onClick} className="curser" />
       </div>
       <div className="playkit-action action-inject">
         <div className="kit-down">
@@ -81,3 +81,4 @@ const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id }) =
 };
 
 export default Card;
+

@@ -12,6 +12,8 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { Carousel } from 'react-bootstrap';
+
 
 import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 import OurAchievement from "@/components/OurAchievment";
@@ -34,6 +36,7 @@ const Home = () => {
   const [productsData, setProductsData] = useState([]);
   const { loading, products, error } = useSelector((state) => state.home);
   const [activeTab, setActiveTab] = useState({});// To track which tab is active
+  const [instaData, setInstaData] = useState([]);
 
   const handleTabClick = (tabIndex, categoryIndex) => {
     setActiveTab((prevState) => ({
@@ -84,6 +87,21 @@ const Home = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const fetchInstagramPosts = async () => {
+    try {
+      const response = await fetch(
+        "https://graph.instagram.com/me/media?fields=id,media_type,media_url,thumbnail_url,caption,timestamp&access_token=IGAAQiuxZCXcz1BZAE14dXhfdmRwUDdhbXBSUG0waWViTFhhck5KeWEtN2FraGUxeS0xNHFnS1dxZAktqQmhfeHhyZA3RHRklJRkEzVlRhRlB3YTdxRm5OWlJTLXpMNmJDZADNTRzgyV0FZARzlsczRiMldnYUlLRXVfeGF6eTFkVEpoMAZDZD"
+      );
+      const data = await response.json();
+      setInstaData(data.data.filter((post) => post.media_type === "VIDEO"));
+    } catch (error) {
+      console.error("Error fetching Instagram posts:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchInstagramPosts(); // Trigger Instagram posts fetching when component mounts
+  }, []);
   return (
     <>
       <section>
@@ -275,44 +293,42 @@ const Home = () => {
           <h3 className="fw-bolder text-center">Featured Topics By Category</h3>
         </div>
       </div>
-      <section className="shopbyintrest mt-5">
-        <div className="container">
-          <div className="row mt-5">
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-              <div className="meet-minos-title mt-5">
-                <img
-                  src="product/video/MicrosoftTeams-video (2).png"
-                  style={{ width: "100%" }}
-                />
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-              <div className="meet-minos-title mt-3">
-                <img
-                  src="product/video/MicrosoftTeams-video (3).png"
-                  style={{ width: "100%" }}
-                />
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-              <div className="meet-minos-title">
-                <img
-                  src="product/video/MicrosoftTeams-video (5) 1.png"
-                  style={{ width: "100%" }}
-                />
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-              <div className="meet-minos-title mt-3">
-                <img
-                  src="product/video/MicrosoftTeams-video.png"
-                  style={{ width: "100%" }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+ <section className="shopbyintrest mt-5">
+  <div className="container">
+    <div className="row mt-5">
+      <div className="col-lg-12">
+        <Carousel
+          slide={true}
+          interval={3000}
+          controls={false} // Hide left and right arrows
+        >
+          {instaData.map((item, index) => {
+            // Group the items in sets of 4
+            if (index % 4 === 0) {
+              const groupedItems = instaData.slice(index, index + 4);
+              return (
+                <Carousel.Item key={index}>
+                  <div className="d-flex justify-content-between">
+                    {groupedItems.map((videoItem, videoIndex) => (
+                      <div className="carousel-item-video" key={videoIndex}>
+                        <video width="100%" height="500" controls>
+                          <source src={videoItem.media_url} type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                      </div>
+                    ))}
+                  </div>
+                </Carousel.Item>
+              );
+            }
+            return null;
+          })}
+        </Carousel>
+      </div>
+    </div>
+  </div>
+</section>
+
 
     
       

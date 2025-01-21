@@ -15,7 +15,7 @@ import { useParams, usePathname, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import BoysToys from "@/components/BoysToys";
 import OurAchievement from "@/components/OurAchievment";
-import { completeProjectData } from "@/redux/Action/CompleteProject";
+import { completeProjectData } from "@/redux/Action/CompleteProje`ct";
 
 
 const CompleteProject = () => {
@@ -82,10 +82,10 @@ const CompleteProject = () => {
 
                     <div className="d-flex flex-row gap-3">
                       <div className="complete-discount">
-                        <p>{item.discount ? `-${item.discount}%` : "-13%"}</p>{" "}
+                        <p>{item.discount  || "-15%"}</p>{" "}
                       </div>
                       <div className="complete-price">
-                        <h4>{item.price || "699"}</h4> {/* Render price */}
+                        <h4>{item.unit_price || "699"}</h4> {/* Render price */}
                       </div>
 
                       <div>

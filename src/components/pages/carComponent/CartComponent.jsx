@@ -9,12 +9,18 @@ import { MdAutoDelete } from "react-icons/md";
 const axios = axiosInstance;
 
 
-const Cart = () => {
+const CartComponent = () => {
   const token = localStorage.getItem("authAdminToken");
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
-  console.log("hcjhdsvchbsajcvsahjcbsahcvjs",cartItems)
+  
   const router = useRouter();
+
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchCartData(token));
+    }
+  }, [dispatch, token]);
 
 
 
@@ -84,7 +90,7 @@ const handleDecrement = async (id, currentQuantity) => {
   };
   
   
-  const clearCart = async (id) => {
+  const clear = async (id) => {
     try {
       const response = await axios.delete(
         "/cart/remove",  // Replace with your backend URL
@@ -133,13 +139,7 @@ const handleDecrement = async (id, currentQuantity) => {
   };
 
 
-  useEffect(() => {
-    if (token) {
-      dispatch(fetchCartData(token));
-    }
-  }, [dispatch, token]);
-
-
+ 
 
   return (
     <div className="container">
@@ -190,7 +190,7 @@ const handleDecrement = async (id, currentQuantity) => {
                       <td>
                         ₹{(parseFloat(item.price) * parseInt(item.quantity, 10)).toFixed(2)}
                       </td>
-                      <td onClick={()=>clearCart(item.id)} style={{ cursor: "pointer" }}>
+                      <td onClick={()=>clear(item.id)} style={{ cursor: "pointer" }}>
                         <MdAutoDelete size={30}/>
                       </td>
                     </tr>
@@ -231,7 +231,7 @@ const handleDecrement = async (id, currentQuantity) => {
     </div>
   );
 };
-export default Cart;
+export default CartComponent;
 
 
 

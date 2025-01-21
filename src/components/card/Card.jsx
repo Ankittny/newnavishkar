@@ -7,6 +7,8 @@ import axios from "axios";
 
 const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id }) => {
   const dispatch = useDispatch();
+  const token = localStorage.getItem("authAdminToken");
+  
 
   // Calculate the actual price based on the discount type
   const percentageDiscountAmount = (price * discount) / 100;

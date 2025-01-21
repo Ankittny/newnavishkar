@@ -122,48 +122,72 @@ const cartSlice = createSlice({
       saveCartToLocalStorage(state);  // Save the updated cart to localStorage
     },
 
+
+    // clearCart: (state, action) => {
+    //   const itemId = action.payload; // Get item ID from payload
+    //   state.cartItems = state.cartItems.filter((item) => item.id !== itemId); // Remove from local state
+    //   state.cartCount = state.cartItems.reduce((count, item) => count + item.quantity, 0);
+    //   saveCartToLocalStorage(state); // Save updated cart in localStorage
+    // },
+
     clearCart: (state) => {
-      state.cartItems = [];
-      state.cartCount = 0;
-      saveCartToLocalStorage(state); // Clear cart in localStorage
+      state.cartItems = [];  // Empty the cart array
+      state.cartCount = 0;   // Reset cart count
+      saveCartToLocalStorage(state); // Save the updated state to localStorage
     },
+
+
+    
+    // fetchDataFromApi: (state, action) => {
+    //   const apiCartItems = action.payload; // Data fetched from API
+    //   const localCartItems = state.cartItems; // Data from localStorage
+    
+    //   const mergedCart = [...localCartItems]; // Start with items from localStorage
+    
+    //   apiCartItems.forEach((apiItem) => {
+    //     const existingItem = mergedCart.find((localItem) => localItem.id === apiItem.id);
+    
+    //     if (existingItem) {
+    //       existingItem.quantity = Math.max(existingItem.quantity, apiItem.quantity);
+    //       existingItem.totalPrice = existingItem.quantity * existingItem.price;
+    
+    //       // Ensure thumbnail_full_url is handled correctly
+    //       if (apiItem.thumbnail_full_url) {
+    //         existingItem.thumbnail_full_url = apiItem.thumbnail_full_url;
+    //       }
+    
+    //       existingItem.name = apiItem.name || existingItem.name;
+    //     } else {
+    //       mergedCart.push(apiItem); // Add new item from API
+    //     }
+    //   });
+    
+    //   // Extract all thumbnail_full_url.path values
+    //   state.cartItems = mergedCart.map((item) => ({
+    //     ...item,
+    //     imageUrl: item.thumbnail_full_url?.path || null, // Store image path separately
+    //   }));
+    
+    //   state.cartCount = mergedCart.reduce((count, item) => count + item.quantity, 0);
+    
+    //   saveCartToLocalStorage(state); // Save updated cart to localStorage
+    // }
+    
+    
+    
     fetchDataFromApi: (state, action) => {
       const apiCartItems = action.payload; // Data fetched from API
-      const localCartItems = state.cartItems; // Data from localStorage
     
-      const mergedCart = [...localCartItems]; // Start with items from localStorage
-    
-      apiCartItems.forEach((apiItem) => {
-        const existingItem = mergedCart.find((localItem) => localItem.id === apiItem.id);
-    
-        if (existingItem) {
-          existingItem.quantity = Math.max(existingItem.quantity, apiItem.quantity);
-          existingItem.totalPrice = existingItem.quantity * existingItem.price;
-    
-          // Ensure thumbnail_full_url is handled correctly
-          if (apiItem.thumbnail_full_url) {
-            existingItem.thumbnail_full_url = apiItem.thumbnail_full_url;
-          }
-    
-          existingItem.name = apiItem.name || existingItem.name;
-        } else {
-          mergedCart.push(apiItem); // Add new item from API
-        }
-      });
-    
-      // Extract all thumbnail_full_url.path values
-      state.cartItems = mergedCart.map((item) => ({
+      // Replace the cart data with the fetched API data
+      state.cartItems = apiCartItems.map((item) => ({
         ...item,
         imageUrl: item.thumbnail_full_url?.path || null, // Store image path separately
       }));
     
-      state.cartCount = mergedCart.reduce((count, item) => count + item.quantity, 0);
+      state.cartCount = apiCartItems.reduce((count, item) => count + item.quantity, 0);
     
       saveCartToLocalStorage(state); // Save updated cart to localStorage
     }
-    
-    
-    
     
     
 

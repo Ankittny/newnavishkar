@@ -3,6 +3,9 @@ const nextConfig = {
     images: {
         domains: ['navishkar.overseaseducationlane.com'],
       },
+      env: {
+        NEXT_PUBLIC_RAZORPAY_KEY_ID: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+      },
 };
 
 

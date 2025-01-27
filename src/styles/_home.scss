@@ -129,6 +129,29 @@
     position: relative;
 }
 
+.carousel-item-image {
+  width: 23%; /* Adjust the width of each image */
+}
+
+.carousel-item .d-flex {
+  overflow-x: auto; /* Allow horizontal scroll for the images */
+}
+
+.carousel-item .carousel-item-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.carousel-item-video {
+    flex: 1; /* Distribute videos evenly */
+    margin-right: 10px; /* Adjust spacing between videos */
+    border-radius: 20px;
+  }
+  
+  .carousel-item-video:last-child {
+    margin-right: 0; /* No margin on the last video */
+  }
+
 @media(max-width:500px){
     .swiper-container{
         height: 47rem;

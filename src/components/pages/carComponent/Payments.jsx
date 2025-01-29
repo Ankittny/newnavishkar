@@ -9,6 +9,7 @@ const Payment = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
   const { loading, error, AddressDetails } = useSelector((state) => state.address);
+  const [cart, setCart] = useState([]);
 
   console.log(AddressDetails);
 
@@ -25,9 +26,11 @@ const Payment = () => {
     is_billing: true,
   });
 
+
+
   useEffect(() => {
     dispatch(getAddressData());
-  }, [dispatch]);
+  },[dispatch])
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

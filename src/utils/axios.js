@@ -19,9 +19,12 @@ import { API_URL } from "../config/config";
 
 // Retrieve token from localStorage or use default
 const getAuthToken = () => {
-  return localStorage.getItem("authAdminToken") || "defaultString"; // Default token if not logged in
+  if (typeof window !== "undefined") {
+    const token = localStorage.getItem("authAdminToken");
+    return token ? token : "defaultString"; // Use "defaultString" if user is not logged in
+  }
+  return "defaultString"; // Ensure safe handling in SSR
 };
-
 // Create axios instance with dynamic Authorization header
 const axiosInstance = axios.create({
   baseURL: API_URL,

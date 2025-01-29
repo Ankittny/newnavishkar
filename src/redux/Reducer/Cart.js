@@ -3,9 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 import axiosInstance from "@/utils/axios";
 const axios = axiosInstance
 
+
 const loadCartFromLocalStorage = () => {
+  if (typeof window === "undefined") {
+    return { cartItems: [], cartCount: 0 }; // Prevent SSR error
+  }
+
+
   try {
-    const serializedCart = localStorage.getItem("cart");
+    // const serializedCart = localStorage.getItem("cart");
     if (serializedCart === null) {
       return {
         cartItems: [],
@@ -78,6 +84,8 @@ const cartSlice = createSlice({
       state.cartCount -= 1;
       saveCartToLocalStorage(state);
     },
+
+
 
 
     incrementQuantity: (state, action) => {

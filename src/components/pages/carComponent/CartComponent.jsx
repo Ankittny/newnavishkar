@@ -10,7 +10,7 @@ const axios = axiosInstance;
 
 
 const CartComponent = () => {
-  const token = localStorage.getItem("authAdminToken");
+  const token = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
   

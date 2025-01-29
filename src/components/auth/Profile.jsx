@@ -6,7 +6,7 @@ import {
   Grid,
   Typography,
   Paper,
-} from "@material-ui/core";
+} from "@mui/material";
 import TextField from '@mui/material/TextField';
 import { makeStyles } from "@material-ui/core/styles";
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -15,45 +15,45 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/navigation"; // Import useRouter from Next.js
 import Image from "next/image";
 import { profile } from "@/redux/Action/Auth";
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/system';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 // Styles for the component
-const useStyles = makeStyles((theme) => ({
-  root: {
-    height: "100vh",
-  },
-  image: {
-    backgroundRepeat: "no-repeat",
-    backgroundColor:
-      theme.palette.type === "light"
-        ? theme.palette.grey[50]
-        : theme.palette.grey[900],
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  },
-  paper: {
-    margin: theme.spacing(4, 4),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "left",
-  },
-  form: {
-    width: "100%",
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-  previewImage: {
-    marginTop: theme.spacing(2),
-    maxHeight: 200,
-    width: "300px",
-    margin: "auto",
-    borderRadius: "15px",
-    marginBottom: "30px",
-  },
-}));
+const useStyles = (theme) => ({
+  // root: {
+  //   height: "100vh",
+  // },
+  // image: {
+  //   backgroundRepeat: "no-repeat",
+  //   backgroundColor:
+  //     theme.palette.type === "light"
+  //       ? theme.palette.grey[50]
+  //       : theme.palette.grey[900],
+  //   backgroundSize: "cover",
+  //   backgroundPosition: "center",
+  // },
+  // paper: {
+  //   margin: theme.spacing(4, 4),
+  //   display: "flex",
+  //   flexDirection: "column",
+  //   alignItems: "left",
+  // },
+  // form: {
+  //   width: "100%",
+  //   marginTop: theme.spacing(1),
+  // },
+  // submit: {
+  //   margin: theme.spacing(3, 0, 2),
+  // },
+  // previewImage: {
+  //   marginTop: theme.spacing(2),
+  //   maxHeight: 200,
+  //   width: "300px",
+  //   margin: "auto",
+  //   borderRadius: "15px",
+  //   marginBottom: "30px",
+  // },
+});
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',

@@ -3,12 +3,12 @@ import axiosInstance from "@/utils/axios";
 import axios from "axios";
 
 export default function RazorpayButton({ totalAmount, addressId, shippingDetails }) {
-  const token = localStorage.getItem("token");
+ 
   const [loading, setLoading] = useState(false);
 
   const handlePayment = async () => {
     setLoading(true);
-
+    const token = localStorage.getItem("authAdminToken");
     try {
       // 1️⃣ Send Shipping Address & Order Details BEFORE Payment
       const orderResponse = await axiosInstance.get(
@@ -36,6 +36,7 @@ export default function RazorpayButton({ totalAmount, addressId, shippingDetails
 
       // 2️⃣ Call Razorpay API to Create Order
       const razorpayResponse = await axios.post("/api/razorpay", 
+        
         { amount: totalAmount }, // Amount in rupees
         {
           headers: {

@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+   output: "standalone", // This enables static export
     images: {
         domains: ['navishkar.overseaseducationlane.com'],
       },

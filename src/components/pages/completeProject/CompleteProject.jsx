@@ -15,7 +15,7 @@ import { useParams, usePathname, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import BoysToys from "@/components/BoysToys";
 import OurAchievement from "@/components/OurAchievment";
-import { completeProjectData } from "@/redux/Action/CompleteProje`ct";
+import { completeProjectData } from "@/redux/Action/CompleteProject";
 
 
 const CompleteProject = () => {

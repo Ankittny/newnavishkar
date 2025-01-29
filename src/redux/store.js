@@ -14,6 +14,7 @@ import { innovationEnqueryReducer } from "./Reducer/InnovationEnquery";
 import { contactReducer } from "./Reducer/ContactUs";
 import { parterBeReducer } from "./Reducer/PartnerBe";
 import { relatedProductReducer } from "./Reducer/RelatedProduct";
+import { addressReducer } from "./Reducer/Address";
 
 
 
@@ -33,6 +34,7 @@ const store = configureStore({
     contact:contactReducer,
     partner:parterBeReducer,
     relatedProduct:relatedProductReducer,
+    address:addressReducer
   },
 });
 

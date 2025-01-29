@@ -1,24 +1,49 @@
 "use client";
 
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
-
-
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import RazorpayButton from "@/components/RazorpayButton";
+import { AddressData, getAddressData } from "@/redux/Action/Address";
 
 const Payment = () => {
-  const router = useRouter();
+  const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const [paymentMethod, setPaymentMethod] = useState("COD");
+  const { loading, error, AddressDetails } = useSelector((state) => state.address);
+  const [cart, setCart] = useState([]);
+
+  console.log(AddressDetails);
+
   const [shippingDetails, setShippingDetails] = useState({
-    firstName: "",
-    lastName: "",
+    contact_person_name: "",
+    address_type: "Home",
+    address: "",
+    city: "",
+    zip: "",
+    country: "",
     phone: "",
-    email: "",
-    pincode: "",
-    addressLine1: "",
-    addressLine2: "",
+    latitude: "10",
+    longitude: "10",
+    is_billing: true,
   });
+
+
+
+  useEffect(() => {
+    dispatch(getAddressData());
+  },[dispatch])
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setShippingDetails((prevDetails) => ({
+      ...prevDetails,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(AddressData(shippingDetails));
+  };
 
   const calculateTotalPrice = (items) => {
     return items.reduce((acc, item) => {
@@ -37,50 +62,10 @@ const Payment = () => {
   const discount = 50;
   const finalPrice = (totalPrice - discount + shipping).toFixed(2);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setShippingDetails((prevDetails) => ({
-      ...prevDetails,
-      [name]: value,
-    }));
-  };
 
-  const handlePaymentSubmit = async (e) => {
-    e.preventDefault();
+  const savedAddress = AddressDetails && AddressDetails[0];
+  const addressId = savedAddress ? savedAddress.id : null;
 
-    if (paymentMethod === "RazorPay") {
-      // Redirect to RazorPay page or handle RazorPay payment here
-      router.push("/razorpay");
-    } else {
-      // Handle COD payment logic and send email
-      const emailContent = {
-        shippingDetails,
-        cartItems,
-        totalPrice: finalPrice,
-      };
-
-      // Call your email API here (e.g., using fetch or axios)
-      try {
-        const response = await fetch("/api/send-email", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(emailContent),
-        });
-
-        if (response.ok) {
-          // Successfully sent email
-          router.push("/confirmation");
-        } else {
-          // Handle error
-          console.error("Error sending email:", response.statusText);
-        }
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    }
-  };
 
   return (
     <div className="container">
@@ -88,93 +73,31 @@ const Payment = () => {
         <h2 className="payment-title text-center mt-3">Payment Information</h2>
         <div className="payment-container mt-4">
           <div className="row">
-
             <div className="col-lg-7">
-              {/* Conditionally render the shipping address input for COD */}
-              {paymentMethod === "COD" && (
-                <div className="shipping-address">
-                  <h4>Shipping Address</h4>
-                  <div className="row">
-                    <div className="col-lg-6">
-                      <input
-                        type="text"
-                        name="firstName"
-                        placeholder="First Name"
-                        value={shippingDetails.firstName}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </div>
-                    <div className="col-lg-6">
-                      <input
-                        type="text"
-                        name="lastName"
-                        placeholder="Last Name"
-                        value={shippingDetails.lastName}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </div>
-
-
-                    <div className="col-lg-6">
-                      <input
-                        type="text"
-                        name="phone"
-                        placeholder="Phone Number"
-                        value={shippingDetails.phone}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </div>
-                    <div className="col-lg-6">
-                      <input
-                        type="email"
-                        name="email"
-                        placeholder="Email Address"
-                        value={shippingDetails.email}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </div>
-                    <div className="col-lg-6">
-                      <input
-                        type="text"
-                        name="pincode"
-                        placeholder="Pincode"
-                        value={shippingDetails.pincode}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </div>
-                    <div className="col-lg-6">
-                      <input
-                        type="text"
-                        name="addressLine1"
-                        placeholder="Address Line 1"
-                        value={shippingDetails.addressLine1}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </div>
-                    <div className="col-lg-12">
-                      <input
-                        type="text"
-                        name="addressLine2"
-                        placeholder="Address Line 2"
-                        value={shippingDetails.addressLine2}
-                        onChange={handleInputChange}
-                      />
-                    </div>
+              <form className="shipping-address" onSubmit={handleSubmit}>
+                <h4>Shipping Address</h4>
+                <div className="row">
+                  <div className="col-lg-6">
+                    <input type="text" name="contact_person_name" placeholder="Full Name" value={shippingDetails.contact_person_name} onChange={handleInputChange} required />
+                  </div>
+                  <div className="col-lg-6">
+                    <input type="text" name="phone" placeholder="Phone Number" value={shippingDetails.phone} onChange={handleInputChange} required />
+                  </div>
+                  <div className="col-lg-6">
+                    <input type="text" name="address" placeholder="Address" value={shippingDetails.address} onChange={handleInputChange} required />
+                  </div>
+                  <div className="col-lg-6">
+                    <input type="text" name="city" placeholder="City" value={shippingDetails.city} onChange={handleInputChange} required />
+                  </div>
+                  <div className="col-lg-6">
+                    <input type="text" name="zip" placeholder="Zip Code" value={shippingDetails.zip} onChange={handleInputChange} required />
+                  </div>
+                  <div className="col-lg-6">
+                    <input type="text" name="country" placeholder="Country" value={shippingDetails.country} onChange={handleInputChange} required />
                   </div>
                 </div>
-              )}
-              
-              <div className="text-center">
-                <button onClick={handlePaymentSubmit} className="submit-payment-button mt-3">
-                  {paymentMethod === "RazorPay" ? "Pay with RazorPay" : "Confirm Order"}
-                </button>
-              </div>
+                <button type="submit" className="submit-btn mt-3 p-2 w-100">Save Address</button>
+              </form>
             </div>
             <div className="col-lg-5">
               <div className="order-summary">
@@ -185,32 +108,19 @@ const Payment = () => {
                 <hr />
                 <p>Total: ₹{finalPrice}</p>
               </div>
+              {savedAddress && (
+                <div className="order-summary mt-3">
+                  <h4>Saved Address</h4>
+                  <p>{savedAddress.contact_person_name}</p>
+                  <p>{savedAddress.address}, {savedAddress.city}, {savedAddress.zip}, {savedAddress.country}</p>
+                  <p>Phone: {savedAddress.phone}</p>
+                  
+                </div>
+              )}
               <div className="payment-methods mt-3">
-                <h3>Choose Payment Method</h3>
-                <label className="payment-label">
-                  <input
-                    className="mx-2"
-                    type="radio"
-                    name="paymentMethod"
-                    value="COD"
-                    checked={paymentMethod === "COD"}
-                    onChange={(e) => setPaymentMethod(e.target.value)}
-                  />
-                  COD
-                </label>
+                <h3>Pay with Razorpay</h3>
+                <RazorpayButton totalAmount={finalPrice} addressId={addressId} />
 
-
-                <label className="payment-label">
-                  <input
-                    className="mx-2"
-                    type="radio"
-                    name="paymentMethod"
-                    value="RazorPay"
-                    checked={paymentMethod === "RazorPay"}
-                    onChange={(e) => setPaymentMethod(e.target.value)}
-                  />
-                  RazorPay
-                </label>
               </div>
             </div>
           </div>

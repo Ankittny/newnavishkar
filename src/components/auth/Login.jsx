@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import { sendOtp, verifyOtp } from "@/redux/Action/Auth";
 import "../../styles/_login.scss";
+import { MdEdit } from "react-icons/md";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -53,6 +54,11 @@ const Login = () => {
     }
   };
 
+
+  const handleEditPhone = () => {
+    setIsOtpSent(false); // Go back to phone input state
+    setOtp(Array(6).fill("")); // Clear OTP if user wants to edit the phone number
+  };
   const handleOtpChange = (value, index) => {
     if (/^[0-9]$/.test(value) || value === "") {
       const updatedOtp = [...otp];
@@ -127,7 +133,7 @@ const Login = () => {
           </Grid>
         </div>
         <div className="mt-4">
-          <Divider>Login with Mobile OTP</Divider>
+          <Divider>Login with Mobile OTP {}</Divider>
         </div>
 
         {!isOtpSent ? (
@@ -186,6 +192,21 @@ const Login = () => {
             </Button>
           </form>
         )}
+         {isOtpSent && (
+        <div className="mt-4">
+          <Divider>
+            You want to Edit  {phone}
+            <Button
+              onClick={handleEditPhone} // Go back to the phone input section
+              sx={{ ml: 2 }}
+              variant="text"
+              color="primary"
+            >
+              <MdEdit size={25}/>
+            </Button>
+          </Divider>
+        </div>
+      )}
       </Grid>
     </Grid>
   );

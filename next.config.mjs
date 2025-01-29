@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+   output: "standalone", // This enables static export
     images: {
         domains: ['navishkar.overseaseducationlane.com'],
+      },
+      env: {
+        NEXT_PUBLIC_RAZORPAY_KEY_ID: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
       },
 };
 

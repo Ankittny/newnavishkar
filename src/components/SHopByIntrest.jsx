@@ -101,11 +101,11 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
             <div className="col-md-9">
               <div className="card-container">
                 {filteredCategories?.length > 0 ? (
-                  filteredCategories.map((category) => (
+                  filteredCategories.map((category,index) => (
                     <Card
-                      key={category.id || category.slug}
+                      key={category.id || category.slug || index} // Ensure unique key
                       id={category.id}
-                      imageUrl={category.thumbnail_full_url?.path || null}
+                      imageUrl={category.thumbnail_full_url?.path || null} // Ensure null if empty
                       name={category?.name}
                       discount={category?.discount}
                       price={category?.unit_price}

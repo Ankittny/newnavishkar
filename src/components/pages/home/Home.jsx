@@ -270,7 +270,7 @@ const Home = () => {
                 className="frontend-video"
                 style={{ width: "100%" }}
               >
-                <source src="product/video/Navishkar.mp4" type="video/mp4" />
+                <source src="product/video/navishkar.mp4" type="video/mp4" />
               </video>
             </div>
             <div className="col-lg-6">

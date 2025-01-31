@@ -27,6 +27,7 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import Box from "@mui/material/Box";
+import Link from "next/link";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -70,7 +71,7 @@ const Home = () => {
   console.log("ANkit sir", productsData);
 
   const handleCardClick = (slug) => {
-    console.log(`Card clicked: ${slug}`);
+    router.push(`/products/${slug}`);
   };
 
   const handleAddToCart = (id) => {
@@ -192,7 +193,7 @@ const Home = () => {
                       it is to stay updated in this technology driven world.
                     </p>
                     <button className="bg-white px-4 py-2 border-0 mb-2 ">
-                      View Product
+                     <Link href="/workshop">View Workshop</Link>
                     </button>
                   </div>
                 </div>
@@ -213,7 +214,7 @@ const Home = () => {
                     </p>
 
                     <button className="bg-white dx-text-bg px-4 py-2 border-0 mb-2 ">
-                      View Product
+                      <Link href="/innovation">View Innovation</Link>
                     </button>
                   </div>
                   <div className="back-bg-title">

@@ -179,6 +179,11 @@ const Navbar = () => {
                       Live Projects
                     </Link>
                   </li>
+                  <li>
+                    <Link href="/upcoming" passHref className="dropdown-item">
+                      Upcoming Projects
+                    </Link>
+                  </li>
                 </ul>
               </li>
               <li className="nav-item">

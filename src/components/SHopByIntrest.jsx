@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Filter from "./Filter";
 import Button from "./Button";
+import BoysToys from "./BoysToys";
 
 
 
@@ -96,7 +97,7 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
 
           <div className="row dr-title mt-4">
             <div className="col-md-3">
-              <Filter />
+            <BoysToys />
             </div>
             <div className="col-md-9">
               <div className="card-container">

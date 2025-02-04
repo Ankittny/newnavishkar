@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import BoysToys from "@/components/BoysToys";
 import OurAchievement from "@/components/OurAchievment";
 import { completeProjectData } from "@/redux/Action/CompleteProject";
+import Card from "@/components/card/Card";
 
 
 const CompleteProject = () => {
@@ -40,8 +41,17 @@ const CompleteProject = () => {
   }, []);
 
   const handleClick = (id) => {
-    router.push(`/labs${id}`);
+    
   };
+
+  const handleCardClick = (slug) => {
+    router.push(`/labs/${slug}`);
+  };
+
+  const handleAddToCart = (id) => {
+    console.log(`Added to cart: ${id}`);
+  };
+
 
   return (
     <>
@@ -65,37 +75,19 @@ const CompleteProject = () => {
             </div>
 
             <div className="row">
-              {cmlproject.map((item, index) => (
+              {cmlproject.map((item) => (
                 <div className="col-lg-6" key={item.id}>
-                  <div className="complete-project gap-4">
-                    <div className="imag-complete">
-                      <Image
-                        src={item.thumbnail_full_url?.path || "/labs/lab1.png"} // Use project.image if available
-                        alt={item.name}
-                        width={100}
-                        height={100}
-                      />
-                    </div>
-                    <div className="project-name mt-3">
-                      <h5>{item.name}</h5> {/* Render project name */}
-                    </div>
-
-                    <div className="d-flex flex-row gap-3">
-                      <div className="complete-discount">
-                        <p>{item.discount  || "-15%"}</p>{" "}
-                      </div>
-                      <div className="complete-price">
-                        <h4>{item.unit_price || "699"}</h4> {/* Render price */}
-                      </div>
-
-                      <div>
-                        <p>
-                          <s>${item.original_price || "799"}</s>{" "}
-                          {/* Render original price */}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                  {/* ✅ Use Card component instead of div */}
+                  <Card
+                    id={item.id}
+                    imageUrl={item.thumbnail_full_url?.path || "/labs/lab1.png"}
+                    name={item.name}
+                    discount={item.discount || "-15%"}
+                    price={item.unit_price || "699"}
+                    originalPrice={item.original_price || "799"}
+                    onClick={() => handleCardClick(item.slug)}
+                    onAddToCart={() => handleAddToCart(item.id)}
+                  />
                 </div>
               ))}
             </div>

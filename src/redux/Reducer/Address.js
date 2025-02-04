@@ -23,5 +23,36 @@ export const addressReducer = createReducer(initialState, (builder) => {
       state.loading = false;
       state.error = action.payload;
       state.success = false;
-    });
+    })
+    .addCase("addressUpdateRequest", (state) => {
+      state.loading = true;
+      state.error = null;
+      state.success = false;
+    })
+    .addCase("addressUpdateSuccess", (state, action) => {
+      state.loading = false;
+      state.AddressDetails = action.payload; // Update the address details after updating
+      state.success = true;
+    })
+    .addCase("addressUpdateFail", (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+      state.success = false;
+    })
+    .addCase("addressDeleteRequest", (state) => {
+      state.loading = true;
+      state.error = null;
+      state.success = false;
+    })
+    .addCase("addressDeleteSuccess", (state, action) => {
+      state.loading = false;
+      state.AddressDetails = {}; // Clear address details after deleting
+      state.success = true;
+    })
+    .addCase("addressDeleteFail", (state) => {
+      state.loading = true;
+      state.error = null;
+      state.success = false;
+    })
+
 });

@@ -58,13 +58,18 @@ const Footer = () => {
                       <Link href={"/aboutus"}>Our Team</Link>
                     </li> */}
                     <li>
-                      <Link href={"/labs"}>Labs</Link>
+                      <Link href={"/labs"}>N-Labs</Link>
                     </li>
                     <li>
                       <Link href={"/products"}>Products</Link>
                     </li>
                     <li>
                       <Link href={"/partner-with-us"}>Partner With Us</Link>
+                    </li>
+                    <li>
+                      <Link href={"/complete-project"}>
+                      Projects
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -73,7 +78,7 @@ const Footer = () => {
               {/* Follow Us */}
               <div className="col-lg-3 mb-4">
                 <div className="ct_contact_us">
-                  <h3>Follow Us</h3>
+                  <h3>Important Links</h3>
                   <ul className="list-unstyled">
                     <li>
                       <Link href={"/return-policy"}>Return Policy Page</Link>
@@ -109,27 +114,27 @@ const Footer = () => {
                 <div className="social-icons">
                   <ul className="d-flex gap-3" style={{ paddingLeft: "0px" }}>
                     <li style={{ listStyle: "none" }}>
-                      <Link href={"/"}>
+                      <Link href={"https://www.facebook.com/navishkar1/"}>
                         <FaFacebookSquare size={30} />
                       </Link>
                     </li>
                     <li style={{ listStyle: "none" }}>
-                      <Link href={"/"}>
+                      <Link href={"https://x.com/navishkar_edu"}>
                         <FaXTwitter size={30} />
                       </Link>
                     </li>
                     <li style={{ listStyle: "none" }}>
-                      <Link href={"/"}>
+                      <Link href={"https://www.linkedin.com/company/94801673/admin/dashboard/"}>
                         <FaLinkedin size={30} />
                       </Link>
                     </li>
                     <li style={{ listStyle: "none" }}>
-                      <Link href={""}>
+                      <Link href={"https://www.youtube.com/@Navishkar1"}>
                         <FaYoutubeSquare size={30} />
                       </Link>
                     </li>
                     <li style={{ listStyle: "none" }}>
-                      <Link href={""}>
+                      <Link href={"https://www.instagram.com/navishkar_edu/"}>
                         <FaInstagramSquare size={30} />
                       </Link>
                     </li>

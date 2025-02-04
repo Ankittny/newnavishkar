@@ -13,6 +13,7 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Carousel } from 'react-bootstrap';
+import { IoMdArrowDropright } from "react-icons/io";
 
 
 import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
@@ -27,6 +28,7 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import Box from "@mui/material/Box";
+import Link from "next/link";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -37,12 +39,36 @@ const Home = () => {
   const { loading, products, error } = useSelector((state) => state.home);
   const [activeTab, setActiveTab] = useState({});// To track which tab is active
   const [instaData, setInstaData] = useState([]);
+  const [loadingTabs, setLoadingTabs] = useState({});
+
+  // const handleTabClick = (tabIndex, categoryIndex) => {
+  //   setActiveTab((prevState) => ({
+  //     ...prevState,
+  //     [categoryIndex]: tabIndex,
+  //   }));
+  // };
+
 
   const handleTabClick = (tabIndex, categoryIndex) => {
-    setActiveTab((prevState) => ({
+    // Show loader for the selected tab
+    setLoadingTabs((prevState) => ({
       ...prevState,
-      [categoryIndex]: tabIndex,
+      [categoryIndex]: true,
     }));
+
+    // Simulate a delay before setting the active tab
+    setTimeout(() => {
+      setActiveTab((prevState) => ({
+        ...prevState,
+        [categoryIndex]: tabIndex,
+      }));
+
+      // Hide loader
+      setLoadingTabs((prevState) => ({
+        ...prevState,
+        [categoryIndex]: false,
+      }));
+    }, 1000);
   };
 
   const fetchProductData = async () => {
@@ -70,7 +96,7 @@ const Home = () => {
   console.log("ANkit sir", productsData);
 
   const handleCardClick = (slug) => {
-    console.log(`Card clicked: ${slug}`);
+    router.push(`/products/${slug}`);
   };
 
   const handleAddToCart = (id) => {
@@ -137,8 +163,9 @@ const Home = () => {
               <div className="col-lg-4">
                 <div className="award-name">
                   <h2>
-                    On my website, you'll find resources and trainings to help
-                    you find aliveness and vitality in your relationships.
+                    Navishkar, where innovation and exploration unite! ,
+                    we are passionately committed to providing high-quality STEAM education for young minds.
+                    We Inspire curiosity & creativity, and foster a love for learning in students through experiential learning.
                   </h2>{" "}
                 </div>
                 <div className="award-price d-flex justify-content-center align-items-center gap-3">
@@ -192,7 +219,7 @@ const Home = () => {
                       it is to stay updated in this technology driven world.
                     </p>
                     <button className="bg-white px-4 py-2 border-0 mb-2 ">
-                      View Product
+                      <Link href="/workshop">View Workshop</Link>
                     </button>
                   </div>
                 </div>
@@ -213,7 +240,7 @@ const Home = () => {
                     </p>
 
                     <button className="bg-white dx-text-bg px-4 py-2 border-0 mb-2 ">
-                      View Product
+                      <Link href="/innovation">View Innovation</Link>
                     </button>
                   </div>
                   <div className="back-bg-title">
@@ -290,144 +317,146 @@ const Home = () => {
 
       <div className="feature-topic-title mt-5">
         <div className="feature-heading">
-          <h3 className="fw-bolder text-center">Featured Topics By Category</h3>
+          <h3 className="fw-bolder text-center">Today’s Highlights</h3>
         </div>
       </div>
- <section className="shopbyintrest mt-5">
-  <div className="container">
-    <div className="row mt-5">
-      <div className="col-lg-12">
-        <Carousel
-          slide={true}
-          interval={3000}
-          controls={false} // Hide left and right arrows
-        >
-          {instaData.map((item, index) => {
-            // Group the items in sets of 4
-            if (index % 4 === 0) {
-              const groupedItems = instaData.slice(index, index + 4);
-              return (
-                <Carousel.Item key={index}>
-                  <div className="d-flex justify-content-between">
-                    {groupedItems.map((videoItem, videoIndex) => (
-                      <div className="carousel-item-video" key={videoIndex}>
-                        <video width="100%" height="500" controls>
-                          <source src={videoItem.media_url} type="video/mp4" />
-                          Your browser does not support the video tag.
-                        </video>
-                      </div>
-                    ))}
-                  </div>
-                </Carousel.Item>
-              );
-            }
-            return null;
-          })}
-        </Carousel>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-    
-      
-
-<section className="shopbyintrest">
-  <div className="container">
-    <div className="row">
-      <div className="col-lg-12">
-        {productsData && productsData.length > 0 ? (
-          productsData.map((category, categoryIndex) => (
-            <div key={category.id} className="shop-by-category">
-              {/* Category title */}
-              <div className="shop-by-title text-center">
-                <h5>
-                  SHOP BY{" "}
-                  <span>{category.slug || "No category available"}</span>
-                </h5>
-              </div>
-
-              {/* Tabs and Tab Panels */}
-              <div className="tabs-container">
-                {category.childes && category.childes.length > 0 ? (
-                  <TabContext value={activeTab[categoryIndex] || "0"}>
-                    <Box className="tabs-wrapper">
-                      <TabList
-                        aria-label={`Tabs for ${category.slug}`}
-                        className="tab-buttons"
-                      >
-                        {category.childes.map((child, index) => (
-                          <Tab
-                            key={child.id}
-                            label={child.name}
-                            value={index.toString()}
-                            onClick={() => handleTabClick(index.toString(), categoryIndex)}
-                          />
-                        ))}
-                      </TabList>
-                    </Box>
-
-                    {/* Tab Panels */}
-                    {category.childes.map((child, index) => (
-                      <TabPanel
-                        key={child.id}
-                        value={index.toString()}
-                        className="tab-content"
-                      >
-                        {child.products && child.products.length > 0 ? (
-                          child.products.map((product) => (
-                            <Card
-                              key={product.id}
-                              id={product.id}
-                              imageUrl={`https://navishkar.overseaseducationlane.com/public/assets/back-end/product/thumbnail/${product.thumbnail || ""}`}
-                              name={product.name}
-                              discount={product.discount}
-                              price={product.unit_price}
-                              onClick={() => handleCardClick(product.slug)}
-                              onAddToCart={() => handleAddToCart(product.id)}
-                            />
-                          ))
-                        ) : (
-                          <p>No products available in this subcategory</p>
-                        )}
-                      </TabPanel>
-                    ))}
-                  </TabContext>
-                ) : (
-                  <p className="no-data-message">No Subcategories</p>
-                )}
-              </div>
-
-              {/* Main products display */}
-              <div className="row dr-title mt-5">
-                <div className="col-md-12">
-                  <div className="card-container">
-                    {!activeTab[categoryIndex] &&
-                      category.products?.map((product) => (
-                        <Card
-                          key={product.id}
-                          id={product.id}
-                          imageUrl={`https://navishkar.overseaseducationlane.com/public/assets/back-end/product/thumbnail/${product.thumbnail || ""}`}
-                          name={product.name}
-                          price={product.unit_price}
-                          discount={product.discount}
-                          onClick={() => handleCardClick(product.slug)}
-                          onAddToCart={() => handleAddToCart(product.id)}
-                        />
-                      ))}
-                  </div>
-                </div>
-              </div>
+      <section className="shopbyintrest mt-5">
+        <div className="container">
+          <div className="row mt-5">
+            <div className="col-lg-12">
+              <Carousel
+                slide={true}
+                interval={3000}
+                controls={false} // Hide left and right arrows
+              >
+                {instaData.map((item, index) => {
+                  // Group the items in sets of 4
+                  if (index % 4 === 0) {
+                    const groupedItems = instaData.slice(index, index + 4);
+                    return (
+                      <Carousel.Item key={index}>
+                        <div className="d-flex justify-content-between">
+                          {groupedItems.map((videoItem, videoIndex) => (
+                            <div className="carousel-item-video" key={videoIndex}>
+                              <video width="100%" height="500" controls>
+                                <source src={videoItem.media_url} type="video/mp4" />
+                                Your browser does not support the video tag.
+                              </video>
+                            </div>
+                          ))}
+                        </div>
+                      </Carousel.Item>
+                    );
+                  }
+                  return null;
+                })}
+              </Carousel>
             </div>
-          ))
-        ) : (
-          <p>No products available</p>
-        )}
-      </div>
-    </div>
-  </div>
-</section>
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+      <section className="shopbyintrest">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              {productsData && productsData.length > 0 ? (
+                productsData.map((category, categoryIndex) => (
+                  <div key={category.id} className="shop-by-category">
+                    {/* Category title */}
+                    <div className="shop-by-title text-center">
+                      <h5>
+                        SHOP BY <span>{category.slug && category.slug.toUpperCase()}{" "}</span>
+
+                      </h5>
+                    </div>
+
+                    {/* Tabs and Tab Panels */}
+                    <div className="tabs-container">
+                      {category.childes && category.childes.length > 0 ? (
+                        <TabContext value={activeTab[categoryIndex] || "0"}>
+                          <Box className="tabs-wrapper">
+                            <TabList
+                              aria-label={`Tabs for ${category.slug}`}
+                              className="tab-buttons"
+                            >
+                              {category.childes.map((child, index) => (
+                                <Tab
+                                  key={child.id}
+                                  label={child.name}
+                                  value={index.toString()}
+                                  onClick={() => handleTabClick(index.toString(), categoryIndex)}
+                                />
+                              ))}
+                            </TabList>
+                          </Box>
+
+                          {/* Tab Panels */}
+                          {category.childes.map((child, index) => (
+                            <TabPanel key={child.id} value={index.toString()} className="tab-content">
+                              {loadingTabs[categoryIndex] ? (
+                                <div className="home-loading-overlay">
+                                  <div className="home-spinner-container text-center">
+                                    <div className="home-spinner"></div>
+                                  </div>
+                                </div>
+                              ) : child.products && child.products.length > 0 ? (
+                                child.products.map((product) => (
+                                  <Card
+                                    key={product.id}
+                                    id={product.id}
+                                    imageUrl={`https://navishkar.overseaseducationlane.com/public/assets/back-end/product/thumbnail/${product.thumbnail || ""}`}
+                                    name={product.name}
+                                    discount={product.discount}
+                                    price={product.unit_price}
+                                    onClick={() => handleCardClick(product.slug)}
+                                    onAddToCart={() => handleAddToCart(product.id)}
+                                  />
+                                ))
+                              ) : (
+                                <p>No products available in this subcategory</p>
+                              )}
+                            </TabPanel>
+                          ))}
+                        </TabContext>
+                      ) : (
+                        <p className="no-data-message">No Subcategories</p>
+                      )}
+                    </div>
+
+                    {/* Main products display */}
+                    <div className="row dr-title mt-5">
+                      <div className="col-md-12">
+                        <div className="card-container">
+                          {!activeTab[categoryIndex] &&
+                            category.products?.map((product) => (
+                              <Card
+                                key={product.id}
+                                id={product.id}
+                                imageUrl={`https://navishkar.overseaseducationlane.com/public/assets/back-end/product/thumbnail/${product.thumbnail || ""}`}
+                                name={product.name}
+                                price={product.unit_price}
+                                discount={product.discount}
+                                onClick={() => handleCardClick(product.slug)}
+                                onAddToCart={() => handleAddToCart(product.id)}
+                              />
+                            ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p>No products available</p>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
 
 
 
@@ -451,7 +480,7 @@ const Home = () => {
             <div className="row pt-5">
               <div className="col-lg-6">
                 <div className="testiminoal-flower-typical">
-                  <strong>Our clients</strong>
+                  <strong>Product & Services Reviews</strong>
                   <Swiper
                     effect={"coverflow"}
                     grabCursor={"true"}
@@ -497,10 +526,7 @@ const Home = () => {
                     <SwiperSlide>
                       {/* <img src="product/DeWatermark.png" /> */}
                       <p>
-                        The team at ABC Drone Services did an exceptional job
-                        capturing aerial shots for our real estate listings.
-                        Their attention to detail and ability to showcase
-                        properties from angles helped us attract more buyers.{" "}
+                        robotics kits are a game-changer! The step-by-step guides made learning effortless, and the hands-on experience was truly engaging.
                       </p>
                     </SwiperSlide>
                     <SwiperSlide>
@@ -540,7 +566,7 @@ const Home = () => {
               <div className="col-lg-6">
                 <div className="swiper-galley">
                   <Swiper
-                  centeredSlides={true}
+                    centeredSlides={true}
                     effect={"coverflow"}
                     grabCursor={"true"}
                     conteredslides={"true"}
@@ -639,23 +665,24 @@ const Home = () => {
                       Get Creative With <br />
                       Navishkar
                     </h4>
-                    <p className="text-white mt-3">
+                    {/* <p className="text-white mt-3">
                       Sit amet mauris commodo quis imperdiet massa tincidunt
                       nunc. Tortor id aliquet lectus proin. Turpis nunc eget
                       lorem dolor sed viverra ipsum.
-                    </p>
-                    <ul className="listing-upper-title">
+                    </p> */}
+                    <ul className="listing-upper-title ">
                       <li>
-                        Learn creative skills to achieve your personal and
-                        professional goals.
+                        <IoMdArrowDropright size={"25px"} />
+                        Build with Navishkar: Dive into hands-on learning with DIY robotics kits and expert-led training.
                       </li>
-                      <li>Tune in and level up at your own pace</li>
+                      <li>Follow step-by-step guides to create innovative projects and bring your ideas to life.</li>
                       <li>
-                        Connect with a global community of curious creatives.
+                        Enroll in hands-on training sessions and get personalized recommendations based on your skill level.
                       </li>
+                      <li>Gain exclusive benefits, expert insights, and access to Q&A sessions with industry leaders.</li>
                     </ul>
                     <button className="get-set-btn">
-                      Get started today <HiArrowLongRight />{" "}
+                      <Link href="/contactus">Join us <HiArrowLongRight /></Link>
                     </button>
                   </div>
                 </div>

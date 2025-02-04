@@ -150,7 +150,7 @@ const ContactUs = () => {
                       <i className="fas fa-envelope mb-2"></i>
                       <p>Email</p>
                       <p>
-                        <strong>support@example.com</strong>
+                        <strong>info@navishkar.com</strong>
                       </p>
                     </div>
                     <div className="info-item text-center">
@@ -164,7 +164,7 @@ const ContactUs = () => {
                       <i className="fas fa-map-marker-alt mb-2"></i>
                       <p>Address</p>
                       <p>
-                        <strong>123 Main Street, City</strong>
+                        <strong>A17 Sector-4 Noida Uttarpradesh 201301</strong>
                       </p>
                     </div>
                   </div>

@@ -55,6 +55,8 @@
   }
   .kit-down{
     text-align: center;
+    text-transform: uppercase
+    ;
   }
   
    .ex-btn{
@@ -67,7 +69,6 @@
   }
 
   .save-btn{
-    color: rgb(5, 236, 5);
     font-weight: 700;
   }
   
@@ -93,10 +94,9 @@
   
   .add-btn button{
     background: #fff;
-    border: 1px solid #663399;
     border-radius: 3px;
-    padding: 5px 20px;
-    color: #663399;
+    padding: 10px 20px;
+    // color: #663399;
     font-size: 15px;
     font-weight: 600;
   }
@@ -104,9 +104,10 @@
     margin-top: 20px;
   }
   .add-btn button{
-    background: #203d6a;
-    color: #fff;
-    border-radius: 30px;
+    background: #fff;
+    color: #203d6a;
+    border-radius: 6px;
+    border:1px solid #203d6a;
   }
   
   .card-container {

@@ -290,7 +290,7 @@
     background-size: cover;
     animation: image 5s infinite alternate;
   }
-  
+
   @keyframes image {
     0% {
     background-image: url('../../public/product/Frame\ 302.png');
@@ -305,6 +305,36 @@
         background-image: url('../../public/product/Frame\ 303.png');
     }
   }
+
+
+  .title-exit {
+    width: 250px;
+    height: 190px;
+      background-position: center;
+      background-size: cover;
+      animation: images 10s infinite alternate;
+      margin: auto;
+      margin-top: 40px;
+    }
+  
+    @keyframes images {
+        0% {
+        background-image: url('../../public/product/minoss.png');
+        }
+
+        25% {
+            background-image: url('../../public/product/drone-exit.png');
+            }
+            50%{
+                background-image: url('../../public/product/9-MOTONOVA.gif');
+            }
+            75% {
+                background-image: url('../../public/product/carnivals.png');
+                }
+        100% {
+            background-image: url('../../public/product/toy\ 1.png');
+        }
+      }
 
 
 
@@ -401,6 +431,7 @@
 }
 
 @media(max-width:425px){
+  
     .award-price, .bg-find, .world-title-heading, .home-learn-title  {
        flex-direction: column;
     }
@@ -454,7 +485,7 @@
 .tabs-container {
     display: flex;
     flex-direction: column;
-    padding: 15px;
+    // padding: 15px;
     gap: 20px;
     
   }
@@ -491,7 +522,7 @@
     width: 100%;
     text-align: center;
 
-    padding: 20px;
+    // padding: 20px;
     
   }
   
@@ -501,9 +532,9 @@
   }
   
   .tab-content p {
-    margin-top: 10px;
     font-size: 1rem;
     color: #555;
+    margin-bottom: 0px;
   }
   
   .no-data-message {
@@ -521,8 +552,16 @@
 }
 .css-1wxkzlj-MuiTabs-flexContainer{
     gap: 20px;
+    display: flex;
+    justify-content: center;
 }
 .listing-upper-title{
     padding: 0;
     list-style: none;
 }
+
+
+
+
+
+

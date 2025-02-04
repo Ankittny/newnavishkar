@@ -156,8 +156,8 @@ const Home = () => {
                 </div>
               </div>
               <div className="col-lg-4">
-                <div className="training-title">
-                  <img src="product/wheel.gif" style={{ width: "80%" }} />
+                <div className="training-title title-exit ">
+                  {/* <img src="product/wheel.gif" style={{ width: "80%" }} /> */}
                 </div>
               </div>
             </div>

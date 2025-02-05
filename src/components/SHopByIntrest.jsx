@@ -12,6 +12,8 @@ import Link from "next/link";
 import Filter from "./Filter";
 import Button from "./Button";
 import BoysToys from "./BoysToys";
+import SortOptions from "./SortOptions";
+import { Divider } from "@mui/material";
 
 
 
@@ -98,8 +100,13 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
           <div className="row dr-title mt-4">
             <div className="col-md-3">
             <BoysToys />
+           
             </div>
+            
             <div className="col-md-9">
+              <div className="row">
+                <SortOptions />
+              </div>
               <div className="card-container">
                 {filteredCategories?.length > 0 ? (
                   filteredCategories.map((category,index) => (

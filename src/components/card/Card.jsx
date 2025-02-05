@@ -8,7 +8,7 @@ import axios from "axios";
 const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id }) => {
   const dispatch = useDispatch();
   const token = localStorage.getItem("authAdminToken");
-  
+
 
   // Calculate the actual price based on the discount type
   const percentageDiscountAmount = (price * discount) / 100;
@@ -60,11 +60,12 @@ const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id }) =
         </div>
         <div className="button mt-3 d-flex gap-3 justify-content-center">
           {/* Display discount for percentage and flat types */}
+          {/* Display discount for percentage and flat types */}
           {discount_type === "percent" ? (
-            <div className="ex-btn">-{discount}%</div>
-          ) : (
+            <div className="ex-btn">Save {discount}%</div>
+          ) : flatDiscountAmount > 0 ? ( // Check if discount is greater than 0
             <div className="save-btn">Save ₹{flatDiscountAmount}</div>
-          )}
+          ) : null}
 
           <div className="price-text">
             <span>₹{ActualPrice}</span>
@@ -75,7 +76,7 @@ const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id }) =
         </div>
       </div>
       <div className="add-btn text-center mb-2">
-        <button onClick={() => handleAddToCart({ id, quantity: 1 })}>ADD TO CART</button>
+        <button onClick={() => handleAddToCart({ id, quantity: 1 })}>ADD TO BAG</button>
       </div>
     </div>
 

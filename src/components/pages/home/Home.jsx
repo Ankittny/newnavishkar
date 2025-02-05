@@ -41,6 +41,8 @@ const Home = () => {
   const [instaData, setInstaData] = useState([]);
   const [loadingTabs, setLoadingTabs] = useState({});
 
+
+  console.log("Products", products);
   // const handleTabClick = (tabIndex, categoryIndex) => {
   //   setActiveTab((prevState) => ({
   //     ...prevState,
@@ -173,9 +175,25 @@ const Home = () => {
                     <img src="product/Group-95.png" width={150} />
                   </div>
                   <div className="training-title d-flex gap-2 mt-5">
-                    <img src="product/image 2.png" />
-                    <img src="product/image 2.png" />
-                    <img src="product/image 2.png" />
+                    <img
+                      src="product/image 2.png"
+                      alt="Certificate"
+                      className="disable-image"
+                      onContextMenu={(e) => e.preventDefault()} // Disable right-click
+                      draggable="false" // Prevent dragging
+                    />
+                    <img src="product/image 2.png"
+                      alt="Certificate"
+                      className="disable-image"
+                      onContextMenu={(e) => e.preventDefault()} // Disable right-click
+                      draggable="false" // Prevent dragging
+                    />
+                    <img src="product/image 2.png"
+                      alt="Certificate"
+                      className="disable-image"
+                      onContextMenu={(e) => e.preventDefault()} // Disable right-click
+                      draggable="false" // Prevent dragging
+                    />
                   </div>
                   <div className="training-title">
                     <img src="product/Group-96.png" width={110} />
@@ -671,15 +689,20 @@ const Home = () => {
                       lorem dolor sed viverra ipsum.
                     </p> */}
                     <ul className="listing-upper-title ">
-                      <li>
+                      <li className="">
                         <IoMdArrowDropright size={"25px"} />
                         Build with Navishkar: Dive into hands-on learning with DIY robotics kits and expert-led training.
                       </li>
-                      <li>Follow step-by-step guides to create innovative projects and bring your ideas to life.</li>
                       <li>
+                        <IoMdArrowDropright size={"25px"} />
+                        Follow step-by-step guides to create innovative projects and bring your ideas to life.</li>
+                      <li>
+                        <IoMdArrowDropright size={"25px"} />
                         Enroll in hands-on training sessions and get personalized recommendations based on your skill level.
                       </li>
-                      <li>Gain exclusive benefits, expert insights, and access to Q&A sessions with industry leaders.</li>
+                      <li>
+                        <IoMdArrowDropright size={"25px"} />
+                        Gain exclusive benefits, expert insights, and access to Q&A sessions with industry leaders.</li>
                     </ul>
                     <button className="get-set-btn">
                       <Link href="/contactus">Join us <HiArrowLongRight /></Link>

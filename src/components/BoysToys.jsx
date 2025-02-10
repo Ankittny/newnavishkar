@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react'
 import { IoSearch } from "react-icons/io5";
 
@@ -15,11 +16,11 @@ const BoysToys = () => {
 
                     <hr />
                     <div className="all-left-search d-flex align-items-center">
-                        <input type="text" placeholder="Search Lab" className="search-bar" />
+                        <input type="text" placeholder="Search Products" className="search-bar" />
                         <IoSearch className="serch-media" />
                     </div>
                 </div>
-                    <div className="lab-left-title">
+                    {/* <div className="lab-left-title">
                         <p>Labs</p>
                         <hr />
                         <div className="left-list-title">
@@ -32,11 +33,11 @@ const BoysToys = () => {
                                 <li><a href="">Toddler Labs</a></li>
                             </ul>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 
                 <div className="left-product-title mt-3">
-                    <p>Products</p>
+                    <p>Categories</p>
 
                     <hr />
                     <div className="left-p-title ">
@@ -57,13 +58,21 @@ const BoysToys = () => {
                             <li><a href="">24 In One</a></li>
                             <li><a href="">Obstacle Challenger</a></li>
                             <li><a href="">Drone</a></li>
+                           
                         </ul>
                         <ul> NONE-BATTERY OPERATED
                             <li ><a href="">Motonova </a></li>
                             <li><a href="">Jigsaa Puzzle</a></li>
                         </ul>
                     </div>
+
+                    <button className='btn '>
+                        <Link href="/complete-project">
+                        Completed Project
+                        </Link>
+                    </button>
                 </div>
+                
             </div>
         </>
 

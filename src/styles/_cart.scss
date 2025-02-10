@@ -148,6 +148,47 @@ table tr{
   margin-bottom: 0px;
 }
 
+
+.coupon-card {
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+   display: flex;
+  justify-content: space-between; /* Space out the code and button */
+  align-items: center; /* Vertically center content */
+  margin-top: 10px;
+ 
+}
+
+.coupon-text {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+.coupon-code {
+  color: #ff6ec7; /* Custom color for coupon code */
+  font-weight: bold;
+}
+
+.apply-btn {
+  background-color: #175A95; /* Yellow button */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  font-size: 12px;
+}
+
+.apply-btn:hover {
+  background-color: #175A95; /* Change color on hover */
+  color: white;
+}
+
 // ==============================================media-query-start==============================================
 @media(max-width:1199px) and (min-width:992px){
   .cart-items {

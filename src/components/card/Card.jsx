@@ -5,7 +5,7 @@ import { addToCart } from "../../redux/Reducer/Cart"; // Import the addToCart ac
 import axios from "axios";
 
 
-const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id }) => {
+const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id,current_stock }) => {
   const dispatch = useDispatch();
   const token = localStorage.getItem("authAdminToken");
 
@@ -76,7 +76,12 @@ const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id }) =
         </div>
       </div>
       <div className="add-btn text-center mb-2">
-        <button onClick={() => handleAddToCart({ id, quantity: 1 })}>ADD TO BAG</button>
+        {/* <button onClick={() => handleAddToCart({ id, quantity: 1 })}>ADD TO BAG</button> */}
+        {current_stock > 0 ? (
+          <button onClick={() => handleAddToCart({ id, quantity: 1 })}>ADD TO BAG</button>
+        ) : (
+          <p className="text-danger fw-bold">Out of Stock</p>
+        )}
       </div>
     </div>
 

@@ -15,7 +15,7 @@ import { contactReducer } from "./Reducer/ContactUs";
 import { parterBeReducer } from "./Reducer/PartnerBe";
 import { relatedProductReducer } from "./Reducer/RelatedProduct";
 import { addressReducer } from "./Reducer/Address";
-
+import { reviewReducer } from "./Reducer/Review";
 
 
 const store = configureStore({
@@ -34,7 +34,8 @@ const store = configureStore({
     contact:contactReducer,
     partner:parterBeReducer,
     relatedProduct:relatedProductReducer,
-    address:addressReducer
+    address:addressReducer,
+    reviews:reviewReducer,
   },
 });
 

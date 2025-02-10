@@ -20,7 +20,8 @@ const Navbar = () => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const cartCount = useSelector((state) => state.cart.cartCount) || 0;
+  // const cartCount = useSelector((state) => state.cart.cartCount) || 0;
+  const cartCount = useSelector((state) => state.cart.cartCount);
   const { loading, navbarCategories, error } = useSelector((state) => state.navbarCategories);
 
   useEffect(() => {

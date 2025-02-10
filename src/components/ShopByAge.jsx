@@ -52,10 +52,10 @@ const ShopByAge = ({ categoryData }) => {
           //   <div className="spinner"></div>
           // </div>
           <div className="home-loading-overlay">
-                                  <div className="home-spinner-container text-center">
-                                    <div className="home-spinner"></div>
-                                  </div>
-                                </div>
+            <div className="home-spinner-container text-center">
+              <div className="home-spinner"></div>
+            </div>
+          </div>
         )}
 
         {/* Product Listing (Hidden when loading is true) */}
@@ -82,7 +82,7 @@ const ShopByAge = ({ categoryData }) => {
                     <div className="imageWrapper col-lg-6">
                       {group?.icon_full_url?.path ? (
                         <Image
-                          src={group.icon_full_url.path}
+                          src={group.icon_full_url.path || "/fallback-image.png"} // Fallback Image
                           width={200}
                           height={175}
                           alt={group?.name || "Age Group"}

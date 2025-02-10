@@ -8,6 +8,8 @@ import { FaLinkedin } from "react-icons/fa6";
 import { FaYoutubeSquare } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaWhatsappSquare } from "react-icons/fa";
+import { FaPhoneAlt } from "react-icons/fa";
+import { FaEnvelope } from "react-icons/fa";
 const Footer = () => {
   return (
     <>
@@ -107,8 +109,8 @@ const Footer = () => {
                       A 12-13, 2nd Floor, Sector 16, Gautam Buddha Nagar Noida,
                       Uttar Pradesh 201301
                     </li>
-                    <li>info@navishkar.com</li>
-                    <li>+91 81303 31254</li>
+                    <li><span><FaEnvelope size={"20px"} /></span>  info@navishkar.com</li>
+                    <li><span><FaPhoneAlt size={"20px"} /></span> +91 81303 31254</li>
                   </ul>
                 </div>
                 <div className="social-icons">

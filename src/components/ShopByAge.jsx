@@ -18,7 +18,7 @@ const ShopByAge = ({ categoryData }) => {
   const handleClick = (ageGroupId) => {
     setLoading(true); // Show loader
     // setShowProducts(false);
-    
+
     setTimeout(() => {
       setLoading(false); // Hide loader
       setShowProducts(true); // Show products after 2 seconds
@@ -48,8 +48,13 @@ const ShopByAge = ({ categoryData }) => {
 
         {/* Loader */}
         {loading && (
-          <div className="loading-overlay">
-            <div className="spinner"></div>
+          // <div className="loading-overlay">
+          //   <div className="spinner"></div>
+          // </div>
+          <div className="home-loading-overlay">
+            <div className="home-spinner-container text-center">
+              <div className="home-spinner"></div>
+            </div>
           </div>
         )}
 
@@ -65,7 +70,11 @@ const ShopByAge = ({ categoryData }) => {
                 <div className="group">
                   <div className="row">
                     <div className="col-lg-6">
-                      <h2 className="ageLabel">{group?.name}</h2>
+                      {/* <h2 className="ageLabel">{group?.name}</h2> */}
+                      {/* Static Titles */}
+                      <h2 className="ageLabel">
+                        {index === 0 ? "8-14 YEARS" : "14+ YEARS"}
+                      </h2>
                       <Button variant="outlined" className="text-white " onClick={() => handleClick(group?.slug)}>
                         Click here
                       </Button>
@@ -73,7 +82,7 @@ const ShopByAge = ({ categoryData }) => {
                     <div className="imageWrapper col-lg-6">
                       {group?.icon_full_url?.path ? (
                         <Image
-                          src={group.icon_full_url.path}
+                          src={group.icon_full_url.path || "/fallback-image.png"} // Fallback Image
                           width={200}
                           height={175}
                           alt={group?.name || "Age Group"}
@@ -92,7 +101,7 @@ const ShopByAge = ({ categoryData }) => {
 
       <SHopByIntrest selectedAgeGroup={selectedAgeGroup} />
 
-     
+
     </>
   );
 };

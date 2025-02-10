@@ -2,8 +2,11 @@
 
 const UpComing = () => {
     return (
-        <div>
-            
+        <div className="upcoming-container">
+            <div className="coming-soon">
+                <h1>Coming Soon</h1>
+                <p>Stay tuned for something amazing!</p>
+            </div>
         </div>
     )
 }

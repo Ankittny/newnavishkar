@@ -6,7 +6,7 @@ import Button from "@/components/Button";
 import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { HiArrowLongRight } from "react-icons/hi2";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, } from "swiper/modules";
 import { useRouter } from "next/navigation";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -29,6 +29,7 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import Box from "@mui/material/Box";
 import Link from "next/link";
+import { fetchReviews } from "@/redux/Action/Review";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -37,10 +38,14 @@ const Home = () => {
 
   const [productsData, setProductsData] = useState([]);
   const { loading, products, error } = useSelector((state) => state.home);
+  const {  reviewList } = useSelector((state) => state.reviews);
   const [activeTab, setActiveTab] = useState({});// To track which tab is active
   const [instaData, setInstaData] = useState([]);
   const [loadingTabs, setLoadingTabs] = useState({});
 
+
+  // console.log("Products", products);
+  // console.log("Review", reviewList);
   // const handleTabClick = (tabIndex, categoryIndex) => {
   //   setActiveTab((prevState) => ({
   //     ...prevState,
@@ -126,7 +131,8 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetchInstagramPosts(); // Trigger Instagram posts fetching when component mounts
+    fetchInstagramPosts(); 
+    dispatch(fetchReviews());// Trigger Instagram posts fetching when component mounts
   }, []);
   return (
     <>
@@ -173,9 +179,25 @@ const Home = () => {
                     <img src="product/Group-95.png" width={150} />
                   </div>
                   <div className="training-title d-flex gap-2 mt-5">
-                    <img src="product/image 2.png" />
-                    <img src="product/image 2.png" />
-                    <img src="product/image 2.png" />
+                    <img
+                      src="product/image 2.png"
+                      alt="Certificate"
+                      className="disable-image"
+                      onContextMenu={(e) => e.preventDefault()} // Disable right-click
+                      draggable="false" // Prevent dragging
+                    />
+                    <img src="product/image 2.png"
+                      alt="Certificate"
+                      className="disable-image"
+                      onContextMenu={(e) => e.preventDefault()} // Disable right-click
+                      draggable="false" // Prevent dragging
+                    />
+                    <img src="product/image 2.png"
+                      alt="Certificate"
+                      className="disable-image"
+                      onContextMenu={(e) => e.preventDefault()} // Disable right-click
+                      draggable="false" // Prevent dragging
+                    />
                   </div>
                   <div className="training-title">
                     <img src="product/Group-96.png" width={110} />
@@ -415,6 +437,7 @@ const Home = () => {
                                     price={product.unit_price}
                                     onClick={() => handleCardClick(product.slug)}
                                     onAddToCart={() => handleAddToCart(product.id)}
+                                    current_stock={product?.current_stock}
                                   />
                                 ))
                               ) : (
@@ -443,6 +466,7 @@ const Home = () => {
                                 discount={product.discount}
                                 onClick={() => handleCardClick(product.slug)}
                                 onAddToCart={() => handleAddToCart(product.id)}
+                                current_stock={product?.current_stock}
                               />
                             ))}
                         </div>
@@ -475,103 +499,25 @@ const Home = () => {
 
       {/* ==================================================testimonial========================================= */}
       <section>
-        <div className="testimionial-lyer mt-5">
-          <div className="container">
-            <div className="row pt-5">
-              <div className="col-lg-6">
-                <div className="testiminoal-flower-typical">
-                  <strong>Product & Services Reviews</strong>
-                  <Swiper
-                    effect={"coverflow"}
-                    grabCursor={"true"}
-                    conteredslides={"true"}
-                    loop={"true"}
-                    slidesPerView={"auto"}
-                    coverflowEffect={{
-                      rotate: 0,
-                      stretch: 0,
-                      depth: 100,
-                      modifier: 2.5,
-                    }}
-                    autoplay={{
-                      delay: 2500,
-                      disableOnInteraction: false,
-                    }}
-                    pagination={{
-                      el: ".swiper-pagination",
-                      clickable: true,
-                    }}
-                    navigation={{
-                      nextEl: "swiper-button-next",
-                      prevEl: "swiper-button-prev",
-                      clickable: true,
-                    }}
-                    modules={[
-                      EffectCoverflow,
-                      Pagination,
-                      Navigation,
-                      Autoplay,
-                    ]}
-                    className="swiper_container"
-                  >
-                    <SwiperSlide>
-                      {/* <img src="product/DeWatermark.png" /> */}
-                      <p>
-                        The team at ABC Drone Services did an exceptional job
-                        capturing aerial shots for our real estate listings.
-                        Their attention to detail and ability to showcase
-                        properties angles helped us attract more buyers.{" "}
-                      </p>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      {/* <img src="product/DeWatermark.png" /> */}
-                      <p>
-                        robotics kits are a game-changer! The step-by-step guides made learning effortless, and the hands-on experience was truly engaging.
-                      </p>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      {/* <img src="product/DeWatermark.png" /> */}
-                      <p>
-                        The team at ABC Drone Services did an exceptional job
-                        capturing aerial shots for our real estate listings.
-                        Their attention to detail and ability to showcase
-                        properties from angles helped us attract more buyers.{" "}
-                      </p>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      {/* <img src="product/DeWatermark.png" /> */}
-                      <p>
-                        The team at ABC Drone Services did an exceptional job
-                        capturing aerial shots for our real estate listings.
-                        Their attention to detail and ability to showcase
-                        properties from angles helped us attract more buyers.{" "}
-                      </p>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      {/* <img src="product/DeWatermark.png" /> */}
-                      <p>
-                        The team at ABC Drone Services did an exceptional job
-                        capturing aerial shots for our real estate listings.
-                        Their attention to detail and ability to showcase
-                        properties from angles helped us attract more buyers.{" "}
-                      </p>
-                    </SwiperSlide>
+      <div className="testimionial-lyer mt-5">
+        <div className="container">
+          <div className="row pt-5">
+            <div className="col-lg-6">
+              <div className="testiminoal-flower-typical">
+                <strong>Product & Services Reviews</strong>
 
-                    {/* <div className="slider-controler">
-                      <div className="swiper-pagination"></div>
-                    </div> */}
-                  </Swiper>
-                </div>
-              </div>
-              <div className="col-lg-6">
-                <div className="swiper-galley">
+                {loading ? (
+                  <p>Loading...</p>
+                ) : error ? (
+                  <p className="error">{error}</p>
+                ) : (
                   <Swiper
+                   
+                    effect={"coverflow"}
+                    grabCursor={true}
                     centeredSlides={true}
-                    effect={"coverflow"}
-                    grabCursor={"true"}
-                    conteredslides={"true"}
-                    loop={"true"}
-                    slidesPerView={"auto"}
+                    loop={true}
+                    slidesPerView={"1"}
                     coverflowEffect={{
                       rotate: 0,
                       stretch: 0,
@@ -582,69 +528,61 @@ const Home = () => {
                       delay: 2500,
                       disableOnInteraction: false,
                     }}
-                    pagination={{
-                      el: ".swiper-pagination",
-                      clickable: true,
-                    }}
-                    navigation={{
-                      nextEl: "swiper-button-next",
-                      prevEl: "swiper-button-prev",
-                      clickable: true,
-                    }}
-                    modules={[
-                      EffectCoverflow,
-                      Pagination,
-                      Navigation,
-                      Autoplay,
-                    ]}
+                   
+                    modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
                     className="swiper_container"
                   >
-                    <SwiperSlide>
-                      <img src="product/DeWatermark.png" />
-                      {/* <p>The team at ABC Drone Services did an
-                        exceptional job capturing aerial shots for our real estate listings.
-                        Their attention to detail and ability to showcase properties 
-                        angles helped us attract more buyers. </p> */}
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <img src="product/DeWatermark.png" />
-                      {/* <p>The team at ABC Drone Services did an
-                        exceptional job capturing aerial shots for our real estate listings.
-                        Their attention to detail and ability to showcase properties from 
-                        angles helped us attract more buyers. </p> */}
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <img src="product/DeWatermark.png" />
-                      {/* <p>The team at ABC Drone Services did an
-                        exceptional job capturing aerial shots for our real estate listings.
-                        Their attention to detail and ability to showcase properties from 
-                        angles helped us attract more buyers. </p> */}
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <img src="product/DeWatermark.png" />
-                      {/* <p>The team at ABC Drone Services did an
-                        exceptional job capturing aerial shots for our real estate listings.
-                        Their attention to detail and ability to showcase properties from 
-                        angles helped us attract more buyers. </p> */}
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <img src="product/DeWatermark.png" />
-                      {/* <p>The team at ABC Drone Services did an
-                        exceptional job capturing aerial shots for our real estate listings.
-                        Their attention to detail and ability to showcase properties from 
-                        angles helped us attract more buyers. </p> */}
-                    </SwiperSlide>
-
-                    <div className="slider-controler">
-                      <div className="swiper-pagination"></div>
-                    </div>
+                    {reviewList.map((review, index) => (
+                      <SwiperSlide key={index}>
+                        {/* <img src={review.attachment[0]} alt="Review" /> */}
+                        <p>{review.comment}</p>
+                        <p>{"★".repeat(review.rating)}</p>
+                       
+                      </SwiperSlide>
+                    ))}
                   </Swiper>
-                </div>
+                )}
+              </div>
+            </div>
+
+            <div className="col-lg-6">
+              <div className="swiper-galley">
+              <Swiper
+                   
+                   effect={"coverflow"}
+                   grabCursor={true}
+                   centeredSlides={true}
+                   loop={true}
+                   slidesPerView={"1"}
+                   coverflowEffect={{
+                     rotate: 0,
+                     stretch: 0,
+                     depth: 100,
+                     modifier: 2.5,
+                   }}
+                   autoplay={{
+                     delay: 2500,
+                     disableOnInteraction: false,
+                   }}
+                  
+                   modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
+                   className="swiper_container"
+                 >
+                   {reviewList.map((review, index) => (
+                     <SwiperSlide key={index}>
+                       {/* <img src={review.attachment[0]} alt="Review" /> */}
+                    
+                       <img src={review.attachment} alt="Review" />
+                         
+                     </SwiperSlide>
+                   ))}
+                 </Swiper>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
       {/* ========================================================school schildren ------------------------------------ */}
       <section>
         <div className="nami-toys-toys-store store-school-text">
@@ -671,15 +609,20 @@ const Home = () => {
                       lorem dolor sed viverra ipsum.
                     </p> */}
                     <ul className="listing-upper-title ">
-                      <li>
+                      <li className="">
                         <IoMdArrowDropright size={"25px"} />
                         Build with Navishkar: Dive into hands-on learning with DIY robotics kits and expert-led training.
                       </li>
-                      <li>Follow step-by-step guides to create innovative projects and bring your ideas to life.</li>
                       <li>
+                        <IoMdArrowDropright size={"25px"} />
+                        Follow step-by-step guides to create innovative projects and bring your ideas to life.</li>
+                      <li>
+                        <IoMdArrowDropright size={"25px"} />
                         Enroll in hands-on training sessions and get personalized recommendations based on your skill level.
                       </li>
-                      <li>Gain exclusive benefits, expert insights, and access to Q&A sessions with industry leaders.</li>
+                      <li>
+                        <IoMdArrowDropright size={"25px"} />
+                        Gain exclusive benefits, expert insights, and access to Q&A sessions with industry leaders.</li>
                     </ul>
                     <button className="get-set-btn">
                       <Link href="/contactus">Join us <HiArrowLongRight /></Link>

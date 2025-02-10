@@ -1,145 +1,116 @@
+
+
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { incrementQuantity, decrementQuantity, fetchCartData,clearCart } from "../../../redux/Reducer/Cart";
+import {
+  incrementQuantity,
+  decrementQuantity,
+  fetchCartData,
+  clearCart
+} from "../../../redux/Reducer/Cart";
 import { useRouter } from "next/navigation";
 import axiosInstance from "@/utils/axios";
 import { MdAutoDelete } from "react-icons/md";
+import Image from "next/image";
+import { Button } from "@mui/material";
 
 const axios = axiosInstance;
 
-
 const CartComponent = () => {
   const token = useSelector((state) => state.auth.token);
-  const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
-  
+  const [coupons, setCoupons] = useState([]);
+  const [appliedDiscount, setAppliedDiscount] = useState(0);
+  const [selectedCoupon, setSelectedCoupon] = useState(null); // Store applied coupon
+
+  console.log("Cart Items", cartItems);
+
+  console.log("Cart Items", cartItems);
+  const dispatch = useDispatch();
   const router = useRouter();
 
+  // Fetch cart data when token is available
   useEffect(() => {
     if (token) {
       dispatch(fetchCartData(token));
     }
   }, [dispatch, token]);
 
-
-
-const handleDecrement = async (id, currentQuantity) => {
-  if (currentQuantity > 1) {  // Ensure quantity doesn't go below 1
-    const newQuantity = currentQuantity - 1;  // Decrement the quantity by 1
-
-    try {
-      const response = await axios.put(
-        "/cart/update",  // Replace with your backend URL
-        {
-          token: token,             // Send the token for authentication
-          key: id,            // Send the product ID
-          quantity: newQuantity    // Send the new quantity
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}` // Send the token in the request header for authentication
-          }
-        }
-      );
-
-      // Assuming the API response provides the updated cart data
-      const updatedCartData = response.data.updatedCartItems; // Adjust according to actual response structure
-
-      // Dispatch action to update Redux state with the new quantity
-      dispatch(decrementQuantity(id));  // Dispatch the product ID to decrement the quantity
-
-      console.log("Quantity updated successfully:", response.data);
-    } catch (error) {
-      console.error("Error updating quantity:", error);
+  const handleDecrement = async (id, currentQuantity) => {
+    if (currentQuantity > 1) {
+      try {
+        await axios.put("/cart/update", { token, key: id, quantity: currentQuantity - 1 });
+        dispatch(decrementQuantity(id));
+        dispatch(fetchCartData(token)); // Refresh cart data
+      } catch (error) {
+        console.error("Error updating quantity:", error);
+      }
     }
-  }
-};
-
-
-
+  };
 
   const handleIncrement = async (id, currentQuantity) => {
-    const newQuantity = currentQuantity + 1;  // Increment the quantity by 1
-    
     try {
-      const response = await axios.put(
-        "/cart/update",  // Replace with your backend URL
-        {
-          token: token,             // Send the token for authentication
-          key: id,            // Send the product ID
-          quantity: newQuantity    // Send the new quantity
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}` // Send the token in the request header for authentication
-          }
-        }
-      );
-  
-      // Assuming the API response provides the updated cart data
-      const updatedCartData = response.data.updatedCartItems; // Adjust according to actual response structure
-  
-      // Dispatch action to update Redux state with the new quantity
-      dispatch(incrementQuantity(id));  // Dispatch the product ID to increment the quantity
-      
-      console.log("Quantity updated successfully:", response.data);
+      await axios.put("/cart/update", { token, key: id, quantity: currentQuantity + 1 });
+      dispatch(incrementQuantity(id));
+      dispatch(fetchCartData(token)); // Refresh cart data
     } catch (error) {
       console.error("Error updating quantity:", error);
     }
   };
-  
-  
-  const clear = async (id) => {
+
+  const handleClear = async (id) => {
     try {
-      const response = await axios.delete(
-        "/cart/remove",  // Replace with your backend URL
-        {
-          data: { token: token, key: id },  // Send the token and product ID for authentication
-          headers: {
-            Authorization: `Bearer ${token}` // Send the token in the request header for authentication
-          }
-        }
-      );
-  
-      // Assuming the API response provides the updated cart data
-      const updatedCartData = response.data.updatedCartItems; // Adjust according to actual response structure
-  
-      // Dispatch action to update Redux state with the new quantity
-      dispatch(clearCart(id));  // Dispatch the product ID to remove it from the cart
-      
-      console.log("Item removed successfully:", response.data);
+      await axios.delete("/cart/remove", {
+        data: { token, key: id },
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      dispatch(clearCart(id));
+      dispatch(fetchCartData(token)); // Refresh cart data
     } catch (error) {
       console.error("Error removing item:", error);
     }
-  }
-
-
-
-
-  const calculateSubTotal = (items) => {
-    return items.reduce((acc, item) => {
-      const price = parseFloat(item.price);
-      const quantity = parseInt(item.quantity, 10);
-      if (!isNaN(price) && !isNaN(quantity)) {
-        return acc + price * quantity;
-      }
-      return acc;
-    }, 0);
   };
-  const subTotal = calculateSubTotal(cartItems);
-  const shippingCost = 100;
+
+  const calculateSubTotal = () => cartItems.reduce(
+    (acc, item) => acc + parseFloat(item.price) * parseInt(item.quantity, 10), 0
+  );
+
+  const subTotal = calculateSubTotal();
+  // const shippingCost = 100;
   const discount = 50;
-  const grandTotal = subTotal + shippingCost - discount;
-  const handleProceedToCheckout = () => {
-    router.push("/cart/payments");
-  };
-  const handleContinueShopping = () => {
-    router.push("/");
+  const grandTotal = subTotal + - discount;
+
+
+  const fetchCoupons = async () => {
+    try {
+      const result = await axios.get("/coupon/list");
+      console.log("Coupons:", result.data);
+      setCoupons(result.data.coupons); // Update state with the "coupons" array
+    } catch (err) {
+      setError("Failed to fetch coupons");
+      console.error("Error fetching coupons:", err);
+    }
   };
 
 
- 
+  useEffect(() => {
+    fetchCoupons();
+  }, []); // Only run once when component mounts
+
+
+  // Function to apply the coupon
+  const applyCoupon = (coupon) => {
+    let discountValue = 0;
+    if (coupon.discount_type === "amunt") {
+      discountValue = parseFloat(coupon.discount);
+    } else if (coupon.discount_type === "percentage") {
+      discountValue = (subTotal * parseFloat(coupon.discount)) / 100;
+    }
+
+    setAppliedDiscount(discountValue);
+    setSelectedCoupon(coupon);
+  };
 
   return (
     <div className="container">
@@ -153,17 +124,6 @@ const handleDecrement = async (id, currentQuantity) => {
             </div>
           ) : (
             <>
-              <table className="process-card">
-                <thead>
-                  <tr>
-                    <th>Product</th>
-                    <th>Unit Price</th>
-                    <th>Qty</th>
-                    <th>Total</th>
-                    <th></th>
-                  </tr>
-                </thead>
-              </table>
               <table className="cart-table">
                 <thead>
                   <tr>
@@ -178,20 +138,18 @@ const handleDecrement = async (id, currentQuantity) => {
                   {cartItems.map((item) => (
                     <tr key={item.id}>
                       <td className="cart-item">
-                        <img src={item.imageUrl} alt={item.name} width={100} />
+                        <Image src={item.product?.thumbnail_full_url?.path} alt={item.name} width={100} height={100} />
                         <p>{item.name}</p>
                       </td>
                       <td>₹{parseFloat(item.price).toFixed(2)}</td>
                       <td className="quantity-controls">
-                        <button onClick={() => handleDecrement(item.id,item.quantity)}>-</button>
+                        <button onClick={() => handleDecrement(item.id, item.quantity)}>-</button>
                         <span>{parseInt(item.quantity, 10)}</span>
                         <button onClick={() => handleIncrement(item.id, item.quantity)}>+</button>
                       </td>
-                      <td>
-                        ₹{(parseFloat(item.price) * parseInt(item.quantity, 10)).toFixed(2)}
-                      </td>
-                      <td onClick={()=>clear(item.id)} style={{ cursor: "pointer" }}>
-                        <MdAutoDelete size={30}/>
+                      <td>₹{(parseFloat(item.price) * parseInt(item.quantity, 10)).toFixed(2)}</td>
+                      <td onClick={() => handleClear(item.id)} style={{ cursor: "pointer" }}>
+                        <MdAutoDelete size={30} />
                       </td>
                     </tr>
                   ))}
@@ -200,41 +158,51 @@ const handleDecrement = async (id, currentQuantity) => {
             </>
           )}
         </div>
+
         <div className="order-summary">
           <h3>Order Summary</h3>
           <div className="summary-details">
             <p>Sub Total: ₹{subTotal.toFixed(2)}</p>
-            <p>Shipping: ₹{shippingCost.toFixed(2)}</p>
-            <p>Discount on Product: - ₹{discount.toFixed(2)}</p>
-            <div className="coupon">
-              <input type="text" placeholder="Coupon code" />
-              <button>APPLY</button>
+            <p>Shipping:  </p>
+            <p>Discount on product: ₹{discount.toFixed(2)}</p>
+
+
+            {/* Show discount only if applied */}
+            {selectedCoupon && (
+              <p>Apply Coupen Discount : {appliedDiscount}</p>
+            )}
+            <div className="row">
+              {coupons.map((coupon) => (
+                <div className="col-md-12" key={coupon.id}>
+                  <div className="coupon-card">
+                    <p className="coupon-text">{coupon.code}</p>
+                    <Button className="apply-btn" onClick={() => applyCoupon(coupon)}>Apply</Button>
+                  </div>
+                </div>
+              ))}
             </div>
+
+
+
             <hr />
-            <p>
-              <strong>Total: ₹{grandTotal.toFixed(2)}</strong>
-            </p>
+            <p><strong>Total: ₹{grandTotal.toFixed(2)}</strong></p>
+
+            {/* <div className="coupon"><input type="text" placeholder="Coupon code" /><button>APPLY</button></div> */}
           </div>
-          <button className="checkout-button" onClick={handleProceedToCheckout}>
+
+          <button className="checkout-button" onClick={() => router.push("/cart/payments")}>
             Proceed to Checkout
           </button>
-          <button className="continue-shopping" onClick={handleContinueShopping}>
+          <button className="continue-shopping" onClick={() => router.push("/")}>
             Continue Shopping
           </button>
-          <div className="policy-icons">
-            <p>Fast Delivery all across the country</p>
-            <p>Safe Payment</p>
-            <p>7 Days Return Policy</p>
-          </div>
         </div>
       </div>
     </div>
   );
 };
+
 export default CartComponent;
-
-
-
 
 
 

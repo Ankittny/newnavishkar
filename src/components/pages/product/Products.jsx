@@ -39,7 +39,7 @@ const Product = () => {
         title="Navishkar - Kids Toy Store"
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Experience the joy of learning with our curated toys."
         linkText="Live Demo"
-        linkUrl="/demo"
+        linkUrl="https://www.youtube.com/@Navishkar1"
         imageUrl={"/product/productbanner.png"}
       />
       <ShopByAge categoryData={categoryData} />

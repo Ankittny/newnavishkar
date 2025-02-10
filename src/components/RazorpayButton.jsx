@@ -1,42 +1,20 @@
 import { useState } from "react";
 import axiosInstance from "@/utils/axios";
 import axios from "axios";
+// import { useRouter } from "next/navigation";
 
 export default function RazorpayButton({ totalAmount, addressId, shippingDetails }) {
- 
   const [loading, setLoading] = useState(false);
+  // const router = useRouter(); // Initialize router
 
   const handlePayment = async () => {
     setLoading(true);
     const token = localStorage.getItem("authAdminToken");
+
     try {
-      // 1️⃣ Send Shipping Address & Order Details BEFORE Payment
-      const orderResponse = await axiosInstance.get(
-        "/customer/order/place",
-        {
-          address_id: addressId,
-          coupon_code: "32543",
-          coupon_discount: 200,
-          billing_address_id: addressId,
-          order_note: "This is test",
-          guest_id: false,
-          is_guest: 0,
-          is_check_create_account: true,
-          password: "ankit176@",
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      const orderData = orderResponse.data;
-
-      // 2️⃣ Call Razorpay API to Create Order
-      const razorpayResponse = await axios.post("/api/razorpay", 
-        
+      // 1️⃣ Call Razorpay API to Create Order FIRST
+      const razorpayResponse = await axios.post(
+        "/api/razorpay",
         { amount: totalAmount }, // Amount in rupees
         {
           headers: {
@@ -48,7 +26,7 @@ export default function RazorpayButton({ totalAmount, addressId, shippingDetails
 
       const paymentData = razorpayResponse.data;
 
-      // 3️⃣ Load Razorpay Script
+      // 2️⃣ Load Razorpay Script
       const loadRazorpay = (src) =>
         new Promise((resolve) => {
           const script = document.createElement("script");
@@ -62,10 +40,11 @@ export default function RazorpayButton({ totalAmount, addressId, shippingDetails
 
       if (!isLoaded) {
         alert("Razorpay SDK failed to load.");
+        setLoading(false);
         return;
       }
 
-      // 4️⃣ Open Razorpay Payment Window
+      // 3️⃣ Open Razorpay Payment Window
       const options = {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         amount: paymentData.amount,
@@ -76,12 +55,32 @@ export default function RazorpayButton({ totalAmount, addressId, shippingDetails
         handler: async function (response) {
           alert(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
 
-          // ✅ Send payment confirmation to the backend
-          await axiosInstance.post("/customer/order/confirm", {
-            order_id: orderData.id,
-            payment_id: response.razorpay_payment_id,
-            signature: response.razorpay_signature,
-          });
+          // 4️⃣ Now Place Order AFTER Payment Success
+          const orderResponse = await axiosInstance.get(
+            "/customer/order/place",
+            {
+              address_id: addressId,
+              coupon_code: "",
+              coupon_discount: 200,
+              billing_address_id: addressId,
+              order_note: "",
+              guest_id: false,
+              is_guest: 0,
+              is_check_create_account: true,
+              password: "",
+              payment_id: response.razorpay_payment_id, // ✅ Attach payment ID
+              razorpay_signature: response.razorpay_signature,
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+
+          console.log("Order Confirmed:", orderResponse.data);
+          // router.push("/");
         },
         prefill: {
           name: `${shippingDetails?.firstName} ${shippingDetails?.lastName}`,

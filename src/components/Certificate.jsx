@@ -3,6 +3,8 @@ import Link from "next/link";
 import React from "react";
 
 const Certificate = ({ title, imageUrl, linkUrl, linkText }) => {
+
+  
   return (
     <>
       <section>

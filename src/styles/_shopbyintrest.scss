@@ -184,6 +184,9 @@
     padding: 0 !important;
 }
 
+.add-btn p{
+    color: #203d6a !important;
+}
 
 
 // ================================================media -query ================================================
@@ -194,6 +197,9 @@
     .list-inline {
         flex-direction: column;
         text-align: center;
+    }
+    .MuiTabs-flexContainer{
+        flex-direction: column;
     }
    
 }

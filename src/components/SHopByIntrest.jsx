@@ -56,7 +56,7 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
 
   return (
     <>
-    <section className="shopbyintrest">
+    <section className="shopbyintrest mt-4">
       <div className="container">
         <div className="row">
           <div className="col-12 text-center">

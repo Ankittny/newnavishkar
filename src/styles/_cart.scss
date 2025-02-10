@@ -188,6 +188,12 @@ table tr{
   background-color: #175A95; /* Change color on hover */
   color: white;
 }
+.coupon-text{
+  margin-bottom: 0px;
+}
+.cart-table svg{
+  color: #175A95 !important;
+}
 
 // ==============================================media-query-start==============================================
 @media(max-width:1199px) and (min-width:992px){

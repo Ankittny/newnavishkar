@@ -130,10 +130,10 @@ export default function Profile() {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={false} sm={6} md={6} className={classes.image}>
+      {/* <Grid item xs={false} sm={6} md={6} className={classes.image}>
         <Image src="/log.png" width={700} height={700} alt="Background image" />
-      </Grid>
-      <Grid item xs={12} sm={6} md={6} component={Paper} elevation={6} square>
+      </Grid> */}
+      <Grid item xs={12} sm={12} md={12} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Typography component="h1" variant="h5" className="mainHeading">
             Update Your Profile
@@ -150,7 +150,7 @@ export default function Profile() {
             {({ values, handleChange }) => (
               <Form className={classes.form} noValidate>
                 <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={6} sm={6} md={6}>
                     <Field
                       as={TextField}
                       variant="outlined"
@@ -166,10 +166,7 @@ export default function Profile() {
                       onChange={handleChange}
                       helperText={<ErrorMessage name="f_name" component="div" className="error" />}
                     />
-                  </Grid>
-
-                  <Grid item xs={12} sm={6}>
-                    <Field
+                      <Field
                       as={TextField}
                       variant="outlined"
                       margin="normal"
@@ -183,10 +180,7 @@ export default function Profile() {
                       onChange={handleChange}
                       helperText={<ErrorMessage name="l_name" component="div" className="error" />}
                     />
-                  </Grid>
-
-                  <Grid item xs={12} sm={12}>
-                    <Field
+                      <Field
                       as={TextField}
                       variant="outlined"
                       margin="normal"
@@ -202,12 +196,10 @@ export default function Profile() {
                       helperText={<ErrorMessage name="email" component="div" className="error" />}
                     />
                   </Grid>
-
                   {preview && (
                     <img src={preview} alt="Preview" className={classes.previewImage} />
                   )}
-                </Grid>
-                <Grid item xs={12} sm={12}>
+                    <Grid item xs={6} sm={6}>
                   <Button
                     component="label"
                     variant="contained"
@@ -219,13 +211,18 @@ export default function Profile() {
                       onChange={handleFileChange}
                     />
                   </Button>
-                </Grid>
-                <Grid item xs={12} sm={12}>
+                  <Grid item xs={12} sm={12}>
                   <Button type="submit" variant="contained" color="primary" className={classes.submit}>
                     Update Profile
                   </Button>
                 </Grid>
+
+                </Grid>
+                </Grid>
+              
+               
               </Form>
+              
             )}
           </Formik>
         </div>

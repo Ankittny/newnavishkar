@@ -35,6 +35,7 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const item = action.payload;
+      console.log("item shshshs", item);
       if (!item.id) {
         console.error("Item must have an id");
         return;
@@ -45,6 +46,8 @@ const cartSlice = createSlice({
       if (existingItem) {
         existingItem.quantity += 1;
         existingItem.totalPrice = existingItem.quantity * existingItem.price;
+
+        console.log("existingItem", existingItem);
       } else {
         state.cartItems.push({
           ...item,

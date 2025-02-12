@@ -22,7 +22,7 @@ const Login = () => {
   useEffect(() => {
     if (isSuccess) {
       if (profile_status === false) {
-        router.push("/profile");
+        router.push("/myprofile");
       } else {
         router.push("/");
       }

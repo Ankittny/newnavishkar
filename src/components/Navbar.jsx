@@ -212,7 +212,10 @@ const Navbar = () => {
               <span className="cart-count-badge">{cartCount}</span>
             </div>
             {isLoggedIn ? (
-              <button onClick={logout} className="btn btn-link nav-link mx-2">Logout</button>
+              <button  className="btn btn-link nav-link mx-2">
+                <Link href={'/myprofile'}>
+                MyProfile</Link>
+                </button>
             ) : (
               <Link href="/login" passHref className="nav-link mx-2">
                 <Image

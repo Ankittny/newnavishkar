@@ -14,8 +14,13 @@ const Payment = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [couponCode, setCouponCode] = useState("");
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [discountAmount, setDiscountAmount] = useState(0);
+
+
   const [shippingDetails, setShippingDetails] = useState({
-    id: null,  // Track existing address
+    id: '',
     contact_person_name: "",
     address_type: "Home",
     address: "",
@@ -28,10 +33,26 @@ const Payment = () => {
     is_billing: true,
   });
 
+  // Fetch Address Data
   useEffect(() => {
     dispatch(getAddressData());
+
+    // Get stored values from localStorage
+    const storedCoupon = localStorage.getItem("couponCode") || "";
+    const storedAmount = localStorage.getItem("totalAmount") || "0";
+    const discountMoney = localStorage.getItem("discountValue") || "0";
+
+    console.log("Stored Coupon:", storedCoupon);
+    console.log("Stored Amount:", storedAmount);
+    console.log("Stored Discount:", discountMoney);
+
+    setCouponCode(storedCoupon);
+   setTotalAmount(parseFloat(storedAmount));
+   setDiscountAmount(parseFloat(discountMoney));
+   
   }, [dispatch]);
 
+  // Handle Input Change
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setShippingDetails((prevDetails) => ({
@@ -40,16 +61,16 @@ const Payment = () => {
     }));
   };
 
+  // Handle Address Submit
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
     if (shippingDetails.id) {
       dispatch(updateAddressData(shippingDetails));
     } else {
-      const newAddress = { ...shippingDetails };
-      dispatch(AddressData(newAddress));
+      dispatch(AddressData({ ...shippingDetails }));
     }
-  
+
     setShowModal(false);
     setShippingDetails({
       contact_person_name: "",
@@ -64,26 +85,31 @@ const Payment = () => {
       is_billing: true,
     });
   };
-  
 
+  // Handle Edit Address
   const handleEdit = (address) => {
     setShippingDetails(address);
     setIsEditing(true);
     setShowModal(true);
   };
 
+  // Handle Delete Address
   const handleDelete = (addressId) => {
     const address = AddressDetails.find((addr) => addr.id === addressId);
     if (address) {
       dispatch(deleteAddressData(address.customer_id, address.id));
     }
   };
-  
 
-  const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  const shipping = 100;
-  const discount = 50;
-  const finalPrice = (totalPrice - discount + shipping).toFixed(2);
+  const calculateTotalDiscount = () => cartItems.reduce(
+    (acc, item) => acc + (parseFloat(item.discount) || 0) * parseInt(item.quantity, 10), 0
+  );
+
+  const totalDiscount = calculateTotalDiscount()
+  // Calculate Final Amount
+  // const shipping = 100;
+  // const discount = 50;
+  // const finalPrice = (totalAmount - discount ).toFixed(2);
 
   return (
     <div className="container">
@@ -91,6 +117,7 @@ const Payment = () => {
         <h2 className="payment-title text-center mt-3">Payment Information</h2>
         <div className="payment-container mt-4">
           <div className="row">
+            {/* Address Selection */}
             <div className="col-lg-7">
               <Button variant="primary" onClick={() => setShowModal(true)}>Add New Address</Button>
               {Array.isArray(AddressDetails) && AddressDetails.length > 0 ? (
@@ -118,24 +145,28 @@ const Payment = () => {
                 <p className="mt-3">No saved addresses available.</p>
               )}
             </div>
+
+            {/* Order Summary & Payment */}
             <div className="col-lg-5">
               <div className="order-summary">
                 <h3>Order Summary</h3>
-                <p>Sub Total: ₹{totalPrice.toFixed(2)}</p>
-                <p>Shipping: ₹{shipping.toFixed(2)}</p>
-                <p>Discount: -₹{discount.toFixed(2)}</p>
+                <p>Sub Total: ₹{totalAmount.toFixed(2)}</p>
+                {/* <p>Shipping: ₹{shipping.toFixed(2)}</p> */}
+                <p className="d-flex justify-content-between">Discount on product <span>₹{totalDiscount.toFixed(2)}</span></p>
+                <p className="">Coupon Code Apply <b>({ couponCode })</b><span className="">{discountAmount}</span></p>
                 <hr />
-                <p>Total: ₹{finalPrice}</p>
+                <p>Total: ₹{totalAmount.toFixed(2)}</p>
               </div>
               <div className="payment-methods mt-3">
                 <h3>Pay with Razorpay</h3>
-                <RazorpayButton totalAmount={finalPrice} addressId={selectedAddress} />
+                <RazorpayButton totalAmount={totalAmount} couponCode={couponCode} addressId={selectedAddress} />
               </div>
             </div>
           </div>
         </div>
       </div>
       
+      {/* Address Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>{isEditing ? "Edit Address" : "Add New Address"}</Modal.Title>
@@ -152,7 +183,6 @@ const Payment = () => {
           </form>
         </Modal.Body>
       </Modal>
-
     </div>
   );
 };

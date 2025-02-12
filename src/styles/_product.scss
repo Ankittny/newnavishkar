@@ -51,7 +51,7 @@
 }
 .shop-by-title{
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 70px;
 }
 .shop-by-title p{
     font-size: 16px;
@@ -59,6 +59,20 @@
     font-family:"Nunito" ;
     color: #353535;
     ;
+}
+.group button{
+    background-color: #fff;
+    color: #203d6a !important;
+}
+.shopbyintrest h5{
+    color: #353535;
+    font-size: 35px;
+    font-weight: 800;
+}
+.shopbyintrest h5 span{
+color: #006ED3;
+    font-size: 36px;
+    font-weight: 800;
 }
 
 
@@ -364,6 +378,7 @@
     height: 2px;
     background-color: #ddd;
   }
+  
   
   
 //========================================== media query start========================================

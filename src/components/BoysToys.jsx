@@ -45,14 +45,17 @@ const BoysToys = () => {
                             <li><a href="">Stem Toys</a></li>
                             <li><a href="">Stem Projects</a></li>
                         </ul>
+                        <hr/>
                         <ul> ROBOTICS
                             <li ><a href="">Robotics Project Kit</a></li>
                             <li><a href="">Robotics Toys</a></li>
                         </ul>
+                        <hr/>
                         <ul> DIY KITS
                             <li ><a href="">Jigsaa Puzzle</a></li>
                             <li><a href="">Drones</a></li>
                         </ul>
+                        <hr/>
                         <ul> BATTERY OPERATED
                             <li ><a href="">Minos</a></li>
                             <li><a href="">24 In One</a></li>
@@ -60,6 +63,7 @@ const BoysToys = () => {
                             <li><a href="">Drone</a></li>
                            
                         </ul>
+                        <hr/>
                         <ul> NONE-BATTERY OPERATED
                             <li ><a href="">Motonova </a></li>
                             <li><a href="">Jigsaa Puzzle</a></li>

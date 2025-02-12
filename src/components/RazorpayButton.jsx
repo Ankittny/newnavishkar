@@ -3,9 +3,10 @@ import axiosInstance from "@/utils/axios";
 import axios from "axios";
 // import { useRouter } from "next/navigation";
 
-export default function RazorpayButton({ totalAmount, addressId, shippingDetails }) {
+export default function RazorpayButton({ totalAmount,couponCode, addressId }) {
   const [loading, setLoading] = useState(false);
   // const router = useRouter(); // Initialize router
+
 
   const handlePayment = async () => {
     setLoading(true);
@@ -60,8 +61,8 @@ export default function RazorpayButton({ totalAmount, addressId, shippingDetails
             "/customer/order/place",
             {
               address_id: addressId,
-              coupon_code: "",
-              coupon_discount: 200,
+              coupon_code: couponCode,
+              coupon_discount: 0,
               billing_address_id: addressId,
               order_note: "",
               guest_id: false,
@@ -83,9 +84,9 @@ export default function RazorpayButton({ totalAmount, addressId, shippingDetails
           // router.push("/");
         },
         prefill: {
-          name: `${shippingDetails?.firstName} ${shippingDetails?.lastName}`,
-          email: shippingDetails?.email,
-          contact: shippingDetails?.phone,
+          name: `${addressId?.firstName} ${addressId?.lastName}`,
+          email: addressId?.email,
+          contact: addressId?.phone,
         },
         theme: { color: "#3399cc" },
       };
@@ -106,3 +107,6 @@ export default function RazorpayButton({ totalAmount, addressId, shippingDetails
     </button>
   );
 }
+
+
+

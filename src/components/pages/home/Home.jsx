@@ -98,8 +98,6 @@ const Home = () => {
     }
   }, [products]);
 
-  console.log("ANkit sir", productsData);
-
   const handleCardClick = (slug) => {
     router.push(`/products/${slug}`);
   };
@@ -390,10 +388,10 @@ const Home = () => {
                 productsData.map((category, categoryIndex) => (
                   <div key={category.id} className="shop-by-category">
                     {/* Category title */}
+                    
                     <div className="shop-by-title text-center">
                       <h5>
-                        SHOP BY <span>{category.slug && category.slug.toUpperCase()}{" "}</span>
-
+                        SHOP BY <span>{category.name && category.name.toUpperCase()}{" "}</span>
                       </h5>
                     </div>
 
@@ -474,6 +472,7 @@ const Home = () => {
                         </div>
                       </div>
                     </div>
+                    
                   </div>
                 ))
               ) : (

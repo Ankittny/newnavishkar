@@ -3,7 +3,7 @@ const axios = axiosInstance;
 // Action creator for fetching banner
 export const Banner = () => async (dispatch) => {
   try {
-    console.log("Hello Banner");
+    //console.log("Hello Banner");
     // Dispatch bannerRequest to set loading state
     dispatch({ type: "bannerRequest" });
 

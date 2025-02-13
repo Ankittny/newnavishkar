@@ -73,10 +73,11 @@ export const verifyOtp = (payload) => async (dispatch) => {
     const { data } = await axios.post("auth/otp-verify", payload);
     console.log("OTP VERIFY");
 
-    const { token, user, profile_status, message } = data;
+    const {id, token, user, profile_status, message } = data;
 
     if (token) {
       localStorage.setItem("authAdminToken", token);
+      localStorage.setItem("userid", id);
       dispatch({ type: "verifyOtpSuccess", payload: { user, profile_status } });
     } else {
       // Dispatch failure with message if OTP verification failed

@@ -14,6 +14,15 @@ const NAVIGATION = [
 ];
 const MyProfile = () => {
   const [activeSection, setActiveSection] = useState("Profile");
+
+
+  const logout = () => {
+    localStorage.clear("authAdminToken");
+    setIsLoggedIn(false);  // Update login status when logging out
+    router.push("/");  // Redirect to home or login page
+  };
+
+
   return (
     <div style={{ display: "flex", height: "100vh" }}>
       {/* Sidebar */}
@@ -46,7 +55,7 @@ const MyProfile = () => {
       <div style={{ flex: 1, padding: "20px" }}>
         {activeSection === "Profile" && <Profile/>}
         {activeSection === "Orders" && <Order/>}
-        {activeSection === "Logout" && <h1>Logging out...</h1>}
+        {activeSection === "Logout" && <h1>Logout Successfull</h1>}
         {activeSection === "Coupon" && <h1>Coupon</h1>}
       </div>
     </div>

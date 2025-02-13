@@ -3,9 +3,11 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/Reducer/Cart"; // Import the addToCart action
 import axios from "axios";
+import { act } from "react";
 
 
 const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id,current_stock }) => {
+  console.log("Discount", discount)
   const dispatch = useDispatch();
   const token = localStorage.getItem("authAdminToken");
 

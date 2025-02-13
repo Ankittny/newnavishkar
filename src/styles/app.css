@@ -412,13 +412,6 @@ body {
   letter-spacing: 2px;
 }
 
-header {
-  position: sticky !important;
-  top: -2px;
-  width: 100%;
-  z-index: 1000;
-}
-
 .cart-count-badge {
   background-color: #203d6a;
   height: 25px;
@@ -1234,7 +1227,7 @@ header {
 }
 
 .cart-table th, .cart-table td {
-  padding: 10px;
+  padding: 10px 12px 10px 10px;
 }
 
 table tr {
@@ -1371,6 +1364,10 @@ table tr {
 
 .cart-table svg {
   color: #175A95 !important;
+}
+
+.cart-table th {
+  padding: 10px 40px 10px 11px;
 }
 
 @media (max-width: 1199px) and (min-width: 992px) {
@@ -3133,6 +3130,48 @@ textarea {
     transform: translateY(0);
   }
 }
+.MuiToolbar-regular {
+  display: none;
+}
+
+.linear-nav svg {
+  font-size: 25px;
+  color: #000;
+}
+
+.linear-nav {
+  color: #fff;
+}
+
+.linear-nav {
+  background: linear-gradient(175.61deg, #207179 0%, #092136 100%) !important;
+}
+
+.css-11lq3yg-MuiGrid-root {
+  margin-top: 0px !important;
+}
+
+.MuiPaper-elevation6 {
+  padding: 20px;
+}
+
+.MuiButton-containedPrimary {
+  margin-top: 15px;
+}
+
+.css-11lq3yg-MuiGrid-root {
+  margin-top: 120px;
+}
+
+.MuiPaper-elevation12 {
+  padding: 15px;
+  max-height: 100%;
+}
+
+.css-1idn90j-MuiGrid-root {
+  padding-top: 20px;
+}
+
 .error {
   color: #FF0000;
   font-family: "Alilato", sans-serif !important;

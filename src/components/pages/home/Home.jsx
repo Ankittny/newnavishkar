@@ -464,9 +464,11 @@ const Home = () => {
                                 name={product.name}
                                 price={product.unit_price}
                                 discount={product.discount}
+                                discount_type={product.discount_type}
                                 onClick={() => handleCardClick(product.slug)}
                                 onAddToCart={() => handleAddToCart(product.id)}
                                 current_stock={product?.current_stock}
+
                               />
                             ))}
                         </div>

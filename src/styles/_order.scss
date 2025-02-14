@@ -1,0 +1,35 @@
+.order-title h1 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.table-responsive, .table_table {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.table_table tr {
+    display: table-row;
+    border-bottom: none;
+    background: linear-gradient(175.61deg, #207179 0%, #092136 100%) !important;
+    color: #fff;
+}
+.table_table td{
+    padding: 8px;
+}
+.tdbolder span{
+    letter-spacing: 1px;
+    font-size: 13px;
+}
+.cont, .bodt-tr, .price-bold {
+    font-size: 13px;
+}
+.icon-invoice  a{
+    color: #fff;
+}
+.tr-order-trading{
+    background: #fff;
+    color: #000;
+    padding: 5px 10px;
+    border-radius: 20px;
+}

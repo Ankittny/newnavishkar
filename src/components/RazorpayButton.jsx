@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axiosInstance from "@/utils/axios";
 import axios from "axios";
+import Swal from "sweetalert2";
 // import { useRouter } from "next/navigation";
 
 export default function RazorpayButton({ totalAmount,couponCode, addressId }) {
@@ -9,6 +10,17 @@ export default function RazorpayButton({ totalAmount,couponCode, addressId }) {
 
 
   const handlePayment = async () => {
+
+    if (!addressId) {
+      Swal.fire({
+        icon: "warning",
+        title: "Address Required",
+        text: "Please select an shipping address before proceeding with payment.",
+        confirmButtonText: "OK",
+      });
+      return;
+    }
+
     setLoading(true);
     const token = localStorage.getItem("authAdminToken");
 

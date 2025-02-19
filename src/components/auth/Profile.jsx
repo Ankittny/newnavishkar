@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   CssBaseline,
@@ -92,6 +92,8 @@ export default function Profile() {
   const dispatch = useDispatch();
   const router = useRouter(); // Initialize the router
   const { loading: isLoading, success: isSuccess, error } = useSelector((state) => state.auth);
+
+  
 
   const handleFileChange = (event) => {
     const image = event.target.files[0];

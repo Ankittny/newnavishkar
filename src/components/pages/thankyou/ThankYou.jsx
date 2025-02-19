@@ -5,7 +5,7 @@ const ThankYouPage = () => {
     const router = useRouter();
 
     return (
-        <div className="vh-100 d-flex justify-content-center align-items-center">
+        <div className="mt-5 d-flex justify-content-center align-items-center">
             <div className="card col-md-4 bg-white shadow-md p-5">
                 <div className="mb-4 text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" className="text-success" width="75" height="75"

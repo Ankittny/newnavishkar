@@ -1,11 +1,13 @@
 import { createReducer } from "@reduxjs/toolkit";
 
 const initialState = {
+    
     loading: false,
     error: null,
     success: false,
     orderList: [],
-    orderDetails:{}
+    orderDetailsById:{},
+    orderDetail:[]
 };
 
 export const orderListReducer = createReducer(initialState, (builder) => {
@@ -34,7 +36,7 @@ export const orderListReducer = createReducer(initialState, (builder) => {
 
         .addCase("orderGetByIdSuccess", (state, action) => {
             state.loading = false;
-            state.orderDetails = action.payload; // Object containing order details
+            state.orderDetailsById = action.payload; // Object containing order details
             state.success = true;
         })
 
@@ -43,4 +45,24 @@ export const orderListReducer = createReducer(initialState, (builder) => {
             state.error = action.payload;
             state.success = false;
         })
+
+        .addCase("orderDetailsByIdRequest", (state) => {
+            state.loading = true;
+            state.error = null;
+            state.success = false;
+        })
+
+        .addCase("orderDetailsByIdSuccess", (state, action) => {
+            state.loading = false;
+            state.orderDetail  = action.payload;
+            state.success = true
+        })
+
+        .addCase("orderDetailsByIdFail", (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+            state.success = false
+        })
+
+
 });

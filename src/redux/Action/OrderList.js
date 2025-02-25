@@ -21,7 +21,7 @@ export const orderLists = () => async (dispatch) => {
 
 export const orderGetById = (id) => async (dispatch) => {
     try {
-        
+
         dispatch({ type: "orderGetByIdRequest" });
 
         const token = localStorage.getItem("authAdminToken"); // Get token from localStorage
@@ -48,3 +48,27 @@ export const orderGetById = (id) => async (dispatch) => {
         });
     }
 };
+
+
+export const orderDetails = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: "orderDetailsByIdRequest" });
+
+        const token = localStorage.getItem("authAdminToken");
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        }
+
+        const { data } = await axios.get(`/customer/order/details?order_id=${id}`, config)
+        console.log(`Order ${id} Data:`, data); // ✅ Fixed log statement
+
+
+        dispatch({ type: "orderDetailsByIdSuccess", payload: data});
+    } catch (error) {
+        dispatch({ type: "orderDetailsByIdFail", 
+            payload: error.response?.data?.message || error.message });
+    }
+}

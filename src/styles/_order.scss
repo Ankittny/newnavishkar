@@ -175,4 +175,15 @@
  .fcx p{
     font-size: 13px;
  }
+ .modal-content{
+  overflow-y: scroll;
+  height: 75%;
+ }
+
+ .orderdetailbottom{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border: 1px solid black;
+  width: 50%;
+  padding: 10px;
+ }
 

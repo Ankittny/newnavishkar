@@ -12,6 +12,7 @@ import { GrBus } from "react-icons/gr";
 import DoneIcon from '@mui/icons-material/Done';
 // import { BiSolidBus } from "react-icons/bi";
 // import { MdOutlineWatchLater } from "react-icons/md";
+
 import {
   MDBCard,
   MDBCardBody,
@@ -24,7 +25,9 @@ import {
   from "mdb-react-ui-kit";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { orderLists, orderGetById } from "@/redux/Action/OrderList";
+import { orderLists, orderGetById, orderDetails } from "@/redux/Action/OrderList";
+import { Divider } from "@mui/material";
+import { Button } from "react-bootstrap";
 
 const Order = () => {
   const [showModal, setShowModal] = useState(false);
@@ -32,10 +35,7 @@ const Order = () => {
 
   const [selectedOrder, setSelectedOrder] = useState(null);
   const dispatch = useDispatch();
-  const { loading, error, orderList, orderDetails } = useSelector((state) => state.order)
-
-  // console.log("ShaluList", orderList)
-  // console.log("ShaluDetails", orderDetails)
+  const { loading, error, orderList, orderDetailsById, orderDetail } = useSelector((state) => state.order)
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -48,25 +48,27 @@ const Order = () => {
   };
 
 
-  // const handleShowOrderDetails = (order) => {
-  //   setSelectedOrder(order);
-  //   setShowModal(true);
-  //   dispatch(orderGetById(order.id)); // Ensure this action is properly fetching details
-  // };
 
   const handleShowOrderDetails = async (order) => {
     setSelectedOrder(order); // Set the selected order immediately
     setShowModal(true); // Show the modal immediately
     try {
       await dispatch(orderGetById(order.id)); // Fetch detailed data
+      await dispatch(orderDetails(order.id));
     } catch (error) {
       console.error("Error fetching order details:", error);
     }
   };
 
+
+
+  // const productName = orderDetail.length > 0 ? orderDetail[0]?.product_details?.name : "No Product Name";
+  // console.log("product namd",productName)
+
   useEffect(() => {
     dispatch(orderLists());
   }, [dispatch])
+
 
   return (
     <>
@@ -78,7 +80,6 @@ const Order = () => {
           <table className='table_table'>
             <thead>
               <tr>
-
                 <td>
                   <div className='tdbolder'>
                     <span>Order List</span>
@@ -120,7 +121,7 @@ const Order = () => {
                   </td>
                   <td>
                     <span className="bodt-tr tr-order-trading">
-                      {order.order_status}
+                      {order.order_status.toUpperCase()}
                     </span>
                   </td>
                   <td>
@@ -137,164 +138,241 @@ const Order = () => {
             </tbody>
 
           </table>
+
         </div>
       </div>
 
       {/* Modal Component */}
       {showModal && (
-  <div className="modal-overlay">
-    <div className="modal-content">
-      {loading ? (
-        <p className="text-center">Loading...</p>
-      ) : error ? (
-        <p>Error: {error}</p>
-      ) : (
-        <>
-          <div className="d-flex align-items-start justify-content-between gap-2">
-            <div>
-              <div className="d-flex align-items-center gap-2 text-capitalize">
-                <h4 className="text-capitalize mb-0 mobile-fs-14 fs-18 font-bold">
-                  Order #{orderDetails?.id}
-                </h4>
-                <span
-                  className={`fs-12 font-semibold rounded badge __badge 
-                      ${orderDetails?.order_status === 'confirmed' ? 'badge-soft-success border-soft-success text-success' :
-                      orderDetails?.order_status === 'pending' ? 'badge-soft-warning border-soft-warning text-warning' :
-                        'badge-soft-danger border-soft-danger text-danger'}`
-                  }
-                >
-                  {orderDetails?.order_status || "Status Not Available"}
-                </span>
-              </div>
-              <div className="text-secondary-50 fs-12 font-semibold mt-1">
-                {new Date(orderDetails?.created_at).toLocaleDateString()} {new Date(orderDetails?.created_at).toLocaleTimeString()}
-              </div>
-              <div className="date fs-12 font-semibold text-secondary-50 text-body mb-3 mt-2">
-                {orderDetails?.date}
-              </div>
-            </div>
-          </div>
-          <div className="tabing-group">
-            <Box sx={{ width: "100%", typography: "body1" }}>
-              <TabContext value={value}>
-                <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                  <TabList onChange={handleChange} aria-label="lab API tabs example">
-                    <Tab label="Order Summary" value="1" />
-                    <Tab label="Track Order" value="2" />
-                  </TabList>
-                </Box>
-                <TabPanel value="1">
-                  <table className="tablemoney">
-                    <thead>
-                      <tr>
-                        <td>
-                          <div className="py-2 mb-2">
-                            <h6 className="fs-13 font-bold text-capitalize"><strong>Payment Information:</strong></h6>
-                          </div>
-                            <div className="fs-12">
-                              <span className="text-muted text-capitalize">Payment status</span>:
-                              <span className={orderDetails?.payment_status === "paid" ? "text-success" : "text-danger"}>
-                                {orderDetails?.payment_status}
-                              </span>
-                            </div>
-                            <div className="mt-2 fs-12 mb-3 text-start">
-                              <span className="text-muted text-capitalize">Payment method</span>:
-                              <span className="text-primary text-capitalize">{orderDetails?.payment_method}</span>
-                            </div>
-                          
-                        </td>
-                        <td>
-                          <div className="py-2 mb-2">
-                            <h6 className="fs-13 font-bold text-capitalize"><strong>Shipping address:</strong></h6>
-                          </div>
-                          <div className="text-start">
-                            <div className="second-tr-td mb-2">Name : {orderDetails?.shipping_address_data?.contact_person_name}</div>
-                            <div className="second-tr-td mb-2">Phone : {orderDetails?.shipping_address_data?.phone}</div>
-                            <div className="second-tr-td mb-2">City: {orderDetails?.shipping_address_data?.city}</div>
-                            <div className="second-tr-td mb-2">Zip: {orderDetails?.shipping_address_data?.zip}</div>
-                            <div className="second-tr-td">Address : {orderDetails?.shipping_address_data?.address}</div>
-                          </div>
-                        </td>
-                        <td>
-                          <div className="py-2 mb-2">
-                            <h6 className="fs-13 font-bold text-capitalize"><strong>Billing address:</strong></h6>
-                          </div>
-                          <div className="text-start">
-                            <div className="second-tr-td mb-2">Name : {orderDetails?.billing_address_data?.contact_person_name}</div>
-                            <div className="second-tr-td mb-2">Phone : {orderDetails?.billing_address_data?.phone}</div>
-                            <div className="second-tr-td mb-2">City: {orderDetails?.billing_address_data?.city}</div>
-                            <div className="second-tr-td mb-2">Zip: {orderDetails?.billing_address_data?.zip}</div>
-                            <div className="second-tr-td">Address : {orderDetails?.billing_address_data?.address}</div>
-                          </div>
-                        </td>
-                      </tr>
-                    </thead>
-                  </table>
-                </TabPanel>
-
-             {/* Product Details  */}
-             <div className="mt-4">
-                
-             </div>
-
-
-
-                <TabPanel value="2">
-                  <div className="w-100 p-3">
-                    <MDBContainer className="py-5 h-100">
-                      <MDBRow className="justify-content-center align-items-center h-100">
-                        <MDBCol size="12">
-                          <MDBCard className="card-stepper text-black" style={{ borderRadius: "16px" }}>
-                            <MDBCardBody className="p-5">
-                              <ul id="progressbar-2" className="d-flex justify-content-between mx-0 mt-0 mb-5 px-0 pt-0 pb-2">
-                                <li className={`step0 ${orderDetails?.tracking?.step1 ? "active" : "text-muted"} text-center`} id="step1"></li>
-                                <li className={`step0 ${orderDetails?.tracking?.step2 ? "active" : "text-muted"} text-center`} id="step2"></li>
-                                <li className={`step0 ${orderDetails?.tracking?.step3 ? "active" : "text-muted"} text-center`} id="step3"></li>
-                                <li className={`step0 ${orderDetails?.tracking?.step4 ? "active" : "text-muted"} text-center`} id="step4"></li>
-                              </ul>
-
-                              <div className="d-flex justify-content-between">
-                                <div className="d-lg-flex fcx align-items-center">
-                                  <GrBus />
-                                  <div>
-                                    <p className="fw-bold mb-1 text-start mx-4">Order Placed</p>
-                                  </div>
-                                </div>
-                                <div className="d-lg-flex fcx align-items-center">
-                                  <GrBus />
-                                  <div>
-                                    <p className="fw-bold mb-1 text-start mx-4">Order Confirmed</p>
-                                  </div>
-                                </div>
-                                <div className="d-lg-flex fcx align-items-center">
-                                  <GrBus />
-                                  <div>
-                                    <p className="fw-bold mb-1 text-start mx-4">Order on the Way</p>
-                                  </div>
-                                </div>
-                                <div className="d-lg-flex fcx align-items-center">
-                                  <TiHomeOutline />
-                                  <div>
-                                    <p className="fw-bold mb-1 text-start mx-4">Order Shipped</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </MDBCardBody>
-                          </MDBCard>
-                        </MDBCol>
-                      </MDBRow>
-                    </MDBContainer>
+        <div className="modal-overlay">
+          <div className="modal-content">
+            {loading ? (
+              <p className="text-center">Loading...</p>
+            ) : error ? (
+              <p>Error: {error}</p>
+            ) : (
+              <>
+                <div className="d-flex align-items-start justify-content-between gap-2">
+                  <div>
+                    <div className="d-flex align-items-center gap-2 text-capitalize">
+                      <h4 className="text-capitalize mb-0 mobile-fs-14 fs-18 font-bold">
+                        Order #{orderDetailsById?.id}
+                      </h4>
+                      <span
+                        className={`fs-12 font-semibold rounded badge __badge 
+                      ${orderDetailsById?.order_status === 'confirmed' ? 'badge-soft-success border-soft-success text-success' :
+                            orderDetailsById?.order_status === 'pending' ? 'badge-soft-warning border-soft-warning text-warning' :
+                              'badge-soft-danger border-soft-danger text-danger'}`
+                        }
+                      >
+                        {orderDetailsById?.order_status || "Status Not Available"}
+                      </span>
+                    </div>
+                    <div className="text-secondary-50 fs-12 font-semibold mt-1">
+                      {new Date(orderDetailsById?.created_at).toLocaleDateString()} {new Date(orderDetailsById?.created_at).toLocaleTimeString()}
+                    </div>
+                    <div className="date fs-12 font-semibold text-secondary-50 text-body mb-3 mt-2">
+                      {orderDetailsById?.date}
+                    </div>
                   </div>
-                </TabPanel>
-              </TabContext>
-            </Box>
-          </div>
-          <button className="changing-number" onClick={() => handleCloseModal()}>Close</button>
-        </>
+                </div>
+                <div className="tabing-group">
+                  <Box sx={{ width: "100%", typography: "body1" }}>
+                    <TabContext value={value}>
+                      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                        <TabList onChange={handleChange} aria-label="lab API tabs example">
+                          <Tab label="Order Summary" value="1" />
+                          <Tab label="Track Order" value="2" />
+                        </TabList>
+                      </Box>
+                      <TabPanel value="1">
+                        <table className="tablemoney">
+                          <thead>
+                            <tr>
+                              <td>
+                                <div className="py-2 mb-2">
+                                  <h6 className="fs-13 font-bold text-capitalize"><strong>Payment Information:</strong></h6>
+                                </div>
+                                <div className="fs-12">
+                                  <span className="text-muted text-capitalize">Payment status</span>:
+                                  <span className={orderDetailsById?.payment_status === "paid" ? "text-success" : "text-danger"}>
+                                    {orderDetailsById?.payment_status}
+                                  </span>
+                                </div>
+                                <div className="mt-2 fs-12 mb-3 text-start">
+                                  <span className="text-muted text-capitalize">Payment method</span>:
+                                  <span className="text-primary text-capitalize">{orderDetailsById?.payment_method}</span>
+                                </div>
+                              </td>
+
+                              <td>
+                                <div className="py-2 mb-2">
+                                  <h6 className="fs-13 font-bold text-capitalize"><strong>Shipping address:</strong></h6>
+                                </div>
+                                <div className="text-start">
+                                  <div className="second-tr-td mb-2">Name : {orderDetailsById?.shipping_address_data?.contact_person_name}</div>
+                                  <div className="second-tr-td mb-2">Phone : {orderDetailsById?.shipping_address_data?.phone}</div>
+                                  <div className="second-tr-td mb-2">City: {orderDetailsById?.shipping_address_data?.city}</div>
+                                  <div className="second-tr-td mb-2">Zip: {orderDetailsById?.shipping_address_data?.zip}</div>
+                                  <div className="second-tr-td">Address : {orderDetailsById?.shipping_address_data?.address}</div>
+                                </div>
+                              </td>
+                              <td>
+                                <div className="py-2 mb-2">
+                                  <h6 className="fs-13 font-bold text-capitalize"><strong>Billing address:</strong></h6>
+                                </div>
+                                <div className="text-start">
+                                  <div className="second-tr-td mb-2">Name : {orderDetailsById?.billing_address_data?.contact_person_name}</div>
+                                  <div className="second-tr-td mb-2">Phone : {orderDetailsById?.billing_address_data?.phone}</div>
+                                  <div className="second-tr-td mb-2">City: {orderDetailsById?.billing_address_data?.city}</div>
+                                  <div className="second-tr-td mb-2">Zip: {orderDetailsById?.billing_address_data?.zip}</div>
+                                  <div className="second-tr-td">Address : {orderDetailsById?.billing_address_data?.address}</div>
+                                </div>
+                              </td>
+                            </tr>
+                          </thead>
+                        </table>
+                      </TabPanel>
+
+                      {/* Product Details  */}
+                      {value === "1" && (
+                        <div className='table-responsive mt-2'>
+                          <table className='table_table'>
+                            <thead>
+                              <tr>
+                                <td>
+                                  <div className='tdbolder'>
+                                    <span>Order Details</span>
+                                  </div>
+                                </td>
+
+                                <td>
+                                  <div className='tdbolder'>
+                                    <span>Qty</span>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div className='tdbolder'>
+                                    <span>Price</span>
+                                  </div>
+                                </td>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              
+                                {orderDetail.length > 0 ? (
+                                  orderDetail.map((order, index) => (
+                                    <tr key={index}>
+                                      <td>
+                                        <img
+                                          src={order?.product_details?.thumbnail_full_url?.path || "default-image.jpg"}
+                                          alt={order?.product_details?.name}
+                                          style={{ width: "140px", height: "90px", borderRadius: "5px" }}
+                                        />
+                                        <span className="mx-4">{order?.product_details?.name || "No Product Name"}</span>
+                                      </td>
+                                      <td>{order?.qty || 0}</td>
+                                      <td>₹{order?.price || 0}</td>
+                                    </tr>
+                                  ))
+                                ) : (
+                                  <tr>
+                                    <td colSpan="3" style={{ textAlign: "center" }}>No Orders Found</td>
+                                  </tr>
+                                )}
+                              </tbody>
+                          </table>
+                       
+                         <div className="orderdetailbottom mt-3">
+                          <div className="d-flex justify-content-between">
+                            <p>Item</p>
+                            <span>{orderDetail[0]?.qty}</span>
+                          </div>
+                          <div className="d-flex justify-content-between">
+                            <p>Subtotal</p>
+                            <span>{orderDetail[0]?.price}</span>
+                          </div>
+                          <div className="d-flex justify-content-between">
+                            <p>Tax fee</p>
+                            <span>{orderDetail[0]?.tax}</span>
+                          </div>
+                          <div className="d-flex justify-content-between">
+                            <p>Shipping fee</p>
+                            <span>{orderDetail[0]?.shipping_cost}</span>
+                          </div>
+                          <div className="d-flex justify-content-between">
+                            <p>Discount on product</p>
+                            <span>{orderDetail[0]?.discount}</span>
+                          </div>
+                          <div className="d-flex justify-content-between">
+                            <p>Coupen Discount</p>
+                            <span>20</span>
+                          </div>
+                          <Divider sx={{ borderColor: "#175A95", borderWidth: "2px" }}/>
+
+                          <button className="changing-number w-100" >Cancle Order</button>
+                         </div>
+                        </div>
+                      )}
+
+
+                      <TabPanel value="2">
+                        <div className="w-100 p-3">
+                          <MDBContainer className="py-5 h-100">
+                            <MDBRow className="justify-content-center align-items-center h-100">
+                              <MDBCol size="12">
+                                <MDBCard className="card-stepper text-black" style={{ borderRadius: "16px" }}>
+                                  <MDBCardBody className="p-5">
+                                    <ul id="progressbar-2" className="d-flex justify-content-between mx-0 mt-0 mb-5 px-0 pt-0 pb-2">
+                                      <li className={`step0 ${orderDetailsById?.tracking?.step1 ? "active" : "text-muted"} text-center`} id="step1"></li>
+                                      <li className={`step0 ${orderDetailsById?.tracking?.step2 ? "active" : "text-muted"} text-center`} id="step2"></li>
+                                      <li className={`step0 ${orderDetailsById?.tracking?.step3 ? "active" : "text-muted"} text-center`} id="step3"></li>
+                                      <li className={`step0 ${orderDetailsById?.tracking?.step4 ? "active" : "text-muted"} text-center`} id="step4"></li>
+                                    </ul>
+
+                                    <div className="d-flex justify-content-between">
+                                      <div className="d-lg-flex fcx align-items-center">
+                                        <GrBus />
+                                        <div>
+                                          <p className="fw-bold mb-1 text-start mx-4">Order Placed</p>
+                                        </div>
+                                      </div>
+                                      <div className="d-lg-flex fcx align-items-center">
+                                        <GrBus />
+                                        <div>
+                                          <p className="fw-bold mb-1 text-start mx-4">Order Confirmed</p>
+                                        </div>
+                                      </div>
+                                      <div className="d-lg-flex fcx align-items-center">
+                                        <GrBus />
+                                        <div>
+                                          <p className="fw-bold mb-1 text-start mx-4">Order on the Way</p>
+                                        </div>
+                                      </div>
+                                      <div className="d-lg-flex fcx align-items-center">
+                                        <TiHomeOutline />
+                                        <div>
+                                          <p className="fw-bold mb-1 text-start mx-4">Order Shipped</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </MDBCardBody>
+                                </MDBCard>
+                              </MDBCol>
+                            </MDBRow>
+                          </MDBContainer>
+                        </div>
+                      </TabPanel>
+                    </TabContext>
+                  </Box>
+                </div>
+                <button className="changing-number" onClick={() => handleCloseModal()}>Close</button>
+              </>
+            )
+            }
+          </div >
+        </div >
       )}
-    </div>
-  </div>
-)}
 
       {/* Modal Styles */}
       <style jsx>{`

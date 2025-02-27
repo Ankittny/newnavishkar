@@ -100,7 +100,7 @@ function Innovation() {
           </div>
           <div className="col-lg-6">
             <div className="project-enroll">
-              <h1>Live Project Enroll</h1>
+              <h1>Book a Live Demo</h1>
               <form onSubmit={handleSubmit}>
                 <div className="row mb-3">
                   <div className="col-md-6">

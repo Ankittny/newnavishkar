@@ -290,7 +290,7 @@ const LiveProjects = () => {
       <div className="row">
         <div className="col-lg-12 mt-3 mb-3">
           <div className="text-center ">
-            <h1 className="reletedHead">Related Products</h1>
+            <h1 className="reletedHead">Related Live Projects</h1>
           </div>
         </div>
         <div className="col-lg-12">

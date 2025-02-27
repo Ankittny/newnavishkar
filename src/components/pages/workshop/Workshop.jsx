@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import BoysToys from "@/components/BoysToys";
 import { WorkshopData } from "@/redux/Action/Workshop";
+import OurAchievement from "@/components/OurAchievment";
 
 const Workshop = () => {
   const router = useRouter();
@@ -95,7 +96,7 @@ const Workshop = () => {
                 borderBottomWidth: 2, // Custom width
               }}
             ></Divider>
-            <div className="all-details-age mt-3">
+            {/* <div className="all-details-age mt-3">
               <p>Battery and Non battery operated</p>
               <span>Battery Operated | Non-Battery Operated</span>
               <p>Subjects</p>
@@ -111,24 +112,37 @@ const Workshop = () => {
               <span>
                 1 to 3 Years | 4 to 8 Years | 15 to 17 Years | 18 Years Above{" "}
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
 
         <div className="row">
           <div className="col-lg-4">
             <Certificate
-              title={"Intoducing MINOS"}
+              title={"Workshop certificate"}
               imageUrl={"/product/minoscer.png"}
-              linkText="Buy Now"
+              // linkText="Buy Now"
               linkUrl="/demo"
             />
+          </div>
+
+          <div className="col-lg-8 d-flex justify-content-center align-items-center">
+            <div className="ratio ratio-16x9 w-100 h-50">
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/yEVhnvX1W7c?si=oTBKu2cveBu5VjRe"
+                title="YouTube Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen  // ✅ Correct React syntax
+              ></iframe>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Kids Toy */}
-      <section>
+      {/* <section>
         <div className="nami-toys-toys-store">
           <div className="container">
             <div className="row">
@@ -137,13 +151,13 @@ const Workshop = () => {
                   <div className="toys-text">
                     <h4>Navishkar - Kids Toy Store</h4>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing <br />{" "}
-                      elit, sed do eiusmod tempor incididunt ut labore et <br />{" "}
+                      Lorem ipsum dolor sit amet, consectetur adipiscing <br />
+                      elit, sed do eiusmod tempor incididunt ut labore et <br />
                       dolore magna aliqua. Ut enim ad minim veniam, quis <br />
-                      nostrud exercitation ullamco laboris nisi ut aliquip{" "}
+                      nostrud exercitation ullamco laboris nisi ut aliquip
                       <br /> ex ea commodo consequat.
                     </p>
-                    {/* <a href="">Shop More </a> */}
+                    
                   </div>
                   <div className="img-toys-titles">
                     <img src="./product/Group 77.png" alt="77" />
@@ -156,7 +170,7 @@ const Workshop = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <div className="camp-activity-title" id="camp-activity-title">
         <div className="container">
@@ -188,14 +202,27 @@ const Workshop = () => {
                     </p>
                   </div>
                 </div>
-                <div className="col-lg-6"></div>
+                <div className="col-lg-6">
+                  <div className="summer-activity">
+                    <Image
+                      src={"/labs/summer1.png"}
+                      alt="img2"
+                      width={100}
+                      height={100}
+                    />
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et{" "}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="row">
+      {/* <div className="row">
         <div className="col-lg-12 mt-3 mb-3">
           <div className="text-center ">
             <h1 className="reletedHead">Related Products</h1>
@@ -247,7 +274,8 @@ const Workshop = () => {
             </SwiperSlide>
           </Swiper>
         </div>
-      </div>
+      </div> */}
+      <OurAchievement />
     </>
   );
 };

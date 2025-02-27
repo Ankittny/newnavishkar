@@ -22,13 +22,13 @@ import Card from "@/components/card/Card";
 const CompleteProject = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const [visibleCount, setVisibleCount] = useState(6);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const pathname = usePathname(); // Get the full pathname
   const cleanPathname = pathname.startsWith("/") ? pathname.slice(1) : pathname;
-
   console.log(cleanPathname); // Logs the pathname without the leading "/"
 
-  // here redux logic implement
 
   const { loading, error, cmlproject } = useSelector(
     (state) => state.completeProject
@@ -40,10 +40,6 @@ const CompleteProject = () => {
     dispatch(completeProjectData(cleanPathname));
   }, []);
 
-  const handleClick = (id) => {
-    
-  };
-
   const handleCardClick = (slug) => {
     router.push(`/products/${slug}`);
   };
@@ -52,6 +48,14 @@ const CompleteProject = () => {
     console.log(`Added to cart: ${id}`);
   };
 
+  const toggleProducts = () => {
+    if (isExpanded) {
+      setVisibleCount(6); // Show only 6 products again
+    } else {
+      setVisibleCount(cmlproject.length); // Show all products
+    }
+    setIsExpanded(!isExpanded);
+  };
 
   return (
     <>
@@ -75,7 +79,7 @@ const CompleteProject = () => {
             </div>
 
             <div className="row">
-              {cmlproject.map((item) => (
+            {cmlproject.slice(0, visibleCount).map((item) => (
                 <div className="col-lg-6" key={item.id}>
                   {/* ✅ Use Card component instead of div */}
                   <Card
@@ -91,64 +95,18 @@ const CompleteProject = () => {
                 </div>
               ))}
             </div>
+            {cmlproject.length > 6 && (
+              <div className="text-center mt-4">
+                <button className="btn btn-primary" onClick={toggleProducts}>
+                  {isExpanded ? "See Less" : "See More"}
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
 
-      {/* <div className="row">
-        <div className="col-lg-12 mt-3 mb-3">
-          <div className="text-center ">
-            <h1 className="reletedHead">Related Products</h1>
-          </div>
-        </div>
-        <div className="col-lg-12">
-          <Swiper
-          centeredSlides={true}
-            navigation={false}
-            modules={[Autoplay, Navigation]} // Importing Autoplay module
-            className="mySwiper"
-            autoplay={{
-              delay: 3000, // Adjust delay as needed
-              disableOnInteraction: false,
-            }}
-            loop={true}
-            breakpoints={{
-              640: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-              },
-              768: {
-                slidesPerView: 4,
-                spaceBetween: 40,
-              },
-              1024: {
-                slidesPerView: 4,
-                spaceBetween: 50,
-              },
-            }}
-          >
-            <SwiperSlide>
-              <RelatedProduct />
-            </SwiperSlide>
-            <SwiperSlide>
-              <RelatedProduct />
-            </SwiperSlide>
-            <SwiperSlide>
-              <RelatedProduct />
-            </SwiperSlide>
-            <SwiperSlide>
-              <RelatedProduct />
-            </SwiperSlide>
-            <SwiperSlide>
-              <RelatedProduct />
-            </SwiperSlide>
-            <SwiperSlide>
-              <RelatedProduct />
-            </SwiperSlide>
-          </Swiper>
-        </div>
-      </div> */}
-
+     
       <OurAchievement />
     </>
   );

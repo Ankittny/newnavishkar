@@ -106,7 +106,7 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
     </section>
 
 
-    <section>
+    {/* <section>
         <div className="seller-top">
           <div className="container">
             <div className="row">
@@ -208,7 +208,7 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 </>
   );
 };

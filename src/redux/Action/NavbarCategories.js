@@ -1,5 +1,4 @@
 import axiosInstance from "@/utils/axios";
-
 export const navbarCategoriesData = () => async (dispatch) => {
   dispatch({ type: "navbarCategoryRequest" });
 

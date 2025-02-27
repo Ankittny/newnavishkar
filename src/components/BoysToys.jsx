@@ -60,8 +60,10 @@ const BoysToys = () => {
                         <ul> BATTERY OPERATED
                             <li ><a href="">Minos</a></li>
                             <li><a href="">24 In One</a></li>
-                            <li><a href="">Obstacle Challenger</a></li>
                             <li><a href="">Drone</a></li>
+                            <li><a href="">Obstacle Challenger</a></li>
+                            <li><a href="">Completed Project</a></li>
+
                            
                         </ul>
                         <hr/>
@@ -72,8 +74,8 @@ const BoysToys = () => {
                     </div>
 
                     <button className='btn '>
-                        <Link href="/complete-project">
-                        Completed Project
+                        <Link href="/live-projects">
+                        Live Project
                         </Link>
                     </button>
                 </div>

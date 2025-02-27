@@ -2,11 +2,11 @@ import { useState } from "react";
 import axiosInstance from "@/utils/axios";
 import axios from "axios";
 import Swal from "sweetalert2";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
-export default function RazorpayButton({ totalAmount,couponCode, addressId }) {
+export default function RazorpayButton({ totalAmount,couponCode, addressId,discountAmount}) {
   const [loading, setLoading] = useState(false);
-  // const router = useRouter(); // Initialize router
+  const router = useRouter(); // Initialize router
 
 
   const handlePayment = async () => {
@@ -67,6 +67,7 @@ export default function RazorpayButton({ totalAmount,couponCode, addressId }) {
         order_id: paymentData.id,
         handler: async function (response) {
           alert(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
+         
           console.log("this is test =======================>",addressId);
           // 4️⃣ Now Place Order AFTER Payment Success
           const orderResponse = await axiosInstance.get("/customer/order/place", {
@@ -74,7 +75,7 @@ export default function RazorpayButton({ totalAmount,couponCode, addressId }) {
               address_id: addressId,
               customer_id: localStorage.getItem("userid"),
               coupon_code: couponCode,
-              coupon_discount: 0,
+              coupon_discount: discountAmount,
               billing_address_id: addressId,
               order_note: "",
               guest_id: localStorage.getItem("userid"),
@@ -92,7 +93,8 @@ export default function RazorpayButton({ totalAmount,couponCode, addressId }) {
           });
 
           console.log("Order Confirmed:", orderResponse.data);
-          // router.push("/");
+         
+          router.push("/thankyou");
         },
         prefill: {
           name: `${addressId?.firstName} ${addressId?.lastName}`,

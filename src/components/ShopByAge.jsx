@@ -75,7 +75,7 @@ const ShopByAge = ({ categoryData }) => {
                       <h2 className="ageLabel">
                         {index === 0 ? "8-14 YEARS" : "14+ YEARS"}
                       </h2>
-                      <Button variant="outlined" className="text-white " onClick={() => handleClick(group?.slug)}>
+                      <Button variant="outlined" className="text-white" style={{fontSize:'10px',padding:'12px'}} onClick={() => handleClick(group?.slug)}>
                         Click here
                       </Button>
                     </div>

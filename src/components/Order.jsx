@@ -28,6 +28,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { orderLists, orderGetById, orderDetails } from "@/redux/Action/OrderList";
 import { Divider } from "@mui/material";
 import { Button } from "react-bootstrap";
+import Pagination from 'react-bootstrap/Pagination';
+
 
 const Order = () => {
   const [showModal, setShowModal] = useState(false);
@@ -36,6 +38,23 @@ const Order = () => {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const dispatch = useDispatch();
   const { loading, error, orderList, orderDetailsById, orderDetail } = useSelector((state) => state.order)
+
+  // for paginations
+  const [currentPage, setCurrentPage] = useState(1);
+  const ordersPerPage = 8; // Show only 8 orders per page
+
+  // Calculate pagination data
+  const indexOfLastOrder = currentPage * ordersPerPage;
+  const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
+  const currentOrders = orderList?.orders?.slice(indexOfFirstOrder, indexOfLastOrder) || [];
+  const totalPages = Math.ceil((orderList?.orders?.length || 0) / ordersPerPage);
+
+  // Handle page change
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -77,7 +96,7 @@ const Order = () => {
           <h1>My Order</h1>
         </div>
         <div className='table-responsive'>
-          <table className='table_table'>
+          <table className='table_table_detail'>
             <thead>
               <tr>
                 <td>
@@ -103,7 +122,7 @@ const Order = () => {
               </tr>
             </thead>
             <tbody>
-              {orderList?.orders?.map((order, index) => (
+              {currentOrders?.map((order, index) => (
                 <tr key={order.id}   >
                   <td className='bodt-tr '>
                     <div className='media-order d-flex gap-2'>
@@ -130,16 +149,37 @@ const Order = () => {
                   <td>
                     <div className="icon-invoice d-flex gap-3 align-items-center">
                       <FaEye onClick={() => handleShowOrderDetails(order)} style={{ cursor: "pointer" }} />
-                      <RiDownload2Line />
+                      {/* <RiDownload2Line /> */}
                     </div>
                   </td>
                 </tr>
               ))}
             </tbody>
-
           </table>
-
         </div>
+
+        {/* Pagination Component */}
+      {totalPages > 1 && (
+        <Pagination className="justify-content-center mt-3">
+          <Pagination.Prev
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          />
+          {[...Array(totalPages)].map((_, index) => (
+            <Pagination.Item
+              key={index + 1}
+              active={index + 1 === currentPage}
+              onClick={() => handlePageChange(index + 1)}
+            >
+              {index + 1}
+            </Pagination.Item>
+          ))}
+          <Pagination.Next
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          />
+        </Pagination>
+      )}
       </div>
 
       {/* Modal Component */}
@@ -185,7 +225,7 @@ const Order = () => {
                           <Tab label="Track Order" value="2" />
                         </TabList>
                       </Box>
-                      <TabPanel value="1">
+                      <TabPanel value="1" sx={{ display: value === "1" ? "block" : "none" }}>
                         <table className="tablemoney">
                           <thead>
                             <tr>
@@ -259,64 +299,69 @@ const Order = () => {
                               </tr>
                             </thead>
                             <tbody>
-                              
-                                {orderDetail.length > 0 ? (
-                                  orderDetail.map((order, index) => (
-                                    <tr key={index}>
-                                      <td>
-                                        <img
-                                          src={order?.product_details?.thumbnail_full_url?.path || "default-image.jpg"}
-                                          alt={order?.product_details?.name}
-                                          style={{ width: "140px", height: "90px", borderRadius: "5px" }}
-                                        />
-                                        <span className="mx-4">{order?.product_details?.name || "No Product Name"}</span>
-                                      </td>
-                                      <td>{order?.qty || 0}</td>
-                                      <td>₹{order?.price || 0}</td>
-                                    </tr>
-                                  ))
-                                ) : (
-                                  <tr>
-                                    <td colSpan="3" style={{ textAlign: "center" }}>No Orders Found</td>
-                                  </tr>
-                                )}
-                              </tbody>
-                          </table>
-                       
-                         <div className="orderdetailbottom mt-3">
-                          <div className="d-flex justify-content-between">
-                            <p>Item</p>
-                            <span>{orderDetail[0]?.qty}</span>
-                          </div>
-                          <div className="d-flex justify-content-between">
-                            <p>Subtotal</p>
-                            <span>{orderDetail[0]?.price}</span>
-                          </div>
-                          <div className="d-flex justify-content-between">
-                            <p>Tax fee</p>
-                            <span>{orderDetail[0]?.tax}</span>
-                          </div>
-                          <div className="d-flex justify-content-between">
-                            <p>Shipping fee</p>
-                            <span>{orderDetail[0]?.shipping_cost}</span>
-                          </div>
-                          <div className="d-flex justify-content-between">
-                            <p>Discount on product</p>
-                            <span>{orderDetail[0]?.discount}</span>
-                          </div>
-                          <div className="d-flex justify-content-between">
-                            <p>Coupen Discount</p>
-                            <span>20</span>
-                          </div>
-                          <Divider sx={{ borderColor: "#175A95", borderWidth: "2px" }}/>
 
-                          <button className="changing-number w-100" >Cancle Order</button>
-                         </div>
+                              {orderDetail.length > 0 ? (
+                                orderDetail.map((order, index) => (
+                                  <tr key={index}>
+                                    <td>
+                                      <img
+                                        src={order?.product_details?.thumbnail_full_url?.path || "default-image.jpg"}
+                                        alt={order?.product_details?.name}
+                                        style={{ width: "140px", height: "90px", borderRadius: "5px" }}
+                                      />
+                                      <span className="mx-4">{order?.product_details?.name || "No Product Name"}</span>
+                                    </td>
+                                    <td>{order?.qty || 0}</td>
+                                    <td>₹{order?.price || 0}</td>
+                                  </tr>
+                                ))
+                              ) : (
+                                <tr>
+                                  <td colSpan="3" style={{ textAlign: "center" }}>No Orders Found</td>
+                                </tr>
+                              )}
+                            </tbody>
+                          </table>
+
+                          <div className="orderdetailbottom mt-3">
+                            <div className="d-flex justify-content-between">
+                              <p>Item</p>
+                              <span>{orderDetail[0]?.qty}</span>
+                            </div>
+                            <div className="d-flex justify-content-between">
+                              <p>Subtotal</p>
+                              <span>{orderDetail[0]?.price}</span>
+                            </div>
+                            <div className="d-flex justify-content-between">
+                              <p>Tax Fee</p>
+                              <span>{orderDetail[0]?.tax}</span>
+                            </div>
+                            <div className="d-flex justify-content-between">
+                              <p>Shipping Fee</p>
+                              <span>{orderDetail[0]?.shipping_cost}</span>
+                            </div>
+                            <div className="d-flex justify-content-between">
+                              <p>Discount on Product</p>
+                              <span>{orderDetail[0]?.discount}</span>
+                            </div>
+                            <div className="d-flex justify-content-between">
+                              <p>Coupen Discount</p>
+                              <span>{orderDetail[0]?.order?.discount_amount}</span>
+                            </div>
+
+                            <div className="d-flex justify-content-between">
+                              <p>Total Amount</p>
+                              <span>{ }</span>
+                            </div>
+                            <Divider sx={{ borderColor: "#175A95", borderWidth: "2px" }} />
+
+                            <button className="changing-number w-100" >Cancle Order</button>
+                          </div>
                         </div>
                       )}
 
 
-                      <TabPanel value="2">
+<TabPanel value="2" sx={{ display: value === "2" ? "block" : "none" }}>
                         <div className="w-100 p-3">
                           <MDBContainer className="py-5 h-100">
                             <MDBRow className="justify-content-center align-items-center h-100">
@@ -329,7 +374,6 @@ const Order = () => {
                                       <li className={`step0 ${orderDetailsById?.tracking?.step3 ? "active" : "text-muted"} text-center`} id="step3"></li>
                                       <li className={`step0 ${orderDetailsById?.tracking?.step4 ? "active" : "text-muted"} text-center`} id="step4"></li>
                                     </ul>
-
                                     <div className="d-flex justify-content-between">
                                       <div className="d-lg-flex fcx align-items-center">
                                         <GrBus />

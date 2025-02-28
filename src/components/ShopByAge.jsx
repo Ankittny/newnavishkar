@@ -5,6 +5,7 @@ import SHopByIntrest from "./SHopByIntrest";
 import Button from '@mui/material/Button';
 
 const ShopByAge = ({ categoryData }) => {
+
   const [selectedAgeGroup, setSelectedAgeGroup] = useState([]);
   const [loading, setLoading] = useState(false); // State for loader
   const [showProducts, setShowProducts] = useState(true); // State to toggle product visibility
@@ -16,6 +17,7 @@ const ShopByAge = ({ categoryData }) => {
   }, [categoryData]);
 
   const handleClick = (ageGroupId) => {
+
     setLoading(true); // Show loader
     // setShowProducts(false);
 

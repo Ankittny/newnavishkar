@@ -17,6 +17,7 @@ import BoysToys from "@/components/BoysToys";
 import OurAchievement from "@/components/OurAchievment";
 import { completeProjectData } from "@/redux/Action/CompleteProject";
 import Card from "@/components/card/Card";
+import { WorkshopData } from "@/redux/Action/Workshop";
 
 
 const CompleteProject = () => {
@@ -33,6 +34,27 @@ const CompleteProject = () => {
   const { loading, error, cmlproject } = useSelector(
     (state) => state.completeProject
   );
+
+  const navbarCategories = useSelector(
+    (state) => state.navbarCategories.navbarCategories
+  );
+
+  const projectCategories = navbarCategories.filter(
+    (category) =>
+      category.type === "n-shop" &&
+      category.name.toLowerCase().includes("projects") // Ensure lowercase comparison
+  );
+  
+    console.log("Category Test",projectCategories);
+
+  const firstWorkshop = projectCategories[0];
+
+  useEffect(() => {
+    if (firstWorkshop && firstWorkshop.slug) {
+      dispatch(WorkshopData(firstWorkshop.slug));
+    }
+  }, [dispatch, firstWorkshop]);
+
 
   console.log("complete data ankit", cmlproject);
 
@@ -59,13 +81,17 @@ const CompleteProject = () => {
 
   return (
     <>
-      <ProductBanner
-        title="Navishkar - Kids Toy Store"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elitvashcb biiwuhiwq uidh ih uhi iui "
-        linkText="Live Demo"
-        linkUrl="/demo"
-        imageUrl={"/labs/labBanner.png"}
-      />
+     
+
+      {firstWorkshop && (
+        <ProductBanner
+          title={firstWorkshop.name} // Use the category name for the title
+          description={firstWorkshop.description} // Use the category description
+          linkText="Live Demo"
+          linkUrl="/demo"
+          imageUrl={firstWorkshop.cover_pic_path || "/labs/labBanner.png"} // Default to a placeholder if imageUrl is missing
+        />
+      )}
 
       <div className="container mt-5">
         <div className="row detail-nav">
@@ -79,9 +105,9 @@ const CompleteProject = () => {
             </div>
 
             <div className="row">
-            {cmlproject.slice(0, visibleCount).map((item) => (
+              {cmlproject.slice(0, visibleCount).map((item) => (
                 <div className="col-lg-6" key={item.id}>
-                  {/* ✅ Use Card component instead of div */}
+                 
                   <Card
                     id={item.id}
                     imageUrl={item.thumbnail_full_url?.path || "/labs/lab1.png"}
@@ -106,7 +132,7 @@ const CompleteProject = () => {
         </div>
       </div>
 
-     
+
       <OurAchievement />
     </>
   );

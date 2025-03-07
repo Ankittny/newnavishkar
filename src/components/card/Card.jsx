@@ -1,14 +1,15 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/Reducer/Cart"; // Import the addToCart action
 import axios from "axios";
-import { act } from "react";
+import toast from "react-hot-toast"; // Import toaster
 
 
 const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id,current_stock }) => {
   console.log("Discount", discount)
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false); // State to handle loader
   const token = localStorage.getItem("authAdminToken");
 
 
@@ -20,6 +21,10 @@ const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id,curr
     : price - flatDiscountAmount;
 
   const handleAddToCart = async () => {
+
+    if (loading) return; // Prevent multiple clicks
+    setLoading(true); // Show loader
+
     const token = localStorage.getItem("authAdminToken");
     console.log("tiokeN", token)
     try {
@@ -38,17 +43,19 @@ const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id,curr
       );
 
       if (response.status === 200) {
-        // Log success for this item (optional)
+        toast.success("Product added successfully! ✅");
         console.log("Item added successfully:", id);
       } else {
         // Handle errors here (show a message, etc.)
-        console.error("Error with item", id, response.data.message || "Error sending data");
+        toast.error(response.data.message || "Error adding product! ❌"); // Show error toaster
       }
     } catch (error) {
+      toast.error("Failed to add product to cart! ❌"); // Show error toaster
       console.error("Error sending cart data:", error);
     }
 
     dispatch(addToCart({ name, price: ActualPrice, imageUrl, id }));
+    setLoading(false); // Hide loader
   };
 
   return (
@@ -80,7 +87,9 @@ const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id,curr
       <div className="add-btn text-center mb-2">
         {/* <button onClick={() => handleAddToCart({ id, quantity: 1 })}>ADD TO BAG</button> */}
         {current_stock > 0 ? (
-          <button onClick={() => handleAddToCart({ id, quantity: 1 })}>ADD TO BAG</button>
+          <button onClick={() => handleAddToCart({ id, quantity: 1 })}>
+              {loading ? <span className="">Loading</span> : "ADD TO BAG"}
+          </button>
         ) : (
           <p className="text-danger fw-bold">Out of Stock</p>
         )}

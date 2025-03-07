@@ -10,19 +10,21 @@ import { move } from "formik";
 import { navbarCategoriesData } from "@/redux/Action/NavbarCategories";
 import { fetchCartData } from "@/redux/Reducer/Cart";
 
-
-
-
-
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);  // Local state for login status
   const router = useRouter();
   const dispatch = useDispatch();
+  const [cartCount , setCartCount] = useState(0);
 
   // const cartCount = useSelector((state) => state.cart.cartCount) || 0;
-  const cartCount = useSelector((state) => state.cart.cartCount);
+  // const cartCount = useSelector((state) => state.cart.cartCount) || 0;
   const { loading, navbarCategories, error } = useSelector((state) => state.navbarCategories);
+
+  const cartCount1 = useSelector((state) => state.cart.cartCount) || 0;
+  useEffect(() => {
+    setCartCount(cartCount1);
+  }, [cartCount1]);
 
   useEffect(() => {
     const token = localStorage.getItem("authAdminToken");
@@ -49,11 +51,11 @@ const Navbar = () => {
     }
   };
 
-  const logout = () => {
-    localStorage.clear("authAdminToken");
-    setIsLoggedIn(false);  // Update login status when logging out
-    router.push("/");  // Redirect to home or login page
-  };
+  // const logout = () => {
+  //   localStorage.clear("authAdminToken");
+  //   setIsLoggedIn(false);  // Update login status when logging out
+  //   router.push("/");  // Redirect to home or login page
+  // };
 
   
   return (
@@ -209,7 +211,7 @@ const Navbar = () => {
                 alt="Cart"
                 className="icon"
               />
-              <span className="cart-count-badge">{cartCount}</span>
+            {cartCount > 0 && <span className="cart-count-badge">{cartCount}</span>}
             </div>
             {isLoggedIn ? (
               <button  className="btn btn-link nav-link mx-2">

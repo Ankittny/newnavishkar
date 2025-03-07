@@ -17,13 +17,14 @@ const ProductBanner = ({ title, description, linkText, linkUrl, imageUrl }) => {
           />
         )}
         <div className="navi-title">
-          {title && <h1>{title}</h1>}
-          {description && <p>{description}</p>}
-          {linkText && linkUrl && (
-            <button className="mt-3">
+        {linkText && linkUrl && (
+            <button className="">
               <Link href={linkUrl}>{linkText}</Link>
             </button>
           )}
+          {title && <h1>{title}</h1>}
+          {description && <p>{description}</p>}
+         
         </div>
       </div>
     </section>

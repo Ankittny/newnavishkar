@@ -159,7 +159,7 @@ const Payment = () => {
               </div>
               <div className="payment-methods mt-3">
                 <h3>Pay with Razorpay</h3>
-                <RazorpayButton totalAmount={totalAmount} couponCode={couponCode} addressId={selectedAddress} />
+                <RazorpayButton totalAmount={totalAmount} couponCode={couponCode} discountAmount={discountAmount}   addressId={selectedAddress} />
               </div>
             </div>
           </div>

@@ -4,6 +4,7 @@ import OurAchievment from "@/components/OurAchievment";
 import ProductBanner from "@/components/ProductBanner";
 import ShopByAge from "@/components/ShopByAge";
 import { categories } from "@/redux/Action/category";
+import { WorkshopData } from "@/redux/Action/Workshop";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -33,15 +34,38 @@ const Product = () => {
     }
   }, [category]);
 
+  const navbarCategories = useSelector(
+      (state) => state.navbarCategories.navbarCategories
+    );
+  
+    const projectCategories = navbarCategories.filter(
+      (category) =>
+        category.type === "n-shop" &&
+        category.name.toLowerCase().includes("products") // Ensure lowercase comparison
+    );
+    
+      console.log("Category Test",projectCategories);
+  
+    const firstWorkshop = projectCategories[0];
+  
+    useEffect(() => {
+      if (firstWorkshop && firstWorkshop.slug) {
+        dispatch(WorkshopData(firstWorkshop.slug));
+      }
+    }, [dispatch, firstWorkshop]);
+  
+
   return (
     <>
-      <ProductBanner
-        title="Navishkar - Kids Toy Store"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Experience the joy of learning with our curated toys."
-        linkText="Live Demo"
-        linkUrl="https://www.youtube.com/@Navishkar1"
-        imageUrl={"/product/productbanner.png"}
-      />
+        {firstWorkshop && (
+        <ProductBanner
+          title={firstWorkshop.name} // Use the category name for the title
+          description={firstWorkshop.description} // Use the category description
+          linkText="Live Demo"
+          linkUrl="/demo"
+          imageUrl={firstWorkshop.cover_pic_path || "/labs/labBanner.png"} // Default to a placeholder if imageUrl is missing
+        />
+      )}
       <ShopByAge categoryData={categoryData} />
       <OurAchievment />
     </>

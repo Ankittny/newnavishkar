@@ -185,14 +185,6 @@ const ProductDetails = () => {
                     </Grid>
                   </Box>
 
-                  <div className="image-sec-66 d-flex justify-content-center align-content-center ">
-                  <Image
-                    src={"/product/image66.png"}
-                    width={500}
-                    height={116}
-                    alt="danger"
-                  />
-                </div>
                   
                 </div>
 
@@ -307,6 +299,17 @@ const ProductDetails = () => {
             </div>
           </div>
         </div>
+
+
+        <div className="image-sec-66 d-flex justify-content-center align-content-center ">
+                  <Image
+                    src={"/product/image66.png"}
+                    width={500}
+                    height={200}
+                    alt="danger"
+                  />
+                </div>
+                  
 
 
         <div className="row mt-2 ">

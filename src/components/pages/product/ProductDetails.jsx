@@ -155,7 +155,7 @@ const ProductDetails = () => {
               </div>
 
               <div className="row mt-3">
-                <div className="col-md-6">
+                <div className="col-md-6 box-sh">
                   <Box sx={{ padding: "20px" }}>
                     {/* Main Product Card */}
                     <CardMedia

@@ -155,7 +155,7 @@ const ProductDetails = () => {
               </div>
 
               <div className="row mt-3">
-                <div className="col-md-5">
+                <div className="col-md-6">
                   <Box sx={{ padding: "20px" }}>
                     {/* Main Product Card */}
                     <CardMedia
@@ -188,8 +188,8 @@ const ProductDetails = () => {
                   <div className="image-sec-66 d-flex justify-content-center align-content-center ">
                   <Image
                     src={"/product/image66.png"}
-                    width={100}
-                    height={100}
+                    width={500}
+                    height={116}
                     alt="danger"
                   />
                 </div>
@@ -197,7 +197,7 @@ const ProductDetails = () => {
                 </div>
 
                 
-                <div className="col-md-7">
+                <div className="col-md-6">
                   <div className="motonove-right-title">
                     <div className="d-flex gap-5">
                       <h3>
@@ -314,8 +314,8 @@ const ProductDetails = () => {
             <div className="mini-img-minos">
               <Image
                 src={categryDetailData?.certificate_path}
-                width={100}
-                height={100}
+                width={300}
+                height={200}
                 alt="Mark1"
                 className=""
               />
@@ -331,8 +331,8 @@ const ProductDetails = () => {
                   {/* Optional: Show a preview */}
                   <iframe
                    src={'/icons/pdf.png'}
-                    width="100%"
-                    height="250"
+                    width="300"
+                    height="200"
                     title="PDF Preview"
                     
                   ></iframe>
@@ -357,7 +357,7 @@ const ProductDetails = () => {
               {embedUrl ? (
                 <iframe
                   width="300"
-                  height="250"
+                  height="200"
                   src={embedUrl}
                   title="YouTube Video"
                   frameBorder="0"

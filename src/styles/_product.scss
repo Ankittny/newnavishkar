@@ -133,11 +133,12 @@ color: #006ED3;
 }
 
 .motonove-right-title p{
-    color: #635F5F;
+    color: #000;
     font-family: Poppins;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 400;
     margin-bottom: 20px;
+    letter-spacing: 1px;
 }
 
 .motonova-highlight span{
@@ -210,7 +211,8 @@ color: #006ED3;
 .ic0n-about-trust p{
     font-weight: 400;
     color: #3E3939;
-    font-size: 16px;
+    font-size: 14px;
+    letter-spacing: 1px;
 }
 
 .mt-gera-title{
@@ -387,6 +389,20 @@ color: #006ED3;
   
   .css-1l937eg-MuiGrid-root>.MuiGrid-item {
     padding-left: 0px;
+}
+.box-sh .css-1ruxp1v img{
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 10px;
+    width: 97%;
+}
+
+.box-sh .css-1ruxp1v{
+    position: sticky;
+    width: 100%;
+    top: 0px;
 }
   
   

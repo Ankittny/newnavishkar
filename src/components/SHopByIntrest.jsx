@@ -10,11 +10,13 @@ import { useRouter } from "next/navigation";
 import BoysToys from "./BoysToys";
 import SortOptions from "./SortOptions";
 import { Divider } from "@mui/material";
+// import { useRouter } from "next/navigation";
 
 const ShopByIntrest = ({ selectedAgeGroup }) => {
   const [filteredCategories, setFilteredCategories] = useState([]);
   const [selectedSubcategory, setSelectedSubcategory] = useState(null);
   const dispatch = useDispatch();
+  const router = useRouter();
   const { categoryByAgeGroup, filterSubCategory } = useSelector((state) => state.category);
 
   // Fetch categories by age group
@@ -49,6 +51,10 @@ const ShopByIntrest = ({ selectedAgeGroup }) => {
   const handleSubcategoryClick = (subcategorySlug) => {
     setSelectedSubcategory(subcategorySlug);
   };
+  const handleCardClick = (slug) => {
+    router.push(`/products/${slug}`);
+  };
+
 
   return (
     <section className="shopbyintrest mt-4">
@@ -85,6 +91,7 @@ const ShopByIntrest = ({ selectedAgeGroup }) => {
                     discount={category?.discount}
                     price={category?.unit_price}
                     oldPrice={category?.purchase_price}
+                    onClick={() => handleCardClick(category?.slug)}
                     discount_type={category?.discount_type}
                     current_stock={category?.current_stock}
                   />

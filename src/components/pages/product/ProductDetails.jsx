@@ -138,14 +138,14 @@ const ProductDetails = () => {
 
   return (
     <>
-      <div className="">
+      {/* <div className="">
         <ProductBanner
           imageUrl={
             categryDetailData?.thumbnail_full_url?.path ||
             "/product/productDetailBanner.png"
           }
         />
-      </div>
+      </div> */}
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -184,7 +184,19 @@ const ProductDetails = () => {
                       )}
                     </Grid>
                   </Box>
+
+                  <div className="image-sec-66 d-flex justify-content-center align-content-center ">
+                  <Image
+                    src={"/product/image66.png"}
+                    width={100}
+                    height={100}
+                    alt="danger"
+                  />
                 </div>
+                  
+                </div>
+
+                
                 <div className="col-md-7">
                   <div className="motonove-right-title">
                     <div className="d-flex gap-5">
@@ -290,14 +302,7 @@ const ProductDetails = () => {
                   </div>
                 </div>
 
-                <div className="image-sec-66 d-flex justify-content-center align-content-center">
-                  <Image
-                    src={"/product/image66.png"}
-                    width={100}
-                    height={100}
-                    alt="danger"
-                  />
-                </div>
+               
               </div>
             </div>
           </div>

@@ -398,7 +398,7 @@ const Home = () => {
                     {/* Tabs and Tab Panels */}
                     <div className="tabs-container">
                       {category.childes && category.childes.length > 0 ? (
-                        <TabContext value={activeTab[categoryIndex] || "0"}>
+                        <TabContext value={activeTab[categoryIndex] || "0"} >
                           <Box className="tabs-wrapper">
                             <TabList
                               aria-label={`Tabs for ${category.slug}`}

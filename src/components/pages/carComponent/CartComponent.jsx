@@ -16,6 +16,7 @@ import axiosInstance from "@/utils/axios";
 import { MdAutoDelete } from "react-icons/md";
 import Image from "next/image";
 import { Button } from "@mui/material";
+import toast from "react-hot-toast";
 
 const axios = axiosInstance;
 
@@ -65,8 +66,10 @@ const CartComponent = () => {
       });
       dispatch(clearCart(id));
       dispatch(fetchCartData(token));
+      toast.success("Item deleted successfully!");
     } catch (error) {
       console.error("Error removing item:", error);
+      toast.error("Failed to delete item!"); // Show error message in case of failure
     }
   };
 

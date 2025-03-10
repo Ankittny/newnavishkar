@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from "react-redux";
 const Product = () => {
   const [categoryData, setCategoryData] = useState([]);
   const dispatch = useDispatch();
-
   const { loading: isLoading, success: isSuccess, error, category } = useSelector(
     (state) => state.category
   );

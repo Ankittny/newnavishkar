@@ -58,7 +58,7 @@ const Navbar = () => {
     setTimeout(() => {
       router.push(`/${slug}`); // Redirect after delay
       setIsRedirecting(false); // Hide loader
-    }, 1000);
+    }, 2000);
   };
 
  

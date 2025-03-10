@@ -26,6 +26,7 @@ import RelatedProduct from "@/components/RelatedProduct";
 import { Button } from "react-bootstrap";
 import { addToCart } from "@/redux/Reducer/Cart";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const ProductDetails = () => {
   const { productid } = useParams();
@@ -78,11 +79,21 @@ const ProductDetails = () => {
 
 
   const videoUrl = categryDetailData?.video_url;
+  console.log("Video URL:", videoUrl);
 
-  const embedUrl = videoUrl
-    ? videoUrl.replace("youtu.be/", "www.youtube.com/embed/").split("?")[0]
-    : "";
+  const getEmbedUrl = (url) => {
+    if (!url) return null;
 
+    // Extract the video ID using regex
+    const videoIdMatch = url.match(/(?:\?v=|\/embed\/|\/v\/|\/watch\?v=|\/youtu.be\/|\/shorts\/)([^&?/]+)/);
+    const videoId = videoIdMatch ? videoIdMatch[1] : null;
+
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+  };
+
+  const embedUrl = getEmbedUrl(videoUrl);
+
+  
   const [quantity, setQuantity] = useState(1);
 
   const handleIncrease = () => {
@@ -94,25 +105,63 @@ const ProductDetails = () => {
   };
 
 
+  // const handleAddToCart = async () => {
+  //   const token = localStorage.getItem("authAdminToken");
+  //   try {
+  //     const response = await axios.post(
+  //       "https://navishkar.overseaseducationlane.com/api/v1/cart/add",
+  //       {
+  //         id: categoryDetail.id,
+  //         quantity: quantity,
+  //       },
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       }
+  //     );
+
+  //     if (response.status === 200) {
+  //       console.log("Item added successfully:", categoryDetail.id);
+  //       dispatch(
+  //         addToCart({
+  //           id: categoryDetail.id,
+  //           name: categoryDetail.name,
+  //           price: categoryDetail.unit_price,
+  //           image: mainImage,
+  //           quantity,
+  //         })
+  //       );
+  //     } else {
+  //       console.error("Error adding item to cart", response.data.message || "Error");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error sending cart data:", error);
+  //   }
+  // };
+
   const handleAddToCart = async () => {
     const token = localStorage.getItem("authAdminToken");
+
+    if (!token) {
+      toast.error("Please login to add items to the cart.");
+      return;
+    }
+
     try {
       const response = await axios.post(
         "https://navishkar.overseaseducationlane.com/api/v1/cart/add",
-        {
-          id: categoryDetail.id,
-          quantity: quantity,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        { id: categoryDetail.id, quantity },
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
+      if (response.data.status === 0) {
+        toast.error(response.data.message || "Out of stock!");
+        return;
+      }
+
       if (response.status === 200) {
-        console.log("Item added successfully:", categoryDetail.id);
         dispatch(
           addToCart({
             id: categoryDetail.id,
@@ -122,13 +171,15 @@ const ProductDetails = () => {
             quantity,
           })
         );
+        toast.success("Item added to cart successfully!");
       } else {
-        console.error("Error adding item to cart", response.data.message || "Error");
+        toast.error("Failed to add item to cart.");
       }
     } catch (error) {
-      console.error("Error sending cart data:", error);
+      toast.error(error.response?.data?.message || "An error occurred while adding to cart.");
     }
   };
+
 
   const handleBuyNow = () => {
     console.log("Buying now:", { productId: categryDetailData?.id, quantity });
@@ -185,10 +236,10 @@ const ProductDetails = () => {
                     </Grid>
                   </Box>
 
-                  
+
                 </div>
 
-                
+
                 <div className="col-md-6">
                   <div className="motonove-right-title">
                     <div className="d-flex gap-5">
@@ -294,7 +345,7 @@ const ProductDetails = () => {
                   </div>
                 </div>
 
-               
+
               </div>
             </div>
           </div>
@@ -302,26 +353,32 @@ const ProductDetails = () => {
 
 
         <div className="image-sec-66 d-flex justify-content-center align-content-center ">
-                  <Image
-                    src={"/product/image66.png"}
-                    width={500}
-                    height={200}
-                    alt="danger"
-                  />
-                </div>
-                  
+          <Image
+            src={"/product/image66.png"}
+            width={500}
+            height={200}
+            alt="danger"
+          />
+        </div>
+
 
 
         <div className="row mt-2 ">
           <div className="col-md-4">
             <div className="mini-img-minos">
               <Image
-                src={categryDetailData?.certificate_path}
+                src={categryDetailData?.certificate_path || "/product/productDetailBanner.png"}
                 width={300}
                 height={200}
                 alt="Mark1"
                 className=""
               />
+
+              <button className="mt-2">
+                <Link href="#" target="_blank" rel="noopener noreferrer">
+                  Download Certificate
+                </Link>
+              </button>
 
             </div>
           </div>
@@ -331,14 +388,12 @@ const ProductDetails = () => {
               {/* Check if pdf_doc_path exists before rendering */}
               {categryDetailData?.pdf_doc_path ? (
                 <>
-                  {/* Optional: Show a preview */}
-                  <iframe
-                   src={'/icons/pdf.png'}
-                    width="300"
-                    height="200"
-                    title="PDF Preview"
-                    
-                  ></iframe>
+                  <Image
+                    src={'/PDF.png'}  // ✅ Correct path
+                    width={300}
+                    height={200}
+                    alt="Mark1"
+                  />
 
                   {/* Download Button */}
                   <button className="mt-2">
@@ -351,7 +406,6 @@ const ProductDetails = () => {
                 <p>PDF not available</p>
               )}
             </div>
-
           </div>
 
           <div className="col-md-4">
@@ -361,7 +415,7 @@ const ProductDetails = () => {
                 <iframe
                   width="300"
                   height="200"
-                  src={embedUrl}
+                  src={embedUrl} // ✅ Corrected embed URL
                   title="YouTube Video"
                   frameBorder="0"
                   allowFullScreen

@@ -21,6 +21,7 @@ const Lab = () => {
   const [labData, setLabData] = useState([]);
   const router = useRouter();
   const dispatch = useDispatch();
+  const [loadingState, setLoadingState] = useState(null); // Track which item is loading
 
   const { loading, workshop, error } = useSelector((state) => state.workshop);
 
@@ -42,6 +43,14 @@ const Lab = () => {
       dispatch(WorkshopData(firstWorkshop.slug));
     }
   }, [dispatch, firstWorkshop]);
+
+
+  const handleReadMore = (slug, index) => {
+    setLoadingState(index); // Set loading state for clicked item
+    setTimeout(() => {
+      router.push(`/labs/${slug}`);
+    }, 1000); // Adjust delay if needed
+  };
 
   return (
     <>
@@ -85,7 +94,16 @@ const Lab = () => {
                           : item.description}
                       </span>
                       <div className="an-int">
-                      <Link href={`/labs/${item.slug}`}>Read more</Link>
+                      {/* <Link href={`/labs/${item.slug}`}>Read more</Link> */}
+                      {loadingState === index ? (
+                          <div className="loader-overlay-navbar">
+                            <div className="loader-navbar"></div>
+                          </div> // Show loader while navigating
+                        ) : (
+                          <button className="btn" onClick={() => handleReadMore(item.slug, index)}>
+                            Read more
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>

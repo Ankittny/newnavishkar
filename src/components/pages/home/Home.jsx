@@ -248,7 +248,7 @@ const Home = () => {
                 <div className="world-title-heading d-flex gap-3">
                   <div className=" pt-4 px-3 devp-text">
                     <h2 className=" innovation-heading fw-bold">
-                      innovative <span>projects</span>{" "}
+                      Innovative <span>Projects</span>{" "}
                     </h2>
                     <p>
                       AI and Robotics workshop that we wish to conduct in the

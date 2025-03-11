@@ -123,7 +123,7 @@ const Order = () => {
             </thead>
             <tbody>
               {currentOrders?.map((order, index) => (
-                <tr key={order.id}   >
+                <tr key={order.id}>
                   <td className='bodt-tr '>
                     <div className='media-order d-flex gap-2'>
                       <IoImagesSharp />

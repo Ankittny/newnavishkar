@@ -104,7 +104,7 @@ const CompleteProject = () => {
               <h1 className="text-center font-complete">Complete Projects</h1>
             </div>
 
-            <div className="row">
+            <div className="row mt-5">
               {cmlproject.slice(0, visibleCount).map((item) => (
                 <div className="col-lg-6" key={item.id}>
                  

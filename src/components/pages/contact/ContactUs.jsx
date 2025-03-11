@@ -65,7 +65,7 @@ const ContactUs = () => {
                   src="/Contact/contact.png"
                   alt="contact"
                   width={550}
-                  height={560}
+                  height={520}
                 />
               </div>
             </div>

@@ -337,7 +337,7 @@ const Home = () => {
 
       <div className="feature-topic-title mt-5">
         <div className="feature-heading">
-          <h3 className="fw-bolder text-center">Today’s Highlights</h3>
+          <h3 className="fw-bolder text-center text-uppercase">Today’s Highlights</h3>
         </div>
       </div>
       <section className="shopbyintrest mt-5">

@@ -41,14 +41,14 @@ const WorkshopDetails = () => {
               <div className="mt-3">
                 <Image
                   src={worskDetails.image_path}
-                  width={100}
+                  width={300}
                   height={100}
                   className="toddlet-tab-img"
                   alt="elec"
                 />
               </div>
             </div>
-            <div className="role-ai-title">
+            <div className="role-ai-title mt-3"> 
               <div className="artical-tag-role">
                 <h4>{worskDetails.title}</h4>
                 <p>

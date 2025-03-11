@@ -46,7 +46,7 @@ const Workshop = () => {
     <>
       {firstWorkshop && (
         <ProductBanner
-         
+
           linkText="Live Demo"
           linkUrl="/demo"
           imageUrl={firstWorkshop.cover_pic_path || "/labs/labBanner.png"} // Default to a placeholder if imageUrl is missing
@@ -119,7 +119,7 @@ const Workshop = () => {
           </div>
         </div>
 
-        <div className="row">
+        <div className="row mt-5">
           <div className="col-lg-4">
             <Certificate
               title={"Workshop certificate"}
@@ -129,16 +129,19 @@ const Workshop = () => {
             />
           </div>
 
-          <div className="col-lg-8 d-flex justify-content-center align-items-center">
-            <div className="ratio ratio-16x9 w-100 h-50">
-              <iframe
-                width="100%"
-                height="100%"
-                src="https://youtu.be/y2TSR7p3N0M?feature=shared"
-                title="YouTube Video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen  // ✅ Correct React syntax
-              ></iframe>
+          <div className="col-lg-8 d-flex justify-content-center">
+            <div className="ratio ratio-16x9 w-100 h-50 ">
+              <div>
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/y2TSR7p3N0M"
+                  title="YouTube Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  style={{ border: "none" }}
+                ></iframe>
+              </div>
             </div>
           </div>
         </div>

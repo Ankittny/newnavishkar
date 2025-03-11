@@ -80,11 +80,10 @@ function Innovation() {
   return (
     <div>
       <ProductBanner
-        title={"Innovation"}
-        description={"jdvbcksbdjcvbskdcbjsncjk"}
+        
         linkText="Live Demo"
         linkUrl="/demo"
-        imageUrl={"/labs/labBanner.png"}
+        imageUrl={"/labs/4.png"}
       />
 
       <div className="container mt-5">

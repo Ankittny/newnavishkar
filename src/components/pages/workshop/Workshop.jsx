@@ -46,8 +46,7 @@ const Workshop = () => {
     <>
       {firstWorkshop && (
         <ProductBanner
-          title={firstWorkshop.name} // Use the category name for the title
-          description={firstWorkshop.description} // Use the category description
+         
           linkText="Live Demo"
           linkUrl="/demo"
           imageUrl={firstWorkshop.cover_pic_path || "/labs/labBanner.png"} // Default to a placeholder if imageUrl is missing
@@ -79,7 +78,11 @@ const Workshop = () => {
                     </div>
                     <div className="labs-toddler">
                       <p>{item.title}</p>
-                      <span>{item.description}</span>
+                      <span>
+                        {item.description.length > 90
+                          ? `${item.description.slice(0, 90)}...`
+                          : item.description}
+                      </span>
                       <div className="an-int">
                         <Link href={`/workshop/${item.slug}`}>Read more</Link>
                       </div>
@@ -131,7 +134,7 @@ const Workshop = () => {
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/yEVhnvX1W7c?si=oTBKu2cveBu5VjRe"
+                src="https://youtu.be/y2TSR7p3N0M?feature=shared"
                 title="YouTube Video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen  // ✅ Correct React syntax

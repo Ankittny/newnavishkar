@@ -58,8 +58,7 @@ const Product = () => {
     <>
         {firstWorkshop && (
         <ProductBanner
-          title={firstWorkshop.name} // Use the category name for the title
-          description={firstWorkshop.description} // Use the category description
+          
           linkText="Live Demo"
           linkUrl="/demo"
           imageUrl={firstWorkshop.cover_pic_path || "/labs/labBanner.png"} // Default to a placeholder if imageUrl is missing

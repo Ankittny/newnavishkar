@@ -114,11 +114,10 @@ const LiveProjects = () => {
   return (
     <>
       <ProductBanner
-        title="Navishkar - Kids Toy Store"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+       
         linkText="Live Demo"
         linkUrl="/demo"
-        imageUrl={"/labs/labBanner.png"}
+        imageUrl={"/labs/4.png"}
       />
 
       <div className="container mt-5">

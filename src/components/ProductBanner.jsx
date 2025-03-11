@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const ProductBanner = ({ title, description, linkText, linkUrl, imageUrl }) => {
+const ProductBanner = ({ linkText, linkUrl, imageUrl }) => {
   return (
     <section>
       <div className="productBanner">
@@ -22,9 +22,7 @@ const ProductBanner = ({ title, description, linkText, linkUrl, imageUrl }) => {
               <Link href={linkUrl}>{linkText}</Link>
             </button>
           )}
-          {title && <h1>{title}</h1>}
-          {description && <p>{description}</p>}
-         
+       
         </div>
       </div>
     </section>

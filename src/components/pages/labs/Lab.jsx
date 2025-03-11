@@ -47,8 +47,7 @@ const Lab = () => {
     <>
       {firstWorkshop && (
         <ProductBanner
-          title={firstWorkshop.name} // Use the category name for the title
-          description={firstWorkshop.description} // Use the category description
+          // Use the category description
           linkText="Live Demo"
           linkUrl="/demo"
           imageUrl={firstWorkshop.cover_pic_path || "/labs/labBanner.png"} // Default to a placeholder if imageUrl is missing
@@ -80,7 +79,11 @@ const Lab = () => {
                     </div>
                     <div className="labs-toddler">
                       <p>{item.title}</p>
-                      <span>{item.description}</span>
+                      <span>
+                        {item.description.length > 90
+                          ? `${item.description.slice(0, 90)}...`
+                          : item.description}
+                      </span>
                       <div className="an-int">
                       <Link href={`/labs/${item.slug}`}>Read more</Link>
                       </div>

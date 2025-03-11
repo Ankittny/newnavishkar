@@ -31,7 +31,7 @@ const LabDetails = () => {
   
   return (
     <>
-      <ProductBanner imageUrl={worskDetails.image_path} />
+      {/* <ProductBanner imageUrl={worskDetails.image_path} /> */}
 
       <div className="container mb-3 mt-5">
         <div className="row">

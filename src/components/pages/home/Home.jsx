@@ -376,10 +376,6 @@ const Home = () => {
         </div>
       </section>
 
-
-
-
-
       <section className="shopbyintrest">
         <div className="container">
           <div className="row">

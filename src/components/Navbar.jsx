@@ -61,8 +61,8 @@ const Navbar = () => {
     }, 2000);
   };
 
+  // Handle loader for specific pages
  
-  
   return (
   <>
 
@@ -197,6 +197,7 @@ const Navbar = () => {
               </li>
               <li className="nav-item">
                 <Link href="/partner-with-us" passHref className="nav-link">
+                  
                   Partner With Us
                 </Link>
               </li>

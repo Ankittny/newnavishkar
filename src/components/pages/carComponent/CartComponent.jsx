@@ -18,6 +18,7 @@ import Image from "next/image";
 import { Button } from "@mui/material";
 import toast from "react-hot-toast";
 
+
 const axios = axiosInstance;
 
 const CartComponent = () => {
@@ -124,6 +125,14 @@ const CartComponent = () => {
   };
 
   const handleProceedToCheckout = () => {
+
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; // Assuming cart data is stored in localStorage
+
+    if (cartItems.length === 0) {
+        toast.error("Your cart is empty! Add products before proceeding.");
+        return;
+    }
+
     localStorage.setItem("couponCode", selectedCoupon ? selectedCoupon.code : "");
     localStorage.setItem("totalAmount", grandTotal.toFixed(2));
     localStorage.setItem("discountValue", appliedDiscount ? appliedDiscount.toFixed(2) : "0");

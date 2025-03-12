@@ -106,7 +106,7 @@ const Footer = () => {
                   <h3>Contact Us</h3>
                   <ul className="list-unstyled">
                     <li>
-                      A 12-13, 2nd Floor, Sector 16, Gautam Buddha Nagar Noida,
+                      A 17, 1st Floor, Sector 04, Gautam Buddha Nagar Noida,
                       Uttar Pradesh 201301
                     </li>
                     <li><span><FaEnvelope size={"20px"} /></span>  info@navishkar.com</li>

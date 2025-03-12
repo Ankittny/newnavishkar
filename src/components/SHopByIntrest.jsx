@@ -18,6 +18,8 @@ const ShopByIntrest = ({ selectedAgeGroup }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { categoryByAgeGroup, filterSubCategory } = useSelector((state) => state.category);
+   const [loadings,setLoadings]=useState(false);
+  
 
   // Fetch categories by age group
   useEffect(() => {
@@ -52,7 +54,12 @@ const ShopByIntrest = ({ selectedAgeGroup }) => {
     setSelectedSubcategory(subcategorySlug);
   };
   const handleCardClick = (slug) => {
-    router.push(`/products/${slug}`);
+    setLoadings(true); // Show loader
+
+    setTimeout(() => {
+      setLoadings(false); // Hide loader just before navigation
+      router.push(`/products/${slug}`);
+    }, 2000); // 2-second delay
   };
 
 
@@ -103,7 +110,17 @@ const ShopByIntrest = ({ selectedAgeGroup }) => {
           </div>
         </div>
       </div>
+
+      {loadings && (
+        <div className="home-loading-overlay">
+          <div className="home-spinner-container text-center">
+            <div className="home-spinner"></div>
+          </div>
+        </div>
+      )}
     </section>
+
+    
   );
 };
 

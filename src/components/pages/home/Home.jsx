@@ -35,13 +35,13 @@ const Home = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [showImage, setShowImage] = useState(true);
-
   const [productsData, setProductsData] = useState([]);
   const { loading, products, error } = useSelector((state) => state.home);
   const {  reviewList } = useSelector((state) => state.reviews);
   const [activeTab, setActiveTab] = useState({});// To track which tab is active
   const [instaData, setInstaData] = useState([]);
   const [loadingTabs, setLoadingTabs] = useState({});
+  const [loadings,setLoadings]=useState(false);
 
 
   // console.log("Products", products);
@@ -99,8 +99,22 @@ const Home = () => {
   }, [products]);
 
   const handleCardClick = (slug) => {
-    router.push(`/products/${slug}`);
+    setLoadings(true); // Show loader
+
+    setTimeout(() => {
+      setLoadings(false); // Hide loader just before navigation
+      router.push(`/products/${slug}`);
+    }, 2000); // 2-second delay
   };
+
+
+  const handleInnovation =() => {
+    setLoadings(true); // Show loader
+
+    setTimeout(() => {    
+      setLoadings(false); // Hide loader just before navigation 
+    }, 2000); // 2-second delay
+  }
 
   const handleAddToCart = (id) => {
     console.log(`Added to cart: ${id}`);
@@ -238,7 +252,7 @@ const Home = () => {
                       regarding the new emerging technologies and how important
                       it is to stay updated in this technology driven world.
                     </p>
-                    <button className="bg-white px-4 py-2 border-0 mb-2 ">
+                    <button className="bg-white px-4 py-2 border-0 mb-2" onClick={handleInnovation}>
                       <Link href="/workshop">View Workshop</Link>
                     </button>
                   </div>
@@ -259,7 +273,7 @@ const Home = () => {
                       it is to stay updated in this technology driven world.
                     </p>
 
-                    <button className="bg-white dx-text-bg px-4 py-2 border-0 mb-2 ">
+                    <button className="bg-white dx-text-bg px-4 py-2 border-0 mb-2 " onClick={handleInnovation}>
                       <Link href="/innovation">View Innovation</Link>
                     </button>
                   </div>
@@ -635,6 +649,14 @@ const Home = () => {
       <section>
         <OurAchievement />
       </section>
+
+      {loadings && (
+        <div className="home-loading-overlay">
+          <div className="home-spinner-container text-center">
+            <div className="home-spinner"></div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

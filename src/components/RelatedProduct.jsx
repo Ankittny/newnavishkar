@@ -80,7 +80,7 @@ const RelatedProduct = ({ productId }) => {
                     <h5 className="product-name">{product.name}</h5>
                     <p className="product-price">Price: ${product.unit_price}</p>
                     <button className="btnPrimary">
-                      <Link href={`/product/${product.slug}`}>View Product</Link>
+                      <Link href={`/products/${product.slug}`}>View Product</Link>
                     </button>
                   </div>
                 </div>

@@ -110,8 +110,8 @@ const LabDetails = () => {
                 <div className="imag-toddler">
                   <Image
                     src={"/labs/related1.png"}
+                    width={300}
                     height={100}
-                    width={100}
                     alt="link"
                   />
                 </div>

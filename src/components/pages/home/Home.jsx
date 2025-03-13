@@ -154,7 +154,12 @@ const Home = () => {
             <div className="home-learn-title d-flex justify-content-center align-items-center gap-3">
               <h1 className="title-home fw-bold">Learn</h1>
               <span className="easily-title">Easily</span>
-              <img src="product/little.png" />
+              <div className="position-relative">
+                <div className="position-absolute query-quality" style={{ top: "-30px", right: "0" }}>
+                <img src="product/little.png" />
+                </div>
+              </div>
+        
             </div>
             <div className="anywhere-title d-flex justify-content-center align-items-cengter gap-4 fw-bold">
               <div className="first-itme">
@@ -331,7 +336,7 @@ const Home = () => {
                 loop
                 muted
                 className="frontend-video"
-                style={{ width: "100%" }}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
               >
                 <source src="product/video/navishkar.mp4" type="video/mp4" />
               </video>
@@ -340,8 +345,7 @@ const Home = () => {
               <div className="drone-image">
                 <img
                   src="product/DeWatermark.png"
-                  height={374}
-                  style={{ width: "100%" }}
+                  style={{ width: "100%", height: "100%" }}
                 ></img>
               </div>
             </div>

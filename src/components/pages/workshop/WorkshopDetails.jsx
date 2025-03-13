@@ -19,7 +19,7 @@ const WorkshopDetails = () => {
   const dispatch = useDispatch();
   const { loading, worskDetails, error } = useSelector((state) => state.workshop);
 
-  console.log("DIHBSCKJASKCNJS", worskDetails)
+  console.log("DIHBSCKJASKCNJS",worskDetails)
 
   useEffect(() => {
     dispatch(WorkshopDataDetails(workshopid)); // Pass the slug to the action
@@ -61,7 +61,7 @@ const WorkshopDetails = () => {
 
           <div className="col-lg-4">
             <div className="relation-title retation-int right-sight-title-brand">
-              <h4>Related Workshop</h4>
+              <h4>Related Labs</h4>
             </div>
             <div className="relation-title-left left-right-tr right-sight-title-brand">
               <div className="toddler d-flex gap-4 mt-3">
@@ -85,14 +85,14 @@ const WorkshopDetails = () => {
         </div>
       </div>
 
-      {/* <div className="row">
+      <div className="row">
         <div className="col-lg-12 mt-3 mb-3">
           <div className="text-center">
             <h1 className="reletedHead">Related Products</h1>
           </div>
         </div>
         <RelatedProduct />
-      </div> */}
+      </div>
 
       <OurAchievement />
     </>

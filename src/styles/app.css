@@ -223,7 +223,6 @@ p {
 }
 
 .down_footer h5 {
-  font-family: "Poppins";
   font-size: 12px;
   font-weight: 500;
   color: #fff;
@@ -238,13 +237,11 @@ p {
 }
 
 .ct_contact_us p {
-  font-family: "Poppins";
   font-size: 14px;
   font-weight: 400;
 }
 
 .ct_contact_us h3 {
-  font-family: "Poppins";
   font-size: 25px;
   font-weight: 500;
 }
@@ -418,6 +415,10 @@ body {
   width: 25px;
 }
 
+.btn-link a {
+  color: #fff;
+}
+
 .productBanner {
   width: 100% !important;
   background-repeat: no-repeat;
@@ -428,15 +429,14 @@ body {
 .navi-title {
   position: absolute;
   transform: translate(-50%, -50%);
-  top: 42%;
-  left: 80%;
+  top: 25%;
+  left: 90%;
 }
 
 .navi-title h1 {
   font-size: 21px;
   font-weight: 600;
   color: #333333;
-  font-family: "Libre Franklin";
 }
 
 .navi-title button {
@@ -444,6 +444,10 @@ body {
   border-radius: 30px;
   padding: 10px 30px;
   border: none;
+  position: absolute;
+  top: -95px;
+  right: -28px;
+  width: 140px;
 }
 
 .navi-title button a {
@@ -455,7 +459,6 @@ body {
   font-size: 16px;
   font-weight: 400;
   color: #333333;
-  font-family: "Libre Franklin";
 }
 
 .shop-by-title h5 {
@@ -478,7 +481,6 @@ body {
 .shop-by-title p {
   font-size: 16px;
   font-weight: 500;
-  font-family: "Nunito";
   color: #353535;
 }
 
@@ -545,27 +547,24 @@ body {
   color: #185695;
   font-weight: 600;
   font-size: 30px;
-  font-family: "Poppins";
 }
 
 .motonove-right-title p {
-  color: #635F5F;
-  font-family: Poppins;
-  font-size: 20px;
+  color: #000;
+  font-size: 14px;
   font-weight: 400;
   margin-bottom: 20px;
+  letter-spacing: 1px;
 }
 
 .motonova-highlight span {
   font-weight: 600;
   font-size: 20px;
   color: #185695;
-  font-family: "Poppins";
 }
 
 .wheel-balance ul {
   color: #635F5F;
-  font-family: "Poppins";
   font-size: 16px;
 }
 
@@ -578,20 +577,17 @@ body {
   color: #185695;
   font-size: 30px;
   font-weight: 500;
-  font-family: "Poppins";
 }
 
 .reting-create-price span {
   color: #635F5F;
   font-size: 12px;
-  font-family: "Poppins";
   font-weight: 400;
 }
 
 .rating-star span {
   color: #185695;
   font-weight: 700;
-  font-family: "Nunito";
   font-size: 15px;
 }
 
@@ -614,7 +610,6 @@ body {
 .ic0n-about-trust h3 {
   color: #635F5F;
   font-weight: 400;
-  font-family: "Poppins";
   font-size: 20px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   margin-top: 30px;
@@ -632,7 +627,8 @@ body {
 .ic0n-about-trust p {
   font-weight: 400;
   color: #3E3939;
-  font-size: 16px;
+  font-size: 14px;
+  letter-spacing: 1px;
 }
 
 .mt-gera-title {
@@ -647,16 +643,13 @@ body {
 }
 
 .image-sec-66 img {
-  width: 70%;
-  height: auto;
-}
-
-.right-sight-title-brand, .mini-img-minos {
-  margin-top: 50px;
-}
-
-.product-image {
   width: 100%;
+  height: 150px;
+  margin-top: 100px;
+}
+
+.right-sight-title-brand {
+  margin-top: 50px;
 }
 
 .card {
@@ -721,6 +714,7 @@ body {
 
 .product-image {
   width: 100%;
+  height: auto;
 }
 
 .proudctDetailHeading h1 {
@@ -729,9 +723,6 @@ body {
 
 .mini-img-minos button a {
   color: #fff !important;
-}
-
-.mini-img-minos button {
   padding: 10px 25px !important;
 }
 
@@ -813,6 +804,25 @@ body {
   width: 100%;
   height: 2px;
   background-color: #ddd;
+}
+
+.css-1l937eg-MuiGrid-root > .MuiGrid-item {
+  padding-left: 0px;
+}
+
+.box-sh .css-1ruxp1v img {
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 10px;
+  width: 97%;
+}
+
+.box-sh .css-1ruxp1v {
+  position: sticky;
+  width: 100%;
+  top: 0px;
 }
 
 @media (max-width: 991px) {
@@ -901,7 +911,7 @@ body {
   }
   .productBanner img {
     width: 100%;
-    height: 180px;
+    height: 140px;
     -o-object-fit: cover;
        object-fit: cover;
   }
@@ -927,6 +937,10 @@ body {
     padding: 0 !important;
   }
 }
+.swiper-button-prev:after, .swiper-button-next:after {
+  font-size: 25px !important;
+}
+
 .slide-container {
   width: 100%;
   overflow: hidden;
@@ -988,7 +1002,6 @@ body {
   color: #222222;
   font-size: 18px;
   font-weight: 400;
-  font-family: "Poppins";
   padding: 5px 13px;
 }
 
@@ -1000,7 +1013,6 @@ body {
 .left-list-title a, .left-search-title a, .left-product-title a {
   color: #000000;
   font-size: 14px;
-  font-family: "Poppins";
   text-decoration: none;
 }
 
@@ -1438,12 +1450,6 @@ table tr {
   margin-bottom: 10px;
 }
 
-.labs-toddler span {
-  font-size: 11px;
-  font-weight: 400;
-  color: #000000;
-}
-
 .all-details-age p {
   color: #222222;
   font-size: 10px;
@@ -1503,14 +1509,12 @@ table tr {
 
 .relation-title h3 {
   color: #185695;
-  font-family: "Nunito";
   font-size: 25px;
   font-weight: 700;
 }
 
 .relation-title h4 {
   color: #000000;
-  font-family: "Poppins";
   font-size: 20px;
   font-weight: 500;
 }
@@ -1521,91 +1525,11 @@ table tr {
   font-weight: 800;
 }
 
-.right-sight-title-brand {
-  margin-bottom: 50px;
-}
-
-.right-sight-title-brand, .mini-img-minos {
-  margin-top: 50px;
-}
-
-.imag-toddler img {
-  width: 140px;
-}
-
-.labs-toddler p {
-  font-family: "Poppins";
-  font-size: 14px;
-  font-weight: 500;
-  color: #00528d;
-  margin-bottom: 10px;
-}
-
-.labs-toddler span {
-  font-family: "Poppins";
-  font-size: 11px;
-  font-weight: 400;
-  color: #000000;
-}
-
-.an-int a {
-  font-size: 14px;
-  font-weight: 500;
-  color: #00528d;
-  text-decoration: none;
-}
-
-.an-int {
-  margin-top: 10px;
-  border: 1px solid #777;
-  border-radius: 6px;
-}
-
-.toddlet-tab-img {
-  width: 100%;
-  height: auto;
-}
-
-.all-details-age p {
-  font-size: 15px;
-}
-
-.all-details-age span {
-  font-size: 13px;
-}
-
-.camp-title-act p {
-  font-size: 20px;
-}
-
-.cardBody button {
-  background-color: #203D6A;
-  border: none;
-}
-
-.cardBody a {
-  color: #fff;
-}
-
-.summer-activity p {
-  font-size: 18px;
-}
-
-.retation-int {
-  margin-bottom: 0px;
-}
-
-.left-right-tr {
-  margin-top: 20px !important;
-}
-
-.artical-tag-role p {
-  text-align: justify;
-}
-
-@media (max-width: 768px) {
-  .detail-nav {
-    flex-direction: column;
+@media (max-width: 425px) {
+  .navi-title button {
+    position: absolute !important;
+    top: -45px !important;
+    right: 10px !important;
   }
 }
 .mini-img-minos p {
@@ -1613,13 +1537,6 @@ table tr {
   color: #1A5093;
   font-size: 29px;
   font-family: "Comforta";
-}
-
-.mini-img-minos img {
-  width: 100%;
-  height: 300px;
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 
 .mini-img-minos {
@@ -1633,7 +1550,7 @@ table tr {
   flex-direction: column;
 }
 
-.right-sight-title-brand, .mini-img-minos {
+.right-sight-title-brand {
   margin-top: 50px;
 }
 
@@ -1675,14 +1592,12 @@ table tr {
   color: #000000;
   font-weight: 600;
   font-size: 25px;
-  font-family: "Poppins";
 }
 
 .partner-other-int p {
   color: #000000;
   font-weight: 400;
-  font-size: 16px;
-  font-family: "Poppins";
+  font-size: 14px;
 }
 
 .classic-partner-title {
@@ -1723,7 +1638,6 @@ table tr {
 
 .partner-heading h1 {
   color: #175A95;
-  font-family: "Poppins";
   font-weight: 500;
   font-size: 40px;
 }
@@ -1760,11 +1674,10 @@ table tr {
 }
 
 .partner-others-int p {
-  font-size: 1rem;
+  font-size: 14px;
   line-height: 1.6;
   color: #555;
   font-weight: 400;
-  font-family: "Poppins";
 }
 
 .partner-int-right {
@@ -1783,7 +1696,6 @@ table tr {
 .partner-other-int h3 {
   font-weight: 400;
   color: #000;
-  font-family: "Poppins";
   font-size: 25px;
 }
 
@@ -1858,7 +1770,7 @@ table tr {
 }
 
 .partner-other-int p {
-  font-size: 1rem;
+  font-size: 14px;
   line-height: 1.6;
   color: #555;
 }
@@ -1936,10 +1848,9 @@ table tr {
 }
 
 .kit-down p {
-  font-size: 16px;
+  font-size: 15px;
   color: #000;
-  font-family: "Nunito";
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .kit-down {
@@ -2358,12 +2269,19 @@ textarea {
     flex-direction: column;
   }
 }
-.left-p-title ul {
-  font-weight: 600;
+.info-item p {
+  font-size: 14px;
 }
 
 .left-p-title ul li {
   font-weight: 400;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.left-p-title ul {
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .complete-project {
@@ -2560,12 +2478,6 @@ textarea {
   margin-bottom: 10px;
 }
 
-.labs-toddler span {
-  font-size: 11px;
-  font-weight: 400;
-  color: #000000;
-}
-
 .all-details-age p {
   color: #222222;
   font-size: 10px;
@@ -2625,14 +2537,12 @@ textarea {
 
 .relation-title h3 {
   color: #185695;
-  font-family: "Nunito";
   font-size: 25px;
   font-weight: 700;
 }
 
 .relation-title h4 {
   color: #000000;
-  font-family: "Poppins";
   font-size: 20px;
   font-weight: 500;
 }
@@ -2641,27 +2551,23 @@ textarea {
   margin-bottom: 50px;
 }
 
-.right-sight-title-brand, .mini-img-minos {
+.right-sight-title-brand {
   margin-top: 50px;
 }
 
 .imag-toddler img {
   width: 140px;
+  height: 130px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
 }
 
 .labs-toddler p {
-  font-family: "Poppins";
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 500;
   color: #00528d;
   margin-bottom: 10px;
-}
-
-.labs-toddler span {
-  font-family: "Poppins";
-  font-size: 11px;
-  font-weight: 400;
-  color: #000000;
 }
 
 .an-int a {
@@ -2691,7 +2597,7 @@ textarea {
 }
 
 .camp-title-act p {
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .cardBody button {
@@ -2704,7 +2610,7 @@ textarea {
 }
 
 .summer-activity p {
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .retation-int {
@@ -2726,6 +2632,7 @@ textarea {
 
 .an-int {
   margin-top: 10px;
+  border-radius: 8px;
 }
 
 @media (max-width: 768px) {
@@ -2811,8 +2718,12 @@ textarea {
 }
 
 .privacy-policy-container {
-  font-family: Arial, sans-serif;
+  font-family: " sans-serif";
   padding: 20px;
+}
+
+.privacy-policy-dynamic-content p, span {
+  font-family: "sans-serif" !important;
 }
 
 .privacy-policy-wrapper {
@@ -3094,6 +3005,36 @@ textarea {
     transform: rotate(360deg);
   }
 }
+.loader-overlay-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.loader-navbar {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ccc;
+  border-top: 5px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .upcoming-container {
   display: flex;
   justify-content: center;
@@ -3170,6 +3111,257 @@ textarea {
 
 .css-1idn90j-MuiGrid-root {
   padding-top: 20px;
+}
+
+.screen {
+  opacity: 0.25;
+  animation: slide 4s linear infinite;
+}
+
+.star {
+  animation: bounce 4s linear infinite;
+}
+
+.shaddow {
+  transform-origin: center center;
+  animation: bounceShaddow 4s linear infinite;
+}
+
+@keyframes slide {
+  from {
+    transform: translatex(-10%);
+  }
+  to {
+    transform: translatex(100%);
+  }
+}
+@keyframes bounce {
+  0%, 40%, 50%, 60%, 100% {
+    transform: translatey(0%);
+  }
+  45%, 55% {
+    transform: translatey(-10%);
+  }
+}
+@keyframes bounceShaddow {
+  0%, 40%, 50%, 60%, 100% {
+    opacity: 100%;
+    transform: scale(1, 1);
+  }
+  45%, 55% {
+    opacity: 30%;
+    transform: scale(0.8, 0.7) translatey(10%);
+  }
+}
+.order-title h1 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.table-responsive, .table_table {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.table_table tr {
+  display: table-row;
+  border-bottom: none;
+  background: linear-gradient(175.61deg, #207179 0%, #092136 100%) !important;
+  color: #fff;
+}
+
+.table_table_detail {
+  width: 100%;
+}
+
+.table_table_detail tr {
+  display: table-row;
+  border-bottom-color: #000;
+}
+
+.table_table_detail td {
+  padding: 8px;
+}
+
+.table_table td {
+  padding: 8px;
+}
+
+.tdbolder span {
+  letter-spacing: 1px;
+  font-size: 13px;
+}
+
+.cont, .bodt-tr, .price-bold {
+  font-size: 13px;
+}
+
+.icon-invoice a {
+  color: #fff;
+}
+
+.tr-order-trading {
+  background: #fff;
+  color: #000;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.modal-content.jsx-65e65f2ee768ca50 {
+  background: white !important;
+  padding: 20px !important;
+  border-radius: 10px !important;
+  text-align: justify !important;
+  max-width: 900px !important;
+  width: 100% !important;
+  margin: auto;
+}
+
+.css-13xfq8m-MuiTabPanel-root tr {
+  border-bottom: 1px solid #175A95;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 115px;
+  padding: 15px 5px;
+}
+
+.card-stepper {
+  z-index: 0;
+}
+
+#progressbar-2 {
+  color: #455A64;
+}
+
+#progressbar-2 li {
+  list-style-type: none;
+  font-size: 13px;
+  width: 33.33%;
+  float: left;
+  position: relative;
+}
+
+#progressbar-2 #step1:before {
+  content: "\f058";
+  font-family: "Font Awesome 5 Free";
+  color: #fff;
+  width: 37px;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+#progressbar-2 #step2:before {
+  content: "\f058";
+  font-family: "Font Awesome 5 Free";
+  color: #fff;
+  width: 37px;
+}
+
+#progressbar-2 #step3:before {
+  content: "\f058";
+  font-family: "Font Awesome 5 Free";
+  color: #fff;
+  width: 37px;
+  margin-right: 0;
+  text-align: center;
+}
+
+#progressbar-2 #step4:before {
+  content: "\f111";
+  font-family: "Font Awesome 5 Free";
+  color: #fff;
+  width: 37px;
+  margin-right: 0;
+  text-align: center;
+}
+
+#progressbar-2 li:before {
+  line-height: 37px;
+  display: block;
+  font-size: 12px;
+  background: #203d6a;
+  border-radius: 50%;
+}
+
+#progressbar-2 li:after {
+  content: "";
+  width: 100%;
+  height: 5px;
+  background: #203d6a;
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 15px;
+  z-index: -1;
+}
+
+#progressbar-2 li:nth-child(1):after {
+  left: 1%;
+  width: 100%;
+}
+
+#progressbar-2 li:nth-child(2):after {
+  left: 1%;
+  width: 100%;
+}
+
+#progressbar-2 li:nth-child(3):after {
+  left: 1%;
+  width: 100%;
+  background: #203d6a !important;
+}
+
+#progressbar-2 li:nth-child(4) {
+  left: 0;
+  width: 37px;
+}
+
+#progressbar-2 li:nth-child(4):after {
+  left: 0;
+  width: 0;
+}
+
+#progressbar-2 li.active:before,
+#progressbar-2 li.active:after {
+  background: #203d6a;
+}
+
+.card-stepper {
+  width: 100%;
+}
+
+.fcx svg {
+  font-size: 45px;
+}
+
+.media-order svg {
+  font-size: 40px;
+}
+
+.icon-invoice {
+  font-size: 25px;
+}
+
+.changing-number {
+  background-color: #203d6a !important;
+}
+
+.fcx p {
+  font-size: 13px;
+}
+
+.modal-content {
+  overflow-y: scroll;
+  height: 75%;
+}
+
+.orderdetailbottom {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border: 1px solid black;
+  width: 50%;
+  padding: 10px;
+  float: inline-end;
 }
 
 .error {

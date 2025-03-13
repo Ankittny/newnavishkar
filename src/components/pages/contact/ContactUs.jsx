@@ -53,7 +53,7 @@ const ContactUs = () => {
       <ProductBanner
         title="Young Innovators"
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elitvashcb biiwuhiwq uidh ih uhi iui"
-        imageUrl="/labs/labBanner.png"
+        imageUrl="/labs/contact.png"
       />
 
       <section className="mt-4">

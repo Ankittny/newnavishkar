@@ -83,10 +83,10 @@ const Footer = () => {
                   <h3>Important Links</h3>
                   <ul className="list-unstyled">
                     <li>
-                      <Link href={"/return-policy"}>Return Policy Page</Link>
+                      <Link href={"/return-policy"}>Return Policy</Link>
                     </li>
                     <li>
-                      <Link href={"/privacy-policy"}>Privacy Policy Page</Link>
+                      <Link href={"/privacy-policy"}>Privacy Policy</Link>
                     </li>
                     {/* <li>Shipping and Delivery</li> */}
                     <li>

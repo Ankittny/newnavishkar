@@ -88,7 +88,7 @@ const PartnerWithUs = () => {
 
   return (
     <>
-      <ProductBanner imageUrl={"/product/productDetailBanner.png"} />
+      <ProductBanner  imageUrl="/labs/partner.png" />
 
       <div className="partners-title">
         <div className="container">

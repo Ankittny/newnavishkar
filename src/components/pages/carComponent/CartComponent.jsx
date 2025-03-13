@@ -124,20 +124,28 @@ const CartComponent = () => {
     setSelectedCoupon(null);
   };
 
-  const handleProceedToCheckout = () => {
 
-    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; // Assuming cart data is stored in localStorage
+  console.log("Raw localStorage Data:", localStorage.getItem("cart"));
+console.log("Parsed cartItems:", JSON.parse(localStorage.getItem("cart")));
+const handleProceedToCheckout = () => {
+  const storedData = JSON.parse(localStorage.getItem("cart"));
+  const cartItems = storedData?.cartItems || [];
 
-    if (cartItems.length === 0) {
-        toast.error("Your cart is empty! Add products before proceeding.");
-        return;
-    }
+  console.log("Stored Cart Items Before Checkout:", cartItems);
 
-    localStorage.setItem("couponCode", selectedCoupon ? selectedCoupon.code : "");
-    localStorage.setItem("totalAmount", grandTotal.toFixed(2));
-    localStorage.setItem("discountValue", appliedDiscount ? appliedDiscount.toFixed(2) : "0");
+  if (cartItems.length === 0) {
+    toast.error("Your cart is empty! Add products before proceeding.");
+    return;
+  }
+
+  localStorage.setItem("couponCode", selectedCoupon ? selectedCoupon.code : "");
+  localStorage.setItem("totalAmount", grandTotal.toFixed(2));
+  localStorage.setItem("discountValue", appliedDiscount ? appliedDiscount.toFixed(2) : "0");
+
+  setTimeout(() => {
     router.push("/cart/payments");
-  };
+  }, 1000);
+};
 
 
  

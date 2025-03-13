@@ -330,7 +330,7 @@
             background-image: url('../../public/product/drone-exit.png');
             }
             50%{
-                background-image: url('../../public/product/9-MOTONOVA.gif');
+                 -image: url('../../public/product/9-MOTONOVA.gif');
             }
             75% {
                 background-image: url('../../public/product/carnivals.png');
@@ -340,7 +340,12 @@
         }
       }
 
-
+header{
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    z-index: 999;
+}
 
 //   ===================================================Media Query=============================================
  

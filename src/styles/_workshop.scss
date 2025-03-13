@@ -97,6 +97,9 @@
 }
 .imag-toddler img{
     width: 140px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
 .labs-toddler p{
@@ -158,6 +161,7 @@
 }
 .an-int {
     margin-top: 10px;
+    border-radius: 8px;
 }
 
 @media(max-width:768px){

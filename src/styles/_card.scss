@@ -1,7 +1,7 @@
 .play-role-title{
     // margin-top: 30px;
    
-    // flex-grow: 1;
+    //  flex-grow: 1;
     flex-shrink: 1;
     flex-basis: calc(33.33% - 20px);
     box-sizing: border-box;
@@ -117,7 +117,7 @@
   }
   
   .card-container > div {
-    flex: 1 1 calc(33.33% - 20px); /* 3 cards per row with 20px gap */
+    flex-basis:  calc(33.33% - 20px); /* 3 cards per row with 20px gap */
     box-sizing: border-box; /* Ensures padding/margins don't affect width */
     margin-bottom: 20px; /* Optional: space below each card */
   }

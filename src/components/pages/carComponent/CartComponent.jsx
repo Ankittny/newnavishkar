@@ -119,10 +119,33 @@ const CartComponent = () => {
       const storedData = JSON.parse(localStorage.getItem("cart"));
       const cartItems = storedData?.cartItems || [];
 
+    const handleProceedToCheckout = () => {
+    if (typeof window === "undefined") return;
+
+    const storedData = JSON.parse(localStorage.getItem("cart")) || {};
+    const cartItems = storedData?.cartItems || [];
+
+    console.log("Stored Cart Items Before Checkout:", cartItems);
+
+    if (cartItems.length === 0) {
+      toast.error("Your cart is empty! Add products before proceeding.");
+      return;
+    }
+
+    localStorage.setItem("couponCode", selectedCoupon ? selectedCoupon.code : "");
+    localStorage.setItem("totalAmount", grandTotal?.toFixed(2) || "0");
+    localStorage.setItem("discountValue", appliedDiscount?.toFixed(2) || "0");
+
+    setTimeout(() => {
+      router.push("/cart/payments");
+    }, 1000);
+  };
+
       if (cartItems.length === 0) {
         toast.error("Your cart is empty! Add products before proceeding.");
         return;
       }
+
 
       localStorage.setItem("couponCode", selectedCoupon ? selectedCoupon.code : "");
       localStorage.setItem("totalAmount", grandTotal.toFixed(2));
@@ -133,6 +156,7 @@ const CartComponent = () => {
       }, 1000);
     }
   };
+
 
   return (
     <div className="container">

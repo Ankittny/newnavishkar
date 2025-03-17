@@ -317,7 +317,7 @@ const Home = () => {
               <div className="col-lg-6">
                 <div className="drone-humble-drnoe ">
                   <h2 className="">
-                    N - <span>DRONE SERVICE</span>
+                    N - <span>Drone Services</span>
                   </h2>
                   <p>Spark your child's interest in STEM with Tinkering Intelli Labs Pvt Ltd's Navishkar drone workshop.
                      Kids will gain hands-on experience building and flying drones while

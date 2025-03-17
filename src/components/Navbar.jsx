@@ -123,12 +123,19 @@ const Navbar = () => {
                       .filter((category) => category.type === "n-shop")
                       .map((category) => (
                         <li key={category.slug}>
-                          <button
+                          {/* <button
                               onClick={() => handleCategoryClick(category.slug)}
                               className="dropdown-item"
                             >
                               {category.name}
-                            </button>
+                            </button> */}
+                            <Link
+                            href={`/${category.slug}`}
+                            passHref
+                            className="dropdown-item"
+                          >
+                            {category.name}
+                          </Link>
                         </li>
                       ))
                   )}
@@ -156,12 +163,19 @@ const Navbar = () => {
                       .filter((category) => category.type === "K-12 Offering")
                       .map((category) => (
                         <li key={category.slug}>
-                          <button
+                          {/* <button
                               onClick={() => handleCategoryClick(category.slug)}
                               className="dropdown-item"
                             >
                               {category.name}
-                            </button>
+                            </button> */}
+                            <Link
+                            href={`/${category.slug}`}
+                            passHref
+                            className="dropdown-item"
+                          >
+                            {category.name}
+                          </Link>
                         </li>
                       ))
                   )}

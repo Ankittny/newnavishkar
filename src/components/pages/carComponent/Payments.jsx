@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import RazorpayButton from "@/components/RazorpayButton";
 import { AddressData, getAddressData, updateAddressData, deleteAddressData } from "@/redux/Action/Address";
 import { Modal, Button } from "react-bootstrap";
+import toast from "react-hot-toast"; // Import toaster
 
 const Payment = () => {
   const dispatch = useDispatch();
@@ -47,17 +48,29 @@ const Payment = () => {
     console.log("Stored Discount:", discountMoney);
 
     setCouponCode(storedCoupon);
-   setTotalAmount(parseFloat(storedAmount));
-   setDiscountAmount(parseFloat(discountMoney));
-   
+    setTotalAmount(parseFloat(storedAmount));
+    setDiscountAmount(parseFloat(discountMoney));
+
   }, [dispatch]);
 
   // Handle Input Change
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setShippingDetails((prevDetails) => ({
+  //     ...prevDetails,
+  //     [name]: value,
+  //   }));
+  // };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setShippingDetails((prevDetails) => ({
-      ...prevDetails,
-      [name]: value,
+    let newValue = value;
+    if (name === "country" && value.length > 0) {
+      newValue = value.charAt(0).toUpperCase() + value.slice(1);
+    }
+    setShippingDetails((prev) => ({
+      ...prev,
+      [name]: newValue,
     }));
   };
 
@@ -137,7 +150,7 @@ const Payment = () => {
                     </div>
                     <div className="d-flex gap-3">
                       <Button variant="warning" className="edit-address mr-2" onClick={() => handleEdit(address)}>Edit</Button>
-                      <Button variant="danger" onClick={() => handleDelete(address.id)}>Delete</Button>
+                      {/* <Button variant="danger" onClick={() => handleDelete(address.id)}>Delete</Button> */}
                     </div>
                   </div>
                 ))
@@ -153,21 +166,21 @@ const Payment = () => {
                 <p>Sub Total: ₹{totalAmount.toFixed(2)}</p>
                 {/* <p>Shipping: ₹{shipping.toFixed(2)}</p> */}
                 <p className="d-flex justify-content-between">Discount on product <span>₹{totalDiscount.toFixed(2)}</span></p>
-                <p className="">Coupon Code Apply <b>({ couponCode })</b><span className="">{discountAmount}</span></p>
+                <p className="">Coupon Code Apply <b>({couponCode})</b><span className="">{discountAmount}</span></p>
                 <hr />
                 <p>Total: ₹{totalAmount.toFixed(2)}</p>
               </div>
               <div className="payment-methods mt-3">
                 <h3>Pay with Razorpay</h3>
-                <RazorpayButton totalAmount={totalAmount} couponCode={couponCode} discountAmount={discountAmount}   addressId={selectedAddress} />
+                <RazorpayButton totalAmount={totalAmount} couponCode={couponCode} discountAmount={discountAmount} addressId={selectedAddress} />
               </div>
             </div>
           </div>
         </div>
       </div>
-      
+
       {/* Address Modal */}
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
+      {/* <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>{isEditing ? "Edit Address" : "Add New Address"}</Modal.Title>
         </Modal.Header>
@@ -182,7 +195,75 @@ const Payment = () => {
             <Button type="submit" className="mt-3 w-100">{isEditing ? "Update Address" : "Save Address"}</Button>
           </form>
         </Modal.Body>
+      </Modal> */}
+
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>{isEditing ? "Edit Address" : "Add New Address"}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="contact_person_name"
+              placeholder="Full Name"
+              value={shippingDetails.contact_person_name}
+              onChange={handleInputChange}
+              required
+              className="form-control mb-2"
+            />
+            <input
+              type="text"
+              name="phone"
+              placeholder="Phone Number"
+              value={shippingDetails.phone}
+              onChange={handleInputChange}
+              required
+              className="form-control mb-2"
+            />
+            <input
+              type="text"
+              name="address"
+              placeholder="Address"
+              value={shippingDetails.address}
+              onChange={handleInputChange}
+              required
+              className="form-control mb-2"
+            />
+            <input
+              type="text"
+              name="city"
+              placeholder="City"
+              value={shippingDetails.city}
+              onChange={handleInputChange}
+              required
+              className="form-control mb-2"
+            />
+            <input
+              type="text"
+              name="zip"
+              placeholder="Zip Code"
+              value={shippingDetails.zip}
+              onChange={handleInputChange}
+              required
+              className="form-control mb-2"
+            />
+            <input
+              type="text"
+              name="country"
+              placeholder="Country"
+              value={shippingDetails.country}
+              onChange={handleInputChange}
+              required
+              className="form-control mb-2"
+            />
+            <Button type="submit" className="mt-3 w-100">
+              {isEditing ? "Update Address" : "Save Address"}
+            </Button>
+          </form>
+        </Modal.Body>
       </Modal>
+
     </div>
   );
 };

@@ -10,6 +10,7 @@ const initialState = {
   error: null,
   success: null,
   isError: false,
+ 
 };
 
 export const categoryReducer = createReducer(initialState, (builder) => {
@@ -91,6 +92,5 @@ export const categoryReducer = createReducer(initialState, (builder) => {
       state.error = action.payload;
       state.isError = true;
     })
-    
-    
+  
 });

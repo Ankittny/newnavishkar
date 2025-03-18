@@ -8,16 +8,15 @@ import axios from "axios";
 import toast from "react-hot-toast"; // Import toaster
 import { LuShoppingCart } from "react-icons/lu";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa"; // Import star icons
+import Tooltip from '@mui/material/Tooltip';
 
-const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id, current_stock }) => {
+const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id, current_stock,rating }) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false); // State to handle loader
   const token = localStorage.getItem("authAdminToken");
 
 
-  // Dummy rating data (change as needed)
-  const rating = 4.5; // Example rating
-  const totalReviews = 120; // Example total reviews
+  
 
   // Calculate the actual price based on the discount type
   const percentageDiscountAmount = (price * discount) / 100;
@@ -63,11 +62,11 @@ const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id, cur
     const stars = [];
     for (let i = 1; i <= 5; i++) {
       if (rating >= i) {
-        stars.push(<FaStar key={i} className="text-warning" />); // Full star
+        stars.push(<FaStar key={i} style={{color:'#175A95'}} />);
       } else if (rating >= i - 0.5) {
-        stars.push(<FaStarHalfAlt key={i} className="text-warning" />); // Half star
+        stars.push(<FaStarHalfAlt key={i} style={{color:'#175A95'}} />);
       } else {
-        stars.push(<FaRegStar key={i} className="text-warning" />); // Empty star
+        stars.push(<FaRegStar key={i} style={{color:'#175A95'}}/>);
       }
     }
     return stars;
@@ -109,28 +108,32 @@ const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id, cur
       </div>
       <div className="add-btn text-center mb-2">
         {current_stock > 0 ? (
-          <button onClick={handleAddToCart} className="d-flex align-items-center justify-content-center gap-2">
-           {loading ? <span>Loading...</span> : (
-        <>
-          <LuShoppingCart />
-          ADD TO BAG
-        </>
-      )}
-          </button>
+          <Tooltip title="Add to Cart" arrow> 
+            <button onClick={handleAddToCart} className="d-flex align-items-center justify-content-center gap-2">
+              {loading ? <span>Loading...</span> : (
+                <>
+
+                  <LuShoppingCart size={"20px"} />
+
+                </>
+              )}
+
+            </button>
+          </Tooltip>
         ) : (
-          <p className="text-danger fw-bold">Out of Stock</p>
+          <p className="text-danger fw-bold mb-0">Out of Stock</p>
         )}
 
 
-        {/* Display rating on the right side */}
-        <div className="d-flex align-items-center justify-content-end gap-1">
+       {/* Display dynamic rating on the right side */}
+       <div className="d-flex align-items-center gap-1">
           {renderStars(rating)}
-          <span className="text-muted">({totalReviews})</span>
+          {/* <span className="text-muted">({totalReviews})</span> */}
         </div>
-  
+
       </div>
-    
-    
+
+
     </div>
   );
 };

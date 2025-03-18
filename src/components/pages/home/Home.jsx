@@ -456,6 +456,7 @@ const Home = () => {
                                     onClick={() => handleCardClick(product.slug)}
                                     onAddToCart={() => handleAddToCart(product.id)}
                                     current_stock={product?.current_stock}
+                                    rating={product.reviews_count}
                                   />
                                 ))
                               ) : (

@@ -100,24 +100,50 @@ export const updateAddressData = (values) => async (dispatch) => {
 //   }
 // }
 
-export const deleteAddressData = (customerId, addressId) => async (dispatch) => {
+// export const deleteAddressData = (customerId, addressId) => async (dispatch) => {
+//   try {
+//     dispatch({ type: "addressDeleteRequest" });
+//     const token = localStorage.getItem("authAdminToken");
+//     const config = {
+//       headers: {
+//         Authorization: token ? `Bearer ${token}` : "",
+//       },
+//       data: { customer_id: customerId, address_id: addressId }, // Correct way to send data
+//     };
+
+//     await axios.delete("/customer/address", config);
+
+//     dispatch({ type: "addressDeleteSuccess", payload: addressId });
+//     dispatch(getAddressData()); // Refresh address list after deletion
+//   } catch (error) {
+//     dispatch({ type: "addressDeleteFail", payload: error.response?.data.message || error.message });
+//   }
+// };
+
+
+export const deleteAddressData = (address_id) => async (dispatch) => {
   try {
     dispatch({ type: "addressDeleteRequest" });
     const token = localStorage.getItem("authAdminToken");
-
     const config = {
       headers: {
         Authorization: token ? `Bearer ${token}` : "",
       },
-      data: { customer_id: customerId, address_id: addressId }, // Correct way to send data
     };
 
-    await axios.delete("/customer/address", config);
+    // Use query parameters in the URL instead of sending a request body
+    await axios.delete(
+      `/customer/address?&address_id=${address_id}`,
+      config
+    );
 
-    dispatch({ type: "addressDeleteSuccess", payload: addressId });
+    dispatch({ type: "addressDeleteSuccess", payload: address_id });
     dispatch(getAddressData()); // Refresh address list after deletion
   } catch (error) {
-    dispatch({ type: "addressDeleteFail", payload: error.response?.data.message || error.message });
+    dispatch({
+      type: "addressDeleteFail",
+      payload: error.response?.data.message || error.message,
+    });
   }
 };
 

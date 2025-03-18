@@ -170,9 +170,33 @@ const Home = () => {
                 <h1 className="text-data-analytics">Anywhere </h1>
               </div>
               <div className="image-item d-flex align-items-center">
-                <img src="product/IMG_5991.png" width={45} height={45} />
+
+              <Image 
+  src="/product/IMG_5991.png" // Corrected file extension and relative path
+  alt="Sample Image"
+  width={45} 
+  height={45} 
+  priority={false} 
+  loading="lazy" 
+  quality={80} 
+/>
+
+                {/* <img src="product/IMG_5991.png" width={45} height={45} /> */}
                 <div className="">
-                  <img src="product/img_5960.png" width={50} height={50} />
+                <Image 
+  src="/product/img_5960.png" // Corrected file extension and relative path
+  alt="Sample Image"
+  width={50} 
+  height={50} 
+  priority={false} 
+  loading="lazy" 
+  quality={80} 
+/>                  
+
+
+
+
+                  {/* <img src="product/img_5960.png" width={50} height={50} /> */}
                 </div>
               </div>
               <div className="text-data-analytics">
@@ -184,7 +208,18 @@ const Home = () => {
             <div className="row">
               <div className="col-lg-4">
                 <div className="award-name">
-                  <img src="product/200w.gif" style={{ width: "75%" }} />
+
+                <Image 
+  src="/product/200w.gif" // Corrected file extension and relative path
+  alt="Sample Image"
+  width={300} 
+  height={300}
+  priority={false} 
+  loading="lazy" 
+  quality={80} 
+/>            
+
+                  {/* <img src="product/200w.gif" style={{ width: "75%" }} /> */}
                 </div>
               </div>
               <div className="col-lg-4">
@@ -200,14 +235,53 @@ const Home = () => {
                     <img src="product/Group-95.png" width={150} />
                   </div>
                   <div className="training-title d-flex gap-2 mt-5">
-                    <img
+                    
+                  <Image 
+  src="/product/image 2.png" // Corrected file extension and relative path
+  alt="Certificate"
+  width={100} 
+  height={100}
+  priority={false} 
+  loading="lazy" 
+  quality={80} 
+  onContextMenu={(e) => e.preventDefault()}
+  className="disable-image"
+/>            
+                    
+                    {/* <img
                       src="product/image 2.png"
                       alt="Certificate"
                       className="disable-image"
                       onContextMenu={(e) => e.preventDefault()} // Disable right-click
                       draggable="false" // Prevent dragging
-                    />
-                    <img src="product/image 2.png"
+                    /> */}
+<Image 
+  src="/product/image 2.png" // Corrected file extension and relative path
+  alt="Certificate"
+  width={100}
+  height={100}
+  priority={false} 
+  loading="lazy" 
+  quality={80} 
+  onContextMenu={(e) => e.preventDefault()}
+  className="disable-image"
+/>    
+
+<Image 
+  src="/product/image 2.png" // Corrected file extension and relative path
+  alt="Certificate"
+  width={100} 
+  height={100}
+  priority={false} 
+  loading="lazy" 
+  quality={80} 
+  onContextMenu={(e) => e.preventDefault()}
+  className="disable-image"
+/>    
+
+
+
+                    {/* <img src="product/image 2.png"
                       alt="Certificate"
                       className="disable-image"
                       onContextMenu={(e) => e.preventDefault()} // Disable right-click
@@ -218,10 +292,24 @@ const Home = () => {
                       className="disable-image"
                       onContextMenu={(e) => e.preventDefault()} // Disable right-click
                       draggable="false" // Prevent dragging
-                    />
+                    /> */}
                   </div>
                   <div className="training-title">
-                    <img src="product/Group-96.png" width={110} />
+                  <Image 
+                    src="/product/Group-96.png" // Corrected file extension and relative path
+                    alt="Certificate"
+                    width={110}
+                    height={50} 
+                    priority={false} 
+                    loading="lazy" 
+                    quality={80} 
+                    onContextMenu={(e) => e.preventDefault()}
+                    className="disable-image"
+                  />    
+
+
+
+                    {/* <img src="product/Group-96.png" width={110} /> */}
                   </div>
                 </div>
               </div>
@@ -247,7 +335,21 @@ const Home = () => {
               <div className="col-lg-6">
                 <div className=" bg-find d-flex gap-3">
                   <div className="back-bg-title">
-                    <img src="product/Untitled-90.png" />
+
+
+                  <Image 
+  src="/product/Untitled-90.png" // Corrected file extension and relative path
+  alt="Certificate"
+  width={250} 
+  height={250}
+  priority={false} 
+  loading="lazy" 
+  quality={80} 
+  
+/>    
+
+
+                    {/* <img src="product/Untitled-90.png" /> */}
                   </div>
                   <div className="pt-4 px-3 devp-text">
                     <h2 className=" innovation-heading text-white fw-bold">
@@ -287,7 +389,18 @@ const Home = () => {
                     </button>
                   </div>
                   <div className="back-bg-title">
-                    <img src="product/Untitled-90.png" />
+                  <Image 
+  src="/product/Untitled-90.png" // Corrected file extension and relative path
+  alt="Certificate"
+  width={250} 
+  height={250}
+  priority={false} 
+  loading="lazy" 
+  quality={80} 
+/>    
+
+
+                    {/* <img src="product/Untitled-90.png" /> */}
                   </div>
                 </div>
               </div>
@@ -347,10 +460,22 @@ const Home = () => {
             </div>
             <div className="col-lg-6">
               <div className="drone-image">
-                <img
+              <Image 
+                src="/product/DeWatermark.png" // Corrected file extension and relative path
+                alt="Certificate"
+                width={700} 
+                height={500}
+                priority={false} 
+                loading="lazy" 
+                quality={80} 
+              />    
+
+
+
+                {/* <img
                   src="product/DeWatermark.png"
                   style={{ width: "100%", height: "100%" }}
-                ></img>
+                ></img> */}
               </div>
             </div>
           </div>
@@ -513,7 +638,17 @@ const Home = () => {
           <div className="container">
             <div className="cpi-drone">
               <span>MINOS</span>
-              <img src="product/TEST-13.png" style={{ width: "100%" }}></img>
+              <Image 
+                src="/product/TEST-13.png" // Corrected file extension and relative path
+                alt="Certificate"
+                width={1320} 
+                height={500}
+                priority={false} 
+                loading="lazy" 
+                quality={80} 
+              />   
+
+              {/* <img src="product/TEST-13.png" style={{ width: "100%" }}></img> */}
             </div>
           </div>
         </div>
@@ -534,7 +669,6 @@ const Home = () => {
                   <p className="error">{error}</p>
                 ) : (
                   <Swiper
-                   
                     effect={"coverflow"}
                     grabCursor={true}
                     centeredSlides={true}
@@ -594,7 +728,19 @@ const Home = () => {
                      <SwiperSlide key={index}>
                        {/* <img src={review.attachment[0]} alt="Review" /> */}
                     
-                       <img src={review.attachment} alt="Review" />
+                    
+                       <Image 
+                          src={review.attachment} // Corrected file extension and relative path
+                          alt="Certificate"
+                          width={1000} 
+                          height={1000}
+                          priority={false} 
+                          loading="lazy" 
+                          quality={80} 
+                        />   
+
+
+                       {/* <img src={review.attachment} alt="Review" /> */}
                          
                      </SwiperSlide>
                    ))}
@@ -613,11 +759,22 @@ const Home = () => {
               <div className="col-lg-12">
                 <div className="all-toys d-flex justify-content-between align-items-center">
                   <div className="img-toys-title">
-                    <img
-                      src="./product/laugh.png"
-                      alt="77"
-                      style={{ maxWidth: "100%", height: "inherit" }}
-                    />
+
+
+                         <Image 
+                          src="/product/laugh.png" // Corrected file extension and relative path
+                          alt="77"
+                          width={400} 
+                          height={400}
+                          priority={false} 
+                          loading="lazy" 
+                          quality={80} 
+                        />   
+                      {/* <img
+                        src="./product/laugh.png"
+                        alt="77"
+                        style={{ maxWidth: "100%", height: "inherit" }}
+                      /> */}
                   </div>
                   <div className="toys-text text-white">
                     <span>EXPLORE</span>

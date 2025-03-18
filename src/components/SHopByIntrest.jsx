@@ -10,58 +10,55 @@ import { useRouter } from "next/navigation";
 import BoysToys from "./BoysToys";
 import SortOptions from "./SortOptions";
 import { Divider } from "@mui/material";
-// import { useRouter } from "next/navigation";
 
-const ShopByIntrest = ({ selectedAgeGroup }) => {
+const ShopByIntrest = ({ selectedAgeGroup, selectedCategory }) => {
   const [filteredCategories, setFilteredCategories] = useState([]);
-  const [selectedSubcategory, setSelectedSubcategory] = useState(null);
+  const [isFilterActive, setIsFilterActive] = useState(false); // Track if a filter is active
   const dispatch = useDispatch();
   const router = useRouter();
-  const { categoryByAgeGroup, filterSubCategory } = useSelector((state) => state.category);
-   const [loadings,setLoadings]=useState(false);
-  
+  const { categoryByAgeGroup, filterSubCategories } = useSelector((state) => state.category);
+  const [loadings, setLoadings] = useState(false);
 
-  // Fetch categories by age group
+  console.log("filteredCategories:", filteredCategories); // Debugging
+  console.log("isFilterActive:", isFilterActive); // Debugging
+
+  // Fetch categories by age group (default data)
   useEffect(() => {
     if (selectedAgeGroup) {
       dispatch(categoryByAgeGroups(selectedAgeGroup));
     }
   }, [dispatch, selectedAgeGroup]);
 
+  // Fetch categories by selected category
+  useEffect(() => {
+    if (selectedCategory) {
+      dispatch(FilterSubCategory(selectedCategory));
+    }
+  }, [dispatch, selectedCategory]);
+
   // Update filtered categories when categoryByAgeGroup changes
   useEffect(() => {
     if (categoryByAgeGroup?.length) {
       setFilteredCategories(categoryByAgeGroup);
+      setIsFilterActive(false);
     }
   }, [categoryByAgeGroup]);
 
-  // Fetch subcategory data when a subcategory is selected
-  useEffect(() => {
-    if (selectedSubcategory) {
-      dispatch(FilterSubCategory(selectedSubcategory));
-    }
-  }, [dispatch, selectedSubcategory]);
-
   // Update filtered categories when filterSubCategory changes
   useEffect(() => {
-    if (filterSubCategory?.length) {
-      setFilteredCategories(filterSubCategory);
+    if (filterSubCategories?.length) {
+      setFilteredCategories(filterSubCategories);
+      setIsFilterActive(true);
     }
-  }, [filterSubCategory]);
+  }, [filterSubCategories]);
 
-  // Handle subcategory click from BoysToys
-  const handleSubcategoryClick = (subcategorySlug) => {
-    setSelectedSubcategory(subcategorySlug);
-  };
   const handleCardClick = (slug) => {
-    setLoadings(true); // Show loader
-
+    setLoadings(true);
     setTimeout(() => {
-      setLoadings(false); // Hide loader just before navigation
+      setLoadings(false);
       router.push(`/products/${slug}`);
-    }, 2000); // 2-second delay
+    }, 2000);
   };
-
 
   return (
     <section className="shopbyintrest mt-4">
@@ -76,13 +73,11 @@ const ShopByIntrest = ({ selectedAgeGroup }) => {
         </div>
 
         <div className="row dr-title mt-4">
-          {/* Sidebar */}
           <div className="col-md-3">
-            <BoysToys onSubcategoryClick={handleSubcategoryClick} />
+            <BoysToys />
             <Divider />
           </div>
 
-          {/* Main Content */}
           <div className="col-md-9">
             <div className="row">
               <SortOptions />
@@ -119,8 +114,6 @@ const ShopByIntrest = ({ selectedAgeGroup }) => {
         </div>
       )}
     </section>
-
-    
   );
 };
 

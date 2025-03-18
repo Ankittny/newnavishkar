@@ -63,16 +63,24 @@ export const CategoryDetail = (categorySlug) => async (dispatch) => {
 
 
 export const FilterSubCategory = (subcategoryId) => async (dispatch) => {
+  
   try {
     const response = await axios.get(`/categories/products/${subcategoryId}`);
     dispatch({
-      type: "FILTER_SUBCATEGORY_SUCCESS",
+      type: "filterSubCategoryRequest",
       payload: response.data,
     });
+
+    if (response.data) {
+      dispatch({
+        type: "filterSubCategorySuccess",
+        payload: response.data,
+      });
+    }
   } catch (error) {
     console.error("Error fetching subcategory data:", error);
     dispatch({
-      type: "FILTER_SUBCATEGORY_FAIL",
+      type: "filterSubCategoryFail",
       payload: error.message,
     });
   }

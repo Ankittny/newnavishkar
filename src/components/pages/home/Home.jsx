@@ -308,18 +308,20 @@ const Home = () => {
                     N - <span>Labs</span>
                   </h2>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.{" "}
+                  Navishkar Labs equips K1-K12 students with the tools for innovative STEM learning.
+                   Through hands-on robotics, coding platforms, and engaging resources, they cultivate
+                    creativity, problem-solving, and practical skills.{" "}
                   </p>
                 </div>
               </div>
               <div className="col-lg-6">
-                <div className="drone-humble-drnoe pt-5 d-flex justify-content-center">
+                <div className="drone-humble-drnoe ">
                   <h2 className="">
                     N - <span>DRONE SERVICE</span>
                   </h2>
+                  <p>Spark your child's interest in STEM with Tinkering Intelli Labs Pvt Ltd's Navishkar drone workshop.
+                     Kids will gain hands-on experience building and flying drones while
+                     developing critical thinking and problem-solving skills.</p>
                 </div>
               </div>
             </div>

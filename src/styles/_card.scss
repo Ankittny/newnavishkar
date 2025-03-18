@@ -117,7 +117,7 @@
   }
   
   .card-container > div {
-    flex-basis:  calc(33.33% - 20px); /* 3 cards per row with 20px gap */
+    flex: 1 1 calc(33.33% - 20px); /* 3 cards per row with 20px gap */
     box-sizing: border-box; /* Ensures padding/margins don't affect width */
     margin-bottom: 20px; /* Optional: space below each card */
   }

@@ -1,7 +1,3 @@
-
-
-
-
 "use client";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,7 +5,7 @@ import {
   incrementQuantity,
   decrementQuantity,
   fetchCartData,
-  clearCart
+  clearCart,
 } from "../../../redux/Reducer/Cart";
 import { useRouter } from "next/navigation";
 import axiosInstance from "@/utils/axios";
@@ -17,7 +13,6 @@ import { MdAutoDelete } from "react-icons/md";
 import Image from "next/image";
 import { Button } from "@mui/material";
 import toast from "react-hot-toast";
-
 
 const axios = axiosInstance;
 
@@ -70,17 +65,15 @@ const CartComponent = () => {
       toast.success("Item deleted successfully!");
     } catch (error) {
       console.error("Error removing item:", error);
-      toast.error("Failed to delete item!"); // Show error message in case of failure
+      toast.error("Failed to delete item!");
     }
   };
 
-  const calculateSubTotal = () => cartItems.reduce(
-    (acc, item) => acc + parseFloat(item.price) * parseInt(item.quantity, 10), 0
-  );
+  const calculateSubTotal = () =>
+    cartItems.reduce((acc, item) => acc + parseFloat(item.price) * parseInt(item.quantity, 10), 0);
 
-  const calculateTotalDiscount = () => cartItems.reduce(
-    (acc, item) => acc + (parseFloat(item.discount) || 0) * parseInt(item.quantity, 10), 0
-  );
+  const calculateTotalDiscount = () =>
+    cartItems.reduce((acc, item) => acc + (parseFloat(item.discount) || 0) * parseInt(item.quantity, 10), 0);
 
   const subTotal = calculateSubTotal();
   const totalDiscount = calculateTotalDiscount();
@@ -99,7 +92,6 @@ const CartComponent = () => {
     fetchCoupons();
   }, []);
 
-  // Function to apply the coupon with min_purchase check
   const applyCoupon = (coupon) => {
     if (subTotal < coupon.min_purchase) {
       alert(`Minimum purchase amount for this coupon is ₹${coupon.min_purchase}`);
@@ -113,36 +105,35 @@ const CartComponent = () => {
       discountValue = (subTotal * parseFloat(coupon.discount)) / 100;
     }
 
-    console.log("Calculated Discount:", discountValue); // Debugging
     setAppliedDiscount(discountValue);
     setSelectedCoupon(coupon);
   };
 
-  // Function to cancel the applied coupon
   const cancelCoupon = () => {
     setAppliedDiscount(0);
     setSelectedCoupon(null);
   };
 
   const handleProceedToCheckout = () => {
+    if (typeof window !== "undefined") {
+      const storedData = JSON.parse(localStorage.getItem("cart"));
+      const cartItems = storedData?.cartItems || [];
 
-    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; // Assuming cart data is stored in localStorage
-
-    if (cartItems.length === 0) {
+      if (cartItems.length === 0) {
         toast.error("Your cart is empty! Add products before proceeding.");
         return;
-    }
+      }
 
-    localStorage.setItem("couponCode", selectedCoupon ? selectedCoupon.code : "");
-    localStorage.setItem("totalAmount", grandTotal.toFixed(2));
-    localStorage.setItem("discountValue", appliedDiscount ? appliedDiscount.toFixed(2) : "0");
-    router.push("/cart/payments");
+      localStorage.setItem("couponCode", selectedCoupon ? selectedCoupon.code : "");
+      localStorage.setItem("totalAmount", grandTotal.toFixed(2));
+      localStorage.setItem("discountValue", appliedDiscount ? appliedDiscount.toFixed(2) : "0");
+
+      setTimeout(() => {
+        router.push("/cart/payments");
+      }, 1000);
+    }
   };
 
-
- 
-
-  console.log("Applied Discount Before Checkout:", appliedDiscount);
   return (
     <div className="container">
       <div className="cart-container">
@@ -169,7 +160,12 @@ const CartComponent = () => {
                   {cartItems.map((item) => (
                     <tr key={item.id}>
                       <td className="cart-item">
-                        <Image src={item.product?.thumbnail_full_url?.path} alt={item.name} width={100} height={100} />
+                        <Image
+                          src={item.product?.thumbnail_full_url?.path}
+                          alt={item.name}
+                          width={100}
+                          height={100}
+                        />
                         <p>{item.name}</p>
                       </td>
                       <td>₹{(parseFloat(item.price) - parseFloat(item.discount)).toFixed(2)}</td>
@@ -179,7 +175,6 @@ const CartComponent = () => {
                         <button onClick={() => handleIncrement(item.id, item.quantity)}>+</button>
                       </td>
                       <td>₹{((parseFloat(item.price) - parseFloat(item.discount)) * parseInt(item.quantity, 10)).toFixed(2)}</td>
-
                       <td onClick={() => handleClear(item.id)} style={{ cursor: "pointer" }}>
                         <MdAutoDelete size={30} />
                       </td>
@@ -194,27 +189,41 @@ const CartComponent = () => {
         <div className="order-summary">
           <h3>Order Summary</h3>
           <div className="summary-details">
-            <p className="d-flex justify-content-between">Sub Total <span>₹{subTotal.toFixed(2)}</span></p>
+            <p className="d-flex justify-content-between">
+              Sub Total <span>₹{subTotal.toFixed(2)}</span>
+            </p>
             <p className="d-flex justify-content-between">Shipping </p>
-            <p className="d-flex justify-content-between">Discount on product <span>₹{totalDiscount.toFixed(2)}</span></p>
+            <p className="d-flex justify-content-between">
+              Discount on product <span>₹{totalDiscount.toFixed(2)}</span>
+            </p>
 
             {selectedCoupon && (
-              <p className="d-flex justify-content-between">Applied Coupon Discount: <span>₹{appliedDiscount.toFixed(2)}</span></p>
+              <p className="d-flex justify-content-between">
+                Applied Coupon Discount: <span>₹{appliedDiscount.toFixed(2)}</span>
+              </p>
             )}
 
             <div className="row">
               {coupons.map((coupon) => (
                 <div className="col-md-12" key={coupon.id}>
                   <div className="coupon-card">
-                    <p className="coupon-text">{coupon.code} (Min: ₹{coupon.min_purchase})</p>
+                    <p className="coupon-text">
+                      {coupon.code} (Min: ₹{coupon.min_purchase})
+                    </p>
                     {subTotal >= coupon.min_purchase ? (
                       selectedCoupon?.id === coupon.id ? (
-                        <Button className="cancel-btn" onClick={cancelCoupon}>Remove</Button>
+                        <Button className="cancel-btn" onClick={cancelCoupon}>
+                          Remove
+                        </Button>
                       ) : (
-                        <Button className="apply-btn" onClick={() => applyCoupon(coupon)}>Apply</Button>
+                        <Button className="apply-btn" onClick={() => applyCoupon(coupon)}>
+                          Apply
+                        </Button>
                       )
                     ) : (
-                      <Button className="apply-btn" disabled>Min ₹{coupon.min_purchase} Required</Button>
+                      <Button className="apply-btn" disabled>
+                        Min ₹{coupon.min_purchase} Required
+                      </Button>
                     )}
                   </div>
                 </div>
@@ -222,7 +231,9 @@ const CartComponent = () => {
             </div>
 
             <hr />
-            <p className=""><strong>Total Payable Amount: ₹{grandTotal.toFixed(2)}</strong></p>
+            <p className="">
+              <strong>Total Payable Amount: ₹{grandTotal.toFixed(2)}</strong>
+            </p>
           </div>
 
           <button className="checkout-button" onClick={handleProceedToCheckout}>

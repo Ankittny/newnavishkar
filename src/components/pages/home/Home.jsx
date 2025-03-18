@@ -449,13 +449,14 @@ const Home = () => {
                                   <Card
                                     key={product.id}
                                     id={product.id}
-                                    imageUrl={`https://navishkar.overseaseducationlane.com/public/assets/back-end/product/thumbnail/${product.thumbnail || ""}`}
+                                    imageUrl={`https://admin.navishkar.com/public/assets/back-end/product/thumbnail/${product.thumbnail || ""}`}
                                     name={product.name}
                                     discount={product.discount}
                                     price={product.unit_price}
                                     onClick={() => handleCardClick(product.slug)}
                                     onAddToCart={() => handleAddToCart(product.id)}
                                     current_stock={product?.current_stock}
+                                    rating={product.reviews_count}
                                   />
                                 ))
                               ) : (
@@ -478,7 +479,7 @@ const Home = () => {
                               <Card
                                 key={product.id}
                                 id={product.id}
-                                imageUrl={`https://navishkar.overseaseducationlane.com/public/assets/back-end/product/thumbnail/${product.thumbnail || ""}`}
+                                imageUrl={`https://admin.navishkar.com/public/assets/back-end/product/thumbnail/${product.thumbnail || ""}`}
                                 name={product.name}
                                 price={product.unit_price}
                                 discount={product.discount}

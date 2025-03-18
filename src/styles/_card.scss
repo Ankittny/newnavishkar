@@ -98,9 +98,14 @@
     // color: #663399;
     font-size: 15px;
     font-weight: 600;
+    width: 100px;
+    
   }
   .add-btn {
     margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  
   }
   .add-btn button{
     background: #fff;

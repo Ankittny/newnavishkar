@@ -55,6 +55,10 @@ const Home = () => {
 
 
   const handleTabClick = (tabIndex, categoryIndex) => {
+    const tabElement = document.querySelector(`.display-block-${tabIndex}`);
+    if (tabElement) {
+      tabElement.style.removeProperty('display');
+    }
     // Show loader for the selected tab
     setLoadingTabs((prevState) => ({
       ...prevState,
@@ -433,7 +437,7 @@ const Home = () => {
 
                           {/* Tab Panels */}
                           {category.childes.map((child, index) => (
-                            <TabPanel key={child.id} value={index.toString()} className="tab-content">
+                            <TabPanel key={child.id} value={index.toString()} className={`tab-content display-block-${index}`} style={{ display: "none" }}>
                               {loadingTabs[categoryIndex] ? (
                                 <div className="home-loading-overlay">
                                   <div className="home-spinner-container text-center">

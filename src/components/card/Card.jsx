@@ -52,7 +52,7 @@ const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id, cur
   return (
     <div className="play-role-title title-access">
       <div className="play-kit-title play-cubric">
-        <Image src={imageUrl} alt={"Product"} width={300} height={200} onClick={onClick} className="curser" />
+        <Image src={imageUrl} alt={"Product"} width={200} height={200} onClick={onClick} className="curser" />
       </div>
       <div className="playkit-action action-inject">
         <div className="kit-down">

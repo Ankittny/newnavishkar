@@ -31,7 +31,7 @@ const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id, cur
 
     try {
       const response = await axios.post(
-        "https://navishkar.overseaseducationlane.com/api/v1/cart/add",
+        "https://admin.navishkar.com/api/v1/cart/add",
         { id: id, quantity: 1 },
         {
           headers: {

@@ -151,7 +151,7 @@ const ProductDetails = () => {
 
     try {
       const response = await axios.post(
-        "https://navishkar.overseaseducationlane.com/api/v1/cart/add",
+        "https://admin.navishkar.com/api/v1/cart/add",
         { id: categoryDetail.id, quantity },
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -19,23 +19,19 @@ const OurAchievement = () => {
 
   return (
     <div className="mb-5">
-      <div className="row">
-        <div className="col-12">
-          <div className="shop-by-title text-center">
-            <h5>
-              OUR <span>ACHIEVEMENTS</span>
-            </h5>
-          </div>
-        </div>
+      <div className="shop-by-title text-center">
+        <h5>
+          OUR <span>ACHIEVEMENTS</span>
+        </h5>
       </div>
       <div className="row">
-        <div className="col-12">
+        <div className="col-lg-12">
           <div className="slide-container">
             {loading && <p>Loading...</p>}
             {error && <p>Error: {error}</p>}
             {!loading && !error && BannerImage.length > 0 && (
               <Swiper
-              centeredSlides={true}
+                centeredSlides={true}
                 navigation={true}
                 modules={[Autoplay, Navigation]}
                 className="mySwiper"
@@ -51,11 +47,11 @@ const OurAchievement = () => {
                   },
                   768: {
                     slidesPerView: 4,
-                    spaceBetween: 40,
+                    spaceBetween: 20,
                   },
                   1024: {
                     slidesPerView: 4,
-                    spaceBetween: 50,
+                    spaceBetween: 20,
                   },
                 }}
               >

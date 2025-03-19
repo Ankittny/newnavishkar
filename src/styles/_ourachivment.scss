@@ -23,3 +23,13 @@
   .swiper-pagination-bullet-active {
     background-color: #e63946;
   }
+
+
+  @media(max-width:425px){
+    .shop-by-title{
+     margin: 20px 20px;
+    }
+    body, html {
+      overflow-x: hidden;
+  }
+  }

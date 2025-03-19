@@ -133,6 +133,7 @@
     position: relative;
 }
 
+
 .carousel-item-image {
   width: 23%; /* Adjust the width of each image */
 }
@@ -412,7 +413,9 @@
     .award-name h2{
         margin-top: 20px;
     }
- 
+    .css-1usuzwp-MuiButtonBase-root-MuiTab-root{
+        max-width: 100% !important;
+    }
 }
 @media(max-width:1199px) and (min-width:992px){
     .frame {
@@ -487,6 +490,9 @@
     width: 100%;
     height: auto !important;
 
+}
+.flex-d{
+    flex-direction: column;
 }
 }
 

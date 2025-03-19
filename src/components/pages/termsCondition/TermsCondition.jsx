@@ -24,7 +24,7 @@ const TermsCondition = () => {
   return (
     <div className="terms-container container">
       <div className="terms-wrapper">
-        <h1 className="terms-title">Terms and Conditions</h1>
+        {/* <h1 className="terms-title">Terms and Conditions</h1>
         <p className="terms-description">
           Welcome to Skylabs Solution India Private Limited. These terms and
           conditions outline the rules and regulations for using our website. By
@@ -32,7 +32,7 @@ const TermsCondition = () => {
           full.
         </p>
 
-        <hr className="divider" />
+        <hr className="divider" /> */}
         
         {/* this is dynamic data coming from api */}
         <section className="terms-section">

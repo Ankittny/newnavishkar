@@ -688,17 +688,19 @@ const Home = () => {
       <section>
         <div className="drone-fly mt-5">
           <div className="container">
-            <div className="cpi-drone">
+            <div className="cpi-drone">git pull 
               <span>MINOS</span>
-              <Image
-                src="/product/TEST-13.png" // Corrected file extension and relative path
-                alt="Certificate"
-                width={1320}
-                height={500}
-                priority={false}
-                loading="lazy"
-                quality={80}
-              />
+              <div style={{ position: "relative", width: "100%", height: "500px" }}>
+  <Image
+    src="/product/TEST-13.png"
+    alt="Certificate"
+    fill
+    priority={false}
+    loading="lazy"
+    quality={80}
+    style={{ objectFit: "contain" }} // Adjust to "cover" if needed
+  />
+</div>
 
               {/* <img src="product/TEST-13.png" style={{ width: "100%" }}></img> */}
             </div>
@@ -721,7 +723,6 @@ const Home = () => {
                     <p className="error">{error}</p>
                   ) : (
                     <Swiper
-
                       effect={"coverflow"}
                       grabCursor={true}
                       centeredSlides={true}
@@ -781,7 +782,20 @@ const Home = () => {
                       <SwiperSlide key={index}>
                         {/* <img src={review.attachment[0]} alt="Review" /> */}
 
-                        <img src={review.attachment} alt="Review" />
+
+                        <Image
+                          src={review.attachment} // Corrected file extension and relative path
+                          alt="Certificate"
+                          width={1000}
+                          height={1000}
+                          priority={false}
+                          loading="lazy"
+                          quality={80}
+                          
+                        />
+
+
+                        {/* <img src={review.attachment} alt="Review" /> */}
 
                       </SwiperSlide>
                     ))}
@@ -800,12 +814,10 @@ const Home = () => {
               <div className="col-lg-12">
                 <div className="all-toys d-flex justify-content-between align-items-center">
                   <div className="img-toys-title">
-
-
                     <Image
                       src="/product/laugh.png" // Corrected file extension and relative path
                       alt="77"
-                      width={400}
+                      width={520}
                       height={400}
                       priority={false}
                       loading="lazy"

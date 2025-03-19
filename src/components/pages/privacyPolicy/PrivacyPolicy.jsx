@@ -25,14 +25,14 @@ const PrivacyPolicy = () => {
   return (
     <div className="privacy-policy-container container">
       <div className="privacy-policy-wrapper">
-        <h1 className="privacy-policy-title">Privacy Policy</h1>
+        {/* <h1 className="privacy-policy-title">Privacy Policy</h1>
         <p className="privacy-policy-description text-center">
           At Skylab Solution Indiia Privet Limited, we are committed to
           protecting your personal information and your right to privacy. <br /> This
           Privacy Policy outlines how we collect, use, and protect your data.
         </p>
 
-        <hr className="divider" />
+        <hr className="divider" /> */}
 
 
        {/* Injecting content fetched from the API dynamically */}

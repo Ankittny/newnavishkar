@@ -25,12 +25,12 @@ const ReturnPolicy = () => {
   return (
     <div className="return-policy-container container">
       <div className="return-policy-wrapper">
-        <h1 className="return-policy-title">Return Policy</h1>
+        {/* <h1 className="return-policy-title">Return Policy</h1>
         <p className="return-policy-description">
           Thank you for shopping with us! We value your satisfaction and strive to ensure a smooth return process. Please read the following policy carefully to understand how returns are handled.
         </p>
 
-        <hr className="divider" />
+        <hr className="divider" /> */}
 
         {/* Injecting content fetched from the API dynamically */}
         <section className="return-policy-section">

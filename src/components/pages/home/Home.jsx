@@ -232,7 +232,18 @@ const Home = () => {
                 </div>
                 <div className="award-price d-flex justify-content-center align-items-center gap-3">
                   <div className="training-title">
-                    <img src="product/Group-95.png" width={150} />
+                  <Image
+                      src="/product/Group-95.png" // Corrected file extension and relative path
+                      alt="Certificate"
+                      width={150}
+                      height={150}
+                      priority={false}
+                      loading="lazy"
+                      quality={80}
+                      onContextMenu={(e) => e.preventDefault()}
+                      className="disable-image"
+                    />
+                    {/* <img src="product/Group-95.png" width={150} /> */}
                   </div>
                   <div className="training-title d-flex gap-2 mt-5">
 
@@ -299,7 +310,7 @@ const Home = () => {
                       src="/product/Group-96.png" // Corrected file extension and relative path
                       alt="Certificate"
                       width={110}
-                      height={50}
+                      height={100}
                       priority={false}
                       loading="lazy"
                       quality={80}
@@ -414,9 +425,9 @@ const Home = () => {
         <div className="frame mt-5"></div>
       </div>
 
-      {/* ===============================================drone-services =================================== */}
+      {/* ===============================================drone-services for desktop =================================== */}
       <section>
-        <div className="drone-services-title mt-5 py-4">
+        <div className="drone-services-title mt-5 py-4 d-none d-sm-block d-sm-none d-md-block">
           <div className="container">
             <div className="row">
               <div className="col-lg-6">
@@ -445,7 +456,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="video-title">
+        <div className="video-title d-none d-sm-block d-sm-none d-md-block">
           <div className="row">
             <div className="col-lg-6">
               <video
@@ -461,13 +472,14 @@ const Home = () => {
             <div className="col-lg-6">
               <div className="drone-image">
                 <Image
-                  src="/product/DeWatermark.png" // Corrected file extension and relative path
+                  src="/product/DeWatermark.png"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }} // Corrected file extension and relative path
                   alt="Certificate"
-                  width={700}
-                  height={500}
                   priority={false}
                   loading="lazy"
                   quality={80}
+                  width={500}
+                  height={100}
                 />
 
 
@@ -480,6 +492,64 @@ const Home = () => {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* ===============================================for mobile==================================== */}
+      <section>
+        <div className="drone-services-title py-4   d-lg-none d-xl-block d-xl-none d-xxl-block  d-md-none d-lg-block ">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-6">
+                <div className="drone-humble-drnoe ">
+                  <h2 className="">
+                    N - <span>Labs</span>
+                  </h2>
+                  <p>
+                    Navishkar Labs equips K1-K12 students with the tools for innovative STEM learning.
+                    Through hands-on robotics, coding platforms, and engaging resources, they cultivate
+                    creativity, problem-solving, and practical skills.{" "}
+                  </p>
+                </div>
+              </div>
+              <div className="col-lg-6">
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  className="frontend-video"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                >
+                  <source src="product/video/navishkar.mp4" type="video/mp4" />
+                </video>
+              </div>
+              <div className="col-lg-6">
+                <div className="drone-humble-drnoe mt-3">
+                  <h2 className="">
+                    N - <span>Drone Services</span>
+                  </h2>
+                  <p>Spark your child's interest in STEM with Tinkering Intelli Labs Pvt Ltd's Navishkar drone workshop.
+                    Kids will gain hands-on experience building and flying drones while
+                    developing critical thinking and problem-solving skills.</p>
+                </div>
+              </div>
+              <div className="col-lg-6">
+                <div className="drone-image">
+                <Image
+                  src="/product/DeWatermark.png"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }} // Corrected file extension and relative path
+                  alt="Certificate"
+                  priority={false}
+                  loading="lazy"
+                  quality={80}
+                  width={500}
+                  height={100}
+                />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </section>
 
       {/* +++++++++++++++++++++++++++++++++++++++++++++++++++++Feature-topics+++++++++++++++++++++++++++++++++++++++++ */}
@@ -504,7 +574,7 @@ const Home = () => {
                     const groupedItems = instaData.slice(index, index + 4);
                     return (
                       <Carousel.Item key={index}>
-                        <div className="d-flex justify-content-between">
+                        <div className="d-flex justify-content-between flex-d">
                           {groupedItems.map((videoItem, videoIndex) => (
                             <div className="carousel-item-video" key={videoIndex}>
                               <video width="100%" height="400" controls>

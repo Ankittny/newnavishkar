@@ -36,6 +36,32 @@ export const profile = (values) => async (dispatch) => {
   }
 };
 
+
+export const getProfile = () => async (dispatch) => {
+  try {
+    dispatch({ type: "getProfileRequest" });
+    const gettoken = localStorage.getItem("authAdminToken");
+
+    // Set up headers with the token
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${gettoken}`,
+      },
+    };
+
+    const { data } = await axiosInstance.get("customer/info", config);
+    dispatch({ type: "getProfileSuccess", payload: data });
+
+    
+
+  } catch (error) {
+    const errorMessage = error.response?.data?.message || "Something went wrong";
+    dispatch({ type: "getProfileFail", payload: errorMessage });
+  }
+};
+
+
 // export const login = (values) => async (dispatch) => {
 //   try {
 //     dispatch({ type: "loginRequest" });
@@ -73,7 +99,7 @@ export const verifyOtp = (payload) => async (dispatch) => {
     const { data } = await axios.post("auth/otp-verify", payload);
     console.log("OTP VERIFY");
 
-    const {id, token, user, profile_status, message } = data;
+    const { id, token, user, profile_status, message } = data;
 
     if (token) {
       localStorage.setItem("authAdminToken", token);

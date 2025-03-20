@@ -92,7 +92,11 @@ const Footer = () => {
                     <li>
                       <Link href={"/terms-condition"}>Terms & Conditions</Link>
                     </li>
-                    <li>Customized Solution</li>
+                    <li>
+                      <Link href={"/partner-with-us"}>
+                      Customized Solution
+                      </Link>
+                    </li>
                     {/* <li>Equipment</li>
                     <li>Comprehensive Curriculum</li>
                     <li>Expertise and Experience</li> */}

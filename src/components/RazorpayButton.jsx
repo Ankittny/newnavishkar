@@ -66,7 +66,7 @@ export default function RazorpayButton({ totalAmount,couponCode, addressId,disco
         description: "Order Payment",
         order_id: paymentData.id,
         handler: async function (response) {
-          alert(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
+          // alert(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
          
           console.log("this is test =======================>",addressId);
           // 4️⃣ Now Place Order AFTER Payment Success
@@ -93,7 +93,6 @@ export default function RazorpayButton({ totalAmount,couponCode, addressId,disco
           });
 
           console.log("Order Confirmed:", orderResponse.data);
-         
           router.push("/thankyou");
         },
         prefill: {

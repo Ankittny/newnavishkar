@@ -10,6 +10,7 @@ const initialState = {
   isError: false,
   isSuccess: false, // Tracks successful operations
   profile_status: false, // Add profile status
+  profile_info: {}
 };
 
 export const authReducer = createReducer(initialState, (builder) => {
@@ -34,6 +35,20 @@ export const authReducer = createReducer(initialState, (builder) => {
       state.isError = true;
     })
 
+     
+    .addCase("getProfileRequest", (state) => {
+      state.loading = true;
+    })
+    .addCase("getProfileSuccess", (state, action) => {
+      state.loading = false;
+      state.profile_info = action.payload;
+      state.profile_status = true;
+    })
+    .addCase("getProfileFail", (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    })
+    
     // .addCase("loginRequest", (state) => {
     //   state.loading = true;
     //   state.isAuthenticated = false;

@@ -44,15 +44,45 @@ const CartComponent = () => {
     }
   };
 
-  const handleIncrement = async (id, currentQuantity) => {
+  // const handleIncrement = async (id, currentQuantity) => {
+  //   try {
+  //     await axios.put("/cart/update", { token, key: id, quantity: currentQuantity + 1 });
+  //     dispatch(incrementQuantity(id));
+  //     dispatch(fetchCartData(token));
+  //   } catch (error) {
+  //     console.error("Error updating quantity:", error);
+  //   }
+  // };
+
+  const handleIncrement = async (id, currentQuantity, minimum_order_qty, current_stock) => {
+    console.log("Debugging values:", { currentQuantity, minimum_order_qty, current_stock });
     try {
-      await axios.put("/cart/update", { token, key: id, quantity: currentQuantity + 1 });
+      if (currentQuantity >= current_stock) {
+        toast.error(`Stock limit reached. Only ${current_stock} items available.`);
+        return;
+      }
+  
+      if (currentQuantity >= minimum_order_qty) {
+        toast.error(`You must order at least ${minimum_order_qty} items.`);
+        return;
+      }
+  
+      const response = await axios.put("/cart/update", { token, key: id, quantity: currentQuantity + 1 });
+  
+      if (response.data.status === 0) {
+        toast.error(response.data.message || "Sorry, stock is limited.");
+        return;
+      }
+  
       dispatch(incrementQuantity(id));
       dispatch(fetchCartData(token));
     } catch (error) {
       console.error("Error updating quantity:", error);
+      toast.error("Failed to update quantity. Please try again.");
     }
   };
+  
+
 
   const handleClear = async (id) => {
     try {
@@ -119,27 +149,27 @@ const CartComponent = () => {
       const storedData = JSON.parse(localStorage.getItem("cart"));
       const cartItems = storedData?.cartItems || [];
 
-    const handleProceedToCheckout = () => {
-    if (typeof window === "undefined") return;
+      const handleProceedToCheckout = () => {
+        if (typeof window === "undefined") return;
 
-    const storedData = JSON.parse(localStorage.getItem("cart")) || {};
-    const cartItems = storedData?.cartItems || [];
+        const storedData = JSON.parse(localStorage.getItem("cart")) || {};
+        const cartItems = storedData?.cartItems || [];
 
-    console.log("Stored Cart Items Before Checkout:", cartItems);
+        console.log("Stored Cart Items Before Checkout:", cartItems);
 
-    if (cartItems.length === 0) {
-      toast.error("Your cart is empty! Add products before proceeding.");
-      return;
-    }
+        if (cartItems.length === 0) {
+          toast.error("Your cart is empty! Add products before proceeding.");
+          return;
+        }
 
-    localStorage.setItem("couponCode", selectedCoupon ? selectedCoupon.code : "");
-    localStorage.setItem("totalAmount", grandTotal?.toFixed(2) || "0");
-    localStorage.setItem("discountValue", appliedDiscount?.toFixed(2) || "0");
+        localStorage.setItem("couponCode", selectedCoupon ? selectedCoupon.code : "");
+        localStorage.setItem("totalAmount", grandTotal?.toFixed(2) || "0");
+        localStorage.setItem("discountValue", appliedDiscount?.toFixed(2) || "0");
 
-    setTimeout(() => {
-      router.push("/cart/payments");
-    }, 1000);
-  };
+        setTimeout(() => {
+          router.push("/cart/payments");
+        }, 1000);
+      };
 
       if (cartItems.length === 0) {
         toast.error("Your cart is empty! Add products before proceeding.");
@@ -196,7 +226,13 @@ const CartComponent = () => {
                       <td className="quantity-controls">
                         <button onClick={() => handleDecrement(item.id, item.quantity)}>-</button>
                         <span>{parseInt(item.quantity, 10)}</span>
-                        <button onClick={() => handleIncrement(item.id, item.quantity)}>+</button>
+                        {/* <button onClick={() => handleIncrement(item.id, item.quantity)}>+</button> */}
+                        <button
+                        onClick={() => handleIncrement(item.id, item.quantity, item.product?.minimum_order_qty, item.product?.current_stock)}
+                        className="increment-btn"
+                      >
+                        +
+                      </button>
                       </td>
                       <td>₹{((parseFloat(item.price) - parseFloat(item.discount)) * parseInt(item.quantity, 10)).toFixed(2)}</td>
                       <td onClick={() => handleClear(item.id)} style={{ cursor: "pointer" }}>

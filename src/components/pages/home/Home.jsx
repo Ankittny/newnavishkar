@@ -232,7 +232,7 @@ const Home = () => {
                 </div>
                 <div className="award-price d-flex justify-content-center align-items-center gap-3">
                   <div className="training-title">
-                  <Image
+                    <Image
                       src="/product/Group-95.png" // Corrected file extension and relative path
                       alt="Certificate"
                       width={150}
@@ -534,16 +534,16 @@ const Home = () => {
               </div>
               <div className="col-lg-6">
                 <div className="drone-image">
-                <Image
-                  src="/product/DeWatermark.png"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }} // Corrected file extension and relative path
-                  alt="Certificate"
-                  priority={false}
-                  loading="lazy"
-                  quality={80}
-                  width={500}
-                  height={100}
-                />
+                  <Image
+                    src="/product/DeWatermark.png"
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }} // Corrected file extension and relative path
+                    alt="Certificate"
+                    priority={false}
+                    loading="lazy"
+                    quality={80}
+                    width={500}
+                    height={100}
+                  />
                 </div>
               </div>
             </div>
@@ -708,17 +708,18 @@ const Home = () => {
           <div className="container">
             <div className="cpi-drone">
               <span>MINOS</span>
-              <div style={{ position: "relative", width: "100%", height: "500px" }}>
-  <Image
-    src="/product/TEST-13.png"
-    alt="Certificate"
-    fill
-    priority={false}
-    loading="lazy"
-    quality={80}
-    style={{ objectFit: "contain" }} // Adjust to "cover" if needed
-  />
-</div>
+              <div className="height-minos" style={{ position: "relative", width: "100%", height: "500px" }}>
+                <Image
+                  src="/product/TEST-13.png"
+                  alt="Certificate"
+                  fill
+                  priority={false}
+                  loading="lazy"
+                  quality={80}
+                  style={{ objectFit: "contain" }} // Adjust to "cover" if needed
+                  
+                />
+              </div>
 
               {/* <img src="product/TEST-13.png" style={{ width: "100%" }}></img> */}
             </div>
@@ -809,7 +810,7 @@ const Home = () => {
                           priority={false}
                           loading="lazy"
                           quality={80}
-                          
+
                         />
 
 

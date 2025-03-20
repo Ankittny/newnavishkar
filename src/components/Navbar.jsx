@@ -84,6 +84,35 @@ const Navbar = () => {
               height={100}
             />
           </Link>
+            {/* Cart and Profile Section */}
+            <div className="d-flex align-items-center cart-none d-block d-lg-none d-xl-block d-block d-xl-none  ">
+            <div className="nav-link mx-2 " onClick={handleCartClick}>
+              <Image
+                src={"/icons/cart.png"}
+                width={100}
+                height={100}
+                alt="Cart"
+                className="icon"
+              />
+            {cartCount > 0 && <span className="cart-count-badge">{cartCount}</span>}
+            </div>
+            {isLoggedIn ? (
+              <button  className="btn btn-link nav-link mx-2">
+                <Link href={'/myprofile'}>
+                MyProfile</Link>
+                </button>
+            ) : (
+              <Link href="/login" passHref className="nav-link mx-2">
+                <Image
+                  src={"/icons/profile.png"}
+                  width={100}
+                  height={100}
+                  alt="Profile"
+                  className="icon"
+                />
+              </Link>
+            )}
+          </div>
           {/* Hamburger Icon for Mobile */}
           <button
             className="navbar-toggler"
@@ -222,9 +251,9 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          {/* Cart and Profile Section */}
-          <div className="d-flex align-items-center">
-            <div className="nav-link mx-2" onClick={handleCartClick}>
+          {/* Cart and Profile Section  */}
+          <div className="d-flex align-items-center cart-none profileall-none">
+            <div className="nav-link mx-2 " onClick={handleCartClick}>
               <Image
                 src={"/icons/cart.png"}
                 width={100}
@@ -251,6 +280,7 @@ const Navbar = () => {
               </Link>
             )}
           </div>
+          
         </div>
       </nav>
 

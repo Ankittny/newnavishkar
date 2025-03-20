@@ -164,9 +164,24 @@
     border-radius: 8px;
 }
 
+@media(max-width:991px) and (min-width:768px){
+    .navi-title button{
+        right: 15px !important;
+        top: -80px  !important;
+    }
+}
+
+
 @media(max-width:768px){
     .detail-nav{
         flex-direction: column;
+    }
+}
+
+@media(max-width:767px) and (min-width:426px){
+    .navi-title button{
+    top: -80px !important;
+    right: 10px !important;
     }
 }
 

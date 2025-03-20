@@ -208,3 +208,14 @@
         padding: 10px 0;
     }
 }
+@media(max-width:767px) and (min-width:426px){
+    .sort-container {
+        flex-direction: column;
+    }
+}
+
+@media(max-width:425px){
+    .sort-container {
+        flex-direction: column;
+    }
+    }

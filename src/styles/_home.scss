@@ -441,6 +441,12 @@
 .text-data-analytics {
     font-size: 40px;
 }
+// .cart-none{
+//     display: none !important;
+// }
+.carousel-item-video video{
+    width: 250px;
+}
 }
 
 @media(max-width:575px) and (min-width:426px){
@@ -450,6 +456,12 @@
 }
 .text-data-analytics {
     font-size: 40px;
+}
+// .cart-none{
+//     display: none !important;
+// }
+.carousel-item-video video{
+    width: 300px;
 }
 }
 
@@ -491,9 +503,16 @@
     height: auto !important;
 
 }
-.flex-d{
-    flex-direction: column;
+.carousel-item-video video{
+    width: 400px;
 }
+// .cart-none{
+//     display: none !important;
+// }
+.css-1usuzwp-MuiButtonBase-root-MuiTab-root{
+    max-width: 100% !important;
+}
+
 }
 
 @media (max-width: 375px){

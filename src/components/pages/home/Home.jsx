@@ -232,7 +232,18 @@ const Home = () => {
                 </div>
                 <div className="award-price d-flex justify-content-center align-items-center gap-3">
                   <div className="training-title">
-                    <img src="product/Group-95.png" width={150} />
+                  <Image
+                      src="/product/Group-95.png" // Corrected file extension and relative path
+                      alt="Certificate"
+                      width={150}
+                      height={150}
+                      priority={false}
+                      loading="lazy"
+                      quality={80}
+                      onContextMenu={(e) => e.preventDefault()}
+                      className="disable-image"
+                    />
+                    {/* <img src="product/Group-95.png" width={150} /> */}
                   </div>
                   <div className="training-title d-flex gap-2 mt-5">
 
@@ -299,7 +310,7 @@ const Home = () => {
                       src="/product/Group-96.png" // Corrected file extension and relative path
                       alt="Certificate"
                       width={110}
-                      height={50}
+                      height={100}
                       priority={false}
                       loading="lazy"
                       quality={80}
@@ -461,13 +472,14 @@ const Home = () => {
             <div className="col-lg-6">
               <div className="drone-image">
                 <Image
-                  src="/product/DeWatermark.png" // Corrected file extension and relative path
+                  src="/product/DeWatermark.png"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }} // Corrected file extension and relative path
                   alt="Certificate"
-                  width={700}
-                  height={500}
                   priority={false}
                   loading="lazy"
                   quality={80}
+                  width={500}
+                  height={100}
                 />
 
 
@@ -522,10 +534,16 @@ const Home = () => {
               </div>
               <div className="col-lg-6">
                 <div className="drone-image">
-                  <img
-                    src="product/DeWatermark.png"
-                    style={{ width: "100%", height: "100%" }}
-                  ></img>
+                <Image
+                  src="/product/DeWatermark.png"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }} // Corrected file extension and relative path
+                  alt="Certificate"
+                  priority={false}
+                  loading="lazy"
+                  quality={80}
+                  width={500}
+                  height={100}
+                />
                 </div>
               </div>
             </div>
@@ -688,7 +706,7 @@ const Home = () => {
       <section>
         <div className="drone-fly mt-5">
           <div className="container">
-            <div className="cpi-drone">git pull 
+            <div className="cpi-drone">
               <span>MINOS</span>
               <div style={{ position: "relative", width: "100%", height: "500px" }}>
   <Image

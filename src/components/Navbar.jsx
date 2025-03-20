@@ -73,7 +73,7 @@ const Navbar = () => {
     )}
     <header>
       <nav className="navbar navbar-expand-lg navbar-light">
-        <div className="container">
+        <div className="container d-flex justify-content-evenly">
           {/* Logo */}
           <Link href="/" passHref className="navbar-brand">
             <Image

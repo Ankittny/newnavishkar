@@ -416,6 +416,9 @@
     .css-1usuzwp-MuiButtonBase-root-MuiTab-root{
         max-width: 100% !important;
     }
+    .carousel-indicators{
+        display: none;
+    }
 }
 @media(max-width:1199px) and (min-width:992px){
     .frame {
@@ -512,7 +515,18 @@
 .css-1usuzwp-MuiButtonBase-root-MuiTab-root{
     max-width: 100% !important;
 }
-
+.carousel-indicators{
+    display: none;
+}
+.testimionial-lyer, .drone-fly{
+    margin-top: 0px !important;
+}
+.cpi-drone span {
+    top:-10px
+}
+.height-minos{
+    height: 250px !important;
+}
 }
 
 @media (max-width: 375px){

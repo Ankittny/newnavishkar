@@ -228,13 +228,13 @@ const Order = () => {
                       <TabPanel value="1" sx={{ display: value === "1" ? "block" : "none" }}>
                         <table className="tablemoney">
                           <thead>
-                            <tr>
-                              <td>
+                            <tr className="gap-5">
+                              <td className="">
                                 <div className="py-2 mb-2">
-                                  <h6 className="fs-13 font-bold text-capitalize"><strong>Payment Information:</strong></h6>
+                                  <h6 className="fs-13 font-bold text-capitalize "><strong>Payment Information:</strong></h6>
                                 </div>
                                 <div className="fs-12">
-                                  <span className="text-muted text-capitalize">Payment status</span>:
+                                  <span className="text-muted text-capitalize">Payment status </span>:
                                   <span className={orderDetailsById?.payment_status === "paid" ? "text-success" : "text-danger"}>
                                     {orderDetailsById?.payment_status}
                                   </span>
@@ -271,6 +271,7 @@ const Order = () => {
                               </td>
                             </tr>
                           </thead>
+                        
                         </table>
                       </TabPanel>
 

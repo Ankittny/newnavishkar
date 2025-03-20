@@ -172,3 +172,16 @@
   .btn-link a{
     color: #fff;
   }
+
+
+  @media(max-width:991px) and (min-width:426px){
+    .navbar-expand-lg .profileall-none{
+      display: none !important;
+    }
+   }
+
+  @media(max-width:425px){
+ .navbar-expand-lg .profileall-none{
+  display: none !important;
+ }
+}

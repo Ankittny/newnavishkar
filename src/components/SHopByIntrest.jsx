@@ -73,12 +73,12 @@ const ShopByIntrest = ({ selectedAgeGroup, selectedCategory }) => {
         </div>
 
         <div className="row dr-title mt-4">
-          <div className="col-md-3">
+          <div className="col-lg-3">
             <BoysToys />
             <Divider />
           </div>
 
-          <div className="col-md-9">
+          <div className="col-lg-9">
             <div className="row">
               <SortOptions />
             </div>

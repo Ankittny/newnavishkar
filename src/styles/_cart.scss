@@ -242,3 +242,117 @@ table tr{
     flex-direction: column;
   }
 }
+
+
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cart-table th,
+.cart-table td {
+  padding: 12px;
+  text-align: center;
+  // border-bottom: 1px solid #ddd;
+}
+
+.cart-table th {
+  // background: #f8f9fa;
+  font-weight: bold;
+}
+
+.cart-item {
+  text-align: center;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+table tr {
+  justify-content: space-between;
+  align-items: center;
+ 
+}
+.product-info img {
+  width: 70px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.product-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.quantity-controls button {
+  background: #0056b3;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.quantity-controls button:hover {
+  background: #004494;
+}
+
+.increment-btn {
+  background: #28a745;
+}
+
+.increment-btn:hover {
+  background: #218838;
+}
+
+.total-price {
+  font-weight: bold;
+  color: #333;
+}
+
+.delete-icon {
+  color: #dc3545;
+  cursor: pointer;
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+
+.delete-icon:hover {
+  color: #a71d2a;
+}
+
+@media (max-width: 768px) {
+  .cart-table th,
+  .cart-table td {
+    padding: 8px;
+  }
+
+  .quantity-controls {
+    gap: 5px;
+  }
+
+  .quantity-controls button {
+    padding: 4px 8px;
+    font-size: 14px;
+  }
+}

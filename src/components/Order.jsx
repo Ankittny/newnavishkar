@@ -271,7 +271,7 @@ const Order = () => {
                               </td>
                             </tr>
                           </thead>
-                        
+                          {/* <Divider className="mt-2 " width="100%" /> */}
                         </table>
                       </TabPanel>
 

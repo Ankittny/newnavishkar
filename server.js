@@ -1,20 +1,22 @@
 // server.js
 
-import { createServer } from 'http';
-import { parse } from 'url';
-import next from 'next';
+const { createServer } = require('http');
+const { parse } = require('url');
+const next = require('next');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
-const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   createServer((req, res) => {
     const parsedUrl = parse(req.url, true);
-    handle(req, res, parsedUrl);
+    const { pathname, query } = parsedUrl;
+
+    app.render(req, res, pathname, query);
   }).listen(port, (err) => {
     if (err) throw err;
-    console.log(`> Server listening at http://localhost:${port} as ${dev ? 'development' : 'production'}`);
+    console.log(`> Server listening at http://localhost:${port} as ${dev ? 'development' : process.env.NODE_ENV}`);
   });
 });
+

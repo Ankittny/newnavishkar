@@ -46,5 +46,8 @@
     "sweetalert2": "^11.14.5",
     "swiper": "^11.1.15",
     "yup": "^1.4.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }

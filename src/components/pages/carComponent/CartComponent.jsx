@@ -260,11 +260,11 @@ const CartComponent = () => {
           <h3>Order Summary</h3>
           <div className="summary-details">
             <p className="d-flex justify-content-between">
-              Sub Total <span>₹{subTotal.toFixed(2)}</span>
+              Sub Total <span><strong>₹{subTotal.toFixed(2)}</strong></span>
             </p>
             <p className="d-flex justify-content-between">Shipping </p>
             <p className="d-flex justify-content-between">
-              Discount on product <span>₹{totalDiscount.toFixed(2)}</span>
+              Discount on product <span><strong>₹{totalDiscount.toFixed(2)}</strong></span>
             </p>
 
             {selectedCoupon && (
@@ -302,7 +302,7 @@ const CartComponent = () => {
 
             <hr />
             <p className="">
-              <strong>Total Payable Amount: ₹{grandTotal.toFixed(2)}</strong>
+              <strong className="d-flex justify-content-between">Total Payable Amount: <span>₹{grandTotal.toFixed(2)}</span></strong>
             </p>
           </div>
 

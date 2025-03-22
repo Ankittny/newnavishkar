@@ -137,7 +137,7 @@ const Home = () => {
   const fetchInstagramPosts = async () => {
     try {
       const response = await fetch(
-        "https://graph.instagram.com/me/media?fields=id,media_type,media_url,thumbnail_url,caption,timestamp&access_token=IGAAQiuxZCXcz1BZAE14dXhfdmRwUDdhbXBSUG0waWViTFhhck5KeWEtN2FraGUxeS0xNHFnS1dxZAktqQmhfeHhyZA3RHRklJRkEzVlRhRlB3YTdxRm5OWlJTLXpMNmJDZADNTRzgyV0FZARzlsczRiMldnYUlLRXVfeGF6eTFkVEpoMAZDZD"
+        "https://graph.instagram.com/me/media?fields=id,media_type,media_url,thumbnail_url,caption,timestamp&access_token=IGAAQiuxZCXcz1BZAFB4MEZARR0pDV0JJRDh4RkxqTDg4aElHN2Y3UC1xWVdrV09NbGNXb0JPQWRnVWF5T0hjQzNlR0VDUy1LdTIxZAUwxRW5Bd1R2UngxbXpiM0FjSXc5aDd1WlhTNlBySWk2RlhFZA2RHMkJVNFBLZA2pLQ09pMmNMUQZDZD"
       );
       const data = await response.json();
       setInstaData(data.data.filter((post) => post.media_type === "VIDEO"));
@@ -232,7 +232,7 @@ const Home = () => {
                 </div>
                 <div className="award-price d-flex justify-content-center align-items-center gap-3">
                   <div className="training-title">
-                    <Image
+                  <Image
                       src="/product/Group-95.png" // Corrected file extension and relative path
                       alt="Certificate"
                       width={150}
@@ -534,16 +534,16 @@ const Home = () => {
               </div>
               <div className="col-lg-6">
                 <div className="drone-image">
-                  <Image
-                    src="/product/DeWatermark.png"
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }} // Corrected file extension and relative path
-                    alt="Certificate"
-                    priority={false}
-                    loading="lazy"
-                    quality={80}
-                    width={500}
-                    height={100}
-                  />
+                <Image
+                  src="/product/DeWatermark.png"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }} // Corrected file extension and relative path
+                  alt="Certificate"
+                  priority={false}
+                  loading="lazy"
+                  quality={80}
+                  width={500}
+                  height={100}
+                />
                 </div>
               </div>
             </div>
@@ -563,33 +563,35 @@ const Home = () => {
         <div className="container">
           <div className="row mt-5">
             <div className="col-lg-12">
-              <Carousel
-                slide={true}
-                interval={3000}
-                controls={false} // Hide left and right arrows
-              >
-                {instaData.map((item, index) => {
-                  // Group the items in sets of 4
-                  if (index % 4 === 0) {
-                    const groupedItems = instaData.slice(index, index + 4);
-                    return (
-                      <Carousel.Item key={index}>
-                        <div className="d-flex justify-content-between flex-d">
-                          {groupedItems.map((videoItem, videoIndex) => (
-                            <div className="carousel-item-video" key={videoIndex}>
-                              <video width="100%" height="400" controls>
-                                <source src={videoItem.media_url} type="video/mp4" />
-                                Your browser does not support the video tag.
-                              </video>
-                            </div>
-                          ))}
-                        </div>
-                      </Carousel.Item>
-                    );
-                  }
-                  return null;
-                })}
-              </Carousel>
+            <Carousel
+              slide={true}
+              interval={3000}
+              controls={false} // Hide left and right arrows
+            >
+              {instaData.map((item, index) => {
+                // Group the items in sets of 6 for desktop, and 1 for mobile
+                if (index % (window.innerWidth >= 768 ? 6 : 1) === 0) {
+                  const groupedItems = instaData.slice(index, index + (window.innerWidth >= 768 ? 6 : 1));
+                  return (
+                    <Carousel.Item key={index}>
+                      <div className="d-flex justify-content-between flex-d">
+                        {groupedItems.map((videoItem, videoIndex) => (
+                          <div className="carousel-item-video" key={videoIndex}>
+                            <video width="100%" height="400" controls>
+                              <source src={videoItem.media_url} type="video/mp4" />
+                              Your browser does not support the video tag.
+                            </video>
+                          </div>
+                        ))}
+                      </div>
+                    </Carousel.Item>
+                  );
+                }
+                return null;
+              })}
+</Carousel>
+
+
             </div>
           </div>
         </div>
@@ -708,18 +710,17 @@ const Home = () => {
           <div className="container">
             <div className="cpi-drone">
               <span>MINOS</span>
-              <div className="height-minos" style={{ position: "relative", width: "100%", height: "500px" }}>
-                <Image
-                  src="/product/TEST-13.png"
-                  alt="Certificate"
-                  fill
-                  priority={false}
-                  loading="lazy"
-                  quality={80}
-                  style={{ objectFit: "contain" }} // Adjust to "cover" if needed
-                  
-                />
-              </div>
+              <div style={{ position: "relative", width: "100%", height: "500px" }}>
+  <Image
+    src="/product/TEST-13.png"
+    alt="Certificate"
+    fill
+    priority={false}
+    loading="lazy"
+    quality={80}
+    style={{ objectFit: "contain" }} // Adjust to "cover" if needed
+  />
+</div>
 
               {/* <img src="product/TEST-13.png" style={{ width: "100%" }}></img> */}
             </div>
@@ -810,7 +811,7 @@ const Home = () => {
                           priority={false}
                           loading="lazy"
                           quality={80}
-
+                          
                         />
 
 

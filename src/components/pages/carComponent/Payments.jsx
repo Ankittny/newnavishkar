@@ -163,12 +163,12 @@ const Payment = () => {
             <div className="col-lg-5">
               <div className="order-summary">
                 <h3>Order Summary</h3>
-                <p>Sub Total: ₹{totalAmount.toFixed(2)}</p>
+                <p className="d-flex justify-content-between">Sub Total: <span><b>₹{totalAmount.toFixed(2)}</b></span></p>
                 {/* <p>Shipping: ₹{shipping.toFixed(2)}</p> */}
-                <p className="d-flex justify-content-between">Discount on product <span>₹{totalDiscount.toFixed(2)}</span></p>
-                <p className="">Coupon Code Apply <b>({couponCode})</b><span className="">{discountAmount}</span></p>
+                <p className="d-flex justify-content-between">Discount on product <span><b>₹{totalDiscount.toFixed(2)}</b></span></p>
+                <p className="d-flex justify-content-between">Coupon Code Apply <b>({couponCode}) ₹{discountAmount}</b></p>
                 <hr />
-                <p>Total: ₹{totalAmount.toFixed(2)}</p>
+                <p className="d-flex justify-content-between">Net Amount: <span><b> ₹{totalAmount.toFixed(2)}</b></span></p>
               </div>
               <div className="payment-methods mt-3">
                 <h3>Pay with Razorpay</h3>

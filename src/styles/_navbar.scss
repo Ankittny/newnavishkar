@@ -185,3 +185,35 @@
   display: none !important;
  }
 }
+
+
+
+.profile-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: none;
+  background: none !important;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+}
+
+.desktop-text {
+  display: inline-block;
+}
+
+/* Hide text and show icon on mobile */
+.mobile-icon {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-text {
+    display: none;
+  }
+
+  .mobile-icon {
+    display: inline-block;
+  }
+}

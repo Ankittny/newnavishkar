@@ -496,7 +496,7 @@ const Home = () => {
 
       {/* ===============================================for mobile==================================== */}
       <section>
-        <div className="drone-services-title py-4   d-lg-none d-xl-block d-xl-none d-xxl-block  d-md-none d-lg-block ">
+        <div className="drone-services-title py-4 d-lg-none d-xl-block d-xl-none   d-md-none d-lg-block ">
           <div className="container">
             <div className="row">
               <div className="col-lg-6">

@@ -363,7 +363,7 @@ const ProductDetails = () => {
 
 
 
-        <div className="row mt-2 ">
+        <div className="row mt-4">
           <div className="col-md-4">
             <div className="mini-img-minos">
               <Image

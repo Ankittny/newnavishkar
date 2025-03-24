@@ -86,9 +86,9 @@ const BoysToys = () => {
       </div>
 
       {/* ✅ Show Products in ShopByInterest Instead of Default */}
-      <div className="project-container mt-4" >
+      <div className="project-container mt-4" style={{display:'none'}} >
         {selectedCategory ? (
-          <ShopByInterest selectedCategory={selectedCategory} className="display-block"/>
+          <ShopByInterest selectedCategory={selectedCategory}  />
         ) : (
           <p></p>
         )}

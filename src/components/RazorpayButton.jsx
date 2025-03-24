@@ -52,7 +52,7 @@ export default function RazorpayButton({ totalAmount,couponCode, addressId,disco
       const isLoaded = await loadRazorpay("https://checkout.razorpay.com/v1/checkout.js");
 
       if (!isLoaded) {
-        alert("Razorpay SDK failed to load.");
+        alert("Razorpay SDK failed to load..");
         setLoading(false);
         return;
       }

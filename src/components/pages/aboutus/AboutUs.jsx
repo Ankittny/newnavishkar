@@ -426,57 +426,62 @@ const AboutUs = () => {
                                     >
                                         <SwiperSlide>
                                             <div className="slider-faze1">
-                                                <h3>“ Their commitment to quality and attention to
-                                                    detail is unmatched</h3>
-                                                <p>I’ve had the pleasure of collaborating with Struktura on multiple projects, and i must say
-                                                    their commitment to quality and attention to detail is unmatched, Their team’s expertise
-                                                    in construction  has truly elevated the success of my developments. </p>
-
-                                                <span className="fw-bold">Medison Johnson</span>
+                                                <h3>“ Navishkar's robotics kits are a game-changer!</h3>
+                                                <p>The step-by-step guides made learning effortless, and the hands-on experience was truly engaging. </p>
+                                                <span className="fw-bold">Shelendra Singh</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide>
                                             <div className="slider-faze1">
-                                                <h3>“ Their commitment to quality and attention to
-                                                    detail is unmatched</h3>
-                                                <p>I’ve had the pleasure of collaborating with Struktura on multiple projects, and i must say
-                                                    their commitment to quality and attention to detail is unmatched, Their team’s expertise
-                                                    in construction  has truly elevated the success of my developments. </p>
-
-                                                <span className="fw-bold">Medison Johnson</span>
+                                                <h3>“ Navishkar provides an outstanding learning experience</h3>
+                                                <p>Their products are well-designed, easy to use, and perfect for hands-on skill development in robotics and tech.</p>
+                                                <span className="fw-bold">Abhinandan Singh</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide>
                                             <div className="slider-faze1">
-                                                <h3>“ Their commitment to quality and attention to
-                                                    detail is unmatched</h3>
-                                                <p>I’ve had the pleasure of collaborating with Struktura on multiple projects, and i must say
-                                                    their commitment to quality and attention to detail is unmatched, Their team’s expertise
-                                                    in construction  has truly elevated the success of my developments. </p>
+                                                <h3>“ Navishkar Labs has transformed the way I learn</h3>
+                                                <p>The interactive setup, well-structured training sessions, and access to advanced tools make it a great place for hands-on experimentation.</p>
 
-                                                <span className="fw-bold">Medison Johnson</span>
+                                                <span className="fw-bold">Ankit Daksh</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide>
                                             <div className="slider-faze1">
-                                                <h3>“ Their commitment to quality and attention to
-                                                    detail is unmatched</h3>
-                                                <p>I’ve had the pleasure of collaborating with Struktura on multiple projects, and i must say
-                                                    their commitment to quality and attention to detail is unmatched, Their team’s expertise
-                                                    in construction  has truly elevated the success of my developments. </p>
+                                                <h3>“ The projects at Navishkar are engaging, well-structured, and highly educational</h3>
+                                                <p> They provide a great opportunity to work with current technology and develop real-world skills.</p>
 
-                                                <span className="fw-bold">Medison Johnson</span>
+                                                <span className="fw-bold">Vinay Jaiswal</span>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide>
                                             <div className="slider-faze1">
-                                                <h3>“ Their commitment to quality and attention to
-                                                    detail is unmatched</h3>
-                                                <p>I’ve had the pleasure of collaborating with Struktura on multiple projects, and i must say
-                                                    their commitment to quality and attention to detail is unmatched, Their team’s expertise
-                                                    in construction  has truly elevated the success of my developments. </p>
-
-                                                <span className="fw-bold">Medison Johnson</span>
+                                                <h3>“ I attended a robotics workshop at Navishkar, and it was a fantastic experience</h3>
+                                                <p>The trainers are experts, and the sessions are engaging and informative.</p>
+                                                <span className="fw-bold">Mohit Kumar</span>
+                                            </div>
+                                        </SwiperSlide>
+                                        <SwiperSlide>
+                                            <div className="slider-faze1">
+                                                <h3>“ Navishkar’s drone kits are exceptional</h3>
+                                                <p>The hands-on experience with building and flying drones was both educational and exciting. The quality and precision are unmatched.</p>
+                                                <span className="fw-bold">Nitesh Kumar</span>
+                                            </div>
+                                        </SwiperSlide>
+                                        <SwiperSlide>
+                                            <div className="slider-faze1">
+                                                <h3>“ Partnering with Navishkar has been an incredible experience</h3>
+                                                <p>Their comprehensive support, innovative programs, and commitment to excellence have made it a highly rewarding collaboration.
+                                                </p>
+                                                <span className="fw-bold">Priya Singh</span>
+                                            </div>
+                                        </SwiperSlide>
+                                        <SwiperSlide>
+                                            <div className="slider-faze1">
+                                                <h3>“ The Navishkar app has completely transformed my learning experience</h3>
+                                                <p>It’s user-friendly, interactive, and offers a wide range of engaging content. The app makes learning robotics and tech easy and fun
+                                                </p>
+                                                <span className="fw-bold">Aditi Singh</span>
                                             </div>
                                         </SwiperSlide>
                                     </Swiper>

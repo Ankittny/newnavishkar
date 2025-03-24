@@ -31,19 +31,23 @@ const Footer = () => {
               </div>
 
               {/* About Us */}
-              <div className="col-lg-3 mb-4">
+              <div className="col-lg-6 mb-4">
                 <div className="ct_contact_us">
                   <h3>About Us</h3>
                   <p>
                     Derived from the words "Nav" stands for new and "Avishkar"
                     stands for discovery, we are passionately committed to
                     providing high-quality STEAM education for young minds.
+                    The aim of the team is to transform the system of education
+                     in line & length of new education guidelines. No doubt with little
+                      faster than competitors just to be in the market better than others. 
+                      The team tries and brings the dreams of Y & Z generation in reality.
                   </p>
                 </div>
               </div>
 
               {/* Quick Links */}
-              <div className="col-lg-3 mb-4">
+              <div className="col-lg-2 mb-4 link">
                 <div className="ct_contact_us">
                   <h3>Quick Links</h3>
                   <ul className="list-unstyled">
@@ -78,7 +82,7 @@ const Footer = () => {
               </div>
 
               {/* Follow Us */}
-              <div className="col-lg-3 mb-4">
+              <div className="col-lg-2 mb-4 link">
                 <div className="ct_contact_us">
                   <h3>Important Links</h3>
                   <ul className="list-unstyled">
@@ -105,7 +109,7 @@ const Footer = () => {
               </div>
 
               {/* Contact Us */}
-              <div className="col-lg-3 mb-4">
+              <div className="col-lg-2 mb-4 link">
                 <div className="ct_contact_us">
                   <h3>Contact Us</h3>
                   <ul className="list-unstyled">

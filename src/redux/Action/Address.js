@@ -124,26 +124,29 @@ export const updateAddressData = (values) => async (dispatch) => {
 export const deleteAddressData = (address_id) => async (dispatch) => {
   try {
     dispatch({ type: "addressDeleteRequest" });
+
     const token = localStorage.getItem("authAdminToken");
     const config = {
       headers: {
         Authorization: token ? `Bearer ${token}` : "",
+        "Content-Type": "application/json",
       },
+      data: { address_id }, // Send data in body
     };
 
-    // Use query parameters in the URL instead of sending a request body
-    await axios.delete(
-      `/customer/address?&address_id=${address_id}`,
-      config
-    );
+    const { data } = await axios.delete("/customer/address/delete_address", config);
 
-    dispatch({ type: "addressDeleteSuccess", payload: address_id });
-    dispatch(getAddressData()); // Refresh address list after deletion
+    if (data.message === "successfully removed!") {
+      dispatch({ type: "addressDeleteSuccess", payload: data });
+      dispatch(getAddressData()); // Refresh address list
+      return { payload: data }; // Return API response for toast handling
+    }
   } catch (error) {
     dispatch({
       type: "addressDeleteFail",
       payload: error.response?.data.message || error.message,
     });
+    return { error: true }; // Return error for toast handling
   }
 };
 

@@ -65,8 +65,8 @@ const Payment = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     let newValue = value;
-    if (name === "country" && value.length > 0) {
-      newValue = value.charAt(0).toUpperCase() + value.slice(1);
+    if (name === "country") {
+      newValue = value.toLowerCase();
     }
     setShippingDetails((prev) => ({
       ...prev,
@@ -97,6 +97,8 @@ const Payment = () => {
       longitude: "10",
       is_billing: true,
     });
+
+    getAddressData()
   };
 
   // Handle Edit Address
@@ -107,10 +109,25 @@ const Payment = () => {
   };
 
   // Handle Delete Address
-  const handleDelete = (addressId) => {
-    const address = AddressDetails.find((addr) => addr.id === addressId);
-    if (address) {
-      dispatch(deleteAddressData(address.customer_id, address.id));
+  // const handleDelete = (addressId) => {
+  //   const address = AddressDetails.find((addr) => addr.id === addressId);
+  //   if (address) {
+  //     dispatch(deleteAddressData(address.id));
+  //   }
+  // };
+
+  const handleDelete = async (addressId) => {
+    try {
+      const response = await dispatch(deleteAddressData(addressId));
+  
+      // Check if API response contains the success message
+      if (response?.payload?.message === "successfully removed!") {
+        toast.success("Address deleted successfully!");
+      } else {
+        toast.error("Failed to delete address!");
+      }
+    } catch (error) {
+      toast.error("Failed to delete address!");
     }
   };
 
@@ -150,7 +167,7 @@ const Payment = () => {
                     </div>
                     <div className="d-flex gap-3">
                       <Button variant="warning" className="edit-address mr-2" onClick={() => handleEdit(address)}>Edit</Button>
-                      {/* <Button variant="danger" onClick={() => handleDelete(address.id)}>Delete</Button> */}
+                      <Button variant="danger" onClick={() => handleDelete(address.id)}>Delete</Button>
                     </div>
                   </div>
                 ))

@@ -126,4 +126,5 @@ export const authReducer = createReducer(initialState, (builder) => {
       state.error = action.payload;
       state.isError = true; // Mark error state for logout failure
     });
+    
 });

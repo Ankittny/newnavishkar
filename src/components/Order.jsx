@@ -39,6 +39,10 @@ const Order = () => {
   const dispatch = useDispatch();
   const { loading, error, orderList, orderDetailsById, orderDetail } = useSelector((state) => state.order)
 
+
+  console.log("orderDetailsById", orderDetailsById)
+  console.log("orderDetails", orderDetail)
+
   // for paginations
   const [currentPage, setCurrentPage] = useState(1);
   const ordersPerPage = 8; // Show only 8 orders per page

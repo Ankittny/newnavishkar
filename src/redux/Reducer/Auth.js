@@ -49,28 +49,28 @@ export const authReducer = createReducer(initialState, (builder) => {
       state.error = action.payload;
     })
     
-    // .addCase("loginRequest", (state) => {
-    //   state.loading = true;
-    //   state.isAuthenticated = false;
-    //   state.error = null;
-    //   state.isSuccess = false; // Reset success state
-    // })
-    // .addCase("loginSuccess", (state, action) => {
-    //   state.loading = false;
-    //   state.isAuthenticated = true;
-    //   state.user = action.payload;
-    //   state.isLoggedIn = true;
-    //   state.successMessage = "Login successful!";
-    //   state.isError = false;
-    //   state.isSuccess = true; // Set success state
-    // })
-    // .addCase("loginFail", (state, action) => {
-    //   state.loading = false;
-    //   state.isAuthenticated = false;
-    //   state.error = action.payload;
-    //   state.isError = true;
-    //   state.isSuccess = false; // Reset success state
-    // })
+    .addCase("loginRequest", (state) => {
+      state.loading = true;
+      state.isAuthenticated = false;
+      state.error = null;
+      state.isSuccess = false; // Reset success state
+    })
+    .addCase("loginSuccess", (state, action) => {
+      state.loading = false;
+      state.isAuthenticated = true;
+      state.user = action.payload;
+      state.isLoggedIn = true;
+      state.successMessage = "Login successful!";
+      state.isError = false;
+      state.isSuccess = true; // Set success state
+    })
+    .addCase("loginFail", (state, action) => {
+      state.loading = false;
+      state.isAuthenticated = false;
+      state.error = action.payload;
+      state.isError = true;
+      state.isSuccess = false; // Reset success state
+    })
 
     .addCase("sendOtpRequest", (state) => {
       state.loading = true;

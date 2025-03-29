@@ -120,6 +120,7 @@ const MyProfile = () => {
   const [coupons, setCoupons] = useState([]);
   const router = useRouter();
 
+  
   const axios = axiosInstance;
 
   const logout = () => {

@@ -287,55 +287,45 @@ const LiveProjects = () => {
       </Modal>
 
       <div className="row">
-        <div className="col-lg-12 mt-3 mb-3">
+        {/* <div className="col-lg-12 mt-3 mb-3">
           <div className="text-center ">
             <h1 className="reletedHead">Related Live Projects</h1>
           </div>
-        </div>
+        </div> */}
         <div className="col-lg-12">
           <Swiper
           centeredSlides={true}
-            navigation={false}
-            modules={[Autoplay, Navigation]} // Importing Autoplay module
-            className="mySwiper"
-            autoplay={{
-              delay: 3000, // Adjust delay as needed
-              disableOnInteraction: false,
-            }}
-            loop={true}
-            breakpoints={{
-              640: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-              },
-              768: {
-                slidesPerView: 4,
-                spaceBetween: 40,
-              },
-              1024: {
-                slidesPerView: 4,
-                spaceBetween: 50,
-              },
-            }}
-          >
+                      centeredSlidesBounds={true}
+                      navigation={true}
+                      modules={[Autoplay, Navigation]}
+                      className="mySwiper p-4"
+                      autoplay={{
+                        delay: 3000,
+                        disableOnInteraction: false,
+                      }}
+                      loop={true}
+                      slidesPerView="auto"
+                      spaceBetween={30}
+                      breakpoints={{
+                        640: {
+                          slidesPerView: "auto",
+                          spaceBetween: 20,
+                        },
+                        768: {
+                          slidesPerView: "auto",
+                          spaceBetween: 30,
+                        },
+                        1024: {
+                          slidesPerView: "auto",
+                          spaceBetween: 40,
+                        },
+                      }}
+                      style={{ display: "flex", justifyContent: "center" }}
+                    >
             <SwiperSlide>
-              <RelatedProduct />
+              <RelatedProduct name={"Live Project"}/>
             </SwiperSlide>
-            <SwiperSlide>
-              <RelatedProduct />
-            </SwiperSlide>
-            <SwiperSlide>
-              <RelatedProduct />
-            </SwiperSlide>
-            <SwiperSlide>
-              <RelatedProduct />
-            </SwiperSlide>
-            <SwiperSlide>
-              <RelatedProduct />
-            </SwiperSlide>
-            <SwiperSlide>
-              <RelatedProduct />
-            </SwiperSlide>
+            
           </Swiper>
         </div>
       </div>

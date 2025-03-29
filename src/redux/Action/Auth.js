@@ -138,4 +138,16 @@ export const logout = () => async (dispatch) => {
 
 
 
+export const login = (userData, router) => async (dispatch) => {
+  try {
+    // API call or authentication logic
+    dispatch({ type: 'loginSuccess', payload: userData });
+    router.push('/'); // Redirect after login
+  } catch (error) {
+    dispatch({ type: 'loginFail', payload: error.message });
+  }
+};
+
+
+
 

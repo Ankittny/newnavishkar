@@ -4,7 +4,7 @@ const initialState = {
   loading: false,
   error: null,
   success: false,
-  AddressDetails: {},
+  AddressDetails: [],
 };
 
 export const addressReducer = createReducer(initialState, (builder) => {
@@ -30,7 +30,7 @@ export const addressReducer = createReducer(initialState, (builder) => {
       state.success = false;
     })
     .addCase("addressUpdateSuccess", (state, action) => {
-      state.loading = false;
+      state.loading = false;related-product-card
       state.AddressDetails = action.payload; // Update the address details after updating
       state.success = true;
     })

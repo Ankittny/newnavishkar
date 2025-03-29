@@ -8,6 +8,14 @@ import { useRouter } from "next/navigation";
 import { sendOtp, verifyOtp } from "@/redux/Action/Auth";
 import "../../styles/_login.scss";
 import { MdEdit } from "react-icons/md";
+import { login } from "@/redux/Action/Auth";
+import toast from "react-hot-toast";
+import { auth, googleProvider } from '../../utils/firebase';
+import { signInWithPopup } from 'firebase/auth';
+import axiosInstance from "@/utils/axios";
+const axios = axiosInstance;
+
+// const API_URL = "https://admin.navishkar.com/api/v1/auth/social-login"; // Backend API
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -41,6 +49,60 @@ const Login = () => {
       });
     }
   };
+
+
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      const googleToken = await user.getIdToken(); // Get Firebase Auth Token
+
+      console.log("Google Auth Token:", googleToken); // Debugging
+
+      const response = await axios.post('/auth/social-login', {
+        token: googleToken,
+        unique_id: user.uid,
+        medium: "google",
+      });
+
+
+      console.log("Backend Response:", response.data); // Debugging
+
+
+      if (response.data?.token) {
+        const userData = {
+          email: user.email,
+          name: user.displayName,
+          photo: user.photoURL,
+          token: response.data.token, // Store backend-provided token
+        };
+
+        dispatch(login(userData));
+
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful",
+          text: `Welcome ${user.displayName}`,
+        });
+
+        // Ensure navigation only happens after Redux state updates
+        setTimeout(() => {
+          router.push("/myprofile");
+        }, 500);
+      } else {
+        throw new Error("Token not received from backend");
+      }
+    } catch (error) {
+      console.error("Google Login Error:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Login Failed",
+        text: error?.response?.data?.message || error.message,
+      });
+    }
+  };
+
+
 
   const handlePhoneChange = (e) => {
     let value = e.target.value;
@@ -118,11 +180,11 @@ const Login = () => {
         <Image src="/log.png" width={700} height={650} alt="Login Image" />
       </Grid>
       <Grid item xs={12} sm={6} md={6} component={Paper} elevation={6} square>
-        <div className="fresh-login">
+        {/* <div className="fresh-login">
           <Grid item xs={12} sm={12}>
-            <div className="loginwithother">
-              <Image src="/icons/google.png" width={30} height={30} alt="google" />
-              <p className="m-0">Login with Google</p>
+            <div className='loginwithother' onClick={handleGoogleLogin}>
+              <Image src='/icons/google.png' width={30} height={30} alt='google' />
+              <p className='m-0'>Login with Google</p>
             </div>
           </Grid>
           <Grid item xs={12} sm={12} className="mt-2">
@@ -131,9 +193,9 @@ const Login = () => {
               <p className="m-0">Login with Facebook</p>
             </div>
           </Grid>
-        </div>
+        </div> */}
         <div className="mt-4">
-          <Divider>Login with Mobile OTP {}</Divider>
+          <Divider>Login with Mobile OTP { }</Divider>
         </div>
 
         {!isOtpSent ? (
@@ -192,24 +254,29 @@ const Login = () => {
             </Button>
           </form>
         )}
-         {isOtpSent && (
-        <div className="mt-4">
-          <Divider>
-            You want to Edit  {phone}
-            <Button
-              onClick={handleEditPhone} // Go back to the phone input section
-              sx={{ ml: 2 }}
-              variant="text"
-              color="primary"
-            >
-              <MdEdit size={25}/>
-            </Button>
-          </Divider>
-        </div>
-      )}
+        {isOtpSent && (
+          <div className="mt-4">
+            <Divider>
+              You want to Edit  {phone}
+              <Button
+                onClick={handleEditPhone} // Go back to the phone input section
+                sx={{ ml: 2 }}
+                variant="text"
+                color="primary"
+              >
+                <MdEdit size={25} />
+              </Button>
+            </Divider>
+          </div>
+        )}
       </Grid>
     </Grid>
   );
 };
 
 export default Login;
+
+
+
+
+

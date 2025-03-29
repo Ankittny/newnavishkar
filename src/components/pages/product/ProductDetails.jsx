@@ -437,7 +437,7 @@ const ProductDetails = () => {
 
       {/* Related Products */}
 
-      <RelatedProduct productId={categryDetailData?.id} />
+      <RelatedProduct productId={categryDetailData?.id} name={"Product"} />
 
       <OurAchievement />
     </>

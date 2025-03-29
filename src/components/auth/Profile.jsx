@@ -47,7 +47,14 @@ export default function Profile() {
   const dispatch = useDispatch();
   const router = useRouter();
   const { profile_info } = useSelector((state) => state.auth);
+  
 
+  useEffect(() => {
+    if (!profile_info) {
+      router.push("/login");
+    }
+  }, [profile_info]);
+  
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
 

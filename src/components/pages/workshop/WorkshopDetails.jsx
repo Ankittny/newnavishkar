@@ -91,7 +91,7 @@ const WorkshopDetails = () => {
             <h1 className="reletedHead">Related Products</h1>
           </div>
         </div> */}
-        <RelatedProduct />
+        <RelatedProduct name={"Workshop"}/>
       </div>
 
       <OurAchievement />

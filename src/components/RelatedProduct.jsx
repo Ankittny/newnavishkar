@@ -106,7 +106,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
 
-const RelatedProduct = ({ productId }) => {
+const RelatedProduct = ({ productId ,name}) => {
   const dispatch = useDispatch();
   const { loading, error, relatedProd } = useSelector(
     (state) => state.relatedProduct
@@ -125,7 +125,7 @@ const RelatedProduct = ({ productId }) => {
         <div className="col-12">
           <div className="shop-by-title text-center">
             <h5>
-              RELATED <span>PRODUCT</span>
+              RELATED <span>{name}</span>
             </h5>
           </div>
         </div>
@@ -145,7 +145,7 @@ const RelatedProduct = ({ productId }) => {
             centeredSlidesBounds={true}
             navigation={true}
             modules={[Autoplay, Navigation]}
-            className="mySwiper"
+            className="mySwiper p-4"
             autoplay={{
               delay: 3000,
               disableOnInteraction: false,
@@ -171,7 +171,7 @@ const RelatedProduct = ({ productId }) => {
           >
             {relatedProd.map((product, index) => (
               <SwiperSlide key={index} style={{ maxWidth: "300px" }}>
-                <div className="related-product-card">
+                <div className="related-product-card text-center">
                   <Image
                     src={product.thumbnail_full_url?.path || "/placeholder.png"}
                     height={200}
@@ -180,7 +180,7 @@ const RelatedProduct = ({ productId }) => {
                   />
                   <div className="card-body">
                     <h5 className="product-name">{product.name}</h5>
-                    <p className="product-price">Price: ${product.unit_price}</p>
+                    <p className="product-price">Price:₹{product.unit_price}</p>
                     <button className="btnPrimary">
                       <Link href={`/products/${product.slug}`}>View Product</Link>
                     </button>

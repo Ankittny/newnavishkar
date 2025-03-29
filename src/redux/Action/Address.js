@@ -40,24 +40,6 @@ export const getAddressData = () => async (dispatch) => {
 
 
 
-// Update address
-// export const updateAddressData = ( values) => async (dispatch) => {
-//   try {
-//     dispatch({ type: "addressUpdateRequest" });
-//     const token = localStorage.getItem('authAdminToken');
-
-//     const config = {
-//       headers: {
-//         'Authorization': token ? `Bearer ${token}` : '', // Only add token if it exists
-//       }
-//     };
-
-//     const { data } = await axios.post(`/customer/address/update`, values, config);
-//     dispatch({ type: "addressUpdateSuccess", payload: data });
-//   } catch (error) {
-//     dispatch({ type: "addressUpdateFail", payload: error.response?.data.message || error.message });
-//   }
-// };
 
 
 export const updateAddressData = (values) => async (dispatch) => {

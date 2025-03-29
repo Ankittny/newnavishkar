@@ -62,7 +62,7 @@ table tr{
   // border-bottom: 1px solid #175A95;
   display: flex;
   // align-items: center;
-  justify-content: end;
+  justify-content: space-between;
 }
 
 .cart-item {
@@ -277,7 +277,7 @@ table tr{
   gap: 5px;
 }
 
-table tr {
+.cart-table tr {
   justify-content: space-between;
   align-items: center;
  

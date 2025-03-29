@@ -37,7 +37,6 @@ const Payment = () => {
   // Fetch Address Data
   useEffect(() => {
     dispatch(getAddressData());
-
     // Get stored values from localStorage
     const storedCoupon = localStorage.getItem("couponCode") || "";
     const storedAmount = localStorage.getItem("totalAmount") || "0";
@@ -53,14 +52,7 @@ const Payment = () => {
 
   }, [dispatch]);
 
-  // Handle Input Change
-  // const handleInputChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setShippingDetails((prevDetails) => ({
-  //     ...prevDetails,
-  //     [name]: value,
-  //   }));
-  // };
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -74,33 +66,46 @@ const Payment = () => {
     }));
   };
 
-  // Handle Address Submit
-  const handleSubmit = (e) => {
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+    let action;
+  
     if (shippingDetails.id) {
-      dispatch(updateAddressData(shippingDetails));
+      // Editing existing address
+      action = dispatch(updateAddressData(shippingDetails));
     } else {
-      dispatch(AddressData({ ...shippingDetails }));
+      // Adding new address
+      action = dispatch(AddressData(shippingDetails));
     }
-
-    setShowModal(false);
-    setShippingDetails({
-      contact_person_name: "",
-      address_type: "Home",
-      address: "",
-      city: "",
-      zip: "",
-      country: "",
-      phone: "",
-      latitude: "10",
-      longitude: "10",
-      is_billing: true,
-    });
-
-    getAddressData()
+  
+    action
+      .then((response) => {
+        if (response?.payload?.error_type === "address") {
+          toast.error(response.payload.message); // Show error message
+        } else {
+          toast.success("Address saved successfully!");
+          dispatch(getAddressData()); // Refresh address list
+          setShowModal(false); // Close modal only on success
+          setShippingDetails({
+            contact_person_name: "",
+            address_type: "Home",
+            address: "",
+            city: "",
+            zip: "",
+            country: "",
+            phone: "",
+            latitude: "10",
+            longitude: "10",
+            is_billing: true,
+          });
+        }
+      })
+      .catch((error) => {
+        toast.error("Something went wrong! Please try again.");
+      });
   };
-
+  
   // Handle Edit Address
   const handleEdit = (address) => {
     setShippingDetails(address);
@@ -108,18 +113,11 @@ const Payment = () => {
     setShowModal(true);
   };
 
-  // Handle Delete Address
-  // const handleDelete = (addressId) => {
-  //   const address = AddressDetails.find((addr) => addr.id === addressId);
-  //   if (address) {
-  //     dispatch(deleteAddressData(address.id));
-  //   }
-  // };
 
   const handleDelete = async (addressId) => {
     try {
       const response = await dispatch(deleteAddressData(addressId));
-  
+
       // Check if API response contains the success message
       if (response?.payload?.message === "successfully removed!") {
         toast.success("Address deleted successfully!");
@@ -196,23 +194,7 @@ const Payment = () => {
         </div>
       </div>
 
-      {/* Address Modal */}
-      {/* <Modal show={showModal} onHide={() => setShowModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>{isEditing ? "Edit Address" : "Add New Address"}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form onSubmit={handleSubmit}>
-            <input type="text" name="contact_person_name" placeholder="Full Name" value={shippingDetails.contact_person_name} onChange={handleInputChange} required className="form-control mb-2" />
-            <input type="text" name="phone" placeholder="Phone Number" value={shippingDetails.phone} onChange={handleInputChange} required className="form-control mb-2" />
-            <input type="text" name="address" placeholder="Address" value={shippingDetails.address} onChange={handleInputChange} required className="form-control mb-2" />
-            <input type="text" name="city" placeholder="City" value={shippingDetails.city} onChange={handleInputChange} required className="form-control mb-2" />
-            <input type="text" name="zip" placeholder="Zip Code" value={shippingDetails.zip} onChange={handleInputChange} required className="form-control mb-2" />
-            <input type="text" name="country" placeholder="Country" value={shippingDetails.country} onChange={handleInputChange} required className="form-control mb-2" />
-            <Button type="submit" className="mt-3 w-100">{isEditing ? "Update Address" : "Save Address"}</Button>
-          </form>
-        </Modal.Body>
-      </Modal> */}
+      
 
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>

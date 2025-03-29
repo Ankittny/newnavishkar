@@ -68,7 +68,7 @@ const ShopByIntrest = ({ selectedAgeGroup, selectedCategory }) => {
             <h5>
               SHOP BY <span>INTEREST</span>
             </h5>
-            <p>A whole lotta fun & learning</p>
+            {/* <p>A whole lotta fun & learning</p> */}
           </div>
         </div>
 

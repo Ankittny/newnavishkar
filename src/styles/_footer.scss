@@ -30,6 +30,18 @@
 .ct_contact_us p {
     font-size: 14px;
     font-weight: 400;
+    margin-right: 50px;
+}
+
+@media (max-width: 768px) {
+    .ct_contact_us p {
+        margin-right: 0;
+        font-size: 18px;
+    }
+
+    .link{
+        font-size: 18px;
+    }
 }
 .ct_contact_us h3 {
 

@@ -6,6 +6,10 @@ import Image from "next/image";
 import ProductBanner from "@/components/ProductBanner";
 import OurAchievement from "@/components/OurAchievment";
 import { contactUsData } from "@/redux/Action/ContactUs";
+import { FaRegAddressCard } from "react-icons/fa6";
+import { FaPhone } from "react-icons/fa6";
+import { FaMailBulk } from "react-icons/fa";
+
 
 
 const ContactUs = () => {
@@ -59,18 +63,18 @@ const ContactUs = () => {
       <section className="mt-4">
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-lg-6 mb-4 mb-lg-0">
+            <div className="col-lg-5 mb-4 mb-lg-0">
               <div className="image-container text-center">
                 <Image
                   src="/Contact/contact.png"
                   alt="contact"
-                  width={550}
+                  width={500}
                   height={520}
                 />
               </div>
             </div>
 
-            <div className="col-lg-6">
+            <div className="col-lg-7">
               <div className="form-container bg-light p-4 rounded shadow">
                 <h2 className="text-center mb-4">Get in Touch</h2>
                 <form onSubmit={handleSubmit}>
@@ -151,21 +155,21 @@ const ContactUs = () => {
                       <i className="fas fa-envelope mb-2"></i>
                       <p>Email</p>
                       <p>
-                        <strong>info@navishkar.com</strong>
+                        <strong> <FaMailBulk /> info@navishkar.com</strong>
                       </p>
                     </div>
                     <div className="info-item text-center">
                       <i className="fas fa-phone mb-2"></i>
                       <p>Phone</p>
                       <p>
-                        <strong>+123 456 7890</strong>
+                        <strong> <FaPhone /> +123 456 7890</strong>
                       </p>
                     </div>
                     <div className="info-item text-center">
                       <i className="fas fa-map-marker-alt mb-2"></i>
                       <p>Address</p>
                       <p>
-                        <strong>A17 Sector-4 Noida Uttarpradesh 201301</strong>
+                        <strong> <FaRegAddressCard /> A17 Sector-4 Noida Uttarpradesh 201301</strong>
                       </p>
                     </div>
                   </div>

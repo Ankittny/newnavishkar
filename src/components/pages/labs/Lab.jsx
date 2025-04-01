@@ -193,7 +193,7 @@ const Lab = () => {
                     <Image
                       src={"/labs/summer1.png"}
                       alt="img2"
-                      width={100}
+                      width={200}
                       height={100}
                     />
                     <p>
@@ -207,7 +207,7 @@ const Lab = () => {
                     <Image
                       src={"/labs/summer1.png"}
                       alt="img2"
-                      width={100}
+                      width={200}
                       height={100}
                     />
                     <p>

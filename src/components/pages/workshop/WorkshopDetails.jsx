@@ -41,7 +41,7 @@ const WorkshopDetails = () => {
               <div className="mt-3">
                 <Image
                   src={worskDetails.image_path}
-                  width={300}
+                  width={200}
                   height={100}
                   className="toddlet-tab-img"
                   alt="elec"

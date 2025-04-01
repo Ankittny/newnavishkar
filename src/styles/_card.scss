@@ -142,6 +142,9 @@
     display: flex;
     gap: 20px;
   }
+  .display-block-0{
+    flex-wrap: wrap;
+  }
 
   @media(max-width:767px) and (min-width:426px){
     .play-role-title {

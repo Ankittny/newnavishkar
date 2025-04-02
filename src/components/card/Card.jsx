@@ -11,6 +11,7 @@ import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa"; // Import sta
 import Tooltip from '@mui/material/Tooltip';
 
 const Card = ({ imageUrl, name, discount, price, discount_type, onClick, id, current_stock,rating }) => {
+  console.log("Rating", rating);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false); // State to handle loader
   const token = localStorage.getItem("authAdminToken");

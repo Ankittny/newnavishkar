@@ -10,7 +10,7 @@ const Certificate = ({ title, imageUrl, linkUrl, linkText }) => {
     <>
       <section>
         <div className="mini-img-minos">
-          {imageUrl && <Image src={imageUrl} width={100} height={100} alt="Labs Image" />}
+          {imageUrl && <Image src={imageUrl} width={180} height={130} alt="Labs Image" />}
           {title && <p className="text-center">{title}</p>}
           {linkText && linkUrl && (
             <button className="mt-2">

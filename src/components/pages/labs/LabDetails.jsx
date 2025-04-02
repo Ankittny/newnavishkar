@@ -53,7 +53,7 @@ const LabDetails = () => {
               </div>
             </div>
             <div className="role-ai-title">
-              <div className="artical-tag-role">
+              <div className="artical-tag-role mt-3">
                 <h4>{worskDetails.title}</h4>
                 <p>
                   {worskDetails.description}

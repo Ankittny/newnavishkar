@@ -65,11 +65,11 @@ const Lab = () => {
 
       <div className="container mt-5">
         <div className="row detail-nav">
-          <div className="col-lg-3">
+          {/* <div className="col-lg-3">
             <BoysToys />
-          </div>
+          </div> */}
 
-          <div className="col-lg-9">
+          <div className="col-lg-12">
             <div className="mt-2 right-sight-title-brand">
               <h1>Navishkar The Leading Brand</h1>
             </div>
@@ -89,8 +89,8 @@ const Lab = () => {
                     <div className="labs-toddler">
                       <p>{item.title}</p>
                       <span>
-                        {item.description.length > 90
-                          ? `${item.description.slice(0, 90)}...`
+                        {item.description.length > 300
+                          ? `${item.description.slice(0, 300)}...`
                           : item.description}
                       </span>
                       <div className="an-int">

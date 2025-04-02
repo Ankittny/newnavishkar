@@ -116,6 +116,7 @@ const CompleteProject = () => {
                     originalPrice={item.original_price || "799"}
                     onClick={() => handleCardClick(item.slug)}
                     onAddToCart={() => handleAddToCart(item.id)}
+                    rating={item?.reviews_avg_rating}
                   />
                 </div>
               ))}

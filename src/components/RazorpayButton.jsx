@@ -62,7 +62,7 @@ export default function RazorpayButton({ totalAmount,couponCode, addressId,disco
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         amount: paymentData.amount,
         currency: paymentData.currency,
-        name: "Skylabs Solutions",
+        name: "Tinkering Intelli labs Pvt Ltd.",
         description: "Order Payment",
         order_id: paymentData.id,
         handler: async function (response) {

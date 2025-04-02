@@ -96,6 +96,7 @@ const ShopByIntrest = ({ selectedAgeGroup, selectedCategory }) => {
                     onClick={() => handleCardClick(category?.slug)}
                     discount_type={category?.discount_type}
                     current_stock={category?.current_stock}
+                    rating={category?.reviews_avg_rating}
                   />
                 ))
               ) : (

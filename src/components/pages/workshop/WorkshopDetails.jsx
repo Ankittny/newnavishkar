@@ -68,7 +68,7 @@ const WorkshopDetails = () => {
                 <div className="imag-toddler">
                   <Image
                     src={"/labs/related1.png"}
-                    height={100}
+                    height={200}
                     width={100}
                     alt="link"
                   />

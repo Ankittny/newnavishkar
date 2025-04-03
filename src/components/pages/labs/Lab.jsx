@@ -82,7 +82,7 @@ const Lab = () => {
                       <Image
                         src={item.image_path}
                         alt={item.title}
-                        width={100}
+                        width={300}
                         height={100}
                       />
                     </div>

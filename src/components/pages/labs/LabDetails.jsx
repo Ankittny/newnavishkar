@@ -45,7 +45,7 @@ const LabDetails = () => {
               <div className="mt-3">
                 <Image
                   src={worskDetails.image_path}
-                  width={100}
+                  width={300}
                   height={100}
                   className="toddlet-tab-img"
                   alt="elec"

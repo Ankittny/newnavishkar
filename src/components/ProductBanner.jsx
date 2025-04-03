@@ -11,7 +11,7 @@ const ProductBanner = ({ linkText, linkUrl, imageUrl }) => {
           <Image
             src={imageUrl}
             width={1000}
-            height={400}
+            height={300}
             alt="Product Image"
             className="product-image"
           />

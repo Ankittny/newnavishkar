@@ -187,10 +187,9 @@ const Workshop = () => {
                   Our summer camp <span>activity</span>
                 </h2>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
+                Drone and AI/Robotics workshop in schools is to spark curiosity and innovation
+                 among students by introducing them to cutting-edge technologies. It empowers
+                  them with practical skills and knowledge for future-ready careers.
                 </p>
               </div>
               <div className="row">
@@ -203,8 +202,8 @@ const Workshop = () => {
                       height={100}
                     />
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et{" "}
+                    A drone workshop enhances students' technical skills, creativity, 
+                    and understanding of real-world applications in emerging technologies.
                     </p>
                   </div>
                 </div>
@@ -217,8 +216,8 @@ const Workshop = () => {
                       height={100}
                     />
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et{" "}
+                    AI/Robotics workshops prepare students for future careers by
+                     building hands-on experience with real-world technology and innovation
                     </p>
                   </div>
                 </div>

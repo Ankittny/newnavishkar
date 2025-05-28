@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import BoysToys from "@/components/BoysToys";
 import { WorkshopData } from "@/redux/Action/Workshop";
+import OurAchievement from "@/components/OurAchievment";
 
 const Lab = () => {
   const [labData, setLabData] = useState([]);
@@ -156,7 +157,7 @@ const Lab = () => {
             <div className="col-lg-12">
               <div className="camp-title-act text-center">
                 <h2>
-                  Our summer camp <span>activity</span>
+                  Lab <span>activity</span>
                 </h2>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -253,6 +254,7 @@ const Lab = () => {
           </Swiper>
         </div>
       </div> */}
+      <OurAchievement />
     </>
   );
 };

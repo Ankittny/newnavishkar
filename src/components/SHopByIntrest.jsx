@@ -7,55 +7,56 @@ import {
   FilterSubCategory,
 } from "@/redux/Action/category";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import Filter from "./Filter";
-import Button from "./Button";
 import BoysToys from "./BoysToys";
 import SortOptions from "./SortOptions";
 import { Divider } from "@mui/material";
+// import { useRouter } from "next/navigation";
 
-
-
-const SHopByIntrest = ({ selectedAgeGroup }) => {
+const ShopByIntrest = ({ selectedAgeGroup }) => {
   const [filteredCategories, setFilteredCategories] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [selectedSubcategory, setSelectedSubcategory] = useState(null);
   const dispatch = useDispatch();
   const router = useRouter();
+  const { categoryByAgeGroup, filterSubCategory } = useSelector((state) => state.category);
 
-  const { categoryByAgeGroup, filterCategory } = useSelector((state) => state.category);
-
+  // Fetch categories by age group
   useEffect(() => {
     if (selectedAgeGroup) {
       dispatch(categoryByAgeGroups(selectedAgeGroup));
     }
   }, [dispatch, selectedAgeGroup]);
 
+  // Update filtered categories when categoryByAgeGroup changes
   useEffect(() => {
     if (categoryByAgeGroup?.length) {
       setFilteredCategories(categoryByAgeGroup);
     }
   }, [categoryByAgeGroup]);
 
+  // Fetch subcategory data when a subcategory is selected
   useEffect(() => {
-    dispatch(FilterCategory());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (filterCategory?.length) {
-      setCategories(filterCategory);
+    if (selectedSubcategory) {
+      dispatch(FilterSubCategory(selectedSubcategory));
     }
-  }, [filterCategory]);
+  }, [dispatch, selectedSubcategory]);
 
+  // Update filtered categories when filterSubCategory changes
+  useEffect(() => {
+    if (filterSubCategory?.length) {
+      setFilteredCategories(filterSubCategory);
+    }
+  }, [filterSubCategory]);
+
+  // Handle subcategory click from BoysToys
+  const handleSubcategoryClick = (subcategorySlug) => {
+    setSelectedSubcategory(subcategorySlug);
+  };
   const handleCardClick = (slug) => {
     router.push(`/products/${slug}`);
   };
 
-  const handleAddToCart = (item) => {
-    console.log("Added to cart: ", item);
-  };
 
   return (
-    <>
     <section className="shopbyintrest mt-4">
       <div className="container">
         <div className="row">
@@ -70,7 +71,7 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
         <div className="row dr-title mt-4">
           {/* Sidebar */}
           <div className="col-md-3">
-            <BoysToys />
+            <BoysToys onSubcategoryClick={handleSubcategoryClick} />
             <Divider />
           </div>
 
@@ -90,9 +91,8 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
                     discount={category?.discount}
                     price={category?.unit_price}
                     oldPrice={category?.purchase_price}
+                    onClick={() => handleCardClick(category?.slug)}
                     discount_type={category?.discount_type}
-                    onClick={() => handleCardClick(category.slug)}
-                    onAddToCart={handleAddToCart}
                     current_stock={category?.current_stock}
                   />
                 ))
@@ -104,113 +104,7 @@ const SHopByIntrest = ({ selectedAgeGroup }) => {
         </div>
       </div>
     </section>
-
-
-    <section>
-        <div className="seller-top">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="shop-by-title text-center">
-                  <h5>
-                    BEST<span>SELLER</span>
-                  </h5>
-                  <p>Crowd-pleasers for every age</p>
-                </div>
-              </div>
-
-              <div className="col-lg-3">
-                <div className="seller-offer">
-                  <div className="seller-sell">
-                    <img src="product/motor.png" />
-                  </div>
-                  <div className="playkit-action action-inject">
-                    <div className="kit-down">
-                      <p>Play and Learn Kit | 3-6 years | DIY Activity Kit</p>
-                    </div>
-                    <div className="button mt-3 d-flex gap-3 justify-content-between px-4">
-                      <div className="ex-btn">-15%</div>
-                      <div className="price-text">
-                        <span>₹699</span>
-                      </div>
-                      <div className="overline-text">
-                        <p>₹799</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3">
-                <div className="seller-offer">
-                  <div className="seller-sell">
-                    <img src="product/motor.png" />
-                  </div>
-                  <div className="playkit-action action-inject">
-                    <div className="kit-down">
-                      <p>Play and Learn Kit | 3-6 years | DIY Activity Kit</p>
-                    </div>
-                    <div className="button mt-3 d-flex gap-3 justify-content-between px-4">
-                      <div className="ex-btn">-15%</div>
-
-
-                      <div className="price-text">
-                        <span>₹699</span>
-                      </div>
-                      <div className="overline-text">
-                        <p>₹799</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3">
-                <div className="seller-offer">
-                  <div className="seller-sell">
-                    <img src="product/motor.png" />
-                  </div>
-                  <div className="playkit-action action-inject">
-                    <div className="kit-down">
-                      <p>Play and Learn Kit | 3-6 years | DIY Activity Kit</p>
-                    </div>
-                    <div className="button mt-3 d-flex gap-3 justify-content-between px-4">
-                      <div className="ex-btn">-15%</div>
-                      <div className="price-text">
-                        <span>₹699</span>
-                      </div>
-                      <div className="overline-text">
-                        <p>₹799</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3">
-                <div className="seller-offer">
-                  <div className="seller-sell">
-                    <img src="product/motor.png" />
-                  </div>
-                  <div className="playkit-action action-inject">
-                    <div className="kit-down">
-                      <p>Play and Learn Kit | 3-6 years | DIY Activity Kit</p>
-                    </div>
-                    <div className="button mt-3 d-flex gap-3 justify-content-between px-4">
-                      <div className="ex-btn">-15%</div>
-                      <div className="price-text">
-                        <span>₹699</span>
-                      </div>
-                      <div className="overline-text">
-                        <p>₹799</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-</>
   );
 };
 
-export default SHopByIntrest;
+export default ShopByIntrest;

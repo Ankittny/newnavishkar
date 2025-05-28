@@ -172,15 +172,15 @@ const MyProfile = () => {
 
   const formatDate = (dateString) => {
     if (!dateString) return "Limited Time";
-    
+
     const date = new Date(dateString);
     const day = date.getDate().toString().padStart(2, "0");
     const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are 0-based
     const year = date.getFullYear().toString().slice(-2); // Get last 2 digits of the year
-  
+
     return `${day}-${month}-${year}`;
   };
-  
+
 
   return (
     <div style={{ display: "flex", height: "100vh" }}>
@@ -220,7 +220,7 @@ const MyProfile = () => {
       {/* Main Content */}
       <div style={{ flex: 1, padding: "20px" }}>
         {activeSection === "Profile" && <Profile />}
-        {activeSection === "Orders" && <Order />}
+        {activeSection === "Orders" && <Order/>}
         {activeSection === "Logout" && <h1>Logout Successful</h1>}
         {activeSection === "Coupon" && (
           <div>
@@ -232,8 +232,8 @@ const MyProfile = () => {
                 {coupons.map((coupon) => (
                   <div key={coupon.id} style={styles.couponCard}>
                     <div style={styles.discountBadge}>
-  {coupon.discount_type === "amount" ? `₹${coupon.discount} OFF` : `${coupon.discount}% OFF`}
-</div>
+                      {coupon.discount_type === "amount" ? `₹${coupon.discount} OFF` : `${coupon.discount}% OFF`}
+                    </div>
                     <p style={styles.couponTitle}>{coupon.title || "Special Offer"}</p>
                     <p style={styles.expiry}>
                       Expiry: {formatDate(coupon.expire_date) || "Limited Time"}

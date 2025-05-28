@@ -14,6 +14,20 @@
     background: linear-gradient(175.61deg, #207179 0%, #092136 100%) !important;
     color: #fff;
 }
+
+.table_table_detail {
+  width: 100%;
+}
+.table_table_detail tr {
+  display: table-row;
+  border-bottom-color: #000;
+}
+
+.table_table_detail td{
+  padding: 8px;
+}
+
+
 .table_table td{
     padding: 8px;
 }
@@ -174,5 +188,17 @@
  }
  .fcx p{
     font-size: 13px;
+ }
+ .modal-content{
+  overflow-y: scroll;
+  height: 75%;
+ }
+
+ .orderdetailbottom{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border: 1px solid black;
+  width: 50%;
+  padding: 10px;
+  float: inline-end;
  }
 

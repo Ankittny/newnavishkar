@@ -10,19 +10,23 @@ import { move } from "formik";
 import { navbarCategoriesData } from "@/redux/Action/NavbarCategories";
 import { fetchCartData } from "@/redux/Reducer/Cart";
 
-
-
-
-
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);  // Local state for login status
+  const [cartCount , setCartCount] = useState(0);
+  const [isRedirecting, setIsRedirecting] = useState(false); // New state for loader
   const router = useRouter();
   const dispatch = useDispatch();
+ 
 
   // const cartCount = useSelector((state) => state.cart.cartCount) || 0;
-  const cartCount = useSelector((state) => state.cart.cartCount);
+  // const cartCount = useSelector((state) => state.cart.cartCount) || 0;
   const { loading, navbarCategories, error } = useSelector((state) => state.navbarCategories);
+
+  const cartCount1 = useSelector((state) => state.cart.cartCount) || 0;
+  useEffect(() => {
+    setCartCount(cartCount1);
+  }, [cartCount1]);
 
   useEffect(() => {
     const token = localStorage.getItem("authAdminToken");
@@ -49,14 +53,24 @@ const Navbar = () => {
     }
   };
 
-  const logout = () => {
-    localStorage.clear("authAdminToken");
-    setIsLoggedIn(false);  // Update login status when logging out
-    router.push("/");  // Redirect to home or login page
+  const handleCategoryClick = (slug) => {
+    setIsRedirecting(true); // Show loader
+    setTimeout(() => {
+      router.push(`/${slug}`); // Redirect after delay
+      setIsRedirecting(false); // Hide loader
+    }, 1000);
   };
 
+ 
   
   return (
+  <>
+
+     {isRedirecting && (
+      <div className="loader-overlay-navbar ">
+        <div className="loader-navbar"></div>
+      </div>
+    )}
     <header>
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container">
@@ -90,19 +104,15 @@ const Navbar = () => {
               {/* N-Shop with Dropdown */}
               <li className="nav-item dropdown">
                 <Link
-                  className="nav-link dropdown-toggle"
+                  className="nav-link dropdown-toggle "
                   href="#"
                   id="nShopDropdown"
                   role="button"
                   aria-expanded="false"
+                  
                 >
                   N-Shop
                   </Link>
-            {/* <ul className="navbar-nav "> */}
-              {/* <li className="nav-item"> */}
-                {/* <Link href="/products" passHref className="nav-link">
-                  Shop
-                </Link> */}
                  <ul className="dropdown-menu" aria-labelledby="nShopDropdown">
                   {loading ? (
                     <li>Loading...</li>
@@ -113,13 +123,12 @@ const Navbar = () => {
                       .filter((category) => category.type === "n-shop")
                       .map((category) => (
                         <li key={category.slug}>
-                          <Link
-                            href={`/${category.slug}`}
-                            passHref
-                            className="dropdown-item"
-                          >
-                            {category.name}
-                          </Link>
+                          <button
+                              onClick={() => handleCategoryClick(category.slug)}
+                              className="dropdown-item"
+                            >
+                              {category.name}
+                            </button>
                         </li>
                       ))
                   )}
@@ -147,13 +156,12 @@ const Navbar = () => {
                       .filter((category) => category.type === "K-12 Offering")
                       .map((category) => (
                         <li key={category.slug}>
-                          <Link
-                            href={`/${category.slug}`}
-                            passHref
-                            className="dropdown-item"
-                          >
-                            {category.name}
-                          </Link>
+                          <button
+                              onClick={() => handleCategoryClick(category.slug)}
+                              className="dropdown-item"
+                            >
+                              {category.name}
+                            </button>
                         </li>
                       ))
                   )}
@@ -209,7 +217,7 @@ const Navbar = () => {
                 alt="Cart"
                 className="icon"
               />
-              <span className="cart-count-badge">{cartCount}</span>
+            {cartCount > 0 && <span className="cart-count-badge">{cartCount}</span>}
             </div>
             {isLoggedIn ? (
               <button  className="btn btn-link nav-link mx-2">
@@ -233,6 +241,7 @@ const Navbar = () => {
 
   
     </header>
+    </>
   );
 };
 export default Navbar;
